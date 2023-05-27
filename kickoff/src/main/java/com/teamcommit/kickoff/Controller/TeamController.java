@@ -33,6 +33,8 @@ public class TeamController {
 
     @Autowired
     private LoginService loginService;
+    
+    // 우왕 이제 됐다 ~!
 
     // 팀 목록
     @RequestMapping(value = "/team", method = RequestMethod.GET)
