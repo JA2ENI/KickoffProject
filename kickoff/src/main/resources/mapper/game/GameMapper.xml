@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.teamcommit.kickoff.Service.GameMapper">
+
+    <select id="gameDetail" parameterType="com.teamcommit.kickoff.Do.GameDO" resultType="com.teamcommit.kickoff.Do.GameDO">
+        <![CDATA[
+        SELECT PLACE_NAME, TEAM1_NAME, TEAM2_NAME, GAME_DATE, GAME_STYLE, GAME_GENDER, GAME_STATUS
+        FROM GAME
+        ]]>
+    </select>
+
+    <!-- Board Detail -->
+    <select id="getGameScoreDetail" parameterType="com.teamcommit.kickoff.Do.GameDO" resultType="com.teamcommit.kickoff.Do.GameDO">
+        <![CDATA[
+        SELECT
+            *
+        FROM
+            GAME
+        WHERE
+            GAME_SEQNO = #{gameSeqno}
+        ]]>
+    </select>
+
+    <insert id = "insertGame" parameterType="com.teamcommit.kickoff.Do.GameDO">
+        <![CDATA[
+        INSERT INTO GAME
+        (
+            GAME_SEQNO,
+            PLACE_ID,
+            TEAM1_ID,TEAM2_ID,
+            GAME_DATE,
+            GAME_STYLE,
+            GAME_GENDER,
+            GAME_STATUS
+        )
+        VALUES(
+                  GAME_SEQ.NEXTVAL,
+                  #{placeId},
+                  #{team1Id},
+                  #{tema2Id},
+                  #{gameDate},
+                  #{gameStyle},
+                  #{gameGender},
+                  #{gameStatus}
+              )
+        ]]>
+    </insert>
+</mapper>

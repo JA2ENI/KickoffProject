@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+	
+	* {
+		font-family: 'Noto Sans KR', sans-serif;
+		font-weight: bold;
+	}
+		.calendar-wrap {
+			position: relative;
+			margin-right: 3px;
+		}
+		
+		.calendar-wrap.date-wrap {
+			margin: auto 20px auto auto;
+			text-align: center;
+		}
+		
+		.slick-list {
+			position: relative;
+			display: block;
+			overflow: hidden;
+			margin: 0;
+			padding: 0;
+			text-align: center;
+		}
+		
+		.slick-track {
+			position: relative;
+			top: 0;
+			left: 0;
+			display: inline-block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	
+		.slick-slide.slick-current.slick-active {
+			width: 111px;
+		}
+		
+		.slick-slide.slick-active {
+			width: 85px;
+			display: inline-block;
+		}
+		
+		.slick-slide {
+		    display: none;
+		    float: left;
+		
+		    height: 100%;
+		    min-height: 1px;
+		}
+		
+		.box {
+			display: flex;
+			justify-content: center;
+		}
+		
+		.preBtn, .nextBtn {
+			background: #e4e4e4 !important;
+		}
+		
+		.btn,
+		.preBtn,
+		.nextBtn {
+			display: inline-block;
+			padding: 9px 0px;
+			margin: 8px 0px;
+			width: 50px !important;
+			height: 60px;
+			border-radius: 15px;
+			border: none;
+			font-size: 14px;
+			font-weight: bold;
+			outline: none;
+			color: #212120;
+		}		
+		
+		.btn:hover,
+		.btn.active {
+			background: #7FB77E;
+			color: #fff !important;
+		}
+		
+		.btn:visited {
+			background: #1570ff;
+			color: #fff;
+		}
+		
+		.btn:focus {
+			border: none;
+		}
+		
+		.preBtn:hover,
+		.preBtn.active,
+		.nextBtn:hover,
+		.nextBtn.active {
+			background: #e4e4e4;
+			color: #fff;
+		}
+		
+		.preBtn:visited,
+		.nextBtn:visited {
+			background: #e4e4e4;
+			color: #fff;
+		}
+		
+		.selected {
+			background-color: #7FB77E;
+			color: #fff !important;
+		}
+		
+		.selected:focus {
+			border: none;
+		}
+		
+		.sun {
+			color: red;
+		}
+		
+		.sat {
+			color: blue;
+		}

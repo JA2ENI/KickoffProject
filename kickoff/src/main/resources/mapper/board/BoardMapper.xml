@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.teamcommit.kickoff.Service.BoardMapper">
+
+    <!-- Board List -->
+    <select id="getList" parameterType="com.teamcommit.kickoff.Do.BoardDO" resultType="com.teamcommit.kickoff.Do.BoardDO">
+        <![CDATA[
+        SELECT
+            *
+        FROM
+            COMMUNITY_BOARD
+        ]]>
+    </select>
+
+    <!-- Board Insert -->
+    <insert id="insertBoard" parameterType="com.teamcommit.kickoff.Do.BoardDO">
+        <![CDATA[
+        INSERT INTO COMMUNITY_BOARD
+        (
+            BOARD_SEQNO,
+            WRITE_TITLE,
+            WRITE_ID,
+            FILE_NAME,
+            FILE_PATH,
+            WRITE_CONTENT,
+            VIEW_COUNT,
+            REPORT_COUNT,
+            WRITE_ID_EMP
+        )
+        VALUES
+            (
+                BOARD_SEQ.NEXTVAL,
+                #{writeTitle},
+                #{writeId},
+                #{fileName},
+                #{filePath},
+                #{writeContent},
+                0,0,
+                #{writeIdEmp}
+            )
+        ]]>
+    </insert>
+
+
+    <!-- Board Detail -->
+    <select id="getBoardContents" parameterType="com.teamcommit.kickoff.Do.BoardDO" resultType="com.teamcommit.kickoff.Do.BoardDO">
+        <![CDATA[
+        SELECT
+            *
+        FROM
+            COMMUNITY_BOARD
+        WHERE
+            BOARD_SEQNO = #{boardSeqno}
+        ]]>
+    </select>
+
+    <!-- Board Update -->
+    <update id="updateBoard" parameterType="com.teamcommit.kickoff.Do.BoardDO">
+        <![CDATA[
+        UPDATE
+            COMMUNITY_BOARD
+        SET
+            WRITE_TITLE = #{writeTitle},
+            WRITE_CONTENT = #{writeContent},
+            FILE_NAME = #{fileName},
+            FILE_PATH = #{filePath},
+            WRITE_EDIT_DATE = #{writeEditDate}
+        WHERE
+            BOARD_SEQNO = #{boardSeqno}
+        ]]>
+    </update>
+
+    <!-- Board Delete -->
+    <delete id="getBoardDelete" parameterType="com.teamcommit.kickoff.Do.BoardDO" >
+    <![CDATA[
+        DELETE
+        FROM
+            COMMUNITY_BOARD
+        WHERE
+            BOARD_SEQNO = #{boardSeqno}
+        ]]>
+	</delete>
+
+    <!-- Board Report -->
+    <insert id="reportBoard" parameterType="com.teamcommit.kickoff.Do.ReportDO">
+        <![CDATA[
+        INSERT INTO REPORT
+        (
+            REPORT_NO,
+            BOARD_SEQNO,
+            REPORT_COMMENT
+        )
+        VALUES
+            (
+                REPORT_SEQ.NEXTVAL,
+                #{boardSeqno},
+                #{reportComment}
+            )
+        ]]>
+    </insert>
+
+    <select id="procGetMaxSeqno" resultType="int">
+        <![CDATA[
+        SELECT
+            MAX(BOARD_SEQNO)
+        FROM
+            COMMUNITY_BOARD
+        ]]>
+    </select>
+
+    <select id="procGetMaxNo" resultType="int">
+        <![CDATA[
+        SELECT
+            MAX(REPLY_NO)
+        FROM
+            REPLY
+        ]]>
+    </select>
+
+    <update id="procAddViewCount" parameterType="com.teamcommit.kickoff.Do.BoardDO">
+        <![CDATA[
+        UPDATE
+            COMMUNITY_BOARD
+        SET
+            VIEW_COUNT = VIEW_COUNT+1
+        WHERE
+            BOARD_SEQNO = #{boardSeqno}
+        ]]>
+    </update>
+
+    <!-- Reply List -->
+    <select id="getreplyList" parameterType="com.teamcommit.kickoff.Do.ReplyDO" resultType="com.teamcommit.kickoff.Do.ReplyDO">
+        <![CDATA[
+        SELECT
+            *
+        FROM
+            REPLY
+        WHERE
+            BOARD_SEQNO = #{boardSeqno}
+        ORDER BY
+            REPLY_NO ASC
+        ]]>
+    </select>
+
+    <!-- Reply Insert -->
+    <insert id="insertReply" parameterType="com.teamcommit.kickoff.Do.ReplyDO">
+        <![CDATA[
+        INSERT INTO REPLY
+        (
+            REPLY_NO,
+            REPLY_ID,
+            BOARD_SEQNO,
+            REPLY_CONTENT,
+            REPLY_ID_EMP
+        )
+        VALUES
+            (
+                REPLY_SEQ.NEXTVAL,
+                #{replyId},
+                #{boardSeqno},
+                #{replyContent},
+                #{replyIdEmp}
+            )
+        ]]>
+    </insert>
+
+    <!-- Reply Delete -->
+    <delete id="getReplyDelete" parameterType="com.teamcommit.kickoff.Do.ReplyDO" >
+    <![CDATA[
+        DELETE
+        FROM
+            REPLY
+        WHERE
+            REPLY_NO = #{replyNo}
+        ]]>
+	</delete>
+
+    <!-- Reply COUNT
+    <select id="getReplyDelete" parameterType="com.teamcommit.kickoff.Do.ReplyDO" >
+    <![CDATA[
+        SELECT COUNT(*)
+        FROM REPLY
+        WHERE BOARD_SEQNO = #{boardSeqno}
+        ]]>
+	</select>-->
+
+</mapper>

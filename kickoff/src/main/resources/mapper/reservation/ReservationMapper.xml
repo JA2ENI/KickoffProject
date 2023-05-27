@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.teamcommit.kickoff.Service.ReservationMapper">
+
+    <!-- Reservation List -->
+    <select id="selectReservationList" parameterType="com.teamcommit.kickoff.Do.ReservationDO" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                RESERVATION
+        ]]>
+    </select>
+
+    <!-- Reservation Insert -->
+    <insert id="insertReservation" parameterType="com.teamcommit.kickoff.Do.ReservationDO">
+        <![CDATA[
+            INSERT INTO RESERVATION (
+                RESERVATION_TYPE,
+                RESERVATION_NO,
+                EMP_ID,
+                PLACE_ID,
+                RESERVATION_PLACE_NAME,
+                RESERVATION_PLACE_ADDRESS,
+                RESERVATION_COURT_NAME,
+                RESERVATION_COURT_FORM,
+                RESERVATION_DATE,
+                RESERVATION_START_TIME,
+                RESERVATION_END_TIME,
+                RESERVATION_STATUS,
+                RESERVATION_PRICE,
+                RESERVATION_COMMENT,
+                RESERVATION_HEADCOUNT,
+                RESERVATION_REG_DATE,
+                RESERVATION_CANCEL,
+                RESERVATION_PLACE_SIZE,
+                RESERVATION_PLACE_GROUND,
+                RESERVATION_PLACE_PARKING,
+                IMG_NAME,
+                IMG_PATH
+            )
+            VALUES (
+                'EMP',
+                RESERVATION_SEQ.NEXTVAL,
+                #{empId},
+                #{placeId},
+                #{reservationPlaceName},
+                #{reservationPlaceAddress},
+                #{reservationCourtName},
+                #{reservationCourtForm},
+                #{reservationDate},
+                #{reservationStartTime},
+                #{reservationEndTime},
+                '예약대기',
+                #{reservationPrice},
+                #{reservationComment},
+                #{reservationHeadcount},
+                SYSDATE,
+                'N',
+                #{reservationPlaceSize},
+                #{reservationPlaceGround},
+                #{reservationPlaceParking},
+                #{imgName},
+                #{imgPath}
+            )
+        ]]>
+    </insert>
+
+    <!-- Reservation Detail -->
+    <select id="selectReservationDetail" parameterType="com.teamcommit.kickoff.Do.ReservationDO" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                RESERVATION
+            WHERE
+                RESERVATION_NO = #{reservationNo}
+        ]]>
+    </select>
+
+    <!-- Reservation Update -->
+    <update id="updateReservation" parameterType="com.teamcommit.kickoff.Do.ReservationDO">
+        <![CDATA[
+            UPDATE
+                RESERVATION
+            SET
+                RESERVATION_PLACE_NAME = #{reservationPlaceName},
+                RESERVATION_COURT_NAME = #{reservationCourtName},
+                RESERVATION_PLACE_ADDRESS = #{reservationPlaceAddress},
+                RESERVATION_COURT_FORM = #{reservationCourtForm},
+                RESERVATION_HEADCOUNT = #{reservationHeadcount},
+                RESERVATION_DATE = #{reservationDate},
+                RESERVATION_START_TIME = #{reservationStartTime},
+                RESERVATION_END_TIME = #{reservationEndTime},
+                RESERVATION_STATUS = #{reservationStatus},
+                RESERVATION_PRICE = #{reservationPrice},
+                RESERVATION_COMMENT = #{reservationComment},
+                RESERVATION_REG_DATE =  #{reservationRegDate},
+                RESERVATION_EDIT_DATE = SYSDATE
+            WHERE
+                RESERVATION_NO = #{reservationNo}
+        ]]>
+    </update>
+
+    <!-- place info -->
+    <select id="selectPlaceInfo" parameterType="com.teamcommit.kickoff.Do.PlaceDO" resultType="com.teamcommit.kickoff.Do.PlaceDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                PLACE
+            WHERE
+                EMP_ID = #{empId}
+        ]]>
+    </select>
+
+    <!-- user info -->
+    <select id="insertUserInfo" parameterType="com.teamcommit.kickoff.Do.UserDO" resultType="com.teamcommit.kickoff.Do.UserDO">
+        <![CDATA[
+        SELECT
+            USER_NAME,
+            USER_PHONE_NUMBER
+        FROM
+            USERS
+        WHERE
+            USER_ID = #{userId}
+        ]]>
+    </select>
+
+    <!-- reservation request insert -->
+    <insert id="insertReservationRequest" parameterType="com.teamcommit.kickoff.Do.ReservationDO">
+        <![CDATA[
+            INSERT INTO RESERVATION (
+                USER_ID,
+                RESERVATION_TYPE,
+                RESERVATION_NO,
+                RESERVATION_PLACE_NAME,
+                RESERVATION_COURT_NAME,
+                RESERVATION_USER_NAME,
+                RESERVATION_USER_PHONE,
+                RESERVATION_DATE,
+                RESERVATION_START_TIME,
+                RESERVATION_END_TIME,
+                RESERVATION_GAME_STYLE,
+                RESERVATION_PRICE,
+                RESERVATION_STATUS,
+                RESERVATION_REG_DATE,
+                PLACE_ID,
+                RESERVATION_PLACE_ADDRESS
+            )
+            VALUES (
+                        #{userId},
+                       'USER',
+                       RESERVATION_SEQ.NEXTVAL,
+                       #{reservationPlaceName},
+                       #{reservationCourtName},
+                       #{reservationUserName},
+                       #{reservationUserPhone},
+                       #{reservationDate},
+                       #{reservationStartTime},
+                       #{reservationEndTime},
+                       #{reservationGameStyle},
+                       #{reservationPrice},
+                       '예약대기',
+                       SYSDATE,
+                       #{placeId},
+                       #{reservationPlaceAddress}
+            )
+        ]]>
+    </insert>
+
+</mapper>

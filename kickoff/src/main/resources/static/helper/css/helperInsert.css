@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+
+:root {
+  --button-color: #ffffff;
+  --button-bg-color: #0d6efd;
+  --button-hover-bg-color: #025ce2;
+}
+
+.bg-dark {
+  --bs-bg-opacity: 1;
+  background-color: #7fb77e !important;
+  color: #FFF;
+  width: 100%;
+  text-align:center;
+  box-sizing: border-box;
+  height: 200px;
+  text-align: center;
+}
+
+.bg-dark .py-5 {
+	height: 200px;
+	text-align: center;
+}
+
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+	}
+	
+
+body {
+	background: #f6f5f7;
+}
+
+#level {
+	  position: absolute;
+	  left: 30%;
+	  top: 50%;
+}
+
+.selectBox {
+  position: absolute;
+  width: 150px;
+  height: 35px;
+  border-radius: 4px;
+  border: 2px solid #b1d7b4;
+  top: 49.1%;
+  left: 33%;
+  
+}
+.selectBox .helperTeamLevel, .selectBox .helperMatch, .selectBox .helperPosition {
+  width: inherit;
+  height: inherit;
+  border: 0 none;
+  outline: 0 none;
+  padding: 0 5px;
+  position: relative;
+  z-index: 3; 
+}
+.selectBox .helperTeamLevel option, .selectBox .helperMatch option, .selectBox .helperPosition option{
+  background: #b1d7b4;
+  color: #fff;
+  padding: 3px 0;
+  font-size: 12px;
+}
+
+.reservationBox{
+	position: absolute;
+	top: 56%;
+	left: 30%;
+}
+
+input[type = "text"] {
+	width: 150px;
+  height: 35px;
+  border-radius: 4px;
+  border: 2px solid #b1d7b4;
+  margin-top: 5px;
+
+}
+
+.helperBox input[type = "number"] {
+	border-radius: 4px;
+  	border: 2px solid #b1d7b4;
+  	height: 35px;
+  	width: 25px;
+  	text-align: right;
+}
+
+input[type = "number"] {
+	border-radius: 4px;
+  	border: 2px solid #b1d7b4;
+  	height: 35px;
+  	width: 80px;
+  	text-align: right;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#helperAddress {
+	position: absolute;
+	top: 50%;
+	left: 34%;
+}
+
+#helperTime {
+	position: absolute;
+	top: 100%;
+	left: 34%;
+} 
+
+.line {
+	border-bottom: 2px solid gray;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 90px;
+	padding-top: 50px;
+}
+
+.reservation {
+    position: absolute;
+    top: 42%;
+}
+
+#matchBox {
+	position: absolute;
+	top: 77.5%;
+	left: 35.25%;
+}
+
+#match {
+	  position: absolute;
+	  left: 30%;
+	  top: 78.5%;
+}
+
+.helperBox {
+	position: absolute;
+	  left: 50%;
+	  top: 56%;
+}
+
+.genderBox {
+	position: absolute;
+	  left: 50%;
+	  top: 63.5%;
+}
+
+
+[type="radio"] {
+  appearance: none;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  transition: border 0.5s ease-in-out;
+}
+
+[type="radio"]:checked {
+  border: 0.4em solid #7fb77e;
+}
+
+[type="radio"]:hover {
+  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+  cursor: pointer;
+}
+
+#positionBox {
+position: absolute;
+	  left: 53.8%;
+	  top: 68.2%;
+}
+
+#position {
+position: absolute;
+	  left: 50%;
+	  top: 69.2%;
+}
+
+.moneyBox {
+	position: absolute;
+	  left: 50%;
+	  top: 75.5%;
+}
+
+.userBox {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+}
+
+.btnbtn {
+	position: absolute;
+	left: 50%;
+	top: 82.4%;
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  background: var(--button-bg-color);
+  color: var(--button-color);
+  
+  margin: 0;
+
+  
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  
+  border: none;
+  border-radius: 4px;
+  
+  display: inline-block;
+  width: auto;
+  
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  
+  cursor: pointer;
+  
+  transition: 0.5s;
+}
+
+.btn {
+	  padding: 0.5rem 1rem;
+	  font-size: 1em;
+}
+
+button:active,
+button:hover,
+button:focus {
+  background: var(--button-hover-bg-color);
+  outline: 0;
+}
+button:disabled {
+  opacity: 0.5;
+}
+
+button.btn, .reservation, .reservationClose {
+  --button-bg-color: #b1d7b4;
+  --button-hover-bg-color: #7fb77e;
+}
+
+.modal_wrap{
+        display: none;
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        top:50%;
+        left: 50%;
+        margin: -250px 0 0 -250px;
+        background-color: #f6f5f7;
+        z-index: 2;
+    }
+    .black_bg{
+        display: none;
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color:rgba(0, 0,0, 0.5);
+        top:0;
+        left: 0;
+        z-index: 1;
+    }
+    .reservationClose {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -30px;
+        right: 0;
+    }
+    .reservationClose > a{
+        display: block;
+        width: 100%;
+        height: 100%;
+        background:url(https://img.icons8.com/metro/26/000000/close-window.png);
+        text-indent: -9999px;
+    }
+

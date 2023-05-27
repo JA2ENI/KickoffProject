@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.teamcommit.kickoff.Service.MainMapper">
+
+    <select id="selectReservationMain" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+        <![CDATA[
+        SELECT * FROM (SELECT *
+                       FROM RESERVATION
+                       WHERE RESERVATION_STATUS = '예약대기') WHERE ROWNUM <= 10
+
+        ]]>
+    </select>
+
+    <select id="selectGameMain" resultType="com.teamcommit.kickoff.Do.GameDO">
+        <![CDATA[
+        SELECT * FROM (SELECT *
+                       FROM GAME
+                       WHERE GAME_DATE = TO_CHAR(SYSDATE, 'YYYY-MM-DD')) WHERE ROWNUM <= 10
+
+        ]]>
+    </select>
+
+    <select id="selectBoardMain" resultType="com.teamcommit.kickoff.Do.BoardDO">
+        <![CDATA[
+        SELECT * FROM (SELECT *
+                       FROM COMMUNITY_BOARD
+                       WHERE WRITE_REG_DATE = TO_CHAR(SYSDATE, 'YY/MM/DD')) WHERE ROWNUM <= 10
+
+        ]]>
+    </select>
+
+</mapper>

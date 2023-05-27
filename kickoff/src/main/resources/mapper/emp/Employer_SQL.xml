@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.teamcommit.kickoff.Service.EmpMapper">
+
+    <select id="selectReservation" parameterType="com.teamcommit.kickoff.Do.ReservationDO" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+        <![CDATA[
+        SELECT
+            *
+        FROM
+            RESERVATION
+        ]]>
+    </select>
+
+    <!-- Employer Board List -->
+    <select id="getList" parameterType="com.teamcommit.kickoff.Do.BoardDO" resultType="com.teamcommit.kickoff.Do.BoardDO">
+        <![CDATA[
+        SELECT
+            *
+        FROM
+            COMMUNITY_BOARD
+        WHERE
+            WRITE_ID_EMP = #{empId}
+        ]]>
+    </select>
+
+    <!-- Employer info_fix -->
+    <insert id="info_fix" parameterType="com.teamcommit.kickoff.Do.EmployerDO">
+        <![CDATA[
+        INSERT INTO EMPLOYER
+        (
+         EMP_ID,
+         EMP_PW,
+         EMP_NAME,
+         EMP_ADDRESS,
+         EMP_PHONE_NUMBER,
+         EMP_EMAIL,
+         EMP_DATE
+        )
+        VALUES
+            (
+             #{writeId},
+             #{writePw},
+             #{writeName},
+             #{writeAddress},
+             #{writePhoneNumber},
+             #{writeEmail},
+             #{writeDate}
+            )
+
+        ]]>
+    </insert>
+
+    <insert id="empFutsalInsert" parameterType="com.teamcommit.kickoff.Do.PlaceDO">
+        <![CDATA[
+        INSERT INTO PLACE (
+            PLACE_NAME,
+            PLACE_ADDRESS,
+        )
+        VALUES (
+            RESERVATION_SEQ.NEXTVAL,
+            #{placeName},
+            #{placeAddress}
+        )
+        ]]>
+    </insert>
+
+    <!-- Futsal(place) Insert -->
+    <update id="updateFutsal" parameterType="com.teamcommit.kickoff.Do.PlaceDO">
+        <![CDATA[
+        UPDATE
+            IMG_NAME,
+            PLACE_NAME,
+            PLACE_ADDRESS,
+            PLACE_PHONE_NUMBER,
+            PLACE_HOMEPAGE,
+            PLACE_GROUND,
+            PLACE_SIZE,
+            PLACE_FORM,
+            PLACE_LIGHT,
+            PLACE_OPEN,
+            PLACE_PRICE,
+            PLACE_TIME,
+            PLACE_OTHER,
+            PLACE_PARKING
+        SET
+            #{imgName},
+            #{placeName},
+            #{placeAddress},
+            #{placePhoneNumber},
+            #{placeHomepage},
+            #{placeGround},
+            #{placeSize},
+            #{placeForm},
+            #{placeLight},
+            #{placeOpen}
+            #{placePrice},
+            #{placeTime},
+            #{placeOther},
+            #{placeParking}
+        WHERE
+            EMP_ID = #{empId}
+        ]]>
+    </update>
+
+
+
+</mapper>

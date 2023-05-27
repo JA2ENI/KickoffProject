@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+	
+	
+	* {
+		font-family: 'Noto Sans KR', sans-serif;
+		padding: 0; 
+		margin: 0;
+		box-sizing: border-box;
+		font-weight: bold;
+	}
+	
+	panel, panel-body
+	h1 {
+		text-align: center;
+		font-style: bold;
+		margin-top: 0;
+    	margin-bottom: 0.5rem;
+	}
+	
+	h4 {
+	color: #1c1c1c;
+    font-weight: 700;
+    border-bottom: 1px solid #B1D7B4;
+    width: 100%;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-family: 'Noto Sans KR', sans-serif;
+	}
+	
+	hr {
+	border: 1px solid #B1D7B4;
+	}
+	
+	form {
+	display: block;
+	width: 55%;
+	}
+	
+	.formInline {
+		margin-bottom : 1em;
+		width: 90px;
+	}
+	
+	.form-control {
+		width: 100%;
+		margin-bottom: 1em;
+	}
+	
+	body {
+		background: #FFF;
+  		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		font-family: 'Noto Sans KR', sans-serif;
+		margin-top: 100px;
+	}
+	
+	.upload {
+		clear: both;
+		margin-top: 1em;
+		margin-bottom: 1em;
+	}	
+	
+	.table-responsive {
+		margin-top: 3em;
+	}
+	
+	label {
+		font-style: bold;
+	}
+	
+	button {
+	border-radius: 20px;
+	font-size: 14px;
+	color: #ffffff;
+	font-weight: 800;
+	text-transform: uppercase;
+	padding: 13px 30px 12px;
+	background: #B1D7B4;
+	border: none;
+	margin: 0 auto;
+	margin-top: 1em;
+	}
+	
+
+.bg-dark {
+  --bs-bg-opacity: 1;
+  background-color: #7fb77e !important;
+  color: #FFF;
+  width: 100%;
+  text-align:center;
+  box-sizing: border-box;
+  height: 200px;
+  text-align: center;
+}
+
+.bg-dark .py-5 {
+	height: 200px;
+	text-align: center;
+}
+
+.fw-bolder {
+    font-weight: bolder !important;
+}
+
+.display-4 {
+    font-size: calc(1rem + 2vw);
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.text-white {
+    --bs-text-opacity: 1;
+    color: rgba(rgba(255, 255, 255), rgba(--bs-text-opacity)) !important;
+}
+
+.text-white-50 {
+    color: rgba(255,255,255,.5)!important;
+}
+
+.fw-normal {
+    font-weight: 400 !important;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+p {
+    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #6f6f6f;
+    font-weight: 400;
+    line-height: 26px;
+    margin: 0 0 15px 0;
+}
+
+.px-4 {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+}
+
+.my-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+}
+
+.report {
+	width: 100%;
+	font-size: 18px;
+	padding: 20px;
+	background-color: #ffffff;
+    border: 1px solid #B1D7B4;
+    border-radius: 5px;
+    border: 2px solid rgba(177, 215, 180,.25);
+    box-shadow: 0 2px 5px rgba(177, 215, 180,.75);
+    margin-bottom: 3em; 
+    text-align: start;
+}
+
+.report .btn_boardreport {
+  text-align: center;
+  margin: auto;
+  display: block;
+}
+
+[type="radio"]:checked {
+	border: 0.4em solid #7fb77e;
+}

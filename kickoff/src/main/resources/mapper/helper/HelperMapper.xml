@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.teamcommit.kickoff.Service.HelperMapper">
+
+    <select id="selectHelper" parameterType="com.teamcommit.kickoff.Do.HelperDO" resultType="com.teamcommit.kickoff.Do.HelperDO">
+        <![CDATA[
+        SELECT *
+        FROM
+            HELPER_BOARD
+        ]]>
+    </select>
+
+    <select id = "selectReservation" parameterType="String" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+        <![CDATA[
+        SELECT *
+        FROM
+            RESERVATION
+        WHERE USER_ID = #{userId} AND RESERVATION_TYPE = 'USER' AND RESERVATION_DATE >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+        ]]>
+    </select>
+
+    <select id="selectHelperDetail" parameterType="com.teamcommit.kickoff.Do.HelperDO" resultType="com.teamcommit.kickoff.Do.HelperDO">
+        <![CDATA[
+        SELECT *
+        FROM
+            HELPER_BOARD
+        WHERE HELPER_SEQNO = #{helperSeqno}
+        ]]>
+    </select>
+
+    <insert id = "insertHelper" parameterType="com.teamcommit.kickoff.Do.HelperDO">
+        <![CDATA[
+        INSERT INTO HELPER_BOARD
+        (
+         HELPER_SEQNO,
+         USER_ID,
+         HELPER_POSITION,
+         HELPER_PRICE,
+         HELPER_MATCH,
+         HELPER_ADDRESS,
+         HELPER_GENDER,
+         HELPER_WANT,
+         HELPER_TIME,
+         HELPER_TEAMLEVEL,
+         HELPER_PLACE_NAME,
+         HELPER_STATUS
+         )
+        VALUES(
+               HELPER_SEQ.NEXTVAL,
+               #{userId},
+               #{helperPosition},
+               #{helperPrice},
+               #{helperMatch},
+               #{helperAddress},
+               #{helperGender},
+               #{helperWant},
+               #{helperTime},
+               #{helperTeamLevel},
+               #{helperPlaceName},
+               '진행 중'
+        )
+        ]]>
+    </insert>
+
+    <insert id = "insertMessage" parameterType="com.teamcommit.kickoff.Do.MessageDO">
+        <![CDATA[
+        INSERT INTO MESSAGE
+        (
+            MESSAGE_SEQNO,
+            MESSAGE_RECEIVE_ID,
+            MESSAGE_SEND_ID,
+            MESSAGE_CONTENT,
+            MESSAGE_TITLE,
+            HELPER_SEQNO
+        )
+        VALUES (
+                    MESSAGE_SEQ.NEXTVAL,
+                   #{messageReceiveId},
+                   #{messageSendId},
+                   #{messageContent},
+                   #{messageTitle},
+                   #{helperSeqno}
+        )
+        ]]>
+    </insert>
+
+    <update id = "updateStatus" parameterType="String">
+        <![CDATA[
+        UPDATE HELPER_BOARD
+        SET HELPER_STATUS = '마감'
+        WHERE HELPER_SEQNO = (SELECT HELPER_SEQNO
+                              FROM MESSAGE
+                              WHERE HELPER_YN = 'Y')
+            ]]>
+    </update>
+
+</mapper>
