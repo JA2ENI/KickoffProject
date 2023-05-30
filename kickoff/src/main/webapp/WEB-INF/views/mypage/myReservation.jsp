@@ -56,6 +56,7 @@
 															</div>
 															<div class="facility-wrap">
 																<h2>${row.reservationPlaceName}</h2>
+																<h3>${row.reservationPlaceAddress}</h3>
 																<p class="info">
 																	예약 날짜<span>${row.reservationDate}</span>
 																</p>
@@ -63,10 +64,10 @@
 																	예약 시간<span>${row.reservationStartTime}:00~${row.reservationEndTime}:00</span>
 																</p>
 																<p class="info">
-																	구장 위치<span>${row.reservationPlaceAddress}</span>
+																	대관 비용<span>${row.reservationPrice}원</span>
 																</p>
 																<p class="info">
-																	예약 상태<span>${row.reservationStatus}</span>
+																	예약 상태<span class="status">${row.reservationStatus}</span>
 																</p>
 															</div>
 														</div>
@@ -119,7 +120,8 @@
 
 
 	<!-- script -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c12ebb063cb05a9fc037082cb8601ef1&libraries=services"></script>
+	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c12ebb063cb05a9fc037082cb8601ef1&libraries=services"></script> -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d724483fb639866457f6535349fcd24&libraries=services"></script>
 	<script>
 		/* Kakao Map */
 
@@ -136,7 +138,7 @@
 		var geocoder = new kakao.maps.services.Geocoder();
 
 		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('${reservationDetail.reservationPlaceAddress}', function(result, status) {
+		geocoder.addressSearch('${row.reservationPlaceAddress}', function(result, status) {
 
 			// 정상적으로 검색이 완료됐으면
 			if (status === kakao.maps.services.Status.OK) {

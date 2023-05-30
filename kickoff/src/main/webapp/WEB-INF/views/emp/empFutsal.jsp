@@ -44,15 +44,12 @@
 								<header id="header">
 									<input type="button" onclick="location.href='main'" class="kickoff-logo" value="Kick Off"/>
 									<br>
-									<a href="/empReservation" class="logo"><strong>마이 페이지</strong> 업체 회원용</a>
+									<strong>풋살장 등록</strong>
 								</header>
 							
 							<!-- Begin Page Content -->
 			                	<section>
 				                	<div class="container-fluid">
-				                    <!-- Page Heading -->
-				                    <h1 class="h3 mb-2 text-gray-800">풋살장 등록</h1>
-				                    
 				                	<div class="checkout spad">
 								    	<div class="container">
 								    	<!-- 이미지 class 추가 -->
@@ -62,11 +59,11 @@
 												<input type="hidden" id="placeId" name="placeId" value="${empFutsalInsert.placeId}" />
 								                	<div class="col-lg-8 col-md-6">
 								                		<div class="checkout__input">
+										    			<p>풋살장 이미지<span>*</span></p>
 								                		<div class="filebox bs3-primary preview-image">
-											    			<p>풋살장 이미지<span>*</span></p>
 						              						<input class="upload-name" value="파일선택" disabled="disabled"style="width: 500px;">
-						              						<label for="input_file">업로드</label> 
 						              						<input type="file" id="input_file" class="upload-hidden"> 
+						              						<label for="input_file">업로드</label> 
 			       										</div>
 														<div class="checkout__input">
 							                               <p>풋살장<span>*</span></p>
@@ -98,44 +95,46 @@
 						                                <p>개방 일수<span>*</span></p>
 						                                <input id="setDate" onChange="getDate()" />
 						                            </div>
-						                            <div class="row">
-						                                <div class="col-lg-6">
-						                                    <div class="checkout__input">
-						                                        <p>대여 시간<span>*</span></p>
-						                                        <select id="openTime" name="openTime" onChange="getStartTime(this)">
-						                                        	<option value="">대여 시간 선택</option>
-						                                        	<c:forEach var="i" begin="1" end="24">
-							                                        	<c:choose>
-							                                        		<c:when test="${i lt 10}">
-							                                        			<option value="0${i}">0${i}:00</option>
-							                                        		</c:when>
-							                                        		<c:otherwise>
-							                                        			<option value="${i}">${i}:00</option>
-							                                        		</c:otherwise>
-							                                        	</c:choose>
-						                                        	</c:forEach>
-						                                        </select>
-						                                    </div>
-						                                </div>
-														<div class="checkout__input">
-															<p>조명<span>*</span></p>
-															<label>
-																<input type="radio" name="placeLight" value="Y" onclick='getPlaceLight(event)' <c:if test="${empFutsalInsert.placeLight eq 'Y'}">checked="checked"</c:if>/>&nbsp있음
-															</label>
-															<label>
-																<input type="radio" name="placeLight" value="N" onclick='getPlaceLight(event)' <c:if test="${empFutsalInsert.placeLight eq 'N'}">checked="checked"</c:if>/>&nbsp없음
-															</label>
-														</div>
-														<div class="checkout__input">
-															<p>주차장<span>*</span></p>
-															<label>
-																<input type="radio" name="placeParking" value="Y" onclick='getPlaceParking(event)' <c:if test="${empFutsalInsert.placeParking eq 'Y'}">checked="checked"</c:if>/>&nbsp있음
-															</label>
-															<label>
-																<input type="radio" name="placeParking" value="N" onclick='getPlaceParking(event)' <c:if test="${empFutsalInsert.placeParking eq 'N'}">checked="checked"</c:if>/>&nbsp없음
-															</label>
+				                                    <div class="checkout__input">
+				                                        <p>대여 시간<span>*</span></p>
+				                                        <select id="openTime" name="openTime" onChange="getStartTime(this)">
+				                                        	<option value="">대여 시간 선택</option>
+				                                        	<c:forEach var="i" begin="1" end="24">
+					                                        	<c:choose>
+					                                        		<c:when test="${i lt 10}">
+					                                        			<option value="0${i}">0${i}:00</option>
+					                                        		</c:when>
+					                                        		<c:otherwise>
+					                                        			<option value="${i}">${i}:00</option>
+					                                        		</c:otherwise>
+					                                        	</c:choose>
+				                                        	</c:forEach>
+				                                        </select>
+				                                    </div>
+						                                    
+						                            <div class="s_container">  
+						                            	<div class="s_content">
+															<div class="checkout__input light">
+																<p>조명<span>*</span></p>
+																<label>
+																	<input type="radio" name="placeLight" value="Y" onclick='getPlaceLight(event)' <c:if test="${empFutsalInsert.placeLight eq 'Y'}">checked="checked"</c:if>/>&nbsp있음
+																</label>
+																<label>
+																	<input type="radio" name="placeLight" value="N" onclick='getPlaceLight(event)' <c:if test="${empFutsalInsert.placeLight eq 'N'}">checked="checked"</c:if>/>&nbsp없음
+																</label>
+															</div>
+															<div class="checkout__input">
+																<p>주차장<span>*</span></p>
+																<label>
+																	<input type="radio" name="placeParking" value="Y" onclick='getPlaceParking(event)' <c:if test="${empFutsalInsert.placeParking eq 'Y'}">checked="checked"</c:if>/>&nbsp있음
+																</label>
+																<label>
+																	<input type="radio" name="placeParking" value="N" onclick='getPlaceParking(event)' <c:if test="${empFutsalInsert.placeParking eq 'N'}">checked="checked"</c:if>/>&nbsp없음
+																</label>
+															</div>
 														</div>
 						                            </div>
+						                            
 						                            <div class="checkout__input">
 						                                <p>가격<span>*</span></p>
 						                                <input type="number" class="inputPrice" id="inputPrice" value="${empFutsalInsert.placePrice}" onChange="getPrice()" placeholder="ex) 50000">

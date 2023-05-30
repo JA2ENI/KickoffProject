@@ -186,7 +186,10 @@
 	<%@include file="/includes/footer.jsp"%>
 
 	<!-- script -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c12ebb063cb05a9fc037082cb8601ef1&libraries=services"></script>
+	<!-- 서버 인증키 -->
+	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c12ebb063cb05a9fc037082cb8601ef1&libraries=services"></script> -->
+	<!-- 로컬 인증키 -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d724483fb639866457f6535349fcd24&libraries=services"></script>
 	<script>
 		/* Kakao Map */
 
