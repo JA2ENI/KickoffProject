@@ -25,15 +25,12 @@
 								<header id="header">
 									<input type="button" onclick="location.href='main'" class="kickoff-logo" value="Kick Off"/>
 									<br>
-									<a href="empReservation.jsp" class="logo"><strong>마이 페이지</strong> 업체 회원용</a>									
+									<strong>내 풋살장 목록</strong>
 								</header>
 							
 							<!-- Begin Page Content -->
 			                	<section>
 				                	<div class="container-fluid">
-				                    <!-- Page Heading -->
-				                    <h1 class="h3 mb-2 text-gray-800">내 풋살장 목록</h1>                    
-				
 				                    <!-- DataTales Example -->
 				                    <div class="card shadow mb-4">
 				                        <div class="card-body">
@@ -50,20 +47,20 @@
 				                                        </tr>
 				                                    </thead>
 				                                    <tbody>
-													<c:forEach var="list" items="${boardList}">
-				                                        <tr>
-															<td><c:out value="${list.boardSeqno}" /></td>
-															<td>
-																<a href="/boardDetail?boardSeqno=${list.boardSeqno}">
-																	<c:out value="${list.writeTitle}" />
-																</a>
-															</td>
-															<td><c:out value="${list.writeId}" /></td>
-															<td><c:out value="${list.viewCount}" /></td>
-															<td><c:out value="${list.writeRegDate}" /></td>
-															<td><c:out value="${list.reportCount}" /></td>
-				                                        </tr>
-													</c:forEach>
+														<c:forEach var="list" items="${boardList}">
+					                                        <tr>
+																<td>${list.boardSeqno}</td>
+																<td>
+																	<a href="/boardDetail?boardSeqno=${list.boardSeqno}">
+																		${list.writeTitle}
+																	</a>
+																</td>
+																<td>${list.writeId}</td>
+																<td>${list.viewCount}"</td>
+																<td>${list.writeRegDate}"</td>
+																<td>${list.reportCount}"</td>
+					                                        </tr>
+														</c:forEach>
 				                                    </tbody>				                               
 				                                </table>
 				                            </div>

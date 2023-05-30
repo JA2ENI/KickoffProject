@@ -23,16 +23,13 @@
 								<header id="header">
 									<input type="button" onclick="location.href='main'" class="kickoff" value="Kick Off"/>
 									<br>
-									<a href="myBoard.jsp" class="logo"><strong>마이 페이지</strong> 업체 회원용</a>									
+									<strong>회원정보 수정</strong>
 								</header>
 							
 							<!-- Begin Page Content -->
 			                	<section>
 				                	<div class="container-fluid">										
 										    <form action="#">
-										      <h1>회원정보 수정</h1>
-										      <br />
-										      <br />
 										      <div class="signupform" style="overflow:visible; width:980px; height:auto; border-radius: 10px;">
 										      	<input type="text" placeholder="아이디 나중에 값 불러오기" />
 										      	<input type="password" placeholder="비밀번호" />
