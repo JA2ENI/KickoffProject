@@ -13,12 +13,15 @@ public interface HelperMapper {
 
     public void insertHelper(HelperDO helperDO);
 
-    List<ReservationDO> selectReservation(String userId);
+    public List<ReservationDO> selectReservation(String userId);
 
-    HelperDO selectHelperDetail(int helperSeqno);
+    public HelperDO selectHelperDetail(int helperSeqno);
+    
     public void insertMessage(MessageDO messageDO);
 
     public void updateStatus();
+    
+    List<HelperDO> selectHelperTime(HelperDO helperDO);
 
 
 }

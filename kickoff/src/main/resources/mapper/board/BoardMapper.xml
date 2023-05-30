@@ -9,14 +9,16 @@
         SELECT
             *
         FROM
-            COMMUNITY_BOARD
+            BOARD
+        ORDER BY 
+        	BOARD_SEQNO DESC
         ]]>
     </select>
 
     <!-- Board Insert -->
     <insert id="insertBoard" parameterType="com.teamcommit.kickoff.Do.BoardDO">
         <![CDATA[
-        INSERT INTO COMMUNITY_BOARD
+        INSERT INTO BOARD
         (
             BOARD_SEQNO,
             WRITE_TITLE,
@@ -49,7 +51,7 @@
         SELECT
             *
         FROM
-            COMMUNITY_BOARD
+            BOARD
         WHERE
             BOARD_SEQNO = #{boardSeqno}
         ]]>
@@ -59,7 +61,7 @@
     <update id="updateBoard" parameterType="com.teamcommit.kickoff.Do.BoardDO">
         <![CDATA[
         UPDATE
-            COMMUNITY_BOARD
+            BOARD
         SET
             WRITE_TITLE = #{writeTitle},
             WRITE_CONTENT = #{writeContent},
@@ -76,7 +78,7 @@
     <![CDATA[
         DELETE
         FROM
-            COMMUNITY_BOARD
+            BOARD
         WHERE
             BOARD_SEQNO = #{boardSeqno}
         ]]>
@@ -105,7 +107,7 @@
         SELECT
             MAX(BOARD_SEQNO)
         FROM
-            COMMUNITY_BOARD
+            BOARD
         ]]>
     </select>
 
@@ -121,7 +123,7 @@
     <update id="procAddViewCount" parameterType="com.teamcommit.kickoff.Do.BoardDO">
         <![CDATA[
         UPDATE
-            COMMUNITY_BOARD
+            BOARD
         SET
             VIEW_COUNT = VIEW_COUNT+1
         WHERE
