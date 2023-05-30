@@ -84,6 +84,7 @@
                                 </thead>
                                 <c:forEach var="list" items="${table}">
                                     <tr>
+                                    	${weekMsg}
                                         <td><c:out value="${list.helperMatch}" /></td>
                                         <td><c:out value="${list.helperPosition}" /></td>
                                         <td><c:out value="${list.helperTeamLevel}" /></td>

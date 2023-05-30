@@ -13,6 +13,8 @@ public interface HelperService {
     void insertHelper(HelperDO helperDO) throws Exception;
 
     List<ReservationDO> selectReservation(String userId) throws Exception;
+    
+    List<HelperDO> selectHelperTime(HelperDO helperDO) throws Exception;
 
     HelperDO selectHelperDetail(int helperSeqno) throws Exception;
 

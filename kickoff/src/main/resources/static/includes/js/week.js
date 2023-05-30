@@ -15,8 +15,7 @@ window.onload = function() {
 	        var change = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + i);
 	        var dayNum = change.getDay();
 
-	        document.getElementById("day" + (i + 1)).innerHTML = change.getDate() + '<br>' + days[dayNum];
-			// + '<input type = "hidden" value =' + '"' + change.getFullYear() + '-' + (change.getMonth()+1) + '-' + change.getDate() + '">'
+	        document.getElementById("day" + (i + 1)).innerHTML = change.getDate() + '<br>' + days[dayNum] + '<input type = "hidden" name = "helperTime" class = "helperTime" value =' + '"' + change.getFullYear() + '-' + (change.getMonth()+1) + '-' + change.getDate() + '">';
 
 	        var buttons = document.getElementsByClassName("btn");
 	        if(days[dayNum] == "일") {

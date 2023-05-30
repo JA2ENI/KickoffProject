@@ -4,7 +4,6 @@ import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.MessageDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Service.HelperService;
-import com.teamcommit.kickoff.Service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,15 +18,13 @@ public class HelperController {
 
     @Autowired
     private HelperService helperService;
-    @Autowired
-    private LoginService loginService;
 
     @GetMapping("/helperList")
-    public String helperList(@ModelAttribute("helperDO") HelperDO helperDO, Model model) {
+    public String helperList(@ModelAttribute("helperDO") HelperDO helperDO, Model model, HttpSession session) {
         String view = "/helper/helperList";
 
         try {
-            helperService.updateStatus();
+            //helperService.updateStatus();
             List<HelperDO> list = helperService.selectHelper(helperDO);
             model.addAttribute("table", list);
         }
@@ -35,6 +32,21 @@ public class HelperController {
             e.printStackTrace();
         }
         return view;
+    }
+    
+    @GetMapping("/weekHelperList")
+    public String weekHelperList(@ModelAttribute("helperDO") HelperDO helperDO, Model model, HttpSession session) {
+    	String view = "/helper/helperList";
+    	
+    	try {
+    		List<HelperDO> list = helperService.selectHelperTime(helperDO);
+    		model.addAttribute("table", list);
+    	}
+    	catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    	return view;
     }
 
     // insert 부분은 아직 미완성...! 예약 내역 완성되는대로 다시 츄라이

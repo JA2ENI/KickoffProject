@@ -7,9 +7,18 @@
         <![CDATA[
         SELECT *
         FROM
-            HELPER_BOARD
+            HELPER
         ]]>
     </select>
+
+	<select id = "selectHelperTime" parameterType="com.teamcommit.kickoff.Do.HelperDO" resultType="com.teamcommit.kickoff.Do.HelperDO">
+		<![CDATA[
+        SELECT *
+        FROM
+            HELPER
+        WHERE HELPER_TIME = #{helperTime}    
+        ]]>
+	</select>
 
     <select id = "selectReservation" parameterType="String" resultType="com.teamcommit.kickoff.Do.ReservationDO">
         <![CDATA[
@@ -24,14 +33,14 @@
         <![CDATA[
         SELECT *
         FROM
-            HELPER_BOARD
+            HELPER
         WHERE HELPER_SEQNO = #{helperSeqno}
         ]]>
     </select>
 
     <insert id = "insertHelper" parameterType="com.teamcommit.kickoff.Do.HelperDO">
         <![CDATA[
-        INSERT INTO HELPER_BOARD
+        INSERT INTO HELPER
         (
          HELPER_SEQNO,
          USER_ID,
@@ -42,7 +51,7 @@
          HELPER_GENDER,
          HELPER_WANT,
          HELPER_TIME,
-         HELPER_TEAMLEVEL,
+         HELPER_TEAM_LEVEL,
          HELPER_PLACE_NAME,
          HELPER_STATUS
          )
@@ -87,7 +96,7 @@
 
     <update id = "updateStatus" parameterType="String">
         <![CDATA[
-        UPDATE HELPER_BOARD
+        UPDATE HELPER
         SET HELPER_STATUS = '마감'
         WHERE HELPER_SEQNO = (SELECT HELPER_SEQNO
                               FROM MESSAGE
