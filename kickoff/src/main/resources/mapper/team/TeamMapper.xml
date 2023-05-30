@@ -19,7 +19,7 @@
         INSERT INTO TEAM
         (
             TEAM_SEQNO,
-            TEAM_SEQID,
+            TEAM_ID,
             LEADER_ID,
             TEAM_NAME,
             TEAM_NUMBER,
@@ -32,7 +32,7 @@
         )
         VALUES(
                   TEAM_SEQ.NEXTVAL,
-                  TEAM_SEQID.NEXTVAL,
+                  TEAM_ID.NEXTVAL,
                   #{leaderId},
                   #{teamName},
                   #{teamNumber},

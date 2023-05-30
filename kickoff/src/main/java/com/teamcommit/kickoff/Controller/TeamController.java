@@ -1,27 +1,16 @@
 package com.teamcommit.kickoff.Controller;
 
-import com.teamcommit.kickoff.Do.BoardDO;
-import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.TeamDO;
-import com.teamcommit.kickoff.Do.UserDO;
-import com.teamcommit.kickoff.Service.BoardService;
-import com.teamcommit.kickoff.Service.LoginService;
 import com.teamcommit.kickoff.Service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -31,10 +20,6 @@ public class TeamController {
     @Qualifier("TeamService")
     private TeamService teamService;
 
-    @Autowired
-    private LoginService loginService;
-    
-    // 우왕 이제 됐다 ~!
 
     // 팀 목록
     @RequestMapping(value = "/team", method = RequestMethod.GET)
