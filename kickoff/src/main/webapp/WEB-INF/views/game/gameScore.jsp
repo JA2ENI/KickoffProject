@@ -26,7 +26,7 @@
 <script src="/includes/js/main.js"></script>
 <!-- 여기까지 복붙하기 -->
 
-<link rel="stylesheet"	href="/board/css/boardInsert.css" />
+<link rel="stylesheet"	href="/board/css/boardDeatil.css" />
 
 </head>
 <body>
@@ -40,48 +40,53 @@
 			</div>
 		</div>
 	</div>
-		<br>
-		<br>
-		<form id="frm" name="frm" action="insert_action" method="post" onsubmit="return _onSubmit();">
-		<h4>매칭 기록 작성</h4>
-		<div class="table-responsive">
+		<form role="form" method="post">
+		<div class="container">
+			<div class="table-responsive">
+				<table class="board_detail">
+					<colgroup>
+						<col width="20%" />
+						<col width="35%" />
+						<col width="15%" />
+						<col width="35%" />
+					</colgroup>
+					<tbody>
+						<tr>
+							<th scope="row" class="active">팀 이름</th>
+							<td></td>
+							<th scope="row" class="active">상대 팀 이름</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row" class="active">매칭 시간</th>
+							<td></td>
+							<th scope="row" class="active">매칭 일정</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row" class="active" >매칭 장소</th>
+							<td></td>
+							<th scope="row" class="active" >경기 형태</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row" class="active" >성별</th>
+							<td></td>
+							<th scope="row" class="active" >경기 점수</th>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br />
+			<hr>
 				
-				<div class="board_title">
-				<span class="formInline">
-				<label for="writeTitle">제목</label>
-				<input type="text" id="writeTitle" name="writeTitle" class="form-control">
-				</span>
-				</div>
-				
-				<div class="writer">
-				<span class="formWriter">
-				<label for="writeId" class="writeId" >작성자 : ${userId}</label>
-		            <label class="writeIdEmp">${empId}</label>
-				</span>
-		            <input type="hidden" id="writeId" name="writeId" value="${userId}">
-		            <input type="hidden" id="writeIdEmp" name="writeIdEmp" value="${empId}">
-				</div>
-				
-				<div class="filebox bs3-primary preview-image">
-		              <input id="fileName" name="fileName" class="fileName" value="파일선택" disabled="disabled" style="width: 200px;">
-		
-		              <label for="filePath">업로드</label>
-		              <input type="file" id="filePath" name="filePath" class="filePath-hidden">
-		        </div>
-				
-				<div class="content">
-				<label for="writeContent">내용</label><br>
-					<textarea id="writeContent" name="writeContent" cols="100" rows="20" class="form-content"></textarea>
-				</div>
-				
-				<div class="btn_board">
-				<button type="reset" class="btn_reset" onclick="location.href='/board';">취소</button>
-				<!-- <a href="boardDetail.jsp"><button type="submit" class="btn_submit">등록</button></a> -->
-				<button type="submit" class="btn_submit" onclick="document.getElementById('frm').submit();">등록</button>
-				</div>
+				<div class="btn_boarddetail">
+				<button type="reset" class="btn_reset" onclick="location.href='/board';">기록하기</button>
+
+			</div>
 		</div>
-		</div>
-		</form>
+	</form>
 </body>
 </html>
 
