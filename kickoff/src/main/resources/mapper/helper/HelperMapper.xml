@@ -11,7 +11,7 @@
         ]]>
     </select>
 
-	<select id = "selectHelperTime" parameterType="com.teamcommit.kickoff.Do.HelperDO" resultType="com.teamcommit.kickoff.Do.HelperDO">
+	<select id = "selectHelperTime" parameterType="String" resultType="com.teamcommit.kickoff.Do.HelperDO">
 		<![CDATA[
         SELECT *
         FROM

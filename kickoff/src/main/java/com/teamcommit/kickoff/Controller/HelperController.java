@@ -20,7 +20,7 @@ public class HelperController {
     private HelperService helperService;
 
     @GetMapping("/helperList")
-    public String helperList(@ModelAttribute("helperDO") HelperDO helperDO, Model model, HttpSession session) {
+    public String helperList(@ModelAttribute("helperDO") HelperDO helperDO, Model model) {
         String view = "/helper/helperList";
 
         try {
@@ -34,12 +34,14 @@ public class HelperController {
         return view;
     }
     
-    @GetMapping("/weekHelperList")
-    public String weekHelperList(@ModelAttribute("helperDO") HelperDO helperDO, Model model, HttpSession session) {
+    @PostMapping("/helperList")
+    public String HelperList(@ModelAttribute("helperDO") HelperDO helperDO, Model model) {
     	String view = "/helper/helperList";
     	
+    	String helperTime = helperDO.getHelperTime();
+    	
     	try {
-    		List<HelperDO> list = helperService.selectHelperTime(helperDO);
+    		List<HelperDO> list = helperService.selectHelperTime(helperTime);
     		model.addAttribute("table", list);
     	}
     	catch (Exception e) {
