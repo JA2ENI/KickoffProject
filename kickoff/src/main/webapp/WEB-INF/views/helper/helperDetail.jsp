@@ -100,7 +100,7 @@
 		<div class = "kakao">
 			<div id="map" style="width:500px;height:350px;margin-left: 15px;"></div>
 		</div>
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c12ebb063cb05a9fc037082cb8601ef1&libraries=services"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d724483fb639866457f6535349fcd24&libraries=services"></script>
 		<script>
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 					mapOption = {

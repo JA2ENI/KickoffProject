@@ -24,7 +24,7 @@
     <select id="selectBoardMain" resultType="com.teamcommit.kickoff.Do.BoardDO">
         <![CDATA[
         SELECT * FROM (SELECT *
-                       FROM COMMUNITY_BOARD
+                       FROM BOARD
                        WHERE WRITE_REG_DATE = TO_CHAR(SYSDATE, 'YY/MM/DD')) WHERE ROWNUM <= 10
 
         ]]>

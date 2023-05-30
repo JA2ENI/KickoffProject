@@ -1,13 +1,11 @@
 package com.teamcommit.kickoff.Service;
 
-import com.teamcommit.kickoff.Dao.HelperDAO;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.MessageDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.*;
 
 @Service("helperService")
@@ -41,5 +39,9 @@ public class HelperServiceImpl implements HelperService {
 
     public void updateStatus() {helperMapper.updateStatus();}
 
+    @Override
+    public List<HelperDO> selectHelperTime(HelperDO helperDO) throws Exception {
+    	return helperMapper.selectHelperTime(helperDO);
+    }
 
 }
