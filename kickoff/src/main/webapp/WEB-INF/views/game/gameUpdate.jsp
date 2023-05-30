@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/includes/css/style.css">
     <link rel = "stylesheet" href = "/includes/css/footer.css" />
     <link rel = "stylesheet" href = "/main/css/vendor/icomoon/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.google.com/noto/specimen/Noto+Sans+KR?subset=korean&noto.script=Kore" rel="stylesheet">
 	
     <!-- Css Styles -->
     <link rel="stylesheet" href="/reservation/css/bootstrap.min.css" type="text/css">
@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="/reservation/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/reservation/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/reservation/css/style.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/styles.css" type="text/css">
     
     <!-- calendar -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -36,8 +35,9 @@
 </head>
 
 <body>
-<%@include file="/includes/header.jsp"%>
-
+	<div class="header-container">
+		<%@include file="/includes/header.jsp"%>
+	</div>
         <!-- title -->
         <header class="bg-dark py-5" style="background-color: #7fb77e !important;">
             <div class="container px-4 px-lg-5 my-5">
@@ -57,9 +57,8 @@
                         <div class="col-lg-8 col-md-6">
 							<div class="checkout__input">
                                <p>풋살장 선택<span>*</span></p>
-                               <input type="text" value="여기에 '풋살장 이름' 가져오기 (입력 비활성화)" readonly>
-                               <!-- readonly: 입력 필드 비활성화되지만 form으로 전송 가능 -->
-
+                               <input type="text" class="inputPlaceName" id="inputPlaceName" name="reservationPlaceName" value="${placeInfo.placeName}" readonly/>
+                               
                            	</div>
                           	<div class="checkout__input">
                                 <p>경기 형태<span>*</span></p>
