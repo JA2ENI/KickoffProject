@@ -1,6 +1,7 @@
-package com.teamcommit.kickoff.Service;
+package com.teamcommit.kickoff.Service.admin;
 
 import com.teamcommit.kickoff.Do.UserDO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
