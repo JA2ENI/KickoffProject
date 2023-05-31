@@ -1,6 +1,5 @@
 package com.teamcommit.kickoff.Controller;
 
-import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 public class MypageController {
@@ -19,24 +21,32 @@ public class MypageController {
     @Autowired
     ReservationService reservationService;
 
-/*    @RequestMapping(value = "/myReservation")
-    public String myReservationList() throws Exception{
-        String view = "/mypage/myReservation";
-
-        return view;
-    }*/
     @RequestMapping(value = "/myReservation")
-    public String myReservationList(@ModelAttribute("reservationDO") ReservationDO reservationDO, HttpServletRequest request, Model model) throws Exception {
-        String view = "/mypage/myReservation";
+    public ModelAndView myReservationList(@ModelAttribute("reservationDO") ReservationDO reservationDO) throws Exception {
 
-        String userId = (String) request.getSession().getAttribute("userId");
-
+    	ModelAndView mv = new ModelAndView("/mypage/myReservation");
+    	
         List<ReservationDO> list = reservationService.selectReservationList(reservationDO);
-        model.addAttribute("reservationList", list);
-
-        return view;
+        
+        List<String> address = list.stream()
+        		.map(ReservationDO::getReservationPlaceAddress).collect(Collectors.toList());
+        
+        
+		/* mv.addObject("address", list.get(0).getReservationPlaceAddress()); */
+        mv.addObject("reservationList", list);
+        mv.addObject("address", address);
+      
+        
+        System.out.println("mv: " + mv);
+        
+        for(String add : address) {
+        	System.out.println("address: " + add);
+        }
+        
+        
+        return mv;
     }
-
+    
     @RequestMapping(value = "/myBoardList")
     public String myBoardList() throws Exception {
         String view = "/mypage/myBoard";
