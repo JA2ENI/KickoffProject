@@ -1,6 +1,7 @@
 window.onload = function() {
-	    weekCalendar(0);
-	}
+    weekCalendar(0);
+    restoreSelectedDate(); // 페이지 로드 시 선택한 날짜 복원
+}
 
 	var today = new Date();
 	var nowDate = new Date();

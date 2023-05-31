@@ -110,11 +110,11 @@
 				});
 
 				// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-				map[i].setCenter(coords);
+				map.setCenter(coords);
 			}
 		});
 		var zoomControl = new kakao.maps.ZoomControl();
-		map[i].addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 	</script>
 															</div>
 													</div>
