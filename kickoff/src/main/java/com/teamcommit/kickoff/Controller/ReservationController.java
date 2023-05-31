@@ -5,7 +5,8 @@ import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Do.UserDO;
 import com.teamcommit.kickoff.Service.LoginService;
-import com.teamcommit.kickoff.Service.ReservationService;
+import com.teamcommit.kickoff.Service.reservation.ReservationService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -49,6 +50,7 @@ public class ReservationController {
         String empId = (String) request.getSession().getAttribute("empId");
         EmployerDO employerDO = new EmployerDO();
         employerDO.setEmpId(empId);
+        
         employerDO = loginService.procSetEmployerInfo(employerDO);
 
         PlaceDO placeInfo = reservationService.selectPlaceInfo(employerDO.getEmpId());
@@ -96,7 +98,7 @@ public class ReservationController {
 
         return mv;
     }
-
+/*
     @RequestMapping(value = "/reservationRequestForm")
     public String reservationRequestForm(@ModelAttribute("reservationDO") ReservationDO reservationDO, @RequestParam("reservationNo") int reservationNo, HttpServletRequest request, HttpSession session) throws Exception {
         String view = "/reservation/reservationRequest";
@@ -111,7 +113,34 @@ public class ReservationController {
 
         return view;
     }
+*/
+    @RequestMapping(value = "/reservationRequestForm")
+    public String reservationRequestForm(@ModelAttribute("reservationDO") ReservationDO reservationDO, @RequestParam("reservationNo") int reservationNo, HttpServletRequest request, HttpSession session, Model model) throws Exception {
+        String view = "/reservation/reservationRequest";
 
+        String userId = (String) request.getSession().getAttribute("userId");
+
+        UserDO userInfo = reservationService.insertUserInfo(userId);
+        model.addAttribute("userInfo", userInfo);
+
+        ReservationDO reservationDetail = reservationService.selectReservationDetail(reservationNo);
+        model.addAttribute("reservationDetail", reservationDetail);
+
+        return view;
+    }
+    
+    
+    @RequestMapping(value = "/reservationRequest")
+    public ModelAndView reservationRequest(@ModelAttribute("reservationDO") ReservationDO reservationDO, Model model, HttpSession session) throws Exception {
+
+        ModelAndView mv = new ModelAndView("redirect:/reservation");
+
+        reservationService.insertReservationRequest(reservationDO);
+
+        return mv;
+    }
+    
+  /*  
     @RequestMapping(value = "/reservationRequest")
     public ModelAndView reservationRequest(@ModelAttribute("reservationDO") ReservationDO reservationDO, Model model, HttpSession session) throws Exception {
 
@@ -136,7 +165,7 @@ public class ReservationController {
 
         return mv;
     }
-
+*/
 }
 
 
