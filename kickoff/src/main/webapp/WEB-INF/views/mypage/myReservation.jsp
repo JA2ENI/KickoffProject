@@ -95,29 +95,28 @@
 						</c:forEach>
 					</c:when>
 				</c:choose>
-				</div>
-					</div>
-						<!-- Sidebar -->
-						<div id="sidebar">
-							<div class="inner">
-								<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>MyPage</h2>
-									</header>
-									<ul>
-										<li><a href="/myReservation">예약 내역</a></li>
-										<li><a href="/myBoardList">내 게시글</a></li>
-										<li><a href="/myInfo">회원 정보 수정</a></li>
-										<li><a href="/myTeam">팀</a></li>
-										<li><a href="/myMessage">메시지</a></li>
-										<li><a href="/myHelper">용병</a></li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-					</div>
-
+			</div>
+		</div>
+		<!-- Sidebar -->
+		<div id="sidebar">
+			<div class="inner">
+				<!-- Menu -->
+				<nav id="menu">
+					<header class="major">
+						<h2>MyPage</h2>
+					</header>
+					<ul>
+						<li><a href="/myReservation">예약 내역</a></li>
+						<li><a href="/myBoardList">내 게시글</a></li>
+						<li><a href="/myInfo">회원 정보 수정</a></li>
+						<li><a href="/myTeam">팀</a></li>
+						<li><a href="/myMessage">메시지</a></li>
+						<li><a href="/myHelper">용병</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
 
 	<!-- script -->
 	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c12ebb063cb05a9fc037082cb8601ef1&libraries=services"></script> -->
@@ -138,7 +137,7 @@
 		var geocoder = new kakao.maps.services.Geocoder();
 
 		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('${row.reservationPlaceAddress}', function(result, status) {
+		geocoder.addressSearch('${address}', function(result, status) {
 
 			// 정상적으로 검색이 완료됐으면
 			if (status === kakao.maps.services.Status.OK) {
