@@ -73,6 +73,7 @@ public class ReservationController {
         String view = "/reservation/reservationDetail";
 
         ReservationDO reservationDetail = reservationService.selectReservationDetail(reservationNo);
+        
         model.addAttribute("reservationDetail", reservationDetail);
 
         return view;
