@@ -40,8 +40,8 @@ public class HelperServiceImpl implements HelperService {
     public void updateStatus() {helperMapper.updateStatus();}
 
     @Override
-    public List<HelperDO> selectHelperTime(HelperDO helperDO) throws Exception {
-    	return helperMapper.selectHelperTime(helperDO);
+    public List<HelperDO> selectHelperTime(String helperTime) throws Exception {
+    	return helperMapper.selectHelperTime(helperTime);
     }
 
 }

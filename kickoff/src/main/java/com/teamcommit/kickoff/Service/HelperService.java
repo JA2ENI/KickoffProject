@@ -14,7 +14,7 @@ public interface HelperService {
 
     List<ReservationDO> selectReservation(String userId) throws Exception;
     
-    List<HelperDO> selectHelperTime(HelperDO helperDO) throws Exception;
+    List<HelperDO> selectHelperTime(String helperTime) throws Exception;
 
     HelperDO selectHelperDetail(int helperSeqno) throws Exception;
 
