@@ -26,7 +26,7 @@
 <script src="/includes/js/main.js"></script>
 <!-- 여기까지 복붙하기 -->
 
-<link rel="stylesheet"	href="/board/css/boardDeatil.css" />
+<link rel="stylesheet"	href="/board/css/boardDetail.css" />
 
 </head>
 <body>
@@ -53,7 +53,9 @@
 					<tbody>
 						<tr>
 							<th scope="row" class="active">팀 이름</th>
-							<td></td>
+							<td>
+							
+							</td>
 							<th scope="row" class="active">상대 팀 이름</th>
 							<td></td>
 						</tr>
@@ -61,19 +63,40 @@
 							<th scope="row" class="active">매칭 시간</th>
 							<td></td>
 							<th scope="row" class="active">매칭 일정</th>
-							<td></td>
+							<td>
+							<input id="setStartDate" onChange="getStartDate()" />
+							</td>
 						</tr>
 						<tr>
 							<th scope="row" class="active" >매칭 장소</th>
 							<td></td>
 							<th scope="row" class="active" >경기 형태</th>
-							<td></td>
+							<td>
+							<select id="gameStyle" onChange="selectStyle(this)">
+                                	<option value="">경기 형태 선택하기</option>
+                                	<option value="A">3 v/s 3</option>
+                                	<option value="B">5 v/s 5</option>
+                                	<option value="C">6 v/s 6</option>                                	
+                                </select>
+							</td>
 						</tr>
 						<tr>
 							<th scope="row" class="active" >성별</th>
-							<td></td>
+							<td>
+							<label>
+                                	<input type="radio" name="placeForm" value="indoor" onclick='getPlaceForm(event)' />&nbsp남성
+                                </label>
+                                <label>
+                                	<input type="radio" name="placeForm" value="outdoor" onclick='getPlaceForm(event)' />&nbsp여성
+                                </label>
+                                <label>
+                                	<input type="radio" name="placeForm" value="outdoor" onclick='getPlaceForm(event)' />&nbsp혼성
+                                </label>
+							</td>
 							<th scope="row" class="active" >경기 점수</th>
-							<td></td>
+							<td>
+							<input type="text" name="text">
+							</td>
 						</tr>
 					</tbody>
 				</table>
@@ -82,7 +105,7 @@
 			<hr>
 				
 				<div class="btn_boarddetail">
-				<button type="reset" class="btn_reset" onclick="location.href='/board';">기록하기</button>
+				<button type="reset" class="btn_reset" onclick="location.href='/game';">기록하기</button>
 
 			</div>
 		</div>
