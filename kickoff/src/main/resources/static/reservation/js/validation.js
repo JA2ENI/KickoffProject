@@ -50,3 +50,14 @@ function validCheck() {
         frm.submit();
     }
 }
+
+function requestCheck() {
+    const frm = document.forms[0];
+    let isValid = true;
+
+    if(isValid) {
+        alert('풋살장 예약 신청되었습니다.')
+        frm.action='reservationRequest';
+        frm.submit();
+    }
+}

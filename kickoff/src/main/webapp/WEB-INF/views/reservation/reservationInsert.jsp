@@ -107,10 +107,10 @@
                                         	<c:forEach var="i" begin="1" end="24">
 	                                        	<c:choose>
 	                                        		<c:when test="${i lt 10}">
-	                                        			<option value="0${i}">0${i}:00</option>
+	                                        			<option value="0${i}:00">0${i}:00</option>
 	                                        		</c:when>
 	                                        		<c:otherwise>
-	                                        			<option value="${i}">${i}:00</option>
+	                                        			<option value="${i}:00">${i}:00</option>
 	                                        		</c:otherwise>
 	                                        	</c:choose>
                                         	</c:forEach>
@@ -125,10 +125,10 @@
                                         	<c:forEach var="i" begin="1" end="24">
 	                                        	<c:choose>
 	                                        		<c:when test="${i lt 10}">
-	                                        			<option value="0${i}">0${i}:00</option>
+	                                        			<option value="0${i}:00">0${i}:00</option>
 	                                        		</c:when>
 	                                        		<c:otherwise>
-	                                        			<option value="${i}">${i}:00</option>
+	                                        			<option value="${i}:00">${i}:00</option>
 	                                        		</c:otherwise>
 	                                        	</c:choose>
                                         	</c:forEach>

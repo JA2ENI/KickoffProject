@@ -54,7 +54,7 @@
 	<section class="checkout spad">
 		<div class="container">
 			<div class="checkout__form">
-				<form id="frm" name="frm" action="/reservationRequest" onsubmit="return _onSubmit();" method="POST">
+				<form role="form" id="frm" name="frm" action="/reservationRequest" method="POST">
 					<div class="row-request-container">
 						<div class="col-lg-8-1 col-md-6">
 							<div class="checkout__input__request">
@@ -81,13 +81,13 @@
 								<div class="col-lg-6">
 									<div class="checkout__input__request">
 										<p>시작 시간<span>*</span></p>
-										<input type="text" name="reservationStartTime" value="${reservationDetail.reservationStartTime}:00" readonly>
+										<input type="text" name="reservationStartTime" value="${reservationDetail.reservationStartTime}" readonly>
 									</div>
 								</div>
 								<div class="col-lg-6">
 									<div class="checkout__input__request">
 										<p>종료 시간<span>*</span></p>
-										<input type="text" name="reservationEndTime" value="${reservationDetail.reservationEndTime}:00" readonly>
+										<input type="text" name="reservationEndTime" value="${reservationDetail.reservationEndTime}" readonly>
 									</div>
 								</div>
 							</div>
@@ -97,14 +97,14 @@
 							</div>
 							<div class="checkout__input__request">
 								<p>대관비<span>*</span></p>
-								<input type="text" name="reservationPrice" value="${reservationDetail.reservationPrice}원" readonly>
+								<input type="text" name="reservationPrice" value="${reservationDetail.reservationPrice}" readonly>
 							</div>
 							<input type="hidden" name="userId" value="${userId}" />
 							<input type="hidden" name="placeId" value="${reservationDetail.placeId}" />
 							<input type="hidden" name="reservationPlaceAddress" value="${reservationDetail.reservationPlaceAddress}" />
-							<input type="hidden" name="reservationPlaceName" value="${reservationDetail.reservationPlaceName}" />
+							<input type="hidden" name="reservationOriginNo" value="${reservationDetail.reservationNo}" />
 							<div class="btn-container">
-								<input type="submit" id="insert" class="request" onclick="updateConfirm(); return false;" value="신청"/>
+								<input type="submit" id="insert" class="request" onclick="requestCheck()" value="신청"/>
 								<a href="/reservation" id="cancle" class="cancle">취소</a>
 							</div>
 						</div>
@@ -154,6 +154,7 @@
     <script src="/reservation/js/mixitup.min.js"></script>
     <script src="/reservation/js/owl.carousel.min.js"></script>
     <script src="/reservation/js/main.js"></script>
+    <script src="/reservation/js/validation.js"></script>
 	<script src="/reservation/js/common.js"></script>
 
     <script src="/includes/js/jquery.lettering.js"></script>
