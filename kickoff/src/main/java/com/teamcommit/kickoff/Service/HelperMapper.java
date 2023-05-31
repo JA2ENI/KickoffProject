@@ -21,7 +21,7 @@ public interface HelperMapper {
 
     public void updateStatus();
     
-    List<HelperDO> selectHelperTime(HelperDO helperDO);
+    List<HelperDO> selectHelperTime(String helperTime);
 
 
 }

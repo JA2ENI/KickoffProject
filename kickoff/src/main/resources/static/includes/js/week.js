@@ -15,7 +15,11 @@ window.onload = function() {
 	        var change = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + i);
 	        var dayNum = change.getDay();
 
-	        document.getElementById("day" + (i + 1)).innerHTML = change.getDate() + '<br>' + days[dayNum] + '<input type = "hidden" name = "helperTime" class = "helperTime" value =' + '"' + change.getFullYear() + '-' + (change.getMonth()+1) + '-' + change.getDate() + '">';
+	        document.getElementById("day" + (i + 1)).innerHTML = change.getDate() + '<br>' + days[dayNum] 
+	        + '<input type = "hidden" name = "helperTime" id = "helperTime" value =' 
+	        + '"' + change.getFullYear() + '-' 
+	        + ((change.getMonth()+1) < 9 ? '0' + (change.getMonth()+1) : (change.getMonth()+1)) + '-' 
+	        + (change.getDate() < 9 ? '0' + change.getDate() : change.getDate()) + '">';
 
 	        var buttons = document.getElementsByClassName("btn");
 	        if(days[dayNum] == "일") {
@@ -43,20 +47,9 @@ window.onload = function() {
 
 	function selectButton(button) {
 	    var buttons = document.getElementsByClassName("btn");
-		/*var button;
-		var buttonText;*/
 	    for(var i = 0; i < buttons.length; i++) {
 	        if(buttons[i].id == button.id) {
 	            buttons[i].classList.add("selected");
-				/*button = buttons[i];
-				buttonText = button.querySelector('input[type="hidden"]').value;
-				var search = document.querySelector('input[type="search"]');
-				search.value = buttonText;
-				// input 요소가 포함된 form 요소 찾기
-				var form = search.closest('form');
-
-				// form 요소를 제출하여 검색 실행
-				form.submit();*/
 	        } else {
 	            buttons[i].classList.remove("selected");
 	        }
