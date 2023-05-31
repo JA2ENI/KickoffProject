@@ -11,24 +11,24 @@
 <body style="overflow-y: hidden">
 <div class="container" id="container">
   <div class="form-container sign-in-container">
-    <form method="POST" name="findId" action="/loginAll">
+    <form method="POST" name="findEmpId" action="/loginAll">
       <h1>아이디 찾기</h1>
-      <br />
-	      <h4>정보에 해당되는 아이디입니다.</h4><br /><br />
+      
+      	<c:choose>
+	      	<%-- 업체회원 아이디 표시 --%>
+	      	<c:when test="${!empty empDO}">
+		      	<br /><br />
+	            <p>업체 회원 아이디 : ${empDO.empId}</p>
+	            <br /><br />
+	      	</c:when>
+	      	<%-- 일치하는 회원 정보가 없을 때 --%>
+	      	<c:otherwise>
+	      		<br /><br />
+	        	<p>정보에 해당하는 아이디가 없습니다.</p>
+	        	<br /><br />
+	      	</c:otherwise>
+      	</c:choose>
 
-        <%-- 개인회원 아이디 표시 --%>
-        <c:if test="${not empty userResult}">
-            <h4>개인 회원 아이디:</h4>
-            <p>${userDO.userId}</p>
-            <br /><br /><br />
-        </c:if>
-
-        <%-- 업체 회원 아이디 표시 --%>
-        <c:if test="${not empty empResult}">
-            <h4>업체 회원 아이디:</h4>
-            <p>${empDO.empId}</p>
-            <br /><br /><br />
-        </c:if>
 	      <button onclick="location.href='/loginAll';">로그인</button><br /><br /><br />
     </form>
   </div>

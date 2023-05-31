@@ -1,4 +1,4 @@
-package com.teamcommit.kickoff.Service;
+package com.teamcommit.kickoff.Service.login;
 
 import com.teamcommit.kickoff.Do.EmployerDO;
 import com.teamcommit.kickoff.Do.UserDO;
@@ -20,6 +20,12 @@ public interface LoginMapper {
 
     // 업체 회원 아이디 찾기
     public EmployerDO findEmp_id(EmployerDO empDO);
+    
+    // 개인 회원 비밀번호 찾기
+    public UserDO findUser_pw(UserDO userDO);
+
+    // 업체 회원 비밀번호 찾기
+    public EmployerDO findEmp_pw(EmployerDO empDO);
 
     // 로그인한 이용자 정보 가져오기
     public UserDO procSetUserInfo(UserDO userDO);

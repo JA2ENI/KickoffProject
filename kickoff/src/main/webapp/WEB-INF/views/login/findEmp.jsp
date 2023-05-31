@@ -10,25 +10,27 @@
 <body style="overflow-y: hidden">
 <div class="container" id="container">
   <div class="form-container sign-up-container">
-    <form form method="POST" name="findEmp" action="/findEmp">
+    <form method="POST" name="findEmp" action="/findEmpPw">
       <h1>비밀번호 찾기</h1>
       <h4>업체 회원용</h4>
       <br />
-	      <input type="text" placeholder="아이디" />
-	      <input type="text" placeholder="사업자 번호" />
-	      <button class="confirm" id="confirmNumber">사업자 번호 인증</button><br /><br />
-	      <button onclick="location.href='/findPw';">비밀번호 찾기</button>
+	      <input type="text" placeholder="아이디" name="empId" />
+	      <input type="text" placeholder="사업자 번호" name="empNo" /><br/><br/>
+	      <%-- <button class="confirm" id="confirmNumber">사업자 번호 인증</button><br /><br />  --%>
+	      <button type="submit" id="findEmpPw" onclick="findEmp.submit();">비밀번호 찾기</button>
+	      <a href="/loginAll">로그인하러 가기</a>
     </form>
   </div>
   <div class="form-container sign-in-container">
-    <form form method="POST" name="findEmp" action="/findId">
+    <form method="POST" name="findEmp" action="/findEmpId">
       <h1>아이디 찾기</h1>
       <h4>업체 회원용</h4>
       <br />
 	      <input type="text" placeholder="업체명" name="empName"/>
-	      <input type="text" placeholder="사업자 번호" name="empNo" />
+	      <input type="text" placeholder="사업자 번호" name="empNo" /><br/><br/>
 <%--	      	      <button class="confirm" id="confirmNumber">사업자 번호 인증</button><br /><br />--%>
-	      <button type="submit" id="findId" onclick="location.href='/findId';">아이디 찾기</button>
+	      <button type="submit" id="findEmpId" onclick="findEmp.submit();">아이디 찾기</button>
+	      <a href="/loginAll">로그인하러 가기</a>
     </form>
   </div>
   <div class="overlay-container">
@@ -46,5 +48,6 @@
   </div>
 </div>
 	<script src = "/findPw/js/loginFind.js"></script>
+</div>
 </body>
 </html>
