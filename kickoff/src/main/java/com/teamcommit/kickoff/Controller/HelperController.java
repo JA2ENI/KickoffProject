@@ -35,10 +35,8 @@ public class HelperController {
     }
     
     @PostMapping("/helperList")
-    public String HelperList(@ModelAttribute("helperDO") HelperDO helperDO, Model model) {
+    public String HelperList(@RequestParam(value = "helperTime") String helperTime, Model model) {
     	String view = "/helper/helperList";
-    	
-    	String helperTime = helperDO.getHelperTime();
     	
     	try {
     		List<HelperDO> list = helperService.selectHelperTime(helperTime);

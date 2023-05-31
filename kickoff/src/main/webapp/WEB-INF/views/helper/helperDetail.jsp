@@ -110,6 +110,9 @@
 
 			// 지도를 생성합니다
 			var map = new kakao.maps.Map(mapContainer, mapOption);
+			
+			map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC); 
+			
 
 			// 주소-좌표 변환 객체를 생성합니다
 			var geocoder = new kakao.maps.services.Geocoder();
@@ -130,7 +133,7 @@
 
 					// 인포윈도우로 장소에 대한 설명을 표시합니다
 					var infowindow = new kakao.maps.InfoWindow({
-						content: '<div style="width:150px;text-align:center;padding:6px 0;">${content.helperAddress}</div>'
+						content: '<div style="width:150px;text-align:center;padding:6px 0;">${content.helperPlaceName}</div>'
 					});
 					infowindow.open(map, marker);
 

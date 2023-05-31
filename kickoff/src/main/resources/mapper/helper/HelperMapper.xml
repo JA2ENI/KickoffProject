@@ -14,9 +14,9 @@
 	<select id = "selectHelperTime" parameterType="String" resultType="com.teamcommit.kickoff.Do.HelperDO">
 		<![CDATA[
         SELECT *
-        FROM
+        FROM 
             HELPER
-        WHERE HELPER_TIME = #{helperTime}    
+        WHERE HELPER_TIME = #{helperTime}
         ]]>
 	</select>
 
