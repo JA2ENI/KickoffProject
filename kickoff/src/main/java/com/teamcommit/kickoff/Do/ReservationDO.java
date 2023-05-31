@@ -1,7 +1,5 @@
 package com.teamcommit.kickoff.Do;
 
-import java.util.Date;
-
 public class ReservationDO {
 
 	private String reservationType;
