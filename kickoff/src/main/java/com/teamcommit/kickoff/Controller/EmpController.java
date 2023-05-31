@@ -135,10 +135,14 @@ public class EmpController {
 
 
     /* 풋살장 목록 */
-    @RequestMapping(value = "/empFutsalFix", method = RequestMethod.GET)
-    public String empFutsalList() {
+    @RequestMapping( "/empFutsalFix")
+    public String empFutsalList(@ModelAttribute("placeDO") PlaceDO PlaceDO, HttpServletRequest request, Model model) throws Exception {
 
         String view = "/emp/empFutsalFix";
+        
+        List<PlaceDO> empFutsalList = empService.placeList(PlaceDO);
+        model.addAttribute("empFutsalList", empFutsalList);
+
 
         return view;
     }

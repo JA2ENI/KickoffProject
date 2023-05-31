@@ -22,8 +22,7 @@
     <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 	
-    <!-- Css Styles 
-    <link rel="stylesheet" href="/TeamCommit/resource/emp/css/empFutsal/bootstrap.min.css" type="text/css">-->
+    <!-- Css Styles -->
     <link rel="stylesheet" href="/emp/css/empFutsal/nice-select.css" type="text/css">
     <link rel="stylesheet" href="/emp/css/empFutsal/style.css" type="text/css">
     <link rel="stylesheet" href="/emp/css/empFutsal/jquery-ui.min.css" type="text/css">
@@ -144,7 +143,8 @@
 						                               	<textarea class="etc" value="${empFutsalInsert.placeOther}"></textarea>
 						                            </div>
 						                        </div>
-						                        </div>						                     
+						                         <button onclick="location.href='/empFutsalFix.jsp';">등록하기</button>	
+						                        </div>						                   					                     
 				                            </form>
 				                            </div>
 				                        </div>

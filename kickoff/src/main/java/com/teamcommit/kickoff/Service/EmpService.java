@@ -19,4 +19,6 @@ public interface EmpService {
     PlaceDO empFutsalInsert(PlaceDO placeDO) throws Exception;
 
     void updateFutsal(PlaceDO placeDO) throws Exception;
+    
+    List<PlaceDO> placeList(PlaceDO placeDO) throws Exception;
 }

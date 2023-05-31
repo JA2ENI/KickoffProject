@@ -38,5 +38,10 @@ public class EmpServiceImpl implements EmpService {
     public List<ReservationDO> selectReservation(ReservationDO reservationDO) throws Exception {
         return empMapper.selectReservation(reservationDO);
     }
+    
+    @Override
+    public List<PlaceDO> placeList(PlaceDO placeDO) throws Exception{
+        return empMapper.placeList(placeDO);
+    }
 
 }
