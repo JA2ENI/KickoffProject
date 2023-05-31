@@ -42,23 +42,23 @@
 				                                            <th>풋살장</th>
 				                                            <th>주소</th>
 				                                            <th>전화번호</th>
-				                                            <th>등록일</th>
+				                                            <th>규격</th>
 				                                            <th>작성자</th>
 				                                        </tr>
 				                                    </thead>
 				                                    <tbody>
-														<c:forEach var="list" items="${boardList}">
+														<c:forEach var="list" items="${empFutsalList}">
 					                                        <tr>
-																<td>${list.boardSeqno}</td>
+																<td>${list.empFutsalList}</td>
 																<td>
-																	<a href="/boardDetail?boardSeqno=${list.boardSeqno}">
-																		${list.writeTitle}
+																	<a href="/empFutsalFix?placeName=${list.placeId}">
+																		${list.placeName}
 																	</a>
 																</td>
-																<td>${list.writeId}</td>
-																<td>${list.viewCount}"</td>
-																<td>${list.writeRegDate}"</td>
-																<td>${list.reportCount}"</td>
+																<td>${list.placeAddress}</td>
+																<td>${list.placePhoneNumber}"</td>
+																<td>${list.placeSize}"</td>
+																<td>${list.empId}"</td>
 					                                        </tr>
 														</c:forEach>
 				                                    </tbody>				                               

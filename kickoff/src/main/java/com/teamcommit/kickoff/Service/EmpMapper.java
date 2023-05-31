@@ -23,4 +23,6 @@ public interface EmpMapper {
     public PlaceDO empFutsalInsert(PlaceDO placeDO);
 
     public void updateFutsal(PlaceDO placeDO);
+    
+    List<PlaceDO> placeList(PlaceDO placeDO);
 }

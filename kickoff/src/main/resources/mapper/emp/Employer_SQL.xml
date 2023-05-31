@@ -18,7 +18,7 @@
         SELECT
             *
         FROM
-            COMMUNITY_BOARD
+            BOARD
         WHERE
             WRITE_ID_EMP = #{empId}
         ]]>
@@ -102,6 +102,21 @@
             EMP_ID = #{empId}
         ]]>
     </update>
+    
+    <!-- Futsal Place List -->
+    <select id="placeList" parameterType="com.teamcommit.kickoff.Do.PlaceDO" resultType="com.teamcommit.kickoff.Do.PlaceDO">
+        <![CDATA[
+        SELECT
+        	PLACE_ID,
+            PLACE_NAME,
+            PLACE_ADDRESS,
+            PLACE_PHONE_NUMBER,
+            PLACE_SIZE,
+            EMP_ID
+        FROM
+            PLACE
+        ]]>
+    </select>
 
 
 
