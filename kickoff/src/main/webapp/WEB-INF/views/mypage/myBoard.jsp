@@ -29,7 +29,7 @@
 				<header id="header">
 					<input type="button" onclick="location.href='main'" class="kickoff-logo" value="Kick Off"/>
 					<br>
-					<a href="/myBoard" class="logo"><strong>내 게시글</strong></a>
+					<strong class="logo">내 게시글</strong>
 				</header>
 
 				<!-- Begin Page Content -->
