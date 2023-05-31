@@ -4,8 +4,9 @@ import com.teamcommit.kickoff.Do.EmployerDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Do.UserDO;
-import com.teamcommit.kickoff.Service.LoginService;
 import com.teamcommit.kickoff.Service.ReservationService;
+import com.teamcommit.kickoff.Service.login.LoginService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

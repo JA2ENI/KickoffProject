@@ -10,25 +10,27 @@
 <body style="overflow-y: hidden">
 <div class="container" id="container">
   <div class="form-container sign-up-container">
-    <form form method="POST" name="findUser" action="/findUser">
+    <form method="POST" name="findUser" action="/findUserPw">
       <h1>비밀번호 찾기</h1>
       <h4>개인 회원용</h4>
       <br />
 	      <input type="text" placeholder="아이디" name="userId" />
 	      <input type="text" placeholder="핸드폰 번호" name="userPhoneNumber" /><br/><br/>
 <%--	      <button class="confirm" id="confirmNumber">휴대폰 인증</button><br /><br />--%>
-	      <button onclick="location.href='/findPw';">비밀번호 찾기</button>
+	      <button type="submit" id="findUserPw" onclick="findUser.submit();">비밀번호 찾기</button>
+	      <a href="/loginAll">로그인하러 가기</a>
     </form>
   </div>
   <div class="form-container sign-in-container">
-    <form form method="POST" name="findUser" action="/findId">
+    <form method="POST" name="findUser" action="/findUserId">
       <h1>아이디 찾기</h1>
       <h4>개인 회원용</h4>
       <br />
-	      <input type="text" placeholder="이름" name="userName" />
-	      <input type="text" placeholder="핸드폰 번호" name="userPhoneNumber" /><br/><br/>
+	      <input type="text" placeholder="이름" name="userName" id="userName" />
+	      <input type="text" placeholder="핸드폰 번호" name="userPhoneNumber" id="userPhoneNumber" /><br/><br/>
 <%--	      <button class="confirm" id="confirmNumber">휴대폰 인증</button><br /><br />--%>
-	      <button type="submit" id="findId" onclick="location.href='/findId';">아이디 찾기</button>
+	      <button type="submit" id="findUserId" onclick="findUser.submit();">아이디 찾기</button>
+	      <a href="/loginAll">로그인하러 가기</a>
     </form>
   </div>
   <div class="overlay-container">
