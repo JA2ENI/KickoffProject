@@ -16,7 +16,7 @@ public interface EmpMapper {
 
     EmployerDO info_fix(EmployerDO employerDO);
 
-    List<BoardDO> getList(BoardDO boardDO);
+    List<BoardDO> getList(String empId);
 
     List<ReservationDO> selectReservation(ReservationDO reservationDO);
 

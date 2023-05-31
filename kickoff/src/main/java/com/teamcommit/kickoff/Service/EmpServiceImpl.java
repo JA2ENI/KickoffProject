@@ -22,8 +22,8 @@ public class EmpServiceImpl implements EmpService {
     public EmployerDO info_fix(EmployerDO employerDO) { return this.empMapper.info_fix(employerDO); }
 
     @Override
-    public List<BoardDO> getList(BoardDO boardDO) throws Exception{
-        return empMapper.getList(boardDO);
+    public List<BoardDO> getList(String empId) throws Exception{
+        return empMapper.getList(empId);
     }
 
     @Override

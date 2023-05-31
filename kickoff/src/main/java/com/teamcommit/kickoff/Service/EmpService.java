@@ -12,7 +12,7 @@ public interface EmpService {
 
     EmployerDO info_fix(EmployerDO employerDO);
 
-    List<BoardDO> getList(BoardDO boardDO) throws Exception;
+    List<BoardDO> getList(String empId) throws Exception;
 
     List<ReservationDO> selectReservation(ReservationDO reservationDO) throws Exception;
 

@@ -52,14 +52,14 @@ public class EmpController {
 
 
     @RequestMapping( "/myBoard")
-    public String boardList(@ModelAttribute("boardDO") BoardDO BoardDO, HttpServletRequest request, Model model) throws Exception {
+    public String boardList(HttpServletRequest request, Model model) throws Exception {
 
         String view = "/emp/myBoard";
 
         //로그인한 업체ID로 로그인 정보 가져오기
         String empId = (String) request.getSession().getAttribute("empId");
 
-        List<BoardDO> boardList = boardService.getList(BoardDO);
+        List<BoardDO> boardList = empService.getList(empId);
         model.addAttribute("boardList", boardList);
 
         return view;
