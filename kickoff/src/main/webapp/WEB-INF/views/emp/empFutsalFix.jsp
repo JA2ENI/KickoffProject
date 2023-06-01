@@ -1,16 +1,28 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Kick Off: 풋살장 목록</title>
+	<title>Kick Off: 풋살장 조회</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!-- Custom styles for this page -->
-    <link href="/emp/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-		<!--[if lte IE 8]><script src="/emp/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="/emp/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="/emp/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="/emp/css/ie8.css" /><![endif]-->
+	
+    <!-- Bootstrap CSS-->
+	<link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+	<!-- Vendor CSS-->
+	<link href="/emp/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+	<link href="/emp/vendor/mdi-font/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+	<!--[if lte IE 8]><script src="/emp/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/emp/css/main.css" />
+	<link rel="stylesheet" href="/emp/css/empFutsal/fix.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="/emp/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="/emp/css/ie8.css" /><![endif]-->
+	
+	
 	</head>
 	<body>
 
@@ -25,54 +37,69 @@
 								<header id="header">
 									<input type="button" onclick="location.href='main'" class="kickoff-logo" value="Kick Off"/>
 									<br>
-									<strong>내 풋살장 목록</strong>
+									<strong>내 풋살장 조회</strong>
 								</header>
 							
 							<!-- Begin Page Content -->
 			                	<section>
-				                	<div class="container-fluid">
-				                    <!-- DataTales Example -->
-				                    <div class="card shadow mb-4">
-				                        <div class="card-body">
-				                            <div class="table-responsive">
-				                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-				                                    <thead>
-				                                        <tr>
-				                                            <th>번호</th>
-				                                            <th>풋살장</th>
-				                                            <th>주소</th>
-				                                            <th>전화번호</th>
-				                                            <th>규격</th>
-				                                            <th>작성자</th>
-				                                        </tr>
-				                                    </thead>
-				                                    <tbody>
-														<c:forEach var="list" items="${empFutsalList}">
-					                                        <tr>
-																<td>${list.empFutsalList}</td>
-																<td>
-																	<a href="/empFutsalFix?placeName=${list.placeId}">
-																		${list.placeName}
-																	</a>
-																</td>
-																<td>${list.placeAddress}</td>
-																<td>${list.placePhoneNumber}"</td>
-																<td>${list.placeSize}"</td>
-																<td>${list.empId}"</td>
-					                                        </tr>
-														</c:forEach>
-				                                    </tbody>				                               
-				                                </table>
-				                            </div>
-				                        </div>
-				                    </div>
-						          </div>
+				                	<div class="container-fluid">				                 		
+										<div class="container">
+											<div class="facility-content">
+												<div class="image-wrap"><%--${row.imgPath}${row.imgName}--%>
+													<img class="image" src="/images/court1.jpg" />
+												</div>
+												<div class="facility-wrap">
+													<h2>채린 풋살장</h2>
+													<h3>서울특별시 용산구 한강대로</h3>
+													<p class="info">
+														규격<span>홀렐레</span>
+													</p>
+													<p class="info">
+														풋살장 형태<span>펠렐레</span>
+													</p>
+													<p class="info">
+														바닥형태<span>칠렐레</span>
+													</p>
+													<p class="info">
+														대여시간<span>칠렐레</span>
+													</p>
+													<p class="info">
+														개방일수<span>칠렐레</span>
+													</p>
+													<p class="info">
+														주차장<span>있음</span>
+													</p>
+													<p class="info">
+														가격<span>칠렐레</span>
+													</p>
+													<p class="info">
+														조명 유무<span class="status">유</span>
+													</p>
+												</div>
+											</div>
+										</div>
+										<div class="container">
+											<div class="map-wrap">
+												<h4 class="title">
+													구장위치<span>*</span>
+												</h4>
+											<div class="map-container">
+												<div id="map"></div>
+											</div>
+											</div>
+										</div>
+										<!-- button -->
+										<div class="btn-container">
+											<a href="/empFutsalF" id="cancle" class="cancle">수정하기</a>
+										</div>
+									
+									</div>
+									</section>
+								</div>
+							</div>								
 			                <!-- /.container-fluid -->
-								</section>
+								
 
-							
-						</div>
-					</div>
 
 				<!-- Sidebar -->
 					<div id="sidebar">
@@ -92,7 +119,7 @@
 											<span class="opener active">풋살장 관리</span>
 											<ul>
 												<li><a href="/empFutsalForm">풋살장 등록</a></li>
-												<li><a href="/empFutsalFix">풋살장 목록</a></li>
+												<li><a href="/empFutsalFix">풋살장 조회</a></li>
 											</ul>
 										</li>										
 									</ul>
@@ -101,7 +128,6 @@
 						</div>
 					</div>
 
-			</div>
 
 		<!-- Scripts -->
 			<script src="/emp/js/jquery.min.js"></script>
@@ -110,13 +136,55 @@
 			<!--[if lte IE 8]><script src="/emp/js/ie/respond.min.js"></script><![endif]-->
 			<script src="/emp/js/main.js"></script>
 			
+	
+	<!-- script -->
+	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c12ebb063cb05a9fc037082cb8601ef1&libraries=services"></script> -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d724483fb639866457f6535349fcd24&libraries=services"></script>
+	<script>
+		/* Kakao Map */
+
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+				mapOption = {
+					center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+					level: 3 // 지도의 확대 레벨
+				};
+
+		// 지도를 생성합니다
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('${address}', function(result, status) {
+
+			// 정상적으로 검색이 완료됐으면
+			if (status === kakao.maps.services.Status.OK) {
+
+				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+				// 결과값으로 받은 위치를 마커로 표시합니다
+				var marker = new kakao.maps.Marker({
+					map: map,
+					position: coords
+				});
+
+				// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+				map.setCenter(coords);
+			}
+		});
+		var zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+	</script>
+	
 			
-    <!-- Page level plugins-->
-    <script src="/emp/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/emp/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="/emp/js/demo/datatables-demo.js"></script>
-
+    <!-- Jquery JS-->
+	<script src="/myPage/vendor/jquery-3.2.1.min.js"></script>
+	<!-- Bootstrap JS-->
+	<script src="/myPage/vendor/bootstrap-4.1/popper.min.js"></script>
+	<script src="/myPage/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+	<!-- Vendor JS       -->
+	<script src="/myPage/vendor/select2/select2.min.js"></script>
+	
 	</body>
 </html>

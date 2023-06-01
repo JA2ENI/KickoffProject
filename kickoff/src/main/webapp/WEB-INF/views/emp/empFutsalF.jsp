@@ -11,7 +11,7 @@
 	<!--[if lte IE 9]><link rel="stylesheet" href="/emp/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="/emp/css/ie8.css" /><![endif]-->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kick off: 풋살장 등록 관리</title>
+    <title>Kick off: 풋살장 수정 관리</title>
 
     <!-- Google Font
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -43,7 +43,7 @@
 								<header id="header">
 									<input type="button" onclick="location.href='main'" class="kickoff-logo" value="Kick Off"/>
 									<br>
-									<strong>풋살장 등록</strong>
+									<strong>풋살장 수정</strong>
 								</header>
 							
 							<!-- Begin Page Content -->
