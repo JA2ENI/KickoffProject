@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,13 +50,13 @@
 				                                    <tbody>
 														<c:forEach var="list" items="${boardList}">
 					                                        <tr>
-																<td>${list.boardSeqno}"</td>
+																<td>${list.boardSeqno}</td>
 																<td>
 																	<a href="/boardDetail?boardSeqno=${list.boardSeqno}">
 																		${list.writeTitle}
 																	</a>
 																</td>
-																<td>${list.writeId}</td>
+																<td>${list.writeIdEmp}</td>
 																<td>${list.viewCount}</td>
 																<td>${list.writeRegDate}</td>
 																<td>${list.reportCount}</td>
@@ -90,7 +91,7 @@
 											<span class="opener active">풋살장 관리</span>
 											<ul>
 												<li><a href="/empFutsalForm">풋살장 등록</a></li>
-												<li><a href="/empFutsalFix">풋살장 목록</a></li>
+												<li><a href="/empFutsalFix">풋살장 조회</a></li>
 											</ul>
 										</li>										
 									</ul>

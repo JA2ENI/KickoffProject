@@ -3,10 +3,10 @@ package com.teamcommit.kickoff.Controller;
 
 import com.teamcommit.kickoff.Common.CommandMap;
 import com.teamcommit.kickoff.Do.*;
-import com.teamcommit.kickoff.Service.EmpService;
-
+import com.teamcommit.kickoff.Service.emp.EmpService;
 import com.teamcommit.kickoff.Service.reservation.ReservationService;
 import com.teamcommit.kickoff.Service.login.LoginService;
+import com.teamcommit.kickoff.Service.board.BoardService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -53,14 +53,14 @@ public class EmpController {
 
 
     @RequestMapping( "/myBoard")
-    public String boardList(@ModelAttribute("boardDO") BoardDO BoardDO, HttpServletRequest request, Model model) throws Exception {
+    public String boardList(HttpServletRequest request, Model model) throws Exception {
 
         String view = "/emp/myBoard";
 
         //로그인한 업체ID로 로그인 정보 가져오기
         String empId = (String) request.getSession().getAttribute("empId");
 
-        List<BoardDO> boardList = boardService.getList(BoardDO);
+        List<BoardDO> boardList = empService.getList(empId);
         model.addAttribute("boardList", boardList);
 
         return view;
@@ -147,6 +147,19 @@ public class EmpController {
 
         return view;
     }
+    
+    //풋살장 수정 페이지로 이동
+    @RequestMapping( "/empFutsalF")
+    public String empFutsalUpdate(@ModelAttribute("placeDO") PlaceDO placeDO, @RequestParam("placeId") int placeId, Model model) throws Exception {
+        String view = "/emp/empFutsalF";
+
+        PlaceDO futsalContents = empService.getFutsalContents(placeId);
+        model.addAttribute("futsalContents", futsalContents);
+
+        return view;
+    }
+    
+    
 
     /* 회원 정보 수정 */
     @RequestMapping(value = "/fixInfo", method = RequestMethod.GET)

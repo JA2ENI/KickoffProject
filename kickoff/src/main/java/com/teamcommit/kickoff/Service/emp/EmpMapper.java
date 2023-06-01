@@ -1,4 +1,4 @@
-package com.teamcommit.kickoff.Service;
+package com.teamcommit.kickoff.Service.emp;
 
 
 import com.teamcommit.kickoff.Do.BoardDO;
@@ -16,7 +16,7 @@ public interface EmpMapper {
 
     EmployerDO info_fix(EmployerDO employerDO);
 
-    List<BoardDO> getList(BoardDO boardDO);
+    List<BoardDO> getList(String empId);
 
     List<ReservationDO> selectReservation(ReservationDO reservationDO);
 
@@ -25,4 +25,6 @@ public interface EmpMapper {
     public void updateFutsal(PlaceDO placeDO);
     
     List<PlaceDO> placeList(PlaceDO placeDO);
+    
+    public PlaceDO getFutsalContents(int placeId);
 }
