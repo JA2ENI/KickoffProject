@@ -1,4 +1,4 @@
-package com.teamcommit.kickoff.Service;
+package com.teamcommit.kickoff.Service.emp;
 
 
 import com.teamcommit.kickoff.Do.BoardDO;
@@ -21,4 +21,6 @@ public interface EmpService {
     void updateFutsal(PlaceDO placeDO) throws Exception;
     
     List<PlaceDO> placeList(PlaceDO placeDO) throws Exception;
+    
+    PlaceDO getFutsalContents(int placeId) throws Exception;
 }

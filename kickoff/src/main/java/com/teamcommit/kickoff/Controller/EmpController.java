@@ -3,9 +3,10 @@ package com.teamcommit.kickoff.Controller;
 
 import com.teamcommit.kickoff.Common.CommandMap;
 import com.teamcommit.kickoff.Do.*;
-import com.teamcommit.kickoff.Service.EmpService;
+import com.teamcommit.kickoff.Service.emp.EmpService;
 import com.teamcommit.kickoff.Service.reservation.ReservationService;
 import com.teamcommit.kickoff.Service.login.LoginService;
+import com.teamcommit.kickoff.Service.board.BoardService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -146,6 +147,19 @@ public class EmpController {
 
         return view;
     }
+    
+    //풋살장 수정 페이지로 이동
+    @RequestMapping( "/empFutsalF")
+    public String empFutsalUpdate(@ModelAttribute("placeDO") PlaceDO placeDO, @RequestParam("placeId") int placeId, Model model) throws Exception {
+        String view = "/emp/empFutsalF";
+
+        PlaceDO futsalContents = empService.getFutsalContents(placeId);
+        model.addAttribute("futsalContents", futsalContents);
+
+        return view;
+    }
+    
+    
 
     /* 회원 정보 수정 */
     @RequestMapping(value = "/fixInfo", method = RequestMethod.GET)

@@ -1,4 +1,4 @@
-package com.teamcommit.kickoff.Service;
+package com.teamcommit.kickoff.Service.emp;
 
 import com.teamcommit.kickoff.Dao.PlaceDAO;
 import com.teamcommit.kickoff.Do.BoardDO;
@@ -42,6 +42,11 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public List<PlaceDO> placeList(PlaceDO placeDO) throws Exception{
         return empMapper.placeList(placeDO);
+    }
+    
+    @Override
+    public PlaceDO getFutsalContents(int placeId) throws Exception {
+    	return empMapper.getFutsalContents(placeId);
     }
 
 }
