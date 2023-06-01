@@ -29,7 +29,9 @@
             WRITE_REG_DATE,
             VIEW_COUNT,
             REPORT_COUNT,
-            WRITE_ID_EMP
+            WRITE_ID_EMP,
+            FILE_ID,
+            ORIG_FILE_NAME
         )
         VALUES
             (
@@ -41,7 +43,9 @@
                 #{writeContent},
                 #{writeRegDate},
                 0,0,
-                #{writeIdEmp}
+                #{writeIdEmp},
+                FILE_ID.NEXTVAL,
+                #{origFileName}
             )
         ]]>
     </insert>

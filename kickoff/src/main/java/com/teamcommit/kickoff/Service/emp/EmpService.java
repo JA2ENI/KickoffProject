@@ -21,6 +21,7 @@ public interface EmpService {
     void updateFutsal(PlaceDO placeDO) throws Exception;
     
     List<PlaceDO> placeList(PlaceDO placeDO) throws Exception;
-    
+
     PlaceDO getFutsalContents(int placeId) throws Exception;
+
 }

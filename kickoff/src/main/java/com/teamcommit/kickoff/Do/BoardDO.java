@@ -33,6 +33,10 @@ public class BoardDO {
 	private String writeIdEmp;
 	//게시글 댓글수
 	private int replyCount;
+	//파일 고유 ID
+	private int fileId;
+	//파일 원본 이름
+	private String origFileName;
 	
 	public int getBoardSeqno() {
 		return boardSeqno;

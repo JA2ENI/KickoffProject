@@ -25,6 +25,7 @@ public interface EmpMapper {
     public void updateFutsal(PlaceDO placeDO);
     
     List<PlaceDO> placeList(PlaceDO placeDO);
-    
+  
     public PlaceDO getFutsalContents(int placeId);
+
 }
