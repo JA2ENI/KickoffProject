@@ -100,22 +100,7 @@ public class ReservationController {
 
         return mv;
     }
-/*
-    @RequestMapping(value = "/reservationRequestForm")
-    public String reservationRequestForm(@ModelAttribute("reservationDO") ReservationDO reservationDO, @RequestParam("reservationNo") int reservationNo, HttpServletRequest request, HttpSession session) throws Exception {
-        String view = "/reservation/reservationRequest";
 
-        String userId = (String) request.getSession().getAttribute("userId");
-
-        UserDO userInfo = reservationService.insertUserInfo(userId);
-        session.setAttribute("userInfo", userInfo);
-
-        ReservationDO reservationDetail = reservationService.selectReservationDetail(reservationNo);
-        session.setAttribute("reservationDetail", reservationDetail);
-
-        return view;
-    }
-*/
     @RequestMapping(value = "/reservationRequestForm")
     public String reservationRequestForm(@ModelAttribute("reservationDO") ReservationDO reservationDO, @RequestParam("reservationNo") int reservationNo, HttpServletRequest request, HttpSession session, Model model) throws Exception {
         String view = "/reservation/reservationRequest";
@@ -131,7 +116,6 @@ public class ReservationController {
         return view;
     }
     
-    
     @RequestMapping(value = "/reservationRequest")
     public ModelAndView reservationRequest(@ModelAttribute("reservationDO") ReservationDO reservationDO, Model model, HttpSession session) throws Exception {
 
@@ -142,32 +126,6 @@ public class ReservationController {
         return mv;
     }
     
-  /*  
-    @RequestMapping(value = "/reservationRequest")
-    public ModelAndView reservationRequest(@ModelAttribute("reservationDO") ReservationDO reservationDO, Model model, HttpSession session) throws Exception {
-
-        ModelAndView mv = new ModelAndView("redirect:/reservation");
-
-        ReservationDO resDO = (ReservationDO)session.getAttribute("reservationDetail");
-
-        reservationDO.setReservationPlaceName(resDO.getReservationPlaceName());
-        reservationDO.setReservationCourtName(resDO.getReservationCourtName());
-        reservationDO.setReservationUserName(resDO.getReservationUserName());
-        reservationDO.setReservationUserPhone(resDO.getReservationUserPhone());
-        reservationDO.setReservationDate(resDO.getReservationDate());
-        reservationDO.setReservationStartTime(resDO.getReservationStartTime());
-        reservationDO.setReservationEndTime(resDO.getReservationEndTime());
-        reservationDO.setReservationGameStyle(resDO.getReservationGameStyle());
-        reservationDO.setReservationPrice(resDO.getReservationPrice());
-        reservationDO.setUserId((String)session.getAttribute("userId"));
-        reservationDO.setPlaceId(resDO.getPlaceId());	
-        reservationDO.setReservationPlaceAddress(resDO.getReservationPlaceAddress());
-
-        reservationService.insertReservationRequest(reservationDO);
-
-        return mv;
-    }
-*/
 }
 
 

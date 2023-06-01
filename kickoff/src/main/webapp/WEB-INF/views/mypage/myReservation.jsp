@@ -41,92 +41,93 @@
 				</header>
 				<c:choose>
 					<c:when test="${fn:length(myReservationList) > 0}">
-						<c:forEach var="row" items="${myReservationList}" begin="0" end="${listSize}" step="1" varStatus="num">
-							<section>
-								<div class="container-fluid">
-									<div class="container reservation-container"> 
-										<div class="container p-0">
-											<div class="root-content">
-												<div class="container">
-													<div class="facility-content">
-														<div class="image-wrap"><%--${row.imgPath}${row.imgName}--%>
-															<img class="image" src="/images/court1.jpg" />
-														</div>
-														<div class="facility-wrap">
-															<h2>${row.reservationPlaceName}</h2>
-															<h3>${row.reservationPlaceAddress}</h3>
-															<p class="info">
-																예약 날짜<span>${row.reservationDate}</span>
-															</p>
-															<p class="info">
-																예약 시간<span>${row.reservationStartTime}:00~${row.reservationEndTime}:00</span>
-															</p>
-															<p class="info">
-																대관 비용<span>${row.reservationPrice}원</span>
-															</p>
-															<p class="info">
-																예약 상태<span class="status">${row.reservationStatus}</span>
-															</p>
+						<c:forEach var="row" items="${myReservationList}" varStatus="num">
+							<c:forEach var="img" items="${imginfo}">
+								<section>
+									<div class="container-fluid">
+										<div class="container reservation-container"> 
+											<div class="container p-0">
+												<div class="root-content">
+													<div class="container">
+														<div class="facility-content">
+															<div class="image-wrap"><%--${imginfo.imgPath}${imginfo.imgName}--%>
+																<img class="image" src="${img.imgPath}${img.imgName}" />
+															</div>
+															<div class="facility-wrap">
+																<h2>${row.reservationPlaceName}</h2>
+																<h3>${row.reservationPlaceAddress}</h3>
+																<p class="info">
+																	예약 날짜<span>${row.reservationDate}</span>
+																</p>
+																<p class="info">
+																	예약 시간<span>${row.reservationStartTime}~${row.reservationEndTime}</span>
+																</p>
+																<p class="info">
+																	대관 비용<span>${row.reservationPrice}원</span>
+																</p>
+																<p class="info">
+																	예약 상태<span class="status">${row.reservationStatus}</span>
+																</p>
+															</div>
 														</div>
 													</div>
-												</div>
-												<div class="container">
-													<div class="map-wrap">
-														<h4 class="title">
-															구장위치<span id="test">*</span>
-														</h4>
-														<div class="map-container">
-														<!-- 	<div id="map"></div> -->
-															<div id="map${num.index }" class="map-content"></div>
+													<div class="container">
+														<div class="map-wrap">
+															<h4 class="title">
+																구장위치<span id="test">*</span>
+															</h4>
+															<div class="map-container">
+																<div id="map${num.index}" class="map-content"></div>
+															</div>
+															<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d724483fb639866457f6535349fcd24&libraries=services"></script>
+															<script>
+																/* Kakao Map */
+																var mapContainer${num.index} = document.getElementById('map${num.index}'); // 지도를 표시할 div
+																
+																var	mapOption${num.index} = {
+																	center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+																	level: 3 // 지도의 확대 레벨
+																};
+														
+																// 지도를 생성합니다
+																var map${num.index} = new kakao.maps.Map(mapContainer${num.index}, mapOption${num.index});
+														
+																// 주소-좌표 변환 객체를 생성합니다
+																var geocoder${num.index} = new kakao.maps.services.Geocoder();
+														
+																// 주소로 좌표를 검색합니다
+																geocoder${num.index}.addressSearch('${row.reservationPlaceAddress}', function(result, status) {
+														
+																	// 정상적으로 검색이 완료됐으면
+																	if (status === kakao.maps.services.Status.OK) {
+														
+																		var coords${num.index} = new kakao.maps.LatLng(result[0].y, result[0].x);
+														
+																		// 결과값으로 받은 위치를 마커로 표시합니다
+																		var marker${num.index} = new kakao.maps.Marker({
+																			map: map${num.index},
+																			position: coords${num.index}
+																		});
+														
+																		// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+																		map${num.index}.setCenter(coords${num.index});
+																	}
+																});
+																var zoomControl${num.index} = new kakao.maps.ZoomControl();
+																map${num.index}.addControl(zoomControl${num.index}, kakao.maps.ControlPosition.RIGHT);
+															</script>
 														</div>
-														<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d724483fb639866457f6535349fcd24&libraries=services"></script>
-														<script>
-															/* Kakao Map */
-															var mapContainer${num.index} = document.getElementById('map${num.index}'); // 지도를 표시할 div
-															
-															var	mapOption${num.index} = {
-																center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-																level: 3 // 지도의 확대 레벨
-															};
-													
-															// 지도를 생성합니다
-															var map${num.index} = new kakao.maps.Map(mapContainer${num.index}, mapOption${num.index});
-													
-															// 주소-좌표 변환 객체를 생성합니다
-															var geocoder${num.index} = new kakao.maps.services.Geocoder();
-													
-															// 주소로 좌표를 검색합니다
-															geocoder${num.index}.addressSearch('${row.reservationPlaceAddress}', function(result, status) {
-													
-																// 정상적으로 검색이 완료됐으면
-																if (status === kakao.maps.services.Status.OK) {
-													
-																	var coords${num.index} = new kakao.maps.LatLng(result[0].y, result[0].x);
-													
-																	// 결과값으로 받은 위치를 마커로 표시합니다
-																	var marker${num.index} = new kakao.maps.Marker({
-																		map: map${num.index},
-																		position: coords${num.index}
-																	});
-													
-																	// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-																	map${num.index}.setCenter(coords${num.index});
-																}
-															});
-															var zoomControl${num.index} = new kakao.maps.ZoomControl();
-															map${num.index}.addControl(zoomControl${num.index}, kakao.maps.ControlPosition.RIGHT);
-														</script>
 													</div>
-												</div>
-												<!-- button -->
-												<div class="btn-container">
-													<a href="#this" id="cancle" class="cancle">예약 취소</a>
+													<!-- button -->
+													<div class="btn-container">
+														<a href="#this" id="cancle" class="cancle">예약 취소</a>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</section>
+								</section>
+							</c:forEach>
 						</c:forEach>
 					</c:when>
 					<c:otherwise>

@@ -7,5 +7,7 @@ import com.teamcommit.kickoff.Do.ReservationDO;
 public interface MypageService {
 
 	List<ReservationDO> myReservationList(String userId) throws Exception;
+	
+	List<ReservationDO> empReservationList(String userId) throws Exception;
 
 }

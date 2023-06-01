@@ -3,7 +3,7 @@
 
 <mapper namespace="com.teamcommit.kickoff.Service.mypage.MypageMapper">
 
-    <!-- Reservation List -->
+    <!-- My Reservation List -->
     <select id="myReservationList" parameterType="String" resultType="com.teamcommit.kickoff.Do.ReservationDO">
         <![CDATA[
             SELECT *
@@ -14,6 +14,26 @@
         ]]>
     </select>
 
+	<!-- Emp Reservation List -->
+    <select id="empReservationList" parameterType="String" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+        <![CDATA[
+            SELECT 	
+            		IMG_NAME, 
+            		IMG_PATH
+			FROM 	
+					RESERVATION
+			WHERE 	
+					RESERVATION_NO IN (
+									  SELECT 
+											RESERVATION_ORIGIN_NO
+			                          FROM 
+			                          		RESERVATION
+			                          WHERE 
+			                          		USER_ID = #{userId} AND RESERVATION_TYPE = 'USER'
+			                          )
+		]]>
+    </select>
+    
     <!-- Reservation Insert -->
     <insert id="insertReservation" parameterType="com.teamcommit.kickoff.Do.ReservationDO">
         <![CDATA[
