@@ -1,16 +1,24 @@
 package com.teamcommit.kickoff.Controller;
 
+import com.teamcommit.kickoff.Do.TeamApplyDO;
 import com.teamcommit.kickoff.Do.TeamDO;
-import com.teamcommit.kickoff.Service.TeamService;
+import com.teamcommit.kickoff.Do.UserDO;
+import com.teamcommit.kickoff.Service.team.TeamService;
+import com.teamcommit.kickoff.Service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -19,6 +27,9 @@ public class TeamController {
     @Autowired
     @Qualifier("TeamService")
     private TeamService teamService;
+    
+    @Autowired
+    private LoginService loginService;
 
 
     // 팀 목록
@@ -102,6 +113,36 @@ public class TeamController {
             view = "team/teamApply";
         }
         return view;
+    }
+    
+    //팀 지원 DB 저장
+    @RequestMapping("/apply_action")
+    public ModelAndView apply_action(@ModelAttribute("teamApplyDO") TeamApplyDO teamApplyDO, ModelMap model, HttpServletRequest request, RedirectAttributes redirect) throws Exception {
+    	
+    	ModelAndView mv = new ModelAndView();
+    	
+    	try {
+    		
+    		//로그인한 이용자 ID로 로그인 정보 가져오기
+            String userId = (String) request.getSession().getAttribute("userId");
+            UserDO userDO =new UserDO();
+            userDO.setUserId(userId);
+            userDO = loginService.procSetUserInfo(userDO);
+            
+            String userName = (String) request.getSession().getAttribute("userName");
+            String userGender = (String) request.getSession().getAttribute("userGender");
+            String userPhoneNumber = (String) request.getSession().getAttribute("userPhoneNumber");
+    		
+			teamService.insertTeamApply(teamApplyDO);
+			
+			mv = new ModelAndView("redirect:/team");
+			redirect.addFlashAttribute("msg", "팀 지원 완료되었습니다.");
+			
+		} catch (Exception e) {
+			redirect.addFlashAttribute("msg", "오류가 발생되었습니다. 다시 시도해주세요.");
+		}
+    	
+    	return mv;
     }
 
 }

@@ -36,7 +36,8 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-	<%@include file="/includes/header.jsp"%>
+	<jsp:include page="/includes/header.jsp" flush="true" />
+	<%-- <%@include file="/includes/header.jsp"%> --%>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.teamcommit.kickoff.Service.BoardMapper">
+<mapper namespace="com.teamcommit.kickoff.Service.board.BoardMapper">
 
     <!-- Board List -->
     <select id="getList" parameterType="com.teamcommit.kickoff.Do.BoardDO" resultType="com.teamcommit.kickoff.Do.BoardDO">
@@ -26,18 +26,20 @@
             FILE_NAME,
             FILE_PATH,
             WRITE_CONTENT,
+            WRITE_REG_DATE,
             VIEW_COUNT,
             REPORT_COUNT,
             WRITE_ID_EMP
         )
         VALUES
             (
-                BOARD_SEQ.NEXTVAL,
+                BOARD_SEQNO.NEXTVAL,
                 #{writeTitle},
                 #{writeId},
                 #{fileName},
                 #{filePath},
                 #{writeContent},
+                #{writeRegDate},
                 0,0,
                 #{writeIdEmp}
             )

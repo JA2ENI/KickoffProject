@@ -1,6 +1,7 @@
-package com.teamcommit.kickoff.Service;
+package com.teamcommit.kickoff.Service.team;
 
 import com.teamcommit.kickoff.Do.BoardDO;
+import com.teamcommit.kickoff.Do.TeamApplyDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,10 @@ import java.util.List;
 //        public void updateTeam(TeamDO teamDO) throws Exception {
 //
 //        }
+        
+        @Override
+        public void insertTeamApply(TeamApplyDO teamApplyDO) throws Exception {
+			teamMapper.insertTeamApply(teamApplyDO);
+		}
 
     }
