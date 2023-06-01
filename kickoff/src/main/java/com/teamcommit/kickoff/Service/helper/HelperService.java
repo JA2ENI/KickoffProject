@@ -1,4 +1,4 @@
-package com.teamcommit.kickoff.Service;
+package com.teamcommit.kickoff.Service.helper;
 
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.MessageDO;
