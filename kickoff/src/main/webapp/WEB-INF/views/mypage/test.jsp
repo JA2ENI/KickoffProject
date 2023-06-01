@@ -39,9 +39,6 @@
 					<br>
 					<strong class="logo">예약 내역</strong>
 				</header>
-				<c:choose>
-					<c:when test="${fn:length(myReservationList) > 0}">
-						<c:forEach var="row" items="${myReservationList}" begin="0" end="${listSize}" step="1" varStatus="num">
 							<section>
 								<div class="container-fluid">
 									<div class="container reservation-container"> 
@@ -73,49 +70,16 @@
 												<div class="container">
 													<div class="map-wrap">
 														<h4 class="title">
-															구장위치<span id="test">*</span>
+															구장위치<span>*</span>
 														</h4>
-														<div class="map-container">
-														<!-- 	<div id="map"></div> -->
-															<div id="map${num.index }" class="map-content"></div>
-														</div>
-														<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d724483fb639866457f6535349fcd24&libraries=services"></script>
-														<script>
-															/* Kakao Map */
-															var mapContainer${num.index} = document.getElementById('map${num.index}'); // 지도를 표시할 div
-															
-															var	mapOption${num.index} = {
-																center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-																level: 3 // 지도의 확대 레벨
-															};
-													
-															// 지도를 생성합니다
-															var map${num.index} = new kakao.maps.Map(mapContainer${num.index}, mapOption${num.index});
-													
-															// 주소-좌표 변환 객체를 생성합니다
-															var geocoder${num.index} = new kakao.maps.services.Geocoder();
-													
-															// 주소로 좌표를 검색합니다
-															geocoder${num.index}.addressSearch('${row.reservationPlaceAddress}', function(result, status) {
-													
-																// 정상적으로 검색이 완료됐으면
-																if (status === kakao.maps.services.Status.OK) {
-													
-																	var coords${num.index} = new kakao.maps.LatLng(result[0].y, result[0].x);
-													
-																	// 결과값으로 받은 위치를 마커로 표시합니다
-																	var marker${num.index} = new kakao.maps.Marker({
-																		map: map${num.index},
-																		position: coords${num.index}
-																	});
-													
-																	// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-																	map${num.index}.setCenter(coords${num.index});
-																}
-															});
-															var zoomControl${num.index} = new kakao.maps.ZoomControl();
-															map${num.index}.addControl(zoomControl${num.index}, kakao.maps.ControlPosition.RIGHT);
-														</script>
+															<div class="map-container">
+															<!-- 	<div id="map"></div> -->
+																<div id="map"></div>
+															</div>
+															<div class="map-container">
+															<!-- 	<div id="map"></div> -->
+																<div id="map2"></div>
+															</div>
 													</div>
 												</div>
 												<!-- button -->
@@ -127,14 +91,6 @@
 									</div>
 								</div>
 							</section>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<div>
-							현재 예약한 풋살장이 없습니다.
-						</div>
-					</c:otherwise>
-				</c:choose>
 			</div>
 		</div>
 		<!-- Sidebar -->
@@ -160,6 +116,81 @@
 
 	<!-- script -->
 	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c12ebb063cb05a9fc037082cb8601ef1&libraries=services"></script> -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d724483fb639866457f6535349fcd24&libraries=services"></script>
+	
+	<script>
+		/* Kakao Map */
+
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+			mapOption = {
+				center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+				level: 3 // 지도의 확대 레벨
+			};
+
+		// 지도를 생성합니다
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('서울특별시 용산구 한강대로 23길 55', function(result, status) {
+
+			// 정상적으로 검색이 완료됐으면
+			if (status === kakao.maps.services.Status.OK) {
+
+				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+				// 결과값으로 받은 위치를 마커로 표시합니다
+				var marker = new kakao.maps.Marker({
+					map: map,
+					position: coords
+				});
+
+				// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+				map.setCenter(coords);
+			}
+		});
+		var zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+	</script>
+	
+	<script>
+		/* Kakao Map */
+
+		var mapContainer2 = document.getElementById('map2'), // 지도를 표시할 div
+			mapOption2 = {
+				center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+				level: 3 // 지도의 확대 레벨
+			};
+
+		// 지도를 생성합니다
+		var map2 = new kakao.maps.Map(mapContainer2, mapOption2);
+
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder2 = new kakao.maps.services.Geocoder();
+
+		// 주소로 좌표를 검색합니다
+		geocoder2.addressSearch('서울시 송파구 성내천로 29길 31', function(result, status) {
+
+			// 정상적으로 검색이 완료됐으면
+			if (status === kakao.maps.services.Status.OK) {
+
+				var coords2 = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+				// 결과값으로 받은 위치를 마커로 표시합니다
+				var marker2 = new kakao.maps.Marker({
+					map: map2,
+					position: coords2
+				});
+
+				// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+				map2.setCenter(coords2);
+			}
+		});
+		var zoomControl2 = new kakao.maps.ZoomControl();
+		map2.addControl(zoomControl2, kakao.maps.ControlPosition.RIGHT);
+	</script>
 	
 	<script src="/myPage/js/jquery.min.js"></script>
 	<script src="/myPage/js/skel.min.js"></script>
