@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.teamcommit.kickoff.Service.TeamMapper">
+<mapper namespace="com.teamcommit.kickoff.Service.team.TeamMapper">
 
     <!-- Team List -->
     <select id="getList" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">
@@ -85,5 +85,32 @@
     <!--            BOARD_SQENO = #{boardSeqno}-->
     <!--        ]]>-->
     <!--    </update>-->
+    
+    <!-- TeamApply Insert -->
+    <insert id = "insertTeamApply" parameterType="com.teamcommit.kickoff.Do.TeamApplyDO">
+        <![CDATA[
+        INSERT INTO TEAM_APPLY
+        (
+            TEAM_APPLY_NO,
+            TEAM_ID,
+            USER_ID,
+            APPLY_OTHER, 
+            USER_NAME,
+            USER_GENDER,
+            USER_PHONE_NUMBER,
+            USER_POSITION
+        )
+        VALUES(
+                  TEAM_APPLY_NO.NEXTVAL,
+                  #{teamId},
+                  #{userId},
+                  #{applyOther},
+                  #{userName},
+                  #{userGender},
+                  #{userPhoneNumber},
+                  #{userPosition}
+              )
+        ]]>
+    </insert>
 
 </mapper>

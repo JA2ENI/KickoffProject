@@ -37,6 +37,20 @@
     <script src="/includes/js/scrollmagic.animation.gsap.min.js"></script>
 
     <script src="/includes/js/main.js"></script>
+    
+    <script type="text/javascript">
+    function _onSubmit() {
+
+        if ($("#position").val() == "") {
+            alert("포지션을 입력해주세요");
+            $("#position").focus();
+            return false;
+        }
+        if (!confirm("등록하시겠습니까?")) {
+            return false;
+        }
+    }
+</script>
 </head>
 
 <body>
@@ -58,24 +72,24 @@
         <div class="container">
             <div class="checkout__form">
                 <h4>팀 지원</h4>
-                <form action="#">
+                <form action="apply_action" id="frm" name="frm" onsubmit="return _onSubmit();">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <div class="checkout__input">
                                   <p>이름<span>*</span></p>
-                                  <input type="text" placeholder="이름">
+                                  <input type="text" placeholder="${userName}">
                             </div>
                             <div class="checkout__input">
                                  <p>성별<span>*</span></p>
-                                 	<input type="text" placeholder="성별">
+                                 	<input type="text" placeholder="${userGender}">
                             </div>
                             <div class="checkout__input">
                                 <p>핸드폰 번호<span>*</span></p>
-                                <input type="text" placeholder="핸드폰 번호">
+                                <input type="text" placeholder="${userPhoneNumber}">
                             </div>
                             <div class="checkout__input">
                                 <p>포지션<span>*</span></p>
-                                <select id="position" name="position" onChange="selectPosition(this)">
+                                <select id="userPosition" name="userPosition" onChange="selectUserPosition(this)">
                                 			<option placeholder="">포지션 선택</option>
       										<option placeholder="pivo">PIVO(피보): 공격수</option>
       										<option placeholder="ala">ALA(아라): 미드필더</option>
@@ -84,8 +98,8 @@
       							</select>
                             </div>
                             <div class="checkout__input">
-                                <p>하고 싶은 말<span>*</span></p>
-                                <textarea id="teamApply_content" name="teamApply_content" cols="100" rows="100" class="form-content" placeholder="팀장에게 하고 싶은 말을 적어주세요."></textarea>
+                                <p>하고 싶은 말</p>
+                                <textarea id="applyOther" name="applyOther" cols="100" rows="100" class="form-content" placeholder="팀장에게 하고 싶은 말을 적어주세요."></textarea>
                             </div> 
                             
                         </div>
@@ -93,17 +107,26 @@
                         <!-- Check List -->
 						<div class="col-lg-4 col-md-6">
 							<div class="checkout__order">
-								<h4>Check List</h4>
+								<h4>풋살팀 지원</h4>
 								<div class="checkout__order__products">
 									Title<span>Content</span>
 								</div>
 								<ul>
-									<li>이름<span>이름 가져오기</span></li>
-									<li>성별<span>성별 가져오기</span></li>
-									<li>핸드폰 번호<span>번호 가져오기</span></li>
-									<li>포지션<span id="position"></span></li>
+									<li>이름<span>${userName}</span></li>
+									<li>성별<span>${userGender}</span></li>
+									<li>핸드폰 번호<span>${userPhoneNumber}</span></li>
+									<li>포지션<span id="userPosition"></span></li>
 								</ul>
-									<a href="/team" id="insert" class="site-btn-insert">등록</a>
+								
+									<input type="hidden" name="teamId" value="${teamId}" />
+									<input type="hidden" name="userId" value="${userId}" />
+									<input type="hidden" name="applyOther" value="${applyOther}" />
+									<input type="hidden" name="userName" value="${userName}" />
+									<input type="hidden" name="userGender" value="${userGender}" />
+									<input type="hidden" name="userPhoneNumber" value="${userPhoneNumber}" />
+									<input type="hidden" name="userPosition" value="${userPosition}" />
+									
+									<a type="submit" id="insert" class="site-btn-insert" onclick="document.getElementById('frm').submit();">등록</a>
 									<a href="/team" id="cancle" class="site-btn-cancle">취소</a>
 							</div>
 						</div>
