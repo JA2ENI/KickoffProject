@@ -106,7 +106,7 @@
     </insert>
     
     <!-- Futsal Place List -->
-    <select id="placeList" parameterType="com.teamcommit.kickoff.Do.PlaceDO" resultType="com.teamcommit.kickoff.Do.PlaceDO">
+    <select id="empFutsalList" parameterType="String" resultType="com.teamcommit.kickoff.Do.PlaceDO">
         <![CDATA[
         SELECT
         	*
