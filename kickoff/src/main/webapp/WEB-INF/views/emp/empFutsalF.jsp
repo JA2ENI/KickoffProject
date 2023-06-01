@@ -54,8 +54,8 @@
 								    	<!-- 이미지 class 추가 -->
 								    	<div class="checkout__form">
 								    		<div class="futsal">								    		
-								        	<form id="frm" name="frm" action="#" method="POST">
-												<input type="hidden" id="placeId" name="placeId" value="${empFutsalInsert.placeId}" />
+								        	<form id="frm" name="frm" action="/empFutsalF" method="POST">
+												<input type="hidden" id="placeId" name="placeId" value="${empFutsalFix.placeId}" />
 								                	<div class="col-lg-8 col-md-6">
 								                		<div class="checkout__input">
 										    			<p>풋살장 이미지<span>*</span></p>
@@ -66,15 +66,15 @@
 			       										</div>
 														<div class="checkout__input">
 							                               <p>풋살장<span>*</span></p>
-							                               <textarea class="etc" name="placeName" value="${empFutsalInsert.placeName}"></textarea>
+							                               <textarea class="etc" name="placeName" value="${empFutsalFix.placeName}"></textarea>
                            								</div>
                           							<div class="checkout__input">
-                                						<p>바닥 형태<span>*${empFutsalInsert.placeGround}</span></p>
+                                						<p>바닥 형태<span>*${empFutsalFix.placeGround}</span></p>
                                 							<select id="courtName" onChange="selectCourt(this)">
 							                                	<option value="">바닥 선택하기</option>
-																<option value="A" <c:if test="${empFutsalInsert.placeGround == '인조잔디'}">selected</c:if>>인조잔디</option>
-							                                	<option value="B" <c:if test="${empFutsalInsert.placeGround == '피치플로어'}">selected</c:if>>피치플로어</option>
-							                                	<option value="C" <c:if test="${empFutsalInsert.placeGround == '천연잔디'}">selected</c:if>>천연잔디</option>
+																<option value="A" <c:if test="${empFutsalFix.placeGround == '인조잔디'}">selected</c:if>>인조잔디</option>
+							                                	<option value="B" <c:if test="${empFutsalFix.placeGround == '피치플로어'}">selected</c:if>>피치플로어</option>
+							                                	<option value="C" <c:if test="${empFutsalFix.placeGround == '천연잔디'}">selected</c:if>>천연잔디</option>
 							                                </select>
                             						</div>
 						                           	<div class="checkout__input">
@@ -84,10 +84,10 @@
 						                            <div class="checkout__input">
 						                                <p>풋살장 형태<span>*</span></p>
 						                                <label>
-															<input type="radio" name="placeForm" value="indoor" onclick='getPlaceForm(event)' <c:if test="${empFutsalInsert.placeForm eq 'indoor'}">checked="checked"</c:if>/>&nbsp실내
+															<input type="radio" name="placeForm" value="indoor" onclick='getPlaceForm(event)' <c:if test="${empFutsalFix.placeForm eq 'indoor'}">checked="checked"</c:if>/>&nbsp실내
 						                                </label>
 						                                <label>
-						                                	<input type="radio" name="placeForm" value="outdoor" onclick='getPlaceForm(event)' <c:if test="${empFutsalInsert.placeForm eq 'outdoor'}">checked="checked"</c:if>/>&nbsp실외
+						                                	<input type="radio" name="placeForm" value="outdoor" onclick='getPlaceForm(event)' <c:if test="${empFutsalFix.placeForm eq 'outdoor'}">checked="checked"</c:if>/>&nbsp실외
 						                                </label>
 						                            </div>
 						                            <div class="checkout__input">
@@ -116,19 +116,19 @@
 															<div class="checkout__input light">
 																<p>조명<span>*</span></p>
 																<label>
-																	<input type="radio" name="placeLight" value="Y" onclick='getPlaceLight(event)' <c:if test="${empFutsalInsert.placeLight eq 'Y'}">checked="checked"</c:if>/>&nbsp있음
+																	<input type="radio" name="placeLight" value="Y" onclick='getPlaceLight(event)' <c:if test="${empFutsalFix.placeLight eq 'Y'}">checked="checked"</c:if>/>&nbsp있음
 																</label>
 																<label>
-																	<input type="radio" name="placeLight" value="N" onclick='getPlaceLight(event)' <c:if test="${empFutsalInsert.placeLight eq 'N'}">checked="checked"</c:if>/>&nbsp없음
+																	<input type="radio" name="placeLight" value="N" onclick='getPlaceLight(event)' <c:if test="${empFutsalFix.placeLight eq 'N'}">checked="checked"</c:if>/>&nbsp없음
 																</label>
 															</div>
 															<div class="checkout__input">
 																<p>주차장<span>*</span></p>
 																<label>
-																	<input type="radio" name="placeParking" value="Y" onclick='getPlaceParking(event)' <c:if test="${empFutsalInsert.placeParking eq 'Y'}">checked="checked"</c:if>/>&nbsp있음
+																	<input type="radio" name="placeParking" value="Y" onclick='getPlaceParking(event)' <c:if test="${empFutsalFix.placeParking eq 'Y'}">checked="checked"</c:if>/>&nbsp있음
 																</label>
 																<label>
-																	<input type="radio" name="placeParking" value="N" onclick='getPlaceParking(event)' <c:if test="${empFutsalInsert.placeParking eq 'N'}">checked="checked"</c:if>/>&nbsp없음
+																	<input type="radio" name="placeParking" value="N" onclick='getPlaceParking(event)' <c:if test="${empFutsalFix.placeParking eq 'N'}">checked="checked"</c:if>/>&nbsp없음
 																</label>
 															</div>
 														</div>
@@ -136,11 +136,11 @@
 						                            
 						                            <div class="checkout__input">
 						                                <p>가격<span>*</span></p>
-						                                <input type="number" class="inputPrice" id="inputPrice" value="${empFutsalInsert.placePrice}" onChange="getPrice()" placeholder="ex) 50000">
+						                                <input type="number" class="inputPrice" id="inputPrice" value="${empFutsalFix.placePrice}" onChange="getPrice()" placeholder="ex) 50000">
 						                            </div>
 						                            <div class="checkout__input">
 														<p>기타사항</p>
-						                               	<textarea class="etc" value="${empFutsalInsert.placeOther}"></textarea>
+						                               	<textarea class="etc" value="${empFutsalFix.placeOther}"></textarea>
 						                            </div>
 						                        </div>
 						                         <button onclick="location.href='/empFutsalFix.jsp';">등록하기</button>	

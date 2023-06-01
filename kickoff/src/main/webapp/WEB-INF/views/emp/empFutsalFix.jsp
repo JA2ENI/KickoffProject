@@ -45,35 +45,35 @@
 				                	<div class="container-fluid">				                 		
 										<div class="container">
 											<div class="facility-content">
-												<div class="image-wrap"><%--${row.imgPath}${row.imgName}--%>
-													<img class="image" src="/images/court1.jpg" />
+												<div class="image-wrap">
+													<img class="image" src="${empFutsalFix.imgPath}${empFutsalFix.imgName}" />
 												</div>
 												<div class="facility-wrap">
-													<h2>채린 풋살장</h2>
-													<h3>서울특별시 용산구 한강대로</h3>
+													<h2>${empFutsalFix.placeName}</h2>
+													<h3>${empFutsalFix.placeAddress}</h3>
 													<p class="info">
-														규격<span>홀렐레</span>
+														규격<span>${empFutsalFix.placeSize}</span>
 													</p>
 													<p class="info">
-														풋살장 형태<span>펠렐레</span>
+														풋살장 형태<span>${empFutsalFix.placeForm}</span>
 													</p>
 													<p class="info">
-														바닥형태<span>칠렐레</span>
+														바닥형태<span>${empFutsalFix.placeGround}</span>
 													</p>
 													<p class="info">
-														대여시간<span>칠렐레</span>
+														대여시간<span>${empFutsalFix.placeTime}</span>
 													</p>
 													<p class="info">
-														개방일수<span>칠렐레</span>
+														개방일수<span>${empFutsalFix.placeOpen}</span>
 													</p>
 													<p class="info">
-														주차장<span>있음</span>
+														주차장<span>${empFutsalFix.placeParking}</span>
 													</p>
 													<p class="info">
-														가격<span>칠렐레</span>
+														가격<span>${empFutsalFix.placePrice}</span>
 													</p>
 													<p class="info">
-														조명 유무<span class="status">유</span>
+														조명 유무<span class="status">${empFutsalFix.placeLight}</span>
 													</p>
 												</div>
 											</div>
@@ -85,12 +85,15 @@
 												</h4>
 											<div class="map-container">
 												<div id="map"></div>
+												<div class="title-wrap be-default mb-3">
+													<p>${empFutsalFix.placeAddress}</p>
+												</div>
 											</div>
 											</div>
 										</div>
 										<!-- button -->
 										<div class="btn-container">
-											<a href="/empFutsalF" id="cancle" class="cancle">수정하기</a>
+											<a href="/empFutsalFupdate?placeId=${empFutsalFix.placeId}" id="cancle" class="cancle">수정하기</a>
 										</div>
 									
 									</div>

@@ -43,10 +43,16 @@ public class EmpServiceImpl implements EmpService {
     public List<PlaceDO> placeList(PlaceDO placeDO) throws Exception{
         return empMapper.placeList(placeDO);
     }
-
+    
     @Override
-    public PlaceDO getFutsalContents(int placeId) throws Exception {
-    	return empMapper.getFutsalContents(placeId);
+    public PlaceDO selectEmpFutsalFix(int placeId) throws Exception {
+        return empMapper.selectEmpFutsalFix(placeId);
     }
+    
+    @Override
+    public void updateEmpFutsalF(PlaceDO placeDO) throws Exception {
+        empMapper.updateEmpFutsalF(placeDO);
+    }
+
 
 }
