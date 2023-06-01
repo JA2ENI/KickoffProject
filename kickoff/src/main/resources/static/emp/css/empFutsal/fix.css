@@ -160,7 +160,7 @@ small {
 	margin-top: 5px;
 }
 
-.map-content {
+#map {
 	height: 398px;
 	position: relative;
 	overflow: hidden;

@@ -60,13 +60,15 @@ public class MypageController {
         
         int listSize = list.size();
         
-        List<String> address = list.stream()
-        		.map(ReservationDO::getReservationPlaceAddress).collect(Collectors.toList());
+		/*
+		 * List<String> address = list.stream()
+		 * .map(ReservationDO::getReservationPlaceAddress).collect(Collectors.toList());
+		 */
         
         
         for(int i = 0; i < listSize; i++) {
-        	mv.addObject("address", address.get(i));
-        	System.out.println("address.get(" + i + ") : " + address.get(i));
+        	mv.addObject("list", list.get(i));
+        	System.out.println("mv : " + mv);
         }
         
         											
@@ -86,8 +88,60 @@ public class MypageController {
         
 		/* mv.addObject("address", address); */
         
-        System.out.println("mv: " + mv);
+		/*
+		 * System.out.println("mv: " + mv);
+		 */
+        System.out.println("listSize: " + listSize);
+        
+		/* System.out.println("address: " + address); */
+        
+        
+        return mv;
+    }
+    
+    
+    @RequestMapping(value = "/test")
+    public ModelAndView test(@ModelAttribute("reservationDO") ReservationDO reservationDO, HttpSession session) throws Exception {
 
+    	ModelAndView mv = new ModelAndView("/mypage/test");
+    	
+        List<ReservationDO> list = mypageService.myReservationList((String)session.getAttribute("userId"));
+        
+        int listSize = list.size();
+        
+		
+		List<String> address = list.stream()
+				.map(ReservationDO::getReservationPlaceAddress).collect(Collectors.toList());
+		 
+        
+        for(int i = 0; i < listSize; i++) {
+        	mv.addObject("address", address.get(i));
+        	System.out.println("address.get(" + i + ") : " + address.get(i));
+        }
+        
+        for(int i=0; i< listSize; i++) {
+        	System.out.println("add(" + i + ") : " + list.get(i));
+        }
+        											
+        
+        /*
+        for(String add : address) {
+        	System.out.println("address: " + add);
+        }
+        */
+        
+		/* mv.addObject("add", list.get(0).getReservationPlaceAddress()); */
+        
+        
+		mv.addObject("testList", list); 
+        mv.addObject("listSize", listSize);
+        
+        
+		/* mv.addObject("address", address); */
+        
+		/*
+		 * System.out.println("mv: " + mv);
+		 */
         System.out.println("listSize: " + listSize);
         
 		/* System.out.println("address: " + address); */
