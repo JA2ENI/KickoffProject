@@ -2,7 +2,8 @@ package com.teamcommit.kickoff.Controller;
 
 import com.teamcommit.kickoff.Do.EmployerDO;
 import com.teamcommit.kickoff.Do.UserDO;
-import com.teamcommit.kickoff.Service.LoginService;
+import com.teamcommit.kickoff.Service.login.LoginService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,9 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
+	
+	@Resource(name="loginService")
+    private LoginService loginService;
 
 //    @Autowired
 //    private AccountService accountService;
@@ -32,10 +36,36 @@ public class LoginController {
 //        return "/account/login";
 //    }
 
-    @Resource(name="loginService")
-    private LoginService loginService;
+    
+    @GetMapping("/loginAgree")
+    public String loginAgree() {
+        String view = "/login/loginAgree";
 
+        return view;
+    }
 
+    @GetMapping("/loginAgreeEmp")
+    public String loginAgreeEmp() {
+        String view = "/login/loginAgreeEmp";
+
+        return view;
+    }
+
+    @GetMapping("/Signup")
+    public String Signup() {
+        String view = "/login/Signup";
+
+        return view;
+    }
+
+    @GetMapping("/SignupEmp")
+    public String SignupEmp() {
+        String view = "/login/SignupEmp";
+
+        return view;
+    }
+    
+    // 로그인 페이지 이동
     @GetMapping("/loginAll")
     public String loginAll() {
         String view = "/login/loginAll";
@@ -69,6 +99,7 @@ public class LoginController {
             empDO.setEmpId(empId);
             empDO.setEmpPw(empPw);
             EmployerDO result = this.loginService.emp_login(empDO);
+            
             if (result != null) {
                 ModelAndView mv = new ModelAndView("redirect:/main");
                 session.setAttribute("empId", result.getEmpId());
@@ -94,33 +125,6 @@ public class LoginController {
         return mv;
     }
 
-    @GetMapping("/loginAgree")
-    public String loginAgree() {
-        String view = "/login/loginAgree";
-
-        return view;
-    }
-
-    @GetMapping("/loginAgreeEmp")
-    public String loginAgreeEmp() {
-        String view = "/login/loginAgreeEmp";
-
-        return view;
-    }
-
-    @GetMapping("/Signup")
-    public String Signup() {
-        String view = "/login/Signup";
-
-        return view;
-    }
-
-    @GetMapping("/SignupEmp")
-    public String SignupEmp() {
-        String view = "/login/SignupEmp";
-
-        return view;
-    }
 
     // 개인 회원 아이디,비밀번호 찾기 페이지 이동
     @GetMapping("/findUser")
@@ -137,48 +141,87 @@ public class LoginController {
 
         return view;
     }
-
-    // 아이디 찾기
-    @RequestMapping(value = {"/findUser", "/findEmp"})
-    public ModelAndView find_id(HttpServletRequest request, Model model,
+    
+    
+    // 개인 회원 아이디 찾기
+    @RequestMapping("/findUserId")
+    public ModelAndView findUserId(HttpServletRequest request, Model model,
                                 @RequestParam(required = true, value = "userName") String userName,
                                 @RequestParam(required = true, value = "userPhoneNumber") String userPhoneNumber,
-                                @RequestParam(required = true, value = "empName") String empName,
-                                @RequestParam(required = true, value = "empNo") String empNo,
-                                UserDO userDO, EmployerDO empDO) {
+                                UserDO userDO) {
 
         if (userDO.getUserName() != null && userDO.getUserPhoneNumber() != null) {
-            userDO.setUserName(userName);
+        	userDO.setUserName(userName);
             userDO.setUserPhoneNumber(userPhoneNumber);
 
-            UserDO userResult = this.loginService.findUser_id(userDO);
-            model.addAttribute("useDO", userResult);
-        } else if(empDO.getEmpName() != null && empDO.getEmpNo() != null) {
-            empDO.setEmpName(empName);
-            empDO.setEmpNo(empNo);
-
-            EmployerDO empResult = this.loginService.findEmp_id(empDO);
-            model.addAttribute("empDO", empResult);
+            UserDO userIdResult = this.loginService.findUser_id(userDO);
+            model.addAttribute("userDO", userIdResult);
         }
 
-        // 아이디 보여주는 페이지로 이동
-        ModelAndView mv = new ModelAndView("/login/findId");
+        // 아이디 찾기 결과 페이지로 이동
+        ModelAndView mv = new ModelAndView("/login/findUserId");
         return mv;
     }
+    
+    // 업체 회원 아이디 찾기
+    @RequestMapping("/findEmpId")
+    public ModelAndView findEmpId(HttpServletRequest request, Model model,
+                                @RequestParam(required = true, value = "empName") String empName,
+                                @RequestParam(required = true, value = "empNo") String empNo,
+                                EmployerDO empDO) {
 
-    // 아이디 찾기 페이지 이동
-    @RequestMapping("/findId")
-    public String findId() {
-        String view = "/login/findId";
+        if (empDO.getEmpName() != null && empDO.getEmpNo() != null) {
+        	 empDO.setEmpName(empName);
+             empDO.setEmpNo(empNo);
 
-        return view;
+             EmployerDO empIdResult = this.loginService.findEmp_id(empDO);
+             model.addAttribute("empDO", empIdResult);
+        }
+        
+        // 아이디 찾기 결과 페이지로 이동
+        ModelAndView mv = new ModelAndView("/login/findEmpId");
+        return mv;
     }
+    
+    // 개인 회원 비밀번호 찾기
+    @RequestMapping("/findUserPw")
+    public ModelAndView findUserPw(HttpServletRequest request, Model model,
+                                @RequestParam(required = true, value = "userId") String userId,
+                                @RequestParam(required = true, value = "userPhoneNumber") String userPhoneNumber,
+                                UserDO userDO) {
 
-    // 비밀번호 찾기 페이지 이동
-    @RequestMapping("/findPw")
-    public String findPw() {
-        String view = "/login/findPw";
+        if (userDO.getUserId() != null && userDO.getUserPhoneNumber() != null) {
+        	userDO.setUserId(userId);
+            userDO.setUserPhoneNumber(userPhoneNumber);
 
-        return view;
+            UserDO userPwResult = this.loginService.findUser_pw(userDO);
+            model.addAttribute("userDO", userPwResult);
+        }
+
+        // 비밀번호 찾기 결과 페이지로 이동
+        ModelAndView mv = new ModelAndView("/login/findUserPw");
+        return mv;
     }
+    
+    // 업체 회원 비밀번호 찾기
+    @RequestMapping("/findEmpPw")
+    public ModelAndView findEmpPw(HttpServletRequest request, Model model,
+                                @RequestParam(required = true, value = "empId") String empId,
+                                @RequestParam(required = true, value = "empNo") String empNo,
+                                EmployerDO empDO) {
+
+        if (empDO.getEmpId() != null && empDO.getEmpNo() != null) {
+        	 empDO.setEmpId(empId);
+             empDO.setEmpNo(empNo);
+
+             EmployerDO empPwResult = this.loginService.findEmp_pw(empDO);
+             model.addAttribute("empDO", empPwResult);
+        }
+        
+        // 비밀번호 찾기 결과 페이지로 이동
+        ModelAndView mv = new ModelAndView("/login/findEmpPw");
+        return mv;
+    }
+    
+
 }

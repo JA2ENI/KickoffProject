@@ -94,7 +94,7 @@
 					</c:when>
 					<c:otherwise>
 						<div class="listNone">
-							현재 예약 대기 중인 풋살장이 없습니다.
+							현재 예약 가능한 풋살장이 없습니다.
 						</div>
 					</c:otherwise>
 				</c:choose>

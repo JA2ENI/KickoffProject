@@ -1,7 +1,8 @@
-package com.teamcommit.kickoff.Service;
+package com.teamcommit.kickoff.Service.login;
 
 import com.teamcommit.kickoff.Do.EmployerDO;
 import com.teamcommit.kickoff.Do.UserDO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,17 @@ public class LoginServiceImpl implements LoginService {
     // 업체 회원 아이디 찾기
     public EmployerDO findEmp_id(EmployerDO empDO) {
         return this.loginMapper.findEmp_id(empDO);
+    }
+    
+    // 개인 회원 비밀번호 찾기
+    public UserDO findUser_pw(UserDO userDO) {
+
+        return this.loginMapper.findUser_pw(userDO);
+    }
+
+    // 업체 회원 비밀번호 찾기
+    public EmployerDO findEmp_pw(EmployerDO empDO) {
+        return this.loginMapper.findEmp_pw(empDO);
     }
 
     // 로그인한 이용자 정보 가져오기

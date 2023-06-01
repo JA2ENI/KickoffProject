@@ -1,26 +1,26 @@
 package com.teamcommit.kickoff.Controller;
 
 import com.teamcommit.kickoff.Do.ReservationDO;
-import com.teamcommit.kickoff.Service.ReservationService;
+import com.teamcommit.kickoff.Service.mypage.MypageService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Controller
 public class MypageController {
 
     @Autowired
-    ReservationService reservationService;
+    MypageService mypageService;
 
+    /*
     @RequestMapping(value = "/myReservation")
     public ModelAndView myReservationList(@ModelAttribute("reservationDO") ReservationDO reservationDO) throws Exception {
 
@@ -31,10 +31,13 @@ public class MypageController {
         List<String> address = list.stream()
         		.map(ReservationDO::getReservationPlaceAddress).collect(Collectors.toList());
         
-        
+        */
+    
 		/* mv.addObject("address", list.get(0).getReservationPlaceAddress()); */
+ 
+        /*
         mv.addObject("reservationList", list);
-        mv.addObject("address", address);
+        mv.addObject("address", address);	
       
         
         System.out.println("mv: " + mv);
@@ -42,6 +45,52 @@ public class MypageController {
         for(String add : address) {
         	System.out.println("address: " + add);
         }
+        
+        
+        return mv;
+    }
+  */  
+    
+    @RequestMapping(value = "/myReservation")
+    public ModelAndView myReservationList(@ModelAttribute("reservationDO") ReservationDO reservationDO, HttpSession session) throws Exception {
+
+    	ModelAndView mv = new ModelAndView("/mypage/myReservation");
+    	
+        List<ReservationDO> list = mypageService.myReservationList((String)session.getAttribute("userId"));
+        
+        int listSize = list.size();
+        
+        List<String> address = list.stream()
+        		.map(ReservationDO::getReservationPlaceAddress).collect(Collectors.toList());
+        
+        
+        for(int i = 0; i < listSize; i++) {
+        	mv.addObject("address", address.get(i));
+        	System.out.println("address.get(" + i + ") : " + address.get(i));
+        }
+        
+        											
+        
+        /*
+        for(String add : address) {
+        	System.out.println("address: " + add);
+        }
+        */
+        
+		/* mv.addObject("add", list.get(0).getReservationPlaceAddress()); */
+        
+        
+        mv.addObject("myReservationList", list);
+        mv.addObject("listSize", listSize);
+        
+        
+		/* mv.addObject("address", address); */
+        
+        System.out.println("mv: " + mv);
+
+        System.out.println("listSize: " + listSize);
+        
+		/* System.out.println("address: " + address); */
         
         
         return mv;

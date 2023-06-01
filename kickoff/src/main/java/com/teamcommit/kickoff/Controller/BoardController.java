@@ -1,9 +1,8 @@
 package com.teamcommit.kickoff.Controller;
 
 import com.teamcommit.kickoff.Do.*;
-//import com.teamcommit.kickoff.Service.ReplyService;
-import com.teamcommit.kickoff.Service.LoginService;
-import com.teamcommit.kickoff.Service.board.BoardService;
+import com.teamcommit.kickoff.Service.BoardService;
+import com.teamcommit.kickoff.Service.login.LoginService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

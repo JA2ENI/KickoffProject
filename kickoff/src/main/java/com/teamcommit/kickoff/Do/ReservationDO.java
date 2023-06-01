@@ -58,10 +58,21 @@ public class ReservationDO {
 	private String reservationUserName;
 
 	private String reservationUserPhone;
+	
+	private int reservationOriginNo;
 
 	public ReservationDO() {
-
+		
 	}
+	
+	public int getReservationOriginNo() {
+		return reservationOriginNo;
+	}
+
+	public void setReservationOriginNo(int reservationOriginNo) {
+		this.reservationOriginNo = reservationOriginNo;
+	}
+
 
 	public String getReservationUserName() {
 		return reservationUserName;
