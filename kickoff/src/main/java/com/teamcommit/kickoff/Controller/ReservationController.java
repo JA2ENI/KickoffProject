@@ -5,7 +5,7 @@ import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Do.UserDO;
 
-import com.teamcommit.kickoff.Service.ReservationService;
+import com.teamcommit.kickoff.Service.reservation.ReservationService;
 import com.teamcommit.kickoff.Service.login.LoginService;
 
 import org.springframework.beans.factory.annotation.Autowired;
