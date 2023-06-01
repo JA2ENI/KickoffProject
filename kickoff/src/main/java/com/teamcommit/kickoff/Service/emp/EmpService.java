@@ -12,7 +12,7 @@ public interface EmpService {
 
     EmployerDO info_fix(EmployerDO employerDO);
 
-    List<BoardDO> getList(BoardDO boardDO) throws Exception;
+    List<BoardDO> getList(String empId) throws Exception;
 
     List<ReservationDO> selectReservation(ReservationDO reservationDO) throws Exception;
 
@@ -21,4 +21,7 @@ public interface EmpService {
     void updateFutsal(PlaceDO placeDO) throws Exception;
     
     List<PlaceDO> placeList(PlaceDO placeDO) throws Exception;
+
+    PlaceDO getFutsalContents(int placeId) throws Exception;
+
 }
