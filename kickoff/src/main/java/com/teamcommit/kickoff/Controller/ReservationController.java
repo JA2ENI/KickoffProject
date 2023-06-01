@@ -76,6 +76,7 @@ public class ReservationController {
         String view = "/reservation/reservationDetail";
 
         ReservationDO reservationDetail = reservationService.selectReservationDetail(reservationNo);
+        
         model.addAttribute("reservationDetail", reservationDetail);
 
         return view;
@@ -159,7 +160,7 @@ public class ReservationController {
         reservationDO.setReservationGameStyle(resDO.getReservationGameStyle());
         reservationDO.setReservationPrice(resDO.getReservationPrice());
         reservationDO.setUserId((String)session.getAttribute("userId"));
-        reservationDO.setPlaceId(resDO.getPlaceId());
+        reservationDO.setPlaceId(resDO.getPlaceId());	
         reservationDO.setReservationPlaceAddress(resDO.getReservationPlaceAddress());
 
         reservationService.insertReservationRequest(reservationDO);

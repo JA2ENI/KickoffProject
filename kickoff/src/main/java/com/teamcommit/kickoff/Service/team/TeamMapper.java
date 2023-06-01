@@ -1,5 +1,6 @@
-package com.teamcommit.kickoff.Service;
+package com.teamcommit.kickoff.Service.team;
 
+import com.teamcommit.kickoff.Do.TeamApplyDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,4 +15,6 @@ public interface TeamMapper {
     public void insertTeam(TeamDO teamDO);
 
     public List<TeamDO> rankList(TeamDO teamDO);
+    
+    public void insertTeamApply(TeamApplyDO teamApplyDO);
 }

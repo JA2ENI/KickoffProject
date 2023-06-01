@@ -37,7 +37,7 @@ public class MypageController {
  
         /*
         mv.addObject("reservationList", list);
-        mv.addObject("address", address);
+        mv.addObject("address", address);	
       
         
         System.out.println("mv: " + mv);
