@@ -1,4 +1,4 @@
-package com.teamcommit.kickoff.Service;
+package com.teamcommit.kickoff.Service.main;
 
 import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.GameDO;

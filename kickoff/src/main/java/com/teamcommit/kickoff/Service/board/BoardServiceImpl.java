@@ -22,7 +22,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void insertBoard(BoardDO boardDO) throws Exception {
+    public void insertBoard(BoardDO boardDO) throws Exception { 
         boardMapper.insertBoard(boardDO);
     }
 

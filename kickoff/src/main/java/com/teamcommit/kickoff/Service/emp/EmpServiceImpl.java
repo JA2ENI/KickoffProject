@@ -1,4 +1,4 @@
-package com.teamcommit.kickoff.Service;
+package com.teamcommit.kickoff.Service.emp;
 
 import com.teamcommit.kickoff.Dao.PlaceDAO;
 import com.teamcommit.kickoff.Do.BoardDO;

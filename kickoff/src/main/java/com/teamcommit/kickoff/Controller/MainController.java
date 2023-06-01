@@ -3,7 +3,7 @@ package com.teamcommit.kickoff.Controller;
 import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
-import com.teamcommit.kickoff.Service.MainService;
+import com.teamcommit.kickoff.Service.main.MainService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
