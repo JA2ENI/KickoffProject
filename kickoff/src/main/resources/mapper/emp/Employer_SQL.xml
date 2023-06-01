@@ -66,9 +66,10 @@
     </insert>
 
     <!-- Futsal(place) Insert -->
-    <update id="updateFutsal" parameterType="com.teamcommit.kickoff.Do.PlaceDO">
+    <insert id="updateFutsal" parameterType="com.teamcommit.kickoff.Do.PlaceDO">
         <![CDATA[
-        UPDATE
+        INSERT INTO PLACE (
+        	PLACE_ID,
             IMG_NAME,
             PLACE_NAME,
             PLACE_ADDRESS,
@@ -83,7 +84,9 @@
             PLACE_TIME,
             PLACE_OTHER,
             PLACE_PARKING
-        SET
+        )
+        VALUES (
+        	#{placeId},
             #{imgName},
             #{placeName},
             #{placeAddress},
@@ -93,15 +96,14 @@
             #{placeSize},
             #{placeForm},
             #{placeLight},
-            #{placeOpen}
+            #{placeOpen},
             #{placePrice},
             #{placeTime},
             #{placeOther},
             #{placeParking}
-        WHERE
-            EMP_ID = #{empId}
+          )
         ]]>
-    </update>
+    </insert>
     
     <!-- Futsal Place List -->
     <select id="placeList" parameterType="com.teamcommit.kickoff.Do.PlaceDO" resultType="com.teamcommit.kickoff.Do.PlaceDO">
@@ -110,10 +112,35 @@
         	*
         FROM
             PLACE
+        WHERE
+            EMP_ID = #{empId}
         ]]>
     </select>
     
-
+    
+    <update id="updateEmpFutsalF" parameterType="com.teamcommit.kickoff.Do.PlaceDO">
+        <![CDATA[
+            UPDATE
+            	PLACE
+            SET
+                IMG_NAME = #{imgName},
+            	PLACE_NAME = #{placeName},
+            	PLACE_ADDRESS = #{placeAddress},
+            	PLACE_PHONE_NUMBER = #{placePhoneNumber},
+            	PLACE_HOMEPAGE = #{placeHomepage},
+            	PLACE_GROUND = #{placeGround},
+            	PLACE_SIZE = #{placeSize},
+            	PLACE_FORM = #{placeForm},
+            	PLACE_LIGHT = #{placeLight},
+            	PLACE_OPEN = #{placeOpen},
+            	PLACE_PRICE = #{placePrice},
+            	PLACE_TIME = #{placeTime},
+            	PLACE_OTHER = #{placeOther},
+            	PLACE_PARKING = #{placeParking}
+            WHERE
+            	PLACE_ID = #{placeId}                    
+        ]]>
+    </update>
 
 
 </mapper>

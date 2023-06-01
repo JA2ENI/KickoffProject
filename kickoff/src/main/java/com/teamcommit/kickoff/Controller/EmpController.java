@@ -20,6 +20,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -137,7 +140,7 @@ public class EmpController {
     }
 
 
-    /* 풋살장 목록 */
+    /* 풋살장 조희 */
     @RequestMapping( "/empFutsalFix")
     public String empFutsalList(@ModelAttribute("placeDO") PlaceDO PlaceDO, HttpServletRequest request, Model model) throws Exception {
 
@@ -150,17 +153,28 @@ public class EmpController {
         return view;
     }
     
-    //풋살장 수정 페이지로 이동
-    @RequestMapping( "/empFutsalF")
-    public String empFutsalUpdate(@ModelAttribute("placeDO") PlaceDO placeDO, @RequestParam("placeId") int placeId, Model model) throws Exception {
+    
+    /* 풋살장 수정 */
+    @RequestMapping(value = "/empFutsalFupdate")
+    public String empFutsalFupdate(@ModelAttribute("placeDO") PlaceDO placeDO, @RequestParam("reservationNo") int placeId, HttpServletRequest request, HttpSession session, Model model) throws Exception {
         String view = "/emp/empFutsalF";
 
-        PlaceDO futsalContents = empService.getFutsalContents(placeId);
-        model.addAttribute("futsalContents", futsalContents);
+        PlaceDO empFutsalFix = empService.selectEmpFutsalFix(placeId);
+        model.addAttribute("empFutsalFix", empFutsalFix);
 
         return view;
     }
     
+    
+    @RequestMapping(value = "/empFutsalF")
+    public ModelAndView empFutsalF(@ModelAttribute("placeDO") PlaceDO placeDO, Model model, HttpSession session) throws Exception {
+
+        ModelAndView mv = new ModelAndView("redirect:/empFutsalFix");
+
+        empService.updateEmpFutsalF(placeDO);
+
+        return mv;
+    }
     
 
     /* 회원 정보 수정 */
