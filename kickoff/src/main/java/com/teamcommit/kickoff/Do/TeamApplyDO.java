@@ -12,6 +12,14 @@ public class TeamApplyDO {
 	private String applyOther;
 	//제안 수락/거절 유무
 	private String teamYN;
+	//지원자 이름
+	private String userName;
+	//지원자 성별
+	private String userGender;
+	//지원자 휴대전화
+	private String userPhoneNumber;
+	//지원자 포지션
+	private String userPosition;
 	
 	public int getTeamApplyNo() {
 		return teamApplyNo;
@@ -42,6 +50,31 @@ public class TeamApplyDO {
 	}
 	public void setTeamYN(String teamYN) {
 		this.teamYN = teamYN;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getUserGender() {
+		return userGender;
+	}
+	public void setUserGender(String userGender) {
+		this.userGender = userGender;
+	}
+	public String getUserPhoneNumber() {
+		return userPhoneNumber;
+	}
+	public void setUserPhoneNumber(String userPhoneNumber) {
+		this.userPhoneNumber = userPhoneNumber;
+	}
+	public String getUserPosition() {
+		return userPosition;
+	}
+	public void setUserPosition(String userPosition) {
+		this.userPosition = userPosition;
 	}
 	
 }

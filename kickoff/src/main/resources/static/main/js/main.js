@@ -136,7 +136,7 @@ $(function() {
 	
 	
 
-	var MobileToggleClick = function() {
+	/*var MobileToggleClick = function() {
 		$('.js-menu-toggle').click(function(e) {
 
 			// alert();
@@ -165,7 +165,7 @@ $(function() {
 	    }
 		}); 
 	};
-	MobileToggleClick();
+	MobileToggleClick();*/
 
 	var swiperPlugin = function() {
 		var swiper = new Swiper('.swiper-container', {

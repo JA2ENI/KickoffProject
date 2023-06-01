@@ -1,9 +1,10 @@
 package com.teamcommit.kickoff.Controller;
 
 import com.teamcommit.kickoff.Do.*;
-import com.teamcommit.kickoff.Service.BoardService;
 //import com.teamcommit.kickoff.Service.ReplyService;
 import com.teamcommit.kickoff.Service.LoginService;
+import com.teamcommit.kickoff.Service.board.BoardService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ public class BoardController {
 
     @Autowired
     private LoginService loginService;
+    
     // 게시판 목록
     @RequestMapping( "/board")
     public String Boardlist(@ModelAttribute("boardDO") BoardDO boardDO, HttpServletRequest request, Model model) throws Exception {
@@ -115,7 +117,7 @@ public class BoardController {
 
         //로그인한 이용자 ID로 로그인 정보 가져오기
         String userId = (String) request.getSession().getAttribute("userId");
-        //로그인한 이용자 ID로 로그인 정보 가져오기
+        //로그인한 업체 ID로 로그인 정보 가져오기
         String empId = (String) request.getSession().getAttribute("empId");
 
         BoardDO boardContents = boardService.getBoardContents(boardSeqno);
