@@ -10,4 +10,6 @@ import com.teamcommit.kickoff.Do.ReservationDO;
 public interface MypageMapper {
 
 	 public List<ReservationDO> myReservationList(String userId);
+	 
+	 public List<ReservationDO> empReservationList(String userId);
 }
