@@ -3,7 +3,7 @@ package com.teamcommit.kickoff.Controller;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.MessageDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
-import com.teamcommit.kickoff.Service.HelperService;
+import com.teamcommit.kickoff.Service.helper.HelperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

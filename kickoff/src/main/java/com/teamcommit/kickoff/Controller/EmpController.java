@@ -3,7 +3,12 @@ package com.teamcommit.kickoff.Controller;
 
 import com.teamcommit.kickoff.Common.CommandMap;
 import com.teamcommit.kickoff.Do.*;
+<<<<<<< HEAD
+import com.teamcommit.kickoff.Service.EmpService;
+import com.teamcommit.kickoff.Service.board.BoardService;
+=======
 import com.teamcommit.kickoff.Service.emp.EmpService;
+>>>>>>> 960fff842efcac82247a647937d78a06c6d1b747
 import com.teamcommit.kickoff.Service.reservation.ReservationService;
 import com.teamcommit.kickoff.Service.login.LoginService;
 import com.teamcommit.kickoff.Service.board.BoardService;

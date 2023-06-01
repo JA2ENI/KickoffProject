@@ -5,6 +5,10 @@ import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.UserDO;
 import com.teamcommit.kickoff.Service.team.TeamService;
 import com.teamcommit.kickoff.Service.login.LoginService;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 960fff842efcac82247a647937d78a06c6d1b747
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
