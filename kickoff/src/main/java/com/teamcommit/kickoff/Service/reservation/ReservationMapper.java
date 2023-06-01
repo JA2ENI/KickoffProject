@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface ReservationMapper {
-	/* 푸시푸시 베이베 */
+	
     public List<ReservationDO> selectReservationList(ReservationDO reservationDO);
 
     public void insertReservation(ReservationDO reservationDO);

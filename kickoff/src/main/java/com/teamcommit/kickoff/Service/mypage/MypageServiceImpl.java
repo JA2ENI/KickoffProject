@@ -17,4 +17,9 @@ public class MypageServiceImpl implements MypageService {
     public List<ReservationDO> myReservationList(String userId) throws Exception {
         return mypageMapper.myReservationList(userId);
     }
+    
+    @Override
+    public List<ReservationDO> empReservationList(String userId) throws Exception {
+        return mypageMapper.empReservationList(userId);
+    }
 }
