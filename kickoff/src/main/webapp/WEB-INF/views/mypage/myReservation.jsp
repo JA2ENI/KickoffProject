@@ -42,7 +42,6 @@
 				<c:choose>
 					<c:when test="${fn:length(myReservationList) > 0}">
 						<c:forEach var="row" items="${myReservationList}" varStatus="num">
-							<c:forEach var="img" items="${imginfo}">
 								<section>
 									<div class="container-fluid">
 										<div class="container reservation-container"> 
@@ -51,7 +50,7 @@
 													<div class="container">
 														<div class="facility-content">
 															<div class="image-wrap"><%--${imginfo.imgPath}${imginfo.imgName}--%>
-																<img class="image" src="${img.imgPath}${img.imgName}" />
+																<img class="image" src="${imginfo.get(num.index).imgPath}${imginfo.get(num.index).imgName}" />
 															</div>
 															<div class="facility-wrap">
 																<h2>${row.reservationPlaceName}</h2>
@@ -128,7 +127,6 @@
 									</div>
 								</section>
 							</c:forEach>
-						</c:forEach>
 					</c:when>
 					<c:otherwise>
 						<div>
