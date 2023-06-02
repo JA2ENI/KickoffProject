@@ -165,7 +165,7 @@ public class EmpController {
     
     /* 풋살장 수정 */
     @RequestMapping(value = "/empFutsalFupdate")
-    public String empFutsalFupdate(@ModelAttribute("placeDO") PlaceDO placeDO, @RequestParam("reservationNo") int placeId, HttpServletRequest request, HttpSession session, Model model) throws Exception {
+    public String empFutsalFupdate(@ModelAttribute("placeDO") PlaceDO placeDO, @RequestParam(value = "placeId") int placeId, Model model) throws Exception {
         String view = "/emp/empFutsalF";
 
         PlaceDO empFutsalFix = empService.selectEmpFutsalFix(placeId);
@@ -176,9 +176,9 @@ public class EmpController {
     
     
     @RequestMapping(value = "/empFutsalF")
-    public ModelAndView empFutsalF(@ModelAttribute("placeDO") PlaceDO placeDO, Model model, HttpSession session) throws Exception {
+    public ModelAndView empFutsalF(@ModelAttribute("placeDO") PlaceDO placeDO, @RequestParam(value = "placeId") int placeId) throws Exception {
 
-        ModelAndView mv = new ModelAndView("redirect:/empFutsalFix");
+        ModelAndView mv = new ModelAndView("redirect:/empFutsalFix?placeId"+placeId);
 
         empService.updateEmpFutsalF(placeDO);
 
