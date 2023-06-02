@@ -40,8 +40,8 @@ public class EmpServiceImpl implements EmpService {
     }
     
     @Override
-    public List<PlaceDO> placeList(PlaceDO placeDO) throws Exception{
-        return empMapper.placeList(placeDO);
+    public List<PlaceDO> empFutsalList(String empId) throws Exception{
+        return empMapper.empFutsalList(empId);
     }
     
     @Override
