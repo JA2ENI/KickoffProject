@@ -152,8 +152,8 @@ public class EmpController {
         for(int i = 0; i < listSize; i++) {
         	mv.addObject("list", list.get(i));
         	System.out.println("mv : " + mv);
+        	
         }
-        
         mv.addObject("empFutsalList", list);
         mv.addObject("listSize", listSize);
         
