@@ -11,6 +11,7 @@
                 RESERVATION
             WHERE
             	USER_ID = #{userId}
+            ORDER BY RESERVATION_DATE ASC	
         ]]>
     </select>
 
@@ -29,8 +30,9 @@
 			                          FROM 
 			                          		RESERVATION
 			                          WHERE 
-			                          		USER_ID = #{userId} AND RESERVATION_TYPE = 'USER'
+			                          		USER_ID = #{userId} AND RESERVATION_TYPE = 'USER' 
 			                          )
+			ORDER BY RESERVATION_DATE ASC                          
 		]]>
     </select>
     
