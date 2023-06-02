@@ -41,39 +41,42 @@
 								</header>
 							
 							<!-- Begin Page Content -->
+							<c:choose>
+							<c:when test="${fn:length(empFutsalList) > 0}">
+							<c:forEach var="row" items="${empFutsalList}" begin="0" end="${listSize}" step="1" varStatus="num">
 			                	<section>
 				                	<div class="container-fluid">				                 		
 										<div class="container">
 											<div class="facility-content">
 												<div class="image-wrap">
-													<img class="image" src="${empFutsalFix.imgPath}${empFutsalFix.imgName}" />
+													<img class="image" src="${row.imgPath}${row.imgName}" />
 												</div>
 												<div class="facility-wrap">
-													<h2>${empFutsalFix.placeName}</h2>
-													<h3>${empFutsalFix.placeAddress}</h3>
+													<h2>${row.placeName}</h2>
+													<h3>${row.placeAddress}</h3>
 													<p class="info">
-														규격<span>${empFutsalFix.placeSize}</span>
+														규격<span>${row.placeSize}</span>
 													</p>
 													<p class="info">
-														풋살장 형태<span>${empFutsalFix.placeForm}</span>
+														풋살장 형태<span>${row.placeForm}</span>
 													</p>
 													<p class="info">
-														바닥형태<span>${empFutsalFix.placeGround}</span>
+														바닥형태<span>${row.placeGround}</span>
 													</p>
 													<p class="info">
-														대여시간<span>${empFutsalFix.placeTime}</span>
+														대여시간<span>${row.placeTime}</span>
 													</p>
 													<p class="info">
-														개방일수<span>${empFutsalFix.placeOpen}</span>
+														개방일수<span>${row.placeOpen}</span>
 													</p>
 													<p class="info">
-														주차장<span>${empFutsalFix.placeParking}</span>
+														주차장<span>${row.placeParking}</span>
 													</p>
 													<p class="info">
-														가격<span>${empFutsalFix.placePrice}</span>
+														가격<span>${row.placePrice}</span>
 													</p>
 													<p class="info">
-														조명 유무<span class="status">${empFutsalFix.placeLight}</span>
+														조명 유무<span class="status">${row.placeLight}</span>
 													</p>
 												</div>
 											</div>
@@ -98,6 +101,9 @@
 									
 									</div>
 									</section>
+									</c:forEach>
+								</c:when>
+								</c:choose>
 								</div>
 							</div>								
 			                <!-- /.container-fluid -->

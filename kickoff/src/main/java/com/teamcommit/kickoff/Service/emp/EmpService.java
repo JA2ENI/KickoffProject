@@ -20,7 +20,7 @@ public interface EmpService {
 
     void updateFutsal(PlaceDO placeDO) throws Exception;
     
-    List<PlaceDO> placeList(PlaceDO placeDO) throws Exception;
+    List<PlaceDO> empFutsalList(String empId) throws Exception;
     
     PlaceDO selectEmpFutsalFix(int placeID) throws Exception;
     
