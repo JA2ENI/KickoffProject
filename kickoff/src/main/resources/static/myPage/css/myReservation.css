@@ -44,11 +44,11 @@
 }
 
 .btn-container {
-	max-width: 800px;
-	position: relative;
-	width: 100%;
-	margin-top: 1%;
-	padding-left: 43%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
 }
 
 .image {
@@ -166,20 +166,35 @@ small {
 	overflow: hidden;
 }
 
+.detail,
 .cancle {
 	font-size: 15px;
-	color: #ffffff;
-	font-weight: 800;
-	display: inline-block;
-	padding: 5% 20%;
-	margin-right: 15px;
-	background: #7fb77e;
-	border: none;
-	border-radius: 5px;
-	text-align: center;
+    color: #ffffff;
+    font-weight: 800;
+    display: inline-block;
+    padding: 15px 10% 15px;
+    margin: 0 15px;
+    background: #7fb77e;
+    border: none;
+    text-align: center;
 }
 
-.cancle:hover {
+.reservation {
+	font-size: 18px;
+    color: #ffffff;
+    font-weight: 800;
+    display: inline-block;
+    padding: 15px 10% 15px;
+    margin: 2% 35%;
+    background: #7fb77e;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.detail:hover,
+.cancle:hover,
+.reservation:hover {
 	background: #ffc090;
 	color: #ffffff !important;
 }
@@ -188,4 +203,10 @@ a {
 	text-decoration: none;
 }
 
+/* 현재 예약 가능한 풋살장이 없습니다. */
+.listNone {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin: 5% 0 0 28%;
+}
 

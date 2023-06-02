@@ -34,6 +34,33 @@
 		]]>
     </select>
     
+     <!-- My Reservation Cancel -->
+    <update id="updateCancel" parameterType="Integer">
+        <![CDATA[
+            UPDATE
+                RESERVATION
+            SET
+                RESERVATION_CANCEL = 'Y'
+            WHERE
+                RESERVATION_NO = #{reservationNo}
+        ]]>
+    </update>
+    
+    <!-- My Board List -->
+    <select id="myBoardList" parameterType="String" resultType="com.teamcommit.kickoff.Do.BoardDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                BOARD
+            WHERE
+            	WRITE_ID = #{userId}
+        ]]>
+    </select>
+    
+    
+    
+    
+    
     <!-- Reservation Insert -->
     <insert id="insertReservation" parameterType="com.teamcommit.kickoff.Do.ReservationDO">
         <![CDATA[

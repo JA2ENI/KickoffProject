@@ -61,7 +61,7 @@ public class ReservationController {
     }
 
     @RequestMapping(value = "/reservationInsert")
-    public ModelAndView reservationInsert(@ModelAttribute("reservationDO") ReservationDO reservationDO, HttpServletRequest request, Model model) throws Exception {
+    public ModelAndView reservationInsert(@ModelAttribute("reservationDO") ReservationDO reservationDO) throws Exception {
 
         ModelAndView mv = new ModelAndView("redirect:/reservation");
 
