@@ -126,9 +126,7 @@
     WHERE
     		PLACE_ID = #{placeId}				
     
-    ]]>
-    
-    
+    ]]>    
     </select>
     
     

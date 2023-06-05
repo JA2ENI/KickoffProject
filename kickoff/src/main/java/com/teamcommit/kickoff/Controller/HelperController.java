@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import org.json.*;
+
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
@@ -35,18 +37,31 @@ public class HelperController {
     }
     
     @PostMapping("/helperList")
+    @ResponseBody
     public String HelperList(@RequestParam(value = "helperTime") String helperTime, Model model) {
-    	String view = "/helper/helperList";
-    	
+    	JSONArray array = new JSONArray();
     	try {
     		List<HelperDO> list = helperService.selectHelperTime(helperTime);
-    		model.addAttribute("table", list);
+    		for(HelperDO helperDO : list) {
+    			JSONObject obj = new JSONObject();
+    			 obj.put("helperSeqNo", helperDO.getHelperSeqno());
+    			 obj.put("helperMatch", helperDO.getHelperMatch());	// obj.put("key","value")
+    			 obj.put("helperPosition", helperDO.getHelperPosition());
+    			 obj.put("helperTeamLevel", helperDO.getHelperTeamLevel());
+    			 obj.put("helperGender", helperDO.getHelperGender());
+    			 obj.put("helperPlaceName", helperDO.getHelperPlaceName());
+    			 obj.put("helperTime", helperDO.getHelperTime());
+    			 obj.put("helperUserId", helperDO.getUserId());
+    			 obj.put("helperStatus", helperDO.getHelperStatus());
+    		     array.put(obj);	//작성한 JSON 객체를 배열에 추가
+    		     
+    		}
     	}
     	catch (Exception e) {
     		e.printStackTrace();
     	}
     	
-    	return view;
+    	return array.toString(); // 개열받노..
     }
 
     // insert 부분은 아직 미완성...! 예약 내역 완성되는대로 다시 츄라이
@@ -62,12 +77,18 @@ public class HelperController {
                 try {
                     List<ReservationDO> list = helperService.selectReservation((String) session.getAttribute("userId"));
                     String userId = (String) session.getAttribute("userId");
-                    model.addAttribute("reservation", list);
-                    model.addAttribute("userId", userId);
+                    
+                    if(list == null) {
+                    	model.addAttribute("msg", "예약 내역이 존재하지 않습니다.");
+                    }
+                    else if(list != null) {
+                    	model.addAttribute("reservation", list);
+                        model.addAttribute("userId", userId);
+                    }
                 }
                 catch (Exception e) {
                     e.printStackTrace();
-                    model.addAttribute("msg", "예약 내역이 존재하지 않습니다.");
+                   
                 }
             }
         return view;
