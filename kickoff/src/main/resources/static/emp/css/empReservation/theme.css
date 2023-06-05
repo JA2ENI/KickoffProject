@@ -25,6 +25,72 @@ Primary use:	Open Source
 # Text Color Deep (Text, title): #333333
 
 /* ----- Normalize ----- */
+.modal_wrap{
+        display: none;
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        top:50%;
+        left: 50%;
+        margin: -250px 0 0 -250px;
+        background-color: #f6f5f7;
+        z-index: 2;
+    }
+    .black_bg{
+        display: none;
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 150%;
+        background-color:rgba(0, 0,0, 0.5);
+        top:0;
+        left: 0;
+        z-index: 1;
+    }
+    .reservationClose {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -30px;
+        right: 0;
+    }
+    .reservationClose > a{
+        display: block;
+        width: 100%;
+        height: 100%;
+        background:url(https://img.icons8.com/metro/26/000000/close-window.png);
+        text-indent: -9999px;
+    }
+    
+ .tablehorizon {
+    	margin: 40px 0 0 0;
+		padding: 0;
+		border: 1;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline; 
+    }
+
+		.horizontr {
+			border: solid 1px rgba(210, 215, 217, 0.75);
+			border-left: 0;
+			border-right: 0;
+		}
+		
+		.horizontd {
+			
+			padding: 0 0.75em 0.75em 0.75em;
+		}
+
+		.horizonth {
+			border: solid 1px rgba(210, 215, 217, 0.75);
+			color: #3d4449;
+			font-size: 0.9em;
+			font-weight: 600;
+			padding: 0 0.75em 0.75em 0.75em;
+			text-align: center;
+		}
+
 .table-responsive {
     padding-right: 1px;
 }
@@ -39,6 +105,7 @@ input:focus,
 textarea:focus {
     outline: none;
 }
+
 
 input, textarea {
     border: none;
@@ -554,7 +621,7 @@ button {
     border-top: none;
     border-bottom: 1px solid #f2f2f2;
     padding: 12px 6px;
-    vertical-align: middle;
+    vertical-align: left;
 }
 
 .table-data {
@@ -9552,3 +9619,5 @@ button {
 .vue-lists ul, .vue-lists ol {
     padding-left: 30px;
 }
+
+

@@ -117,6 +117,20 @@
         ]]>
     </select>
     
+    <select id = "selectEmpFutsalFix" parameterType = "Integer" resultType = "com.teamcommit.kickoff.Do.PlaceDO">
+    <![CDATA[
+    SELECT 
+    		*
+    FROM
+    		PLACE
+    WHERE
+    		PLACE_ID = #{placeId}				
+    
+    ]]>
+    
+    
+    </select>
+    
     
     <update id="updateEmpFutsalF" parameterType="com.teamcommit.kickoff.Do.PlaceDO">
         <![CDATA[
