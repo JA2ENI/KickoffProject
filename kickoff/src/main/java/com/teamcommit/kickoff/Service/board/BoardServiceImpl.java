@@ -42,7 +42,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void  reportBoard(ReportDO reportDO) throws Exception {
+    public void reportBoard(ReportDO reportDO) throws Exception {
         boardMapper.reportBoard(reportDO);
     }
 

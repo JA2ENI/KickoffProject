@@ -42,6 +42,11 @@
             return false;
         }
     }
+    
+    $('.custom-file-input').on('change', function () {
+        var fileName = $(this).val().split('\\').pop();
+        $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
+     });
 </script>
 
 <link rel = "stylesheet" href = "/board/css/boardInsert.css" />
@@ -80,11 +85,11 @@
 		</div>
 		
 		<div class="filebox bs3-primary preview-image">
-              <input id="fileName" name="fileName" class="fileName" value="파일선택" disabled="disabled" style="width: 200px;">
+              <input id="file" name="file" class="custom-file-input" id="customFile" value="파일선택" disabled="disabled" style="width: 200px;">
 
-              <label for="filePath">업로드</label>
-              <input type="file" id="filePath" name="filePath" class="filePath-hidden">
-        </div>
+              <label for="custom-file-label" for="customFile">>업로드</label>
+              <input type="file" id="filePath" name="filePath" class="filePath">
+        </div> 
 		
 		<div class="content">
 		<label for="writeContent">내용</label><br>
