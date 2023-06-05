@@ -1,4 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -110,21 +111,57 @@
 		                                                <td><c:out value="${list.reservationNumber}"/></td>
 		                                                <td>
 		                                                    <div class="table-data-feature">
-		                                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="tooltip" data-placement="top" title="Detail">상세보기</button>
+		                                                        <button type= "button" class= "au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="tooltip" id="au-btn au-btn-icon au-btn--green au-btn--small"  data-placement="top" title="Detail">상세보기</button>
 		                                                    </div>
-		                                                </td>
+		                                                </td>		                                                
 		                                            </tr>
 		                                            </c:forEach>
 		                                            <tr class="spacer"></tr>
-		                                            <tr class="tr-shadow">
+		                                            <tr class="tr-shadow">	
+		                                                       
 		                                        </tbody>
 		                                    </table>
+		                                     <div class="black_bg"></div>
+														<div class="modal_wrap">
+															<button type = "reset" class="reservationClose">x</button>
+															<div>
+																${msg}
+																	<table class = "tablehorizon">
+																		<tr class="horizontr">
+																			<th class="horizonth">예약자</th>	<td class="horizontd">우쿠렐레</td>
+																		</tr>
+																		<tr class="horizontr">														
+																			<th class="horizonth">예약 풋살장</th> <td class="horizontd">하프</td>
+																		</tr>
+																		<tr class="horizontr">																		
+																			<th class="horizonth">예약 날짜</th> <td class="horizontd">기타</td>
+																		</tr>
+																		<tr class="horizontr">																		
+																			<th class="horizonth">예약 인원</th> <td class="horizontd">통기타</td>
+																		</tr>
+																		<tr class="horizontr">																		
+																			<th class="horizonth">예약 상태</th> <td class="horizontd">요들레히</td>
+																		</tr>
+																		<tr class="horizontr">																		
+																			<th class="horizonth">예약 등록일</th>	<td class="horizontd">요들레히이이</td>
+																		</tr>
+																		<tr class="horizontr">																			
+																			<th class="horizonth">예약 시간</th> <td class="horizontd">요들레히요이</td>
+																		</tr>
+																		<tr class="horizontr">																		
+																			<th class="horizonth">기타 사항</th> <td class="horizontd">레히요이레히요이예</td>
+																		</tr>
+																																														
+																	</table>
+																</div>
+															</div>	                       		                                
 		                                </div>
                                 <!-- END DATA TABLE -->
                                     </div>
 					        </section>
+					        </div>
                         </div>
-				    </div>
+				   
 
 				<!-- Sidebar -->
 					<div id="sidebar">
@@ -157,6 +194,7 @@
             <script src="/emp/js/jquery.min.js"></script>
 			<script src="/emp/js/skel.min.js"></script>
 			<script src="/emp/js/util.js"></script>
+			<script src = "/emp/js/modal.js"></script>			
 			<!--[if lte IE 8]><script src="/emp/js/ie/respond.min.js"></script><![endif]-->
             <script src="/emp/js/main.js"></script>
 		    <!-- <script src="/emp/vendor/jquery-3.2.1.min.js"></script> -->
