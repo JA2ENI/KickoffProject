@@ -91,7 +91,6 @@
 	<div class="modal_wrap">
 		<button type = "reset" class="reservationClose">x</button>
 		<div>
-			${msg}
 				<table class = "bluetop">
 					<tr>
 						<th>업체명</th>
