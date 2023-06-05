@@ -143,7 +143,7 @@
 						                               	<textarea class="etc" value="${updateEmpFutsalF.placeOther}"></textarea>
 						                            </div>
 						                        </div>
-						                         <button onclick="location.href='/empFutsalFix.jsp';">등록하기</button>	
+						                         <button onclick="location.href='/empFutsalFix.jsp';">수정하기</button>	
 						                        </div>						                   					                     
 				                            </form>
 				                            </div>
