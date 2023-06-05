@@ -55,7 +55,23 @@ window.onload = function() {
 	            buttons[i].classList.remove("selected");
 	        }
 	    }
+	   /* $.ajax({
+            url: "/helperList",		// 데이터를 가져올 경로 설정
+            type: "post",		// 데이터를 가져오는 방식
+            success: function(data){	// 데이터를 가져왔을때 동작. 매개변수로 data 입력
+                var json = JSON.parse(data.trim());	// 가져온 데이터를 자바스크립트 객체로 변환해주는 작업이 필요
+                                                    	// trim()을 통해 불필요한 여백 제거
+                for (var i = 0; i < json.length; i++) {
+                    안에 들어갈 내용 json 완성되는대로 작성하기
+                }
+            }
+        }) 	*/
 	}
+	
+
+
+        
+     
 	
 	function prevWeek() {
         weekCalendar(-7);    
