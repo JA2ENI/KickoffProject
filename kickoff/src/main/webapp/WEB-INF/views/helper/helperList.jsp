@@ -82,6 +82,7 @@
                                     <th>용병 상태</th>
                                 </tr>
                                 </thead>
+                                <tbody>
                                 <c:forEach var="list" items="${table}">
                                     <tr>
                                     	${weekMsg}
@@ -95,6 +96,7 @@
                                         <td><button type = "button" class = "btn_detail" onclick="location.href='/helperDetail?helperSeqno=${list.helperSeqno}';">${list.helperStatus}</button></td>
                                     </tr>
                                 </c:forEach>
+                                </tbody>
                             </table>
                             <div class="btn_insert">
                                 <button type="submit" class="btn_insert" onclick="location.href='/helperInsert';">등록</button>

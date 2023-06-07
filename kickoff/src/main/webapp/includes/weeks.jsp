@@ -21,8 +21,8 @@
 					</div>
 					<div class="slick-slide current slick-active" data-click-index="0" aria-hidden="false">
 						<div class="box">
-						<form method = "POST" action = "/helperList">
-							<button type="submit" class="btn" id = "day1" onclick="selectButton(this);">
+						<form method = "post" action = "/helperList">
+							<button type="button" class="btn" id = "day1" onclick="selectButton(this);">
 								<div id="day1"></div>
 							</button>
 						</form>	
@@ -30,7 +30,7 @@
 					</div>
 					<div class="slick-slide slick-active" data-click-index="1" aria-hidden="false">
 						<div class="box">
-						<form method = "POST" action = "/helperList">
+						<form method = "post" action = "/helperList">
 							<button type="button" class="btn" id = "day2" onclick="selectButton(this);">
 								<div id="day2"> </div>
 							</button>
@@ -39,7 +39,7 @@
 					</div>
 					<div class="slick-slide slick-active" data-click-index="2" aria-hidden="false">
 						<div class="box">
-						<form method = "POST" action = "/helperList">
+						<form method = "post" action = "/helperList">
 							<button type="button" class="btn" id = "day3" onclick="selectButton(this);">
 								<div id="day3"> </div>
 							</button>
@@ -48,7 +48,7 @@
 					</div>
 					<div class="slick-slide slick-active" data-click-index="3" aria-hidden="false">
 						<div class="box">
-						<form method = "POST" action = "/helperList">
+						<form method = "post" action = "/helperList">
 							<button type="button" class="btn" id = "day4" onclick="selectButton(this);">
 								<div id="day4"> </div>
 							</button>
@@ -57,7 +57,7 @@
 					</div>
 					<div class="slick-slide slick-active" data-click-index="4" aria-hidden="false">
 						<div class="box">
-						<form method = "POST" action = "/helperList">
+						<form method = "post" action = "/helperList">
 							<button type="button" class="btn" id = "day5" onclick="selectButton(this);">
 								<div id="day5"> </div>
 							</button>
@@ -66,7 +66,7 @@
 					</div>
 					<div class="slick-slide slick-active" data-click-index="5" aria-hidden="false">
 						<div class="box">
-						<form method = "POST" action = "/helperList">
+						<form method = "post" action = "/helperList">
 							<button type="button" class="btn" id = "day6" onclick="selectButton(this);">
 								<div id="day6"> </div>
 							</button>
@@ -75,7 +75,7 @@
 					</div>
 					<div class="slick-slide slick-active" data-click-index="6" aria-hidden="false">
 						<div class="box">
-						<form method = "POST" action = "/helperList">
+						<form method = "post" action = "/helperList">
 							<button type="button" class="btn" id = "day7" onclick="selectButton(this);">
 								<div id="day7"> </div>
 							</button>
