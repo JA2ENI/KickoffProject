@@ -42,6 +42,7 @@
 				<c:choose>
 					<c:when test="${fn:length(myReservationList) > 0}">
 						<c:forEach var="row" items="${myReservationList}" varStatus="num">
+							<c:if test="${row.reservationCancel eq 'N'}">
 								<section>
 									<div class="container-fluid">
 										<div class="container reservation-container"> 
@@ -49,8 +50,8 @@
 												<div class="root-content">
 													<div class="container">
 														<div class="facility-content">
-															<div class="image-wrap"><%--${imginfo.imgPath}${imginfo.imgName}--%>
-																<img class="image" src="${imginfo.get(num.index).imgPath}${imginfo.get(num.index).imgName}" />
+															<div class="image-wrap">
+																<img class="image" src="${imgInfo.get(num.index).imgPath}${imgInfo.get(num.index).imgName}" />
 															</div>
 															<div class="facility-wrap">
 																<h2>${row.reservationPlaceName}</h2>
@@ -119,27 +120,28 @@
 													</div>
 													<!-- button -->
 													<div class="btn-container">
-														<a href="#this" id="cancle" class="cancle">예약 취소</a>
+														<a href="javascript:cancel('/cancle?reservationNo=${row.reservationNo}')" id="cancle" class="cancle">예약 취소</a>
+														<a href="/reservationDetail?reservationNo=${row.reservationOriginNo}" id="detail" class="detail">상세 보기</a>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</section>
-							</c:forEach>
+							</c:if>
+						</c:forEach>
 					</c:when>
 					<c:otherwise>
-						<div>
-							현재 예약한 풋살장이 없습니다.
+						<div class="listNone">
+							"환상의 경기가 펼쳐질 풋살장을 예약해보세요"
 						</div>
+						<a href="/reservation" id="reservation" class="reservation">풋살장 예약</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
 		</div>
-		<!-- Sidebar -->
 		<div id="sidebar">
 			<div class="inner">
-				<!-- Menu -->
 				<nav id="menu">
 					<header class="major">
 						<h2>MyPage</h2>
@@ -147,7 +149,7 @@
 					<ul>
 						<li><a href="/myReservation">예약 내역</a></li>
 						<li><a href="/myBoardList">내 게시글</a></li>
-						<li><a href="/myInfo">회원 정보 수정</a></li>
+						<li><a href="/myInfoCheck">회원 정보 수정</a></li>
 						<li><a href="/myTeam">팀</a></li>
 						<li><a href="/myMessage">메시지</a></li>
 						<li><a href="/myHelper">용병</a></li>
@@ -158,24 +160,19 @@
 	</div>
 
 	<!-- script -->
+	<!-- 서버인증키 -->
 	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c12ebb063cb05a9fc037082cb8601ef1&libraries=services"></script> -->
 	
 	<script src="/myPage/js/jquery.min.js"></script>
 	<script src="/myPage/js/skel.min.js"></script>
 	<script src="/myPage/js/util.js"></script>
-	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 	<script src="/myPage/js/main.js"></script>
-	<!-- Jquery JS-->
 	<script src="/myPage/vendor/jquery-3.2.1.min.js"></script>
-	<!-- Bootstrap JS-->
 	<script src="/myPage/vendor/bootstrap-4.1/popper.min.js"></script>
 	<script src="/myPage/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-	<!-- Vendor JS       -->
 	<script src="/myPage/vendor/select2/select2.min.js"></script>
-
-	<!-- Main JS-->
 	<script src="/myPage/js/reservationMain.js"></script>
-
+	<script src="/myPage/js/mypage.js"></script>
 
 </body>
 </html>

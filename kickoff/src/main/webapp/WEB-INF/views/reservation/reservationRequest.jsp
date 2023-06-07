@@ -49,7 +49,6 @@
             </div>
         </div>
     </div>
-
     <!-- Section -->
 	<section class="checkout spad">
 		<div class="container">
@@ -125,24 +124,12 @@
         });
 
 		function updateConfirm() {
-
 			if(!confirm("신청하시겠습니까?")){
 				return false;
 			} else {
 				location.href="/reservationRequest";
 			}
 		}
-/*
-		function requestSubmit() {
-			const frm = document.forms[0];
-			let isValid = true;
-
-			if (isValid) {
-				alert('풋살장 예약 신청되었습니다.')
-				frm.action = 'reservationRequest';
-				frm.submit();
-			}
-		}*/
 	</script>
 	
     <!-- Js Plugins -->
