@@ -61,7 +61,7 @@ public class HelperController {
     		e.printStackTrace();
     	}
     	
-    	return array.toString(); // 개열받노..
+    	return array.toString();
     }
 
     // insert 부분은 아직 미완성...! 예약 내역 완성되는대로 다시 츄라이
