@@ -59,6 +59,28 @@
         ]]>
     </select>
     
+    <!-- User Info check -->
+    <select id="userInfoCheck" parameterType="com.teamcommit.kickoff.Do.UserDO" resultType="com.teamcommit.kickoff.Do.UserDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                USERS
+            WHERE
+            	USER_ID = #{userId} AND USER_PW = #{userPw}
+        ]]>
+    </select>
+    
+    <!-- User Info -->
+	<select id="userInfo" parameterType="com.teamcommit.kickoff.Do.UserDO" resultType="com.teamcommit.kickoff.Do.UserDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                USERS
+            WHERE
+            	USER_ID = #{userId}
+        ]]>
+    </select>
+    
     
     
     

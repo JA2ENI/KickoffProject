@@ -8,3 +8,13 @@ function cancel(url) {
 		location = url;
 	} 
 }
+
+/* 회원 정보 수정 */
+/* password */
+function userCheck() {
+	const frm = document.forms[0];
+}
+
+
+
+

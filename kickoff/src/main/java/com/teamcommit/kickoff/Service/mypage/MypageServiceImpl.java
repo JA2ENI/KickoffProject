@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.UserDO;
 
 @Service("mypageService")
 public class MypageServiceImpl implements MypageService {
@@ -32,5 +33,14 @@ public class MypageServiceImpl implements MypageService {
     @Override
     public List<BoardDO> myBoardList(String userId) throws Exception {
     	return mypageMapper.myBoardList(userId);
+    }
+    
+    @Override
+    public UserDO userInfoCheck(UserDO user) throws Exception {
+    	return mypageMapper.userInfoCheck(user);
+    }
+    
+    public UserDO userInfo(String userId) throws Exception {
+    	return mypageMapper.userInfo(userId);
     }
 }

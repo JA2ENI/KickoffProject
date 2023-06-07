@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.UserDO;
 
 public interface MypageService {
 
@@ -15,4 +16,7 @@ public interface MypageService {
 	
 	List<BoardDO> myBoardList(String userId) throws Exception;
 
+	UserDO userInfoCheck(UserDO user) throws Exception;
+
+	UserDO userInfo(String userId) throws Exception;
 }
