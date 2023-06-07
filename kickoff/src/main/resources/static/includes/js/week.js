@@ -55,17 +55,39 @@ window.onload = function() {
 	            buttons[i].classList.remove("selected");
 	        }
 	    }
-	   /* $.ajax({
-            url: "/helperList",		// 데이터를 가져올 경로 설정
-            type: "post",		// 데이터를 가져오는 방식
-            success: function(data){	// 데이터를 가져왔을때 동작. 매개변수로 data 입력
-                var json = JSON.parse(data.trim());	// 가져온 데이터를 자바스크립트 객체로 변환해주는 작업이 필요
-                                                    	// trim()을 통해 불필요한 여백 제거
-                for (var i = 0; i < json.length; i++) {
-                    안에 들어갈 내용 json 완성되는대로 작성하기
-                }
+	 var helperTime = button.querySelector("#helperTime").value;
+
+    $.ajax({
+        url: "/helperList", // 컨트롤러 상 요청 받을 url
+        type: "post", // 요청 방식
+        data: { helperTime: helperTime }, // 가져올 데이터의 파라미터 값
+        async: true,
+        success: function (data) {
+            var json = JSON.parse(data.trim());
+            $("tbody").empty(); // 기존 데이터 제거
+            for (var i = 0; i < json.length; i++) {
+                var helperSeqNo = json[i].helperSeqNo;
+                var helperTeamLevel = json[i].helperTeamLevel;
+                var helperStatus = json[i].helperStatus;
+                var helperGender = json[i].helperGender;
+                var helperPlaceName = json[i].helperPlaceName;
+                var helperMatch = json[i].helperMatch;
+                var helperUserId = json[i].helperUserId;
+                var helperPosition = json[i].helperPosition;
+                var helperTime = json[i].helperTime;
+                $("tbody").append("<tr>" +
+                    "<td>" + helperMatch + "</td>" +
+                    "<td>" + helperPosition + "</td>" +
+                    "<td>" + helperTeamLevel + "</td>" +
+                    "<td>" + helperGender + "</td>" +
+                    "<td>" + helperPlaceName + "</td>" +
+                    "<td>" + helperTime + "</td>" +
+                    "<td>" + helperUserId + "</td>" +
+                    "<td><button type='button' class='btn_detail' onclick=\"location.href='/helperDetail?helperSeqno=" + helperSeqNo + "';\">" + helperStatus + "</button></td>" +
+                    "</tr>");
             }
-        }) 	*/
+        }
+    });
 	}
 	
 
