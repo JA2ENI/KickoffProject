@@ -58,6 +58,7 @@
 .checkPhone.phone {
 	width: 15% !important;
 	height: 100%;
+    color: #ffffff !important;
 }
 
 .btn-container {
@@ -141,10 +142,51 @@
 	margin-bottom: 15px;
 }
 
-.msg {
-	font-size: 12px;
-	font-weight: bold;
+span.msg,
+span.msg2 {
 	color: red;
+}
+
+span {
+	font-size: 12px !important;
+	font-weight: bold !important;
+}
+
+/* myInfoSelect */
+.btn-wrap {
+	display: flex;
+	flex-direction: row;
+    justify-content: center;
+    margin-top: 3%;
+    height: 30vh;
+}
+
+.select_pw,
+.select_info {
+	height: 250px !important;
+	width: 250px !important;
+	border-width: medium !important;
+	border-radius: 30px !important;
+	border-color: gray !important;
+	font-size: 23px !important;
+	font-weight: bold !important;
+	color: black !important;
+	background: #ffffff !important;
+}
+
+.select_pw {
+	margin-right: 20px;
+}
+
+.select_info {
+	margin-left: 20px;
+}
+
+.select_pw:hover,
+.select_info:hover {
+	color: #ffffff !important;
+	border-color: #ffc090 !important;
+	background: #ffc090 !important;
 }
 
 
@@ -162,7 +204,7 @@
 		background-color:  #7FB77E;
 		border-radius: 0.375em;
 		border: 1px solid #7FB77E;		
-		color: #FFFFFF !important;
+		color: #FFFFFF;
 		cursor: pointer;
 		display: inline-block;
 		font-family: 'Noto Sans KR', sans-serif;

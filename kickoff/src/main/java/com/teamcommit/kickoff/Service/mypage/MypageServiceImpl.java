@@ -40,7 +40,19 @@ public class MypageServiceImpl implements MypageService {
     	return mypageMapper.userInfoCheck(user);
     }
     
+    @Override
     public UserDO userInfo(String userId) throws Exception {
     	return mypageMapper.userInfo(userId);
     }
+    
+    @Override
+    public void updatePw(UserDO user) throws Exception {
+    	mypageMapper.updatePw(user);
+    }
+    
+    @Override
+    public void updateUserInfo(UserDO userDO) throws Exception {
+    	mypageMapper.updateUserInfo(userDO);
+    }
+    
 }

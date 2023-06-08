@@ -1,4 +1,11 @@
 
+/* 엔터키 submit 방지 */
+document.addEventListener('keydown', function(event) {
+	if (event.keyCode === 13) {
+		event.preventDefault();
+	};
+}, true);
+
 /* 예약 내역 */
 /* cancel */
 function cancel(url) {
@@ -8,13 +15,5 @@ function cancel(url) {
 		location = url;
 	} 
 }
-
-/* 회원 정보 수정 */
-/* password */
-function userCheck() {
-	const frm = document.forms[0];
-}
-
-
 
 

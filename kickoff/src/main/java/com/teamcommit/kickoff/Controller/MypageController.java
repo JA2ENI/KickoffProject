@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -92,7 +93,7 @@ public class MypageController {
         	UserDO userInfo = mypageService.userInfoCheck(user);
         	
         	if(userInfo != null) {
-        		mv.setViewName("redirect:/myInfo");
+        		mv.setViewName("redirect:/myInfoSelect");
         		return mv;
         	} else {
         		mv.setViewName("/mypage/myInfoCheck");
@@ -105,6 +106,105 @@ public class MypageController {
         
         return mv;
         
+    }
+    
+    @RequestMapping(value ="/myInfoSelect")
+    public String myInfoSelect() throws Exception {
+    	String view = "/mypage/myInfoSelect";
+    	
+    	return view;
+    }
+    
+    @RequestMapping(value ="/myInfoPw")
+    public String myInfoPw() throws Exception {
+    	String view = "/mypage/myInfoPw";
+    	
+    	return view;
+    }
+    
+    @RequestMapping(value ="/myInfoPwResult")
+    public ModelAndView myInfoPw(HttpServletRequest request, HttpSession session) throws Exception {
+    	ModelAndView mv = new ModelAndView("/mypage/myInfoPw");
+    	
+    	String newPw = request.getParameter("userPw");
+    	String newPw2 = request.getParameter("userPw2");
+    	
+    	System.out.println("newPw: " + newPw);
+    	System.out.println("newPw2: " + newPw2);
+    	
+    	if(newPw != "" && newPw2 != "") {
+    		System.out.println("test");
+    		
+    		if(newPw == newPw2) {
+    			System.out.println("==");
+    		} else if(newPw != newPw2) {
+    			System.out.println("!=");
+    		}
+    		
+    		System.out.println();
+    		
+    		if(newPw.equals(newPw2)) {
+    			System.out.println("equals : " + newPw.equals(newPw2));
+    		}
+    	}
+    	
+    	if(newPw == "" || newPw2 == "") {
+    		if(newPw == "") {
+    			System.out.println();
+    			System.out.println("newPw == \"\" || newPw2 == \"\"");
+    			System.out.println("newPw == \"\"" + newPw);
+    			
+    			mv.setViewName("/mypage/myInfoPw");
+    			mv.addObject("msg", "새 비밀번호를 입력해주세요.");
+    			return mv;
+    		} else if(newPw2 == "") {
+    			System.out.println();
+    			System.out.println("newPw == \"\" || newPw2 == \"\"");
+    			System.out.println("newPw2 == \"\"" + newPw2);
+    			
+    			mv.setViewName("/mypage/myInfoPw");
+    			mv.addObject("msg2", "새 비밀번호 확인을 입력해주세요.");
+    			return mv;
+    		}
+    	}
+    	
+    	
+		System.out.println("newPw != newPw2 : " + (newPw != newPw2));
+		System.out.println("newPw == newPw2 : " + (newPw == newPw2));
+		System.out.println("newPw != \"\" && newPw2 != \"\" : " + (newPw != "" && newPw2 != ""));
+		
+    	if(newPw != "" && newPw2 != "") {
+    		if(newPw != newPw2) {
+    			System.out.println();
+    		 	
+    			mv.setViewName("/mypage/myInfoPw");
+    			mv.addObject("msg2", "비밀번호가 일치하지 않습니다.");
+    			return mv;
+    		} else if(newPw == newPw2) {
+    			String userId = (String)session.getAttribute("userId");
+    			
+    			UserDO userInfo = mypageService.userInfo(userId);
+    			
+    			String userPw = userInfo.getUserPw();
+
+    			if(newPw == userPw) {
+    				mv.setViewName("/mypage/myInfoPw");
+        			mv.addObject("msg", "현재 비밀번호와 같습니다. 다시 입력해주세요.");
+        			return mv;
+    			} else if(newPw != userPw) {
+	    			UserDO user = new UserDO();
+	    			user.setUserId(userId);
+	    			user.setUserPw(newPw);
+	
+	    			mypageService.updatePw(user);
+	
+	    			mv.setViewName("redirect:/loginAll");
+	    			return mv;
+    			}
+    		}
+    	}
+    	
+    	return mv;
     }
     
     @RequestMapping(value = "/myInfo")
@@ -121,8 +221,10 @@ public class MypageController {
     }
     
     @RequestMapping(value = "/myInfoResult")
-    public String myInfoResult() throws Exception {
-        String view = "";
+    public String myInfoResult(@ModelAttribute("userDO")UserDO userDO) throws Exception {
+        String view = "redirect:/myInfo";
+        
+        mypageService.updateUserInfo(userDO);
         
         return view;
     }

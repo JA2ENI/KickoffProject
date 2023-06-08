@@ -19,4 +19,9 @@ public interface MypageService {
 	UserDO userInfoCheck(UserDO user) throws Exception;
 
 	UserDO userInfo(String userId) throws Exception;
+	
+	void updatePw(UserDO user) throws Exception;
+	
+	void updateUserInfo(UserDO userDO) throws Exception;
+	
 }

@@ -29,16 +29,6 @@
 											<input type="text" class="inputBox" name="userId" value="${userInfo.userId}" readonly/>
 										</div>
 										<div class="checkout__input__request">
-											<p>새 비밀번호<span>*</span></p>
-											<input type="password" id="userPw" class="inputBox" name="userPw"/>
-											<span id="msg"></span>
-										</div>
-										<div class="checkout__input__request">
-											<p>새 비밀번호 확인<span>*</span></p>
-											<input type="password" id="userPw2" class="inputBox"/>
-											<span id="msg"></span>
-										</div>
-										<div class="checkout__input__request">
 											<p>이메일<span>*</span></p>
 											<input type="text" id="userEmail" class="inputBox" name="userEmail" value="${userInfo.userEmail}" placeholder="example@naver.com"/>
 										</div>
@@ -46,27 +36,30 @@
 											<p>이 름<span>*</span></p>
 											<input type="text" class="inputBox" name="userName" value="${userInfo.userName}" readonly/>
 										</div>
+										<div class="checkout__input__request">
+											<p>(임시)생년월일</p>
+											<input type="text" id="year" class="inputBox" name="userBirthdate" value=""/>
+										</div>
 										<div class="row">
 											<div class="col-lg-6">
 												<div class="checkout__input__request">
-													<p>연도<span>*</span></p>
-													<input type="text" id="year" class="inputBox" value="" maxlength="4" placeholder="2023"/>
+													<p>연도<span>*</span></p><!-- placeholder="2022" -->
+													<input type="text" id="year" class="inputBox" value="" maxlength="4"/>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="checkout__input__request">
-													<p>월<span>*</span></p>
-													<input type="text" id="month" class="inputBox" value="" maxlength="2" placeholder="05"/>
+													<p>월<span>*</span></p><!-- placeholder="12" -->
+													<input type="text" id="month" class="inputBox" value="" maxlength="2"/>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="checkout__input__request">
-													<p>일<span>*</span></p>
-													<input type="text" id="day" class="inputBox" value="" maxlength="2" placeholder="05"/>
+													<p>일<span>*</span></p><!-- placeholder="25" -->
+													<input type="text" id="day" class="inputBox" value="" maxlength="2"/>
 												</div>
 											</div>
-											<span class="msg"></span>
-											<input type="hidden" id="userBirthdate" name="userBirthdate" value=""/>
+											<!-- <input type="hidden" id="userBirthdate" name="userBirthdate" value=""/> -->
 										</div>
 										<div class="checkout__input__request">
 											<p>휴대폰 번호<span>*</span></p>
@@ -81,7 +74,7 @@
 											<input type="text" id="userAddress" class="inputBox" name="userAddress" value="${userInfo.userAddress}" onclick="kakaopost()">
 										</div>
 										<div class="btn-container">
-											<input type="submit" id="update" class="update" value="수정"/>
+ 											<input type="button" id="update" class="update" value="수정"/>
 										</div>
 										<div class="">
 											<a href="/main" id="delete" class="delete" onclick="">회원 탈퇴</a>
@@ -133,17 +126,6 @@
 		    });
 		}
 	</script>
-	
-
-
-	<script>
-		$("#update").click(function(){
-			if($("#userPw").val() == 'true' && $("#"))
-		})
-	</script>
-	
-	
-	
 	
 	<!-- Scripts -->
 	<script src="/myPage/js/jquery.min.js"></script>
