@@ -16,7 +16,6 @@
       <br />
 	      <input type="text" placeholder="아이디" name="empId" />
 	      <input type="text" placeholder="사업자 번호" name="empNo" /><br/><br/>
-	      <%-- <button class="confirm" id="confirmNumber">사업자 번호 인증</button><br /><br />  --%>
 	      <button type="submit" id="findEmpPw" onclick="findEmp.submit();">비밀번호 찾기</button>
 	      <a href="/loginAll">로그인하러 가기</a>
     </form>
@@ -28,7 +27,6 @@
       <br />
 	      <input type="text" placeholder="업체명" name="empName"/>
 	      <input type="text" placeholder="사업자 번호" name="empNo" /><br/><br/>
-<%--	      	      <button class="confirm" id="confirmNumber">사업자 번호 인증</button><br /><br />--%>
 	      <button type="submit" id="findEmpId" onclick="findEmp.submit();">아이디 찾기</button>
 	      <a href="/loginAll">로그인하러 가기</a>
     </form>
