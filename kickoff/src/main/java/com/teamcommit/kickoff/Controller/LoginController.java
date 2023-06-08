@@ -1,18 +1,26 @@
 package com.teamcommit.kickoff.Controller;
 
-import com.teamcommit.kickoff.Do.EmployerDO;
-import com.teamcommit.kickoff.Do.UserDO;
-import com.teamcommit.kickoff.Service.login.LoginService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.teamcommit.kickoff.Do.EmployerDO;
+import com.teamcommit.kickoff.Do.UserDO;
+import com.teamcommit.kickoff.Service.login.LoginService;
+import com.teamcommit.kickoff.Service.login.certificationService;
+
 
 
 @Controller
@@ -142,17 +150,29 @@ public class LoginController {
         return view;
     }
     
+    // coolsms api
+    @GetMapping("/check/sendSMS")
+    public @ResponseBody String sendSMS(String phoneNumber) {
+
+        Random rand  = new Random();
+        String numStr = "";
+        for(int i=0; i<4; i++) {
+            String ran = Integer.toString(rand.nextInt(10));
+            numStr+=ran;
+        }
+        certificationService.certifiedPhoneNumber(phoneNumber,numStr);
+        return numStr;
+    }
+    
     
     // 개인 회원 아이디 찾기
     @RequestMapping("/findUserId")
     public ModelAndView findUserId(HttpServletRequest request, Model model,
                                 @RequestParam(required = true, value = "userName") String userName,
-                                @RequestParam(required = true, value = "userPhoneNumber") String userPhoneNumber,
                                 UserDO userDO) {
 
-        if (userDO.getUserName() != null && userDO.getUserPhoneNumber() != null) {
+        if (userDO.getUserName() != null) {
         	userDO.setUserName(userName);
-            userDO.setUserPhoneNumber(userPhoneNumber);
 
             UserDO userIdResult = this.loginService.findUser_id(userDO);
             model.addAttribute("userDO", userIdResult);
@@ -183,7 +203,7 @@ public class LoginController {
         return mv;
     }
     
-    // 개인 회원 비밀번호 찾기 !!
+    // 개인 회원 비밀번호 찾기
     @RequestMapping("/findUserPw")
     public ModelAndView findUserPw(HttpServletRequest request, Model model,
                                 @RequestParam(required = true, value = "userId") String userId,
