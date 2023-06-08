@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -22,22 +21,21 @@
 				<section class="checkout spad">
 					<div class="container">
 						<div class="checkout__form">
-							<form role="form" id="frm" name="frm" action="/myInfoCheckResult" method="POST">
+							<form role="form" id="frm" name="frm" action="/myInfoPwResult" method="POST">
 								<div class="row-request-container">
-									<div class="notice">회원님의 소중한 정보 보호를 위해,</div>
-									<div class="notice two">Kick Off의 현재 비밀번호를 확인해 주세요.</div>
 									<div class="col-lg-8-1 col-md-6 check">
-										<div class="checkout__input__request id">
-											<p>아이디<span>*</span></p>
-											<input type="text" class="inputBox id" name="userId" value="${userId}" readonly/>
-										</div>
 										<div class="checkout__input__request pw">
-											<p>비밀번호<span>*</span></p>
-											<input type="password" id="userPw" class="inputBox pw" name="userPw"/>
+											<p>새 비밀번호<span>*</span></p>
+											<input type="password" id="userPw" class="inputBox" name="userPw" />
 											<span class="msg">${msg}</span>
 										</div>
+										<div class="checkout__input__request pw">
+											<p>새 비밀번호 확인<span>*</span></p>
+											<input type="password" id="userPw2" class="inputBox" name="userPw2"/>
+											<span class="msg2">${msg2}</span>
+										</div>
 										<div class="btn-container">
-											<input type="submit" id="userCheck" class="userCheck" value="확인"/>
+											<input type="submit" id="update" class="userCheck" value="수정"/>
 										</div>
 									</div>
 								</div>
@@ -65,12 +63,12 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- script -->
-	<script src="/includes/js/jquery-3.3.1.min.js"></script>
+	
+	<!-- Scripts -->
 	<script src="/myPage/js/jquery.min.js"></script>
 	<script src="/myPage/js/skel.min.js"></script>
 	<script src="/myPage/js/util.js"></script>
+	<script src="/myPage/js/mypage.js"></script>
 	<script src="/myPage/js/main.js"></script>
 
 </body>

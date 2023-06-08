@@ -22,26 +22,10 @@
 				<section class="checkout spad">
 					<div class="container">
 						<div class="checkout__form">
-							<form role="form" id="frm" name="frm" action="/myInfoCheckResult" method="POST">
-								<div class="row-request-container">
-									<div class="notice">회원님의 소중한 정보 보호를 위해,</div>
-									<div class="notice two">Kick Off의 현재 비밀번호를 확인해 주세요.</div>
-									<div class="col-lg-8-1 col-md-6 check">
-										<div class="checkout__input__request id">
-											<p>아이디<span>*</span></p>
-											<input type="text" class="inputBox id" name="userId" value="${userId}" readonly/>
-										</div>
-										<div class="checkout__input__request pw">
-											<p>비밀번호<span>*</span></p>
-											<input type="password" id="userPw" class="inputBox pw" name="userPw"/>
-											<span class="msg">${msg}</span>
-										</div>
-										<div class="btn-container">
-											<input type="submit" id="userCheck" class="userCheck" value="확인"/>
-										</div>
-									</div>
-								</div>
-							</form>
+							<div class="btn-wrap">
+								<button type="button" class="select_pw" onclick="location.href='/myInfoPw'">비밀번호 변경</button>	
+								<button type="button" class="select_info" onclick="location.href='/myInfo'">정보 수정</button>	
+							</div>
 						</div>
 					</div>
 				</section>

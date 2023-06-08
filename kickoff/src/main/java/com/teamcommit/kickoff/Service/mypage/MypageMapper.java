@@ -23,4 +23,8 @@ public interface MypageMapper {
 	 
 	 public UserDO userInfo(String userId);
 	 
+	 public void updatePw(UserDO user);
+	 
+	 public void updateUserInfo(UserDO userDO);
+	 
 }

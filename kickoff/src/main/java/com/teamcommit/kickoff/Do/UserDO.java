@@ -17,7 +17,7 @@ public class UserDO {
 	//사용자 이메일
 	private String userEmail;
 	//사용자 생년월일
-	private Date userBirthdate;
+	private String userBirthdate;
 	//사용자 성별
 	private String userGender;
 	//사용자 포지션
@@ -67,10 +67,10 @@ public class UserDO {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public Date getUserBirthdate() {
+	public String getUserBirthdate() {
 		return userBirthdate;
 	}
-	public void setUserBirthdate(Date userBirthdate) {
+	public void setUserBirthdate(String userBirthdate) {
 		this.userBirthdate = userBirthdate;
 	}
 	public String getUserGender() {

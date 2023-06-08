@@ -36,7 +36,7 @@
 		]]>
     </select>
     
-     <!-- My Reservation Cancel -->
+    <!-- My Reservation Cancel -->
     <update id="updateCancel" parameterType="Integer">
         <![CDATA[
             UPDATE
@@ -80,6 +80,41 @@
             	USER_ID = #{userId}
         ]]>
     </select>
+    
+    <!-- New Password -->
+    <update id="updatePw" parameterType="com.teamcommit.kickoff.Do.UserDO">
+        <![CDATA[
+            UPDATE
+                USERS
+            SET
+                USER_PW = #{userPw}
+            WHERE
+                USER_ID = #{userId}
+        ]]>
+    </update>
+    
+     <!-- User Info Update -->
+    <update id="updateUserInfo" parameterType="com.teamcommit.kickoff.Do.UserDO">
+        <![CDATA[
+            UPDATE
+                USERS
+            SET
+                USER_EMAIL = #{userEmail},
+                USER_BIRTHDATE = TO_DATE(#{userBirthdate}, 'YYYY-MM-DD'),
+                USER_PHONE_NUMBER = #{userPhoneNumber},
+                USER_ADDRESS = #{userAddress}
+            WHERE
+                USER_ID = #{userId}
+        ]]>
+    </update>
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

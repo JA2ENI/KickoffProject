@@ -62,17 +62,6 @@ button {
   transition: transform 80ms ease-in;
 }
 
-.sendContainer {
-	justify-content: space-between !important;
-	display: flex;
-}
-
-
-#sendPhoneNumber {
-	border-radius: 10px;
-	padding: 12px 20px;
-}
-
 #confirmButton {
 	border-radius: 10px;
 	padding: 12px 20px;
@@ -274,4 +263,51 @@ footer i {
 footer a {
     color: #3c97bf;
     text-decoration: none;
+}
+
+.row-container {
+	display: grid;
+	place-items: center;
+	margin-top: 25%;
+}
+
+.row-container.subTitle {
+	margin-top: 0px;
+}
+
+.userName {
+	width: 100%;
+}
+
+#inputPhoneNumber,
+#inputCertifiedNumber {
+	width: 75% !important;
+}
+
+.sendContainer,
+.confirmContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between !important;
+	width: 100%;
+}
+
+#sendPhoneNumber,
+#confirmButton {
+	border-radius: 10px;
+	padding: 11px 18px;
+	height: 80%;
+	margin-top: 3%;
+}
+
+#findUserId {
+	margin-top: 25px;
+}
+
+.subTitle {
+	margin-bottom: 15px;
+}
+
+.login_btn {
+    margin: 6px 0px 0px 0px !important;
 }
