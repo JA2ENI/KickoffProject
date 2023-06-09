@@ -207,12 +207,10 @@ public class LoginController {
     @RequestMapping("/findUserPw")
     public ModelAndView findUserPw(HttpServletRequest request, Model model,
                                 @RequestParam(required = true, value = "userId") String userId,
-                                @RequestParam(required = true, value = "userPhoneNumber") String userPhoneNumber,
                                 UserDO userDO) {
 
-        if (userDO.getUserId() != null && userDO.getUserPhoneNumber() != null) {
+        if (userDO.getUserId() != null) {
         	userDO.setUserId(userId);
-            userDO.setUserPhoneNumber(userPhoneNumber);
 
             UserDO userPwResult = this.loginService.findUser_pw(userDO);
             model.addAttribute("userDO", userPwResult);

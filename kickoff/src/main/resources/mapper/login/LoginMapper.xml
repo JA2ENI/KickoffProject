@@ -44,7 +44,7 @@
         <![CDATA[
         SELECT *
         FROM USERS
-        WHERE USER_ID = #{userId} AND USER_PHONE_NUMBER = #{userPhoneNumber}
+        WHERE USER_ID = #{userId}
         ]]>
     </select>
 
