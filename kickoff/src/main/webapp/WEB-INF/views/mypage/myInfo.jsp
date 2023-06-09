@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>Kick Off: 마이페이지</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+	
 	<link rel="stylesheet" href="/myPage/css/myInfo.css">
 	<link rel="stylesheet" href="/myPage/css/main.css" />
 </head>
@@ -26,45 +28,62 @@
 									<div class="col-lg-8-1 col-md-6">
 										<div class="checkout__input__request">
 											<p>아이디<span>*</span></p>
-											<input type="text" class="inputBox" name="userId" value="${userInfo.userId}" readonly/>
+											<input type="text" class="inputBox id" name="userId" value="${userInfo.userId}" readonly/>
 										</div>
-										<div class="checkout__input__request">
-											<p>이메일<span>*</span></p>
-											<input type="text" id="userEmail" class="inputBox" name="userEmail" value="${userInfo.userEmail}" placeholder="example@naver.com"/>
+										<div class="row mail">
+											<div class="col-lg-6">
+												<div class="checkout__input__request mail">
+													<p>이메일<span>*</span></p>
+													<input type="text" id="userEmail" class="inputBox mail" name="mail" value="${userInfo.userEmail}"/>
+												</div>
+											</div>
+											<p class="atSign">@</p>
+											<div class="col-lg-6">
+												<div class="checkout__input__request email">
+													<select id="emailAddress" class="inputBox email" name="email">
+					                                	<option value="">이메일 선택</option>
+					                                	<option value="naver.com">naver.com</option>
+					                                	<option value="kakao.com">kakao.com</option>
+					                                	<option value="gmail.com">gmail.com</option>
+					                                	<option value="daum.net">daum.net</option>
+					                                	<option value="nate.com">nate.com</option>
+					                                	<option value="direct">직접입력</option>
+					                                </select>
+												</div>
+												<div class="checkout__input__request inputEmail">
+				                                	<input type="text" id="selboxDirect" class="inputBox email" name="email" />
+				                                </div>
+											</div>
 										</div>
 										<div class="checkout__input__request">
 											<p>이 름<span>*</span></p>
-											<input type="text" class="inputBox" name="userName" value="${userInfo.userName}" readonly/>
-										</div>
-										<div class="checkout__input__request">
-											<p>(임시)생년월일</p>
-											<input type="text" id="year" class="inputBox" name="userBirthdate" value=""/>
+											<input type="text" class="inputBox name" name="userName" value="${userInfo.userName}" readonly/>
 										</div>
 										<div class="row">
 											<div class="col-lg-6">
 												<div class="checkout__input__request">
 													<p>연도<span>*</span></p><!-- placeholder="2022" -->
-													<input type="text" id="year" class="inputBox" value="" maxlength="4"/>
+													<input type="text" id="year" class="inputBox" name="year" value="${birthday.year}" maxlength="4"/>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="checkout__input__request">
 													<p>월<span>*</span></p><!-- placeholder="12" -->
-													<input type="text" id="month" class="inputBox" value="" maxlength="2"/>
+													<input type="text" id="month" class="inputBox" name="month" value="${birthday.month}" maxlength="2"/>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="checkout__input__request">
 													<p>일<span>*</span></p><!-- placeholder="25" -->
-													<input type="text" id="day" class="inputBox" value="" maxlength="2"/>
+													<input type="text" id="day" class="inputBox" name="day" value="${birthday.day}" maxlength="2"/>
 												</div>
 											</div>
-											<!-- <input type="hidden" id="userBirthdate" name="userBirthdate" value=""/> -->
+											<input type="hidden" id="" name="userBirthdate" value=""/>
 										</div>
 										<div class="checkout__input__request">
 											<p>휴대폰 번호<span>*</span></p>
 											<div class="phone_content">
-												<input type="text" id="phone" class="inputBox phone" name="userPhoneNumber" value="${userInfo.userPhoneNumber}" maxlength="13" placeholder="010-1212-3434"/>
+												<input type="text" id="phone" class="inputBox phone" name="userPhoneNumber" value="${userInfo.userPhoneNumber}" maxlength="13"/>
 												<input type="button" id="checkPhone" class="checkPhone phone" onclick="" value="번호 인증"/>
 												<!-- <a href="/reservation" id="cancle" class="cancle">취소</a> -->
 											</div>
@@ -74,7 +93,7 @@
 											<input type="text" id="userAddress" class="inputBox" name="userAddress" value="${userInfo.userAddress}" onclick="kakaopost()">
 										</div>
 										<div class="btn-container">
- 											<input type="button" id="update" class="update" value="수정"/>
+ 											<input type="submit" id="update" class="update" value="수정"/>
 										</div>
 										<div class="">
 											<a href="/main" id="delete" class="delete" onclick="">회원 탈퇴</a>
@@ -106,6 +125,25 @@
 		</div>
 	</div>
 	
+	<script>
+		$(function(){
+			$("#selboxDirect").hide();
+			
+			$("#emailAddress").change(function() {
+
+				if($("#emailAddress").val() == "direct") {
+					$("#emailAddress").hide();
+					$("#selboxDirect").show();
+		
+				}  else {
+		
+					$("#selboxDirect").hide();
+		
+				}
+
+			}) 
+		});
+	</script>
 	<!-- Kakao postcode -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
