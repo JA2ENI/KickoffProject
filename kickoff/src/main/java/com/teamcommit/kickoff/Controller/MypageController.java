@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -129,76 +131,45 @@ public class MypageController {
     	String newPw = request.getParameter("userPw");
     	String newPw2 = request.getParameter("userPw2");
     	
-    	System.out.println("newPw: " + newPw);
-    	System.out.println("newPw2: " + newPw2);
-    	
-    	if(newPw != "" && newPw2 != "") {
-    		System.out.println("test");
-    		
-    		if(newPw == newPw2) {
-    			System.out.println("==");
-    		} else if(newPw != newPw2) {
-    			System.out.println("!=");
-    		}
-    		
-    		System.out.println();
-    		
-    		if(newPw.equals(newPw2)) {
-    			System.out.println("equals : " + newPw.equals(newPw2));
-    		}
-    	}
-    	
     	if(newPw == "" || newPw2 == "") {
     		if(newPw == "") {
-    			System.out.println();
-    			System.out.println("newPw == \"\" || newPw2 == \"\"");
-    			System.out.println("newPw == \"\"" + newPw);
-    			
     			mv.setViewName("/mypage/myInfoPw");
     			mv.addObject("msg", "새 비밀번호를 입력해주세요.");
     			return mv;
     		} else if(newPw2 == "") {
-    			System.out.println();
-    			System.out.println("newPw == \"\" || newPw2 == \"\"");
-    			System.out.println("newPw2 == \"\"" + newPw2);
-    			
     			mv.setViewName("/mypage/myInfoPw");
     			mv.addObject("msg2", "새 비밀번호 확인을 입력해주세요.");
     			return mv;
     		}
     	}
-    	
-    	
-		System.out.println("newPw != newPw2 : " + (newPw != newPw2));
-		System.out.println("newPw == newPw2 : " + (newPw == newPw2));
-		System.out.println("newPw != \"\" && newPw2 != \"\" : " + (newPw != "" && newPw2 != ""));
 		
     	if(newPw != "" && newPw2 != "") {
-    		if(newPw != newPw2) {
-    			System.out.println();
-    		 	
+    		if(newPw.equals(newPw2) == false) {
     			mv.setViewName("/mypage/myInfoPw");
     			mv.addObject("msg2", "비밀번호가 일치하지 않습니다.");
     			return mv;
-    		} else if(newPw == newPw2) {
+    		} else if(newPw.equals(newPw2) == true) {
     			String userId = (String)session.getAttribute("userId");
     			
     			UserDO userInfo = mypageService.userInfo(userId);
     			
     			String userPw = userInfo.getUserPw();
 
-    			if(newPw == userPw) {
+    			if(newPw.equals(userPw) == true) {
     				mv.setViewName("/mypage/myInfoPw");
         			mv.addObject("msg", "현재 비밀번호와 같습니다. 다시 입력해주세요.");
         			return mv;
-    			} else if(newPw != userPw) {
+    			} else if(newPw.equals(userPw) == false) {
 	    			UserDO user = new UserDO();
 	    			user.setUserId(userId);
 	    			user.setUserPw(newPw);
 	
 	    			mypageService.updatePw(user);
 	
-	    			mv.setViewName("redirect:/loginAll");
+	    			mv.setViewName("/mypage/myInfoPw");
+	    			mv.addObject("success", "success");
+	    			
+	    			System.out.println("success : " + mv.getModel());
 	    			return mv;
     			}
     		}
@@ -215,16 +186,33 @@ public class MypageController {
         
         UserDO userInfo = mypageService.userInfo(userId);
         
-        model.addAttribute("userInfo", userInfo);
+        String userDay = userInfo.getUserBirthdate();
+        
+    	String year = userDay.substring(0, 4);
+    	String month = userDay.substring(5, 7);
+    	String day = userDay.substring(8, 10);
+    	
+    	HashMap<String, String> map = new HashMap<>();
+    	
+    	map.put("year", year);
+    	map.put("month", month);
+    	map.put("day", day);
+    	
+    	model.addAttribute("userInfo", userInfo);
+    	model.addAttribute("birthday", map);
         
         return view;
     }
     
     @RequestMapping(value = "/myInfoResult")
-    public String myInfoResult(@ModelAttribute("userDO")UserDO userDO) throws Exception {
+    public String myInfoResult(@ModelAttribute("userDO")UserDO userDO, @RequestParam("year")String year, @RequestParam("month")String month, @RequestParam("day")String day, HttpServletRequest request) throws Exception {
         String view = "redirect:/myInfo";
+
+        String userDay = year + month + day;
         
-        mypageService.updateUserInfo(userDO);
+        userDO.setUserBirthdate(userDay);
+        
+		mypageService.updateUserInfo(userDO); 
         
         return view;
     }

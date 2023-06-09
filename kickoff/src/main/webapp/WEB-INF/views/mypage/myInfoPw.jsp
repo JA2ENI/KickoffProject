@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -8,6 +9,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="/myPage/css/myInfo.css">
 	<link rel="stylesheet" href="/myPage/css/main.css" />
+	
+	<c:if test="${success != null}">
+		<script type="text/javascript">
+			alert("새 비밀번호로 로그인해주세요.");
+			location.replace('loginAll');
+		</script>
+	</c:if>
 </head>
 <body>
 	<div id="wrapper">
