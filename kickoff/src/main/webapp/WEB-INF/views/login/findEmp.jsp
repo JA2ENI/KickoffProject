@@ -11,24 +11,26 @@
 <div class="container" id="container">
   <div class="form-container sign-up-container">
     <form method="POST" name="findEmp" action="/findEmpPw">
-      <h1>비밀번호 찾기</h1>
-      <h4>업체 회원용</h4>
-      <br />
-	      <input type="text" placeholder="아이디" name="empId" />
-	      <input type="text" placeholder="사업자 번호" name="empNo" /><br/><br/>
-	      <button type="submit" id="findEmpPw" onclick="findEmp.submit();">비밀번호 찾기</button>
-	      <a href="/loginAll">로그인하러 가기</a>
+	    <div class="row-container">
+	      <h1>비밀번호 찾기</h1>
+	      <div class="subTitle">업체 회원용</div>
+		      <input type="text" placeholder="아이디" name="empId" />
+		      <input type="text" placeholder="사업자 번호" name="empNo" />
+		      <button type="submit" id="findEmpPw" onclick="findEmp.submit();">비밀번호 찾기</button>
+		      <a href="/loginAll" class="login_btn">로그인하러 가기</a>
+		 </div>
     </form>
   </div>
   <div class="form-container sign-in-container">
     <form method="POST" name="findEmp" action="/findEmpId">
-      <h1>아이디 찾기</h1>
-      <h4>업체 회원용</h4>
-      <br />
-	      <input type="text" placeholder="업체명" name="empName"/>
-	      <input type="text" placeholder="사업자 번호" name="empNo" /><br/><br/>
-	      <button type="submit" id="findEmpId" onclick="findEmp.submit();">아이디 찾기</button>
-	      <a href="/loginAll">로그인하러 가기</a>
+    	<div class="row-container">
+	      <h1>아이디 찾기</h1>
+	      <div class="subTitle">업체 회원용</div>
+		      <input type="text" placeholder="업체명" name="empName"/>
+		      <input type="text" placeholder="사업자 번호" name="empNo" />
+		      <button type="submit" id="findEmpId" onclick="findEmp.submit();">아이디 찾기</button>
+		      <a href="/loginAll" class="login_btn">로그인하러 가기</a>
+		  </div>
     </form>
   </div>
   <div class="overlay-container">
