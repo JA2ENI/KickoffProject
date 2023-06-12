@@ -1,14 +1,12 @@
 package com.teamcommit.kickoff.Controller;
 
 
-import com.teamcommit.kickoff.Common.CommandMap;
 import com.teamcommit.kickoff.Do.*;
 import com.teamcommit.kickoff.Service.emp.EmpService;
 import com.teamcommit.kickoff.Service.board.BoardService;
 
 import com.teamcommit.kickoff.Service.reservation.ReservationService;
 import com.teamcommit.kickoff.Service.login.LoginService;
-import com.teamcommit.kickoff.Service.board.BoardService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,10 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class EmpController {
@@ -32,12 +27,6 @@ public class EmpController {
     @Qualifier("EmpService")
     @Autowired
     private EmpService empService;
-
-    @Autowired
-    private BoardService boardService;
-
-    @Autowired
-    private LoginService loginService;
 
     @Autowired
     private ReservationService reservationService;
@@ -92,15 +81,10 @@ public class EmpController {
         }
     }
 
-    /* 풋살장 등록 */
+    /* 풋살장 등록 폼 */
     @RequestMapping(value = "/empFutsalForm")
     public String empFutsalForm(@ModelAttribute("placeDO") PlaceDO placeDO, Model model, HttpServletRequest request) throws Exception {
         String view = "/emp/empFutsal";
-
-        String empId = (String) request.getSession().getAttribute("empId");
-
-        PlaceDO placeInfo = reservationService.selectPlaceInfo(empId);
-        model.addAttribute("placeInfo", placeInfo);
 
         return view;
     }
@@ -114,6 +98,7 @@ public class EmpController {
         그리고 emp의 5개 jsp마다 '풋살장 등록' 클릭 링크 주소 변경해 놓았어요.
     */
 
+    /* 풋살장 등록 */
     @RequestMapping(value="/empFutsal")
     public ModelAndView empFutsal(@ModelAttribute("placeDO") PlaceDO placeDO, HttpServletRequest request, RedirectAttributes redirect) throws Exception {
 
@@ -148,22 +133,23 @@ public class EmpController {
     }
     
     
-    /* 풋살장 수정 */
-    @RequestMapping(value = "/empFutsalFupdate")
-    public String empFutsalFupdate(@ModelAttribute("placeDO") PlaceDO placeDO, @RequestParam(value = "placeId") int placeId, Model model) throws Exception {
+    /* 풋살장 수정 폼*/
+    @RequestMapping(value = "/empFutsalUpdateForm")
+    public String empFutsalUpdateForm(@RequestParam(value = "placeId")int placeId, Model model) throws Exception {
         String view = "/emp/empFutsalF";
         
         PlaceDO empFutsalFix = empService.selectEmpFutsalFix(placeId);
+        
         model.addAttribute("empFutsalFix", empFutsalFix);
         
         return view;
     }
     
-    
+    /* 풋살장 수정*/
     @RequestMapping(value = "/empFutsalF")
-    public ModelAndView empFutsalF(@ModelAttribute("placeDO") PlaceDO placeDO, @RequestParam(value = "placeId") int placeId) throws Exception {
+    public ModelAndView empFutsalUpdate(@ModelAttribute("placeDO")PlaceDO placeDO) throws Exception {
 
-        ModelAndView mv = new ModelAndView("redirect:/empFutsalFix?placeId"+placeId);
+        ModelAndView mv = new ModelAndView("redirect:/empFutsalFix");
 
         empService.updateEmpFutsalF(placeDO);
 

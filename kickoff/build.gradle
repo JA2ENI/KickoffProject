@@ -37,6 +37,11 @@ dependencies {
 	/* coolsms API */
 	implementation group: 'net.nurigo', name: 'javaSDK', version: '2.2'
 	
+	/* Redis */
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	
+	/* NAVER SMS API */
+	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13' 
 	
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

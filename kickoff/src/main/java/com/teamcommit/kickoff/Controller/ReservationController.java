@@ -45,7 +45,7 @@ public class ReservationController {
     }
 
     @RequestMapping(value = "/reservationInsertForm")
-    public String reservationInsertForm(@ModelAttribute("reservationDO") ReservationDO reservationDO, HttpServletRequest request, Model model) throws Exception {
+    public String reservationInsertForm(HttpServletRequest request, Model model) throws Exception {
         String view = "/reservation/reservationInsert";
 
         String empId = (String) request.getSession().getAttribute("empId");
@@ -83,7 +83,7 @@ public class ReservationController {
     }
 
     @RequestMapping(value = "/reservationUpdateForm")
-    public String reservationUpdateForm(@ModelAttribute("reservationDO") ReservationDO reservationDO, @RequestParam("reservationNo") int reservationNo, Model model) throws Exception {
+    public String reservationUpdateForm(@RequestParam("reservationNo") int reservationNo, Model model) throws Exception {
         String view = "/reservation/reservationUpdate";
 
         ReservationDO reservationDetail = reservationService.selectReservationDetail(reservationNo);
@@ -102,7 +102,7 @@ public class ReservationController {
     }
 
     @RequestMapping(value = "/reservationRequestForm")
-    public String reservationRequestForm(@ModelAttribute("reservationDO") ReservationDO reservationDO, @RequestParam("reservationNo") int reservationNo, HttpServletRequest request, HttpSession session, Model model) throws Exception {
+    public String reservationRequestForm(@RequestParam("reservationNo") int reservationNo, HttpServletRequest request, Model model) throws Exception {
         String view = "/reservation/reservationRequest";
 
         String userId = (String) request.getSession().getAttribute("userId");
@@ -117,7 +117,7 @@ public class ReservationController {
     }
     
     @RequestMapping(value = "/reservationRequest")
-    public ModelAndView reservationRequest(@ModelAttribute("reservationDO") ReservationDO reservationDO, Model model, HttpSession session) throws Exception {
+    public ModelAndView reservationRequest(@ModelAttribute("reservationDO") ReservationDO reservationDO) throws Exception {
 
         ModelAndView mv = new ModelAndView("redirect:/reservation");
 
