@@ -169,7 +169,6 @@ public class MypageController {
 	    			mv.setViewName("/mypage/myInfoPw");
 	    			mv.addObject("success", "success");
 	    			
-	    			System.out.println("success : " + mv.getModel());
 	    			return mv;
     			}
     		}
@@ -187,30 +186,43 @@ public class MypageController {
         UserDO userInfo = mypageService.userInfo(userId);
         
         String userDay = userInfo.getUserBirthdate();
-        
     	String year = userDay.substring(0, 4);
     	String month = userDay.substring(5, 7);
     	String day = userDay.substring(8, 10);
+    	
+    	String userEmail = userInfo.getUserEmail();
+    	String[] arrayEmail = userEmail.split("@|\\."); 
+    	String mail = arrayEmail[0];
+    	String email = arrayEmail[1];
     	
     	HashMap<String, String> map = new HashMap<>();
     	
     	map.put("year", year);
     	map.put("month", month);
     	map.put("day", day);
+    	map.put("mail", mail);
+    	map.put("email", email);
     	
     	model.addAttribute("userInfo", userInfo);
-    	model.addAttribute("birthday", map);
+    	model.addAttribute("map", map);
         
         return view;
     }
     
     @RequestMapping(value = "/myInfoResult")
-    public String myInfoResult(@ModelAttribute("userDO")UserDO userDO, @RequestParam("year")String year, @RequestParam("month")String month, @RequestParam("day")String day, HttpServletRequest request) throws Exception {
+    public String myInfoResult(@ModelAttribute("userDO")UserDO userDO, @RequestParam("year")String year, 
+    						   @RequestParam("month")String month, @RequestParam("day")String day,
+    						   @RequestParam("mail")String mail, @RequestParam("email")String email,
+    						   HttpServletRequest request) throws Exception {
+    	
         String view = "redirect:/myInfo";
 
         String userDay = year + month + day;
         
+        String userEmail = mail + "@" + email;
+        
         userDO.setUserBirthdate(userDay);
+        userDO.setUserBirthdate(userEmail);
         
 		mypageService.updateUserInfo(userDO); 
         

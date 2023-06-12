@@ -17,7 +17,7 @@
 				<header id="header">
 					<input type="button" onclick="location.href='main'" class="kickoff" value="Kick Off"/>
 					<br>
-					<a href="/myInfo" class="logo"><strong>회원 정보 수정</strong></a>
+					<a href="/myInfoCheck" class="logo"><strong>회원 정보 수정</strong></a>
 				</header>
 				<section class="checkout spad">
 					<div class="container">
