@@ -17,4 +17,9 @@ public class AdminServiceImpl implements AdminService {
     public List<UserDO> getList(UserDO userDO) throws Exception {
         return adminMapper.getList(userDO);
     }
+    
+//    @Override
+//    public void user_delete(String userId) throws Exception {
+//    	adminMapper.user_delete(userId);
+//    }
 }
