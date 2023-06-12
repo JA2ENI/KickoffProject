@@ -11,7 +11,16 @@
             RESERVATION
         ]]>
     </select>
-
+	
+	<select id = "" parameterType="String" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+        <![CDATA[
+        SELECT *
+        FROM
+            RESERVATION
+        WHERE USER_ID = #{userId} AND RESERVATION_TYPE = 'USER' AND RESERVATION_DATE >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+        ]]>
+    </select>
+	
     <!-- Employer Board List -->
     <select id="getList" parameterType="String" resultType="com.teamcommit.kickoff.Do.BoardDO">
         <![CDATA[

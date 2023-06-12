@@ -54,11 +54,11 @@
 								    	<!-- 이미지 class 추가 -->
 								    	<div class="checkout__form">
 								    		<div class="futsal">								    		
-								        	<form id="frm" name="frm" action="#" method="POST">
+								        	<form role="form" id="frmSubmit" name="frmSubmit" action="" method="POST">
 												<input type="hidden" id="placeId" name="placeId" value="${empFutsalInsert.placeId}" />
 								                	<div class="col-lg-8 col-md-6">
 								                		<div class="checkout__input">
-										    			<p>풋살장 이미지<span>*</span></p>
+										    			<p>풋살장 이미지<span></span></p>
 								                		<div class="filebox bs3-primary preview-image">
 						              						<input class="upload-name" value="파일선택" disabled="disabled"style="width: 500px;">
 						              						<input type="file" id="input_file" class="upload-hidden"> 
@@ -66,11 +66,11 @@
 			       										</div>
 														<div class="checkout__input">
 							                               <p>풋살장<span>*</span></p>
-							                               <textarea class="etc" name="placeName" value="${empFutsalInsert.placeName}"></textarea>
+							                               <textarea class="etc" name="placeName" id="placeName" value="${empFutsalInsert.placeName}"></textarea>
                            								</div>
                           							<div class="checkout__input">
                                 						<p>바닥 형태<span>*${empFutsalInsert.placeGround}</span></p>
-                                							<select id="courtName" onChange="selectCourt(this)">
+                                							<select id="courtForm" name="courtForm" onChange="selectCourt(this)">
 							                                	<option value="">바닥 선택하기</option>
 																<option value="A" <c:if test="${empFutsalInsert.placeGround == '인조잔디'}">selected</c:if>>인조잔디</option>
 							                                	<option value="B" <c:if test="${empFutsalInsert.placeGround == '피치플로어'}">selected</c:if>>피치플로어</option>
@@ -79,7 +79,7 @@
                             						</div>
 						                           	<div class="checkout__input">
 						                                <p>위치<span>*</span></p>
-						                                <input type="text" value="'주소' 정보 가져오기 (입력 비활성화)" readonly>
+						                                <input type="text" class="inputAddress" id="inputAddress" name="empFutsalAddress" value="'주소' 정보 가져오기 (입력 비활성화)" readonly>
 						                            </div>
 						                            <div class="checkout__input">
 						                                <p>풋살장 형태<span>*</span></p>
@@ -92,7 +92,7 @@
 						                            </div>
 						                            <div class="checkout__input">
 						                                <p>개방 일수<span>*</span></p>
-						                                <input id="setDate" onChange="getDate()" />
+						                                <input id="setDate" name="setDate" onChange="getDate()" />
 						                            </div>
 				                                    <div class="checkout__input">
 				                                        <p>대여 시간<span>*</span></p>
@@ -143,7 +143,7 @@
 						                               	<textarea class="etc" value="${empFutsalInsert.placeOther}"></textarea>
 						                            </div>
 						                        </div>
-						                         <button onclick="location.href='/empFutsalFix.jsp';">등록하기</button>	
+						                         <button id="insert" class="site-btn-insert" onclick="validCheck()" value="등록">등록하기</button>	
 						                        </div>						                   					                     
 				                            </form>
 				                            </div>
@@ -208,6 +208,7 @@
 		    <script src="/emp/js/empFutsal/jquery-ui.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		    <script src="/emp/js/empFutsal/jquery.slicknav.js"></script>
+		    <script src = "/emp/js/empFutsal/validation.js"></script>	
 		    <script src="/emp/js/empFutsal/main.js"></script>
 			<script src="/emp/js/empFutsal/common.js"></script>
 	</body>
