@@ -7,4 +7,6 @@ import java.util.List;
 public interface AdminService {
 
     List<UserDO> getList(UserDO userDO) throws Exception;
+    
+//    void user_delete(String userId) throws Exception;
 }

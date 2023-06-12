@@ -9,4 +9,6 @@ import java.util.List;
 public interface AdminMapper {
 
     public List<UserDO> getList(UserDO userDO);
+    
+//    public void user_delete(String userId);
 }
