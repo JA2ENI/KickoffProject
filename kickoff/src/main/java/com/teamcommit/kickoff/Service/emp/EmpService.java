@@ -22,7 +22,7 @@ public interface EmpService {
     
     List<PlaceDO> empFutsalList(String empId) throws Exception;
     
-    PlaceDO selectEmpFutsalFix(int placeID) throws Exception;
+    PlaceDO selectEmpFutsalFix(int placeId) throws Exception;
     
     void updateEmpFutsalF(PlaceDO placeDO) throws Exception;
 

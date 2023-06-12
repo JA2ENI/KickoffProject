@@ -48,13 +48,15 @@ public class EmpController {
 
         try {
             List<ReservationDO> list = empService.selectReservation(reservationDO);
-            model.addAttribute("table", list);
+            model.addAttribute("table", list);            
         }
         catch (Exception e) {
             e.printStackTrace();
         }
         return view;
     }
+    
+
 
 
     @RequestMapping( "/myBoard")
@@ -120,23 +122,6 @@ public class EmpController {
         empService.empFutsalInsert(placeDO);
 
         return mv;
-
-
-
-/*       try {
-
-            empService.updateFutsal(placeDO);
-            redirect.addFlashAttribute("redirect", placeDO.getPlaceId());
-
-            redirect.addFlashAttribute("msg", "풋살장 등록이 완료되었습니다.");
-
-        } catch (Exception e) {
-
-            redirect.addFlashAttribute("msg", "오류가 발생되었습니다.");
-
-        }
-
-        return mv;*/
     }
 
 
@@ -167,10 +152,10 @@ public class EmpController {
     @RequestMapping(value = "/empFutsalFupdate")
     public String empFutsalFupdate(@ModelAttribute("placeDO") PlaceDO placeDO, @RequestParam(value = "placeId") int placeId, Model model) throws Exception {
         String view = "/emp/empFutsalF";
-
+        
         PlaceDO empFutsalFix = empService.selectEmpFutsalFix(placeId);
         model.addAttribute("empFutsalFix", empFutsalFix);
-
+        
         return view;
     }
     

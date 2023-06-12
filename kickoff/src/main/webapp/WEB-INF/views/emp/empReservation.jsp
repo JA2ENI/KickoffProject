@@ -85,7 +85,6 @@
 		                                                <th>예약 등록일</th>
 		                                                <th>예약 날짜</th>
 		                                                <th>예약 상태</th>
-		                                                <th>예약 인원</th>
 		                                                <th></th>
 		                                                <th></th>
 		                                            </tr>
@@ -111,7 +110,7 @@
 		                                                <td><c:out value="${list.reservationNumber}"/></td>
 		                                                <td>
 		                                                    <div class="table-data-feature">
-		                                                        <button type= "button" class= "au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="tooltip" id="au-btn au-btn-icon au-btn--green au-btn--small"  data-placement="top" title="Detail">상세보기</button>
+		                                                        <button type= "button" class= "au-btn au-btn-icon au-btn--green au-btn--small" onclick="eng()" id="au-btn au-btn-icon au-btn--green au-btn--small" title="Detail">상세보기</button>
 		                                                    </div>
 		                                                </td>		                                                
 		                                            </tr>
@@ -123,41 +122,47 @@
 		                                    </table>
 		                                     <div class="black_bg"></div>
 														<div class="modal_wrap">
-															<button type = "reset" class="reservationClose">x</button>
+															<button type = "reset" onclick="offClick()" class="reservationClose">x</button>
+															
 															<div>
-																${msg}
-																	<table class = "tablehorizon">
-																		<tr class="horizontr">
-																			<th class="horizonth">예약자</th>	<td class="horizontd">우쿠렐레</td>
-																		</tr>
-																		<tr class="horizontr">														
-																			<th class="horizonth">예약 풋살장</th> <td class="horizontd">하프</td>
-																		</tr>
-																		<tr class="horizontr">																		
-																			<th class="horizonth">예약 날짜</th> <td class="horizontd">기타</td>
-																		</tr>
-																		<tr class="horizontr">																		
-																			<th class="horizonth">예약 인원</th> <td class="horizontd">통기타</td>
-																		</tr>
-																		<tr class="horizontr">																		
-																			<th class="horizonth">예약 상태</th> <td class="horizontd">요들레히</td>
-																		</tr>
-																		<tr class="horizontr">																		
-																			<th class="horizonth">예약 등록일</th>	<td class="horizontd">요들레히이이</td>
-																		</tr>
-																		<tr class="horizontr">																			
-																			<th class="horizonth">예약 시간</th> <td class="horizontd">요들레히요이</td>
-																		</tr>
-																		<tr class="horizontr">																		
-																			<th class="horizonth">기타 사항</th> <td class="horizontd">레히요이레히요이예</td>
-																		</tr>
-																																														
-																	</table>
+																<table class = "tablehorizon">
+																<c:forEach var="list" items="${reservation}">
+																	<tr class="horizontr">
+																		<th class="horizonth">예약자 ID</th>	<td class="horizontd"><c:out value="${list.userId}"/></td>
+																	</tr>
+																	<tr class="horizontr">														
+																		<th class="horizonth">예약 풋살장</th> <td class="horizontd"><c:out value="${list.reservationPlaceName}"/></td>
+																	</tr>
+																	<tr class="horizontr">																		
+																		<th class="horizonth">예약 날짜</th> <td class="horizontd"><c:out value="${list.reservationDate}"/></td>
+																	</tr>
+																	<tr class="horizontr">																		
+																		<th class="horizonth">예약 인원</th> <td class="horizontd"><c:out value="${list.reservationNumber}"/></td>
+																	</tr>
+																	<tr class="horizontr">																		
+																		<th class="horizonth">예약 상태</th> <td class="horizontd"><c:out value="${list.reservationStatus}"/></td>
+																	</tr>
+																	<tr class="horizontr">																		
+																		<th class="horizonth">예약 등록일</th>	<td class="horizontd"><c:out value="${list.reservationRegDate}"/></td>
+																	</tr>
+																	<tr class="horizontr">																			
+																		<th class="horizonth">예약 시작 시간</th> <td class="horizontd"><c:out value="${list.reservationStartTime}"/></td>
+																	</tr>
+																	<tr class="horizontr">																			
+																		<th class="horizonth">예약 종료 시간</th> <td class="horizontd"><c:out value="${list.reservationEndTime}"/></td>
+																	</tr>
+																	<tr class="horizontr">																			
+																		<th class="horizonth">예약 가격</th> <td class="horizontd"><c:out value="${list.rservationPrice}"/></td>
+																	</tr>
+																	<tr class="horizontr">																		
+																		<th class="horizonth">기타 사항</th> <td class="horizontd"><c:out value="${list.reservationComment}"/></td>
+																	</tr>
+																	</c:forEach>																																													
+																</table>
 																</div>
 															</div>	                       		                                
 		                                </div>
                                 <!-- END DATA TABLE -->
-                                    </div>
 					        </section>
 					        </div>
                         </div>
@@ -194,7 +199,7 @@
             <script src="/emp/js/jquery.min.js"></script>
 			<script src="/emp/js/skel.min.js"></script>
 			<script src="/emp/js/util.js"></script>
-			<script src = "/emp/js/modal.js"></script>			
+			<script src = "/emp/js/modal.js"></script>
 			<!--[if lte IE 8]><script src="/emp/js/ie/respond.min.js"></script><![endif]-->
             <script src="/emp/js/main.js"></script>
 		    <!-- <script src="/emp/vendor/jquery-3.2.1.min.js"></script> -->
