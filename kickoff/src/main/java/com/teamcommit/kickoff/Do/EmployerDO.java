@@ -17,7 +17,7 @@ public class EmployerDO {
 	//업체 이메일
 	private String empEmail;
 	//업체 등록일
-	private Date empDate;
+	private String empDate;
 	//풋살장 아이디
 	private int placeId;
 	// 사업자 번호
@@ -60,10 +60,10 @@ public class EmployerDO {
 	public void setEmpEmail(String empEmail) {
 		this.empEmail = empEmail;
 	}
-	public Date getEmpDate() {
+	public String getEmpDate() {
 		return empDate;
 	}
-	public void setEmpDate(Date empDate) {
+	public void setEmpDate(String empDate) {
 		this.empDate = empDate;
 	}
 	public int getPlaceId() {

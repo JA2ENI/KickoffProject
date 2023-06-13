@@ -33,32 +33,56 @@
         ]]>
     </select>
 
-    <!-- Employer info_fix -->
-    <insert id="info_fix" parameterType="com.teamcommit.kickoff.Do.EmployerDO">
+    
+    <!-- Emp Info check -->
+    <select id="empInfoCheck" parameterType="com.teamcommit.kickoff.Do.EmployerDO" resultType="com.teamcommit.kickoff.Do.EmployerDO">
         <![CDATA[
-        INSERT INTO EMPLOYER
-        (
-         EMP_ID,
-         EMP_PW,
-         EMP_NAME,
-         EMP_ADDRESS,
-         EMP_PHONE_NUMBER,
-         EMP_EMAIL,
-         EMP_DATE
-        )
-        VALUES
-            (
-             #{writeId},
-             #{writePw},
-             #{writeName},
-             #{writeAddress},
-             #{writePhoneNumber},
-             #{writeEmail},
-             #{writeDate}
-            )
-
+            SELECT *
+            FROM
+                EMPLOYER
+            WHERE
+            	EMP_ID = #{empId} AND EMP_PW = #{empPw}
         ]]>
-    </insert>
+    </select>
+    
+    <!-- Emp Info -->
+	<select id="empInfo" parameterType="com.teamcommit.kickoff.Do.EmployerDO" resultType="com.teamcommit.kickoff.Do.EmployerDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                EMPLOYER
+            WHERE
+            	EMP_ID = #{empId}
+        ]]>
+    </select>
+    
+    <!-- New Password -->
+    <update id="updatePw" parameterType="com.teamcommit.kickoff.Do.EmployerDO">
+        <![CDATA[
+            UPDATE
+                EMPLOYER
+            SET
+                EMP_PW = #{empPw}
+            WHERE
+                EMP_ID = #{empId}
+        ]]>
+    </update>
+    
+     <!-- Emp Info Update -->
+    <update id="updateEmpInfo" parameterType="com.teamcommit.kickoff.Do.EmployerDO">
+        <![CDATA[
+            UPDATE
+                EMPLOYER
+            SET
+                EMP_EMAIL = #{empEmail},
+                EMP_DATE = TO_DATE(#{empDate}, 'YYYY-MM-DD'),
+                EMP_PHONE_NUMBER = #{empPhoneNumber},
+                EMP_ADDRESS = #{empAddress}
+            WHERE
+                EMP_ID = #empId}
+        ]]>
+    </update>
+    
 
     <insert id="empFutsalInsert" parameterType="com.teamcommit.kickoff.Do.PlaceDO">
         <![CDATA[

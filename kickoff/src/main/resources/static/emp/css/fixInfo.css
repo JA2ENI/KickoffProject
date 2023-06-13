@@ -9,6 +9,252 @@
 
 /* Reset */
 
+
+/* FixInfo */
+.row-request-container {
+    display: grid;
+    place-items: center;
+}
+
+.checkout__input__request {
+	margin-bottom: 24px;
+	width: 100%;
+}
+
+.checkout__input__request.mail {
+	width: 100%;
+	margin-right: 110px;
+}
+
+.checkout__input__request.email {
+	width: 100%;
+	margin: 27px 220px 23px 0px;
+}
+
+.checkout__input__request.inputEmail {
+	width: 100%;
+	margin: 27px 110px 24px 0px;
+}
+
+.checkout__input__request p {
+	color: #1c1c1c;
+	text-align: left;
+	margin-bottom: 3px;
+}
+
+.checkout__input__request p span {
+	color: #dd2222;
+}
+
+.checkout__input__request input {
+	width: 100%;
+	height: 46px;
+	border: 1px solid #ebebeb;
+	padding-left: 20px;
+	font-size: 16px;
+    color: #b2b2b2 !important;
+	border-radius: 4px;
+    font-weight: bold !important;
+}
+
+.inputBox:hover {
+	border-color: #ffc090;
+}
+
+.inputBox:focus {
+	border-color: #ffc090 !important;
+  	box-shadow: 0 0 1px 2px rgba(255, 192, 144, 0.5) !important;
+  	color: #b2b2b2;
+}
+
+.inputBox:disabled {
+  opacity: 0.5;
+}
+
+.inputBox.id,
+.inputBox.name {
+	width: 100%;
+	pointer-events: none;
+}
+
+.phone_content {
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.number_content {
+	display: flex;
+	width: 35%;
+	flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.row.mail {
+	display: -webkit-box;
+	width: 100%;
+}
+
+.inputBox.mail {
+	width: 100%;
+}
+
+.inputBox.email {
+	width: 100%;
+	height: 44px;
+	color: #b2b2b2;
+}
+
+.atSign {
+	margin: 34px 0 27px 0;
+	font-size: 15px;
+}
+
+.inputBox.phone {
+	width: 84%;
+}
+
+.checkPhone.phone {
+	width: 15% !important;
+	height: 100%;
+    color: #ffffff !important;
+}
+
+.btn-container {
+	text-align: center;
+}
+
+.address {
+	margin-bottom: 5px !important;
+}
+
+.update {
+    width: 40%;
+    height: 3em !important;
+    margin-top: 2%;
+    margin-bottom: 5px;
+    border: none !important;
+    border-radius: 0px !important;
+    font-size: 15px !important;
+    line-height: 2 !important;
+}
+
+.update:hover,
+.checkPhone.phone:hover {
+	background: #ffc090;
+	border-color: #ffc090;
+}
+
+.delete {
+	width: 40%;
+    height: 3em !important;
+    margin-top: 2%;
+    margin-bottom: 5px;
+    border: none !important;
+    border-radius: 0px !important;
+    font-size: 15px !important;
+    line-height: 2 !important;
+}
+
+.delete:hover,
+.delete_btn:hover {
+	color: red !important;
+	font-weight: bold;
+}
+
+/* fixInfo Check */
+.col-lg-8-1.col-md-6.check {
+	width: 30%;
+}
+
+.checkout__input__request.id,
+.checkout__input__request.pw {
+	margin-bottom: 10px;
+}
+
+.inputBox.id,
+.inputBox.pw {
+	width: 100% !important;
+}
+
+.userCheck {
+    width: 100%;
+    height: 3em !important;
+    margin-top: 8px;
+    margin-bottom: 5px;
+    border: none !important;
+    border-radius: 4px !important;
+    font-size: 15px !important;
+    line-height: 2 !important;
+}
+
+.userCheck:hover {
+	background: #ffc090;
+	border-color: #ffc090;
+}
+
+.notice {
+	width: 100%;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.notice.two {
+	width: 80%;
+	margin-bottom: 15px;
+}
+
+span.msg,
+span.msg2 {
+	color: red;
+}
+/*
+span {
+	font-size: 12px !important;
+	font-weight: bold !important;
+}
+
+*/
+
+/* fixInfoSelect */
+.btn-wrap {
+	display: flex;
+	flex-direction: row;
+    justify-content: center;
+    margin-top: 3%;
+    height: 30vh;
+}
+
+.select_pw,
+.select_info {
+	height: 250px !important;
+	width: 250px !important;
+	border-width: medium !important;
+	border-radius: 30px !important;
+	border-color: gray !important;
+	font-size: 23px !important;
+	font-weight: bold !important;
+	color: black !important;
+	background: #ffffff !important;
+}
+
+.select_pw {
+	margin-right: 20px;
+}
+
+.select_info {
+	margin-left: 20px;
+}
+
+.select_pw:hover,
+.select_info:hover {
+	color: #ffffff !important;
+	border-color: #ffc090 !important;
+	background: #ffc090 !important;
+}
+
+
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 		margin: 0;
 		padding: 0;

@@ -5,6 +5,8 @@ import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.EmployerDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.UserDO;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -29,5 +31,13 @@ public interface EmpMapper {
     public PlaceDO selectEmpFutsalFix(int placeId);
     
     public void updateEmpFutsalF(PlaceDO placeDO);
+    
+    public EmployerDO empInfoCheck(EmployerDO emp);
+	 
+	public EmployerDO empInfo(String empId);
+	 
+	public void updatePw(EmployerDO emp);
+	 
+	public void updateEmpInfo(EmployerDO empDO);
   
 }

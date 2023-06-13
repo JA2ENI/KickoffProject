@@ -29,36 +29,18 @@
 								</header>
 								<section>
 								<div class="container-fluid">
-								<div class="checkout spad">
 									<div class="container">
 										<div class="checkout__form">
-											<form role="form" id="frm" name="frm" action="/fixInfoCheckResult" method="POST">
-												<div class="row-request-container">
-													<div class="notice">회원님의 소중한 정보 보호를 위해,</div>
-													<div class="notice two">Kick Off의 현재 비밀번호를 확인해 주세요.</div>
-													<div class="col-lg-8-1 col-md-6 check">
-														<div class="checkout__input__request id">
-															<p>아이디<span>*</span></p>
-															<input type="text" class="inputBox id" name="empId" value="${empId}" readonly/>
-														</div>
-														<div class="checkout__input__request pw">
-															<p>비밀번호<span>*</span></p>
-															<input type="password" id="empPw" class="inputBox pw" name="empPw"/>
-															<span class="msg">${msg}</span>
-														</div>
-														<div class="btn-container">
-															<input type="submit" id="empCheck" class="empCheck" value="확인"/>
-														</div>
-													</div>
-												</div>
-											</form>
+											<div class="btn-wrap">
+												<button type="button" class="select_pw" onclick="location.href='/fixInfoPw'">비밀번호 변경</button>	
+												<button type="button" class="select_info" onclick="location.href='/fixInfo'">정보 수정</button>	
+											</div>
 										</div>
-									</div>
 									</div>
 									</div>
 								</section>
 							</div>
-							</div>
+							</div>	
 								
 					<!-- Sidebar -->
 						<div id="sidebar">
@@ -94,6 +76,7 @@
 			<script src="/emp/js/jquery.min.js"></script>
 			<script src="/emp/js/skel.min.js"></script>
 			<script src="/emp/js/util.js"></script>
+			<script src="/emp/js/fixInfo.js"></script>
 			<!--[if lte IE 8]><script src="/emp/js/ie/respond.min.js"></script><![endif]-->
 			<script src="/emp/js/main.js"></script>
 
