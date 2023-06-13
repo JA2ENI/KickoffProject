@@ -5,6 +5,7 @@ import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.EmployerDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.UserDO;
 
 import java.util.List;
 
@@ -22,8 +23,16 @@ public interface EmpService {
     
     List<PlaceDO> empFutsalList(String empId) throws Exception;
     
-    PlaceDO selectEmpFutsalFix(int placeID) throws Exception;
+    PlaceDO selectEmpFutsalFix(int placeId) throws Exception;
     
     void updateEmpFutsalF(PlaceDO placeDO) throws Exception;
+    
+	EmployerDO empInfoCheck(EmployerDO emp) throws Exception;
+
+	EmployerDO empInfo(String empId) throws Exception;
+	
+	void updatePw(EmployerDO emp) throws Exception;
+	
+	void updateEmpInfo(EmployerDO employerDO) throws Exception;
 
 }

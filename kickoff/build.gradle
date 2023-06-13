@@ -37,10 +37,12 @@ dependencies {
 	/* coolsms API */
 	implementation group: 'net.nurigo', name: 'javaSDK', version: '2.2'
 	
-	// 휴대혼 인증 API 그래들 설정
-	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+	/* Redis */
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	
-	
+	/* NAVER SMS API */
+	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13' 
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'

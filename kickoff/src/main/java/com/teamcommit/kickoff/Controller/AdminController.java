@@ -38,8 +38,8 @@ public class AdminController {
 
 //    // 회원 탈퇴 기능
 //    @RequestMapping("/deleteUser")
-//    public String deleteUser(@RequestParam("userId") String userId) {
-//        adminService.userDelete(userId);
+//    public String deleteUser(@RequestParam("userId") String userId) throws Exception {
+//        adminService.user_delete(userId);
 //
 //        return "/admin/userManagement";
 //    }

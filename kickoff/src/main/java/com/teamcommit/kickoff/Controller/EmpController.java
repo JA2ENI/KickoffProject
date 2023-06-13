@@ -1,14 +1,12 @@
 package com.teamcommit.kickoff.Controller;
 
 
-import com.teamcommit.kickoff.Common.CommandMap;
 import com.teamcommit.kickoff.Do.*;
 import com.teamcommit.kickoff.Service.emp.EmpService;
 import com.teamcommit.kickoff.Service.board.BoardService;
 
 import com.teamcommit.kickoff.Service.reservation.ReservationService;
 import com.teamcommit.kickoff.Service.login.LoginService;
-import com.teamcommit.kickoff.Service.board.BoardService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,8 +21,8 @@ import javax.servlet.http.HttpSession;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class EmpController {
@@ -32,12 +30,6 @@ public class EmpController {
     @Qualifier("EmpService")
     @Autowired
     private EmpService empService;
-
-    @Autowired
-    private BoardService boardService;
-
-    @Autowired
-    private LoginService loginService;
 
     @Autowired
     private ReservationService reservationService;
@@ -48,13 +40,15 @@ public class EmpController {
 
         try {
             List<ReservationDO> list = empService.selectReservation(reservationDO);
-            model.addAttribute("table", list);
+            model.addAttribute("table", list);            
         }
         catch (Exception e) {
             e.printStackTrace();
         }
         return view;
     }
+    
+
 
 
     @RequestMapping( "/myBoard")
@@ -70,35 +64,156 @@ public class EmpController {
 
         return view;
     }
-
-    @RequestMapping("/fixInfo")
-    public ModelAndView fixInfo(@ModelAttribute("empDO") EmployerDO employerDO, @RequestParam("empId") String empId, @RequestParam("empPw") String empPw, @RequestParam("empName") String empName, @RequestParam("empAddress") String empAddress, @RequestParam("empPhoneNumber") String empPhoneNumber, @RequestParam("empEmail") String empEmail, HttpSession session, Model model) throws Exception {
-
-        // EmployerDO.setEmpId(empId);
-        // EmployerDO.setEmpPw(empPw);
-
-        EmployerDO result = this.empService.info_fix(employerDO);
-
-        if (result != null) {
-            ModelAndView mv = new ModelAndView("redirect:/fixInfo"); // 바뀐 회원정보 조회로 가고 싶음
-            session.setAttribute("fixed_info", result);
-            return mv;
-        } else {
-            ModelAndView mv = new ModelAndView("redirect:/fixInfo");
-            session.removeAttribute("fixed_info");  // 로그인 실패 시 로그아웃 처리
-            return mv;
-        }
+    
+    @RequestMapping(value = "/fixInfoCheck")
+    public String fixInfoCheck(Model model, HttpSession session) throws Exception {
+        String view = "/emp/fixInfoCheck";
+    	
+        String empId = (String)session.getAttribute("empId");
+        
+        model.addAttribute("empId", empId);
+        
+        return view;
     }
 
-    /* 풋살장 등록 */
+    @RequestMapping(value = "/fixInfoCheckResult", method= RequestMethod.POST)
+    public ModelAndView fixInfoCheckResult(@RequestParam("empId")String empId, @RequestParam("empPw")String empPw) throws Exception {
+       
+    	ModelAndView mv = new ModelAndView("/emp/fixInfoCheck");
+    	
+        if(!empPw.isEmpty()) {
+        	EmployerDO emp = new EmployerDO();
+        	emp.setEmpId(empId);
+        	emp.setEmpPw(empPw);
+        	
+        	EmployerDO empInfo = empService.empInfoCheck(emp);
+        	
+        	if(empInfo != null) {
+        		mv.setViewName("redirect:/fixInfo");
+        		return mv;
+        	} else {
+        		mv.setViewName("/emp/fixInfoCheck");
+        		mv.addObject("msg", "입력하신 비밀번호가 올바르지 않습니다. 다시 확인해 주세요.");
+        		return mv;
+        	}
+        }
+        
+        mv.addObject("msg", "비밀번호를 입력해주세요.");
+        
+        return mv;
+        
+    }
+    @RequestMapping(value ="/fixInfoSelect")
+    public String fixInfoSelect() throws Exception {
+    	String view = "/emp/fixInfoSelect";
+    	
+    	return view;
+    }
+    
+    @RequestMapping(value ="/fixInfoPw")
+    public String fixInfoPw() throws Exception {
+    	String view = "/emp/fixInfoPw";
+    	
+    	return view;
+    }
+    
+    @RequestMapping(value ="/fixInfoPwResult")
+    public ModelAndView fixInfoPw(HttpServletRequest request, HttpSession session) throws Exception {
+    	ModelAndView mv = new ModelAndView("/emp/fixInfoPw");
+    	
+    	String newPw = request.getParameter("empPw");
+    	String newPw2 = request.getParameter("empPw2");
+    	
+    	if(newPw == "" || newPw2 == "") {
+    		if(newPw == "") {
+    			mv.setViewName("/emp/fixInfoPw");
+    			mv.addObject("msg", "새 비밀번호를 입력해주세요.");
+    			return mv;
+    		} else if(newPw2 == "") {
+    			mv.setViewName("/emp/fixInfoPw");
+    			mv.addObject("msg2", "새 비밀번호 확인을 입력해주세요.");
+    			return mv;
+    		}
+    	}
+		
+    	if(newPw != "" && newPw2 != "") {
+    		if(newPw.equals(newPw2) == false) {
+    			mv.setViewName("/emp/fixInfoPw");
+    			mv.addObject("msg2", "비밀번호가 일치하지 않습니다.");
+    			return mv;
+    		} else if(newPw.equals(newPw2) == true) {
+    			String empId = (String)session.getAttribute("empId");
+    			
+    			EmployerDO empInfo = empService.empInfo(empId);
+    			
+    			String empPw = empInfo.getEmpPw();
+
+    			if(newPw.equals(empPw) == true) {
+    				mv.setViewName("/emp/fixInfoPw");
+        			mv.addObject("msg", "현재 비밀번호와 같습니다. 다시 입력해주세요.");
+        			return mv;
+    			} else if(newPw.equals(empPw) == false) {
+	    			EmployerDO emp = new EmployerDO();
+	    			emp.setEmpId(empId);
+	    			emp.setEmpPw(newPw);
+	
+	    			empService.updatePw(emp);
+	
+	    			mv.setViewName("/emp/fixInfoPw");
+	    			mv.addObject("success", "success");
+	    			
+	    			System.out.println("success : " + mv.getModel());
+	    			return mv;
+    			}
+    		}
+    	}
+    	
+    	return mv;
+    }
+    
+    @RequestMapping(value = "/fixInfo")
+    public String fixInfo(Model model, HttpSession session) throws Exception {
+        String view = "/emp/fixInfo";
+        
+        String empId = (String)session.getAttribute("empId");
+        
+        EmployerDO empInfo = empService.empInfo(empId);
+        
+        String empDay = empInfo.getEmpDate();
+        
+    	String year = empDay.substring(0, 4);
+    	String month = empDay.substring(5, 7);
+    	String day = empDay.substring(8, 10);
+    	
+    	HashMap<String, String> map = new HashMap<>();
+    	
+    	map.put("year", year);
+    	map.put("month", month);
+    	map.put("day", day);
+    	
+    	model.addAttribute("empInfo", empInfo);
+    	model.addAttribute("empDate", map);
+        
+        return view;
+    }
+    
+    @RequestMapping(value = "/fixInfoResult")
+    public String fixInfoResult(@ModelAttribute("employerDO")EmployerDO employerDO, @RequestParam("year")String year, @RequestParam("month")String month, @RequestParam("day")String day, HttpServletRequest request) throws Exception {
+        String view = "redirect:/fixInfo";
+
+        String empDay = year + month + day;
+        
+        employerDO.setEmpDate(empDay);
+        
+		empService.updateEmpInfo(employerDO); 
+        
+        return view;
+    }
+
+    /* 풋살장 등록 폼 */
     @RequestMapping(value = "/empFutsalForm")
     public String empFutsalForm(@ModelAttribute("placeDO") PlaceDO placeDO, Model model, HttpServletRequest request) throws Exception {
         String view = "/emp/empFutsal";
-
-        String empId = (String) request.getSession().getAttribute("empId");
-
-        PlaceDO placeInfo = reservationService.selectPlaceInfo(empId);
-        model.addAttribute("placeInfo", placeInfo);
 
         return view;
     }
@@ -112,6 +227,7 @@ public class EmpController {
         그리고 emp의 5개 jsp마다 '풋살장 등록' 클릭 링크 주소 변경해 놓았어요.
     */
 
+    /* 풋살장 등록 */
     @RequestMapping(value="/empFutsal")
     public ModelAndView empFutsal(@ModelAttribute("placeDO") PlaceDO placeDO, HttpServletRequest request, RedirectAttributes redirect) throws Exception {
 
@@ -120,23 +236,6 @@ public class EmpController {
         empService.empFutsalInsert(placeDO);
 
         return mv;
-
-
-
-/*       try {
-
-            empService.updateFutsal(placeDO);
-            redirect.addFlashAttribute("redirect", placeDO.getPlaceId());
-
-            redirect.addFlashAttribute("msg", "풋살장 등록이 완료되었습니다.");
-
-        } catch (Exception e) {
-
-            redirect.addFlashAttribute("msg", "오류가 발생되었습니다.");
-
-        }
-
-        return mv;*/
     }
 
 
@@ -163,22 +262,23 @@ public class EmpController {
     }
     
     
-    /* 풋살장 수정 */
-    @RequestMapping(value = "/empFutsalFupdate")
-    public String empFutsalFupdate(@ModelAttribute("placeDO") PlaceDO placeDO, @RequestParam(value = "placeId") int placeId, Model model) throws Exception {
+    /* 풋살장 수정 폼*/
+    @RequestMapping(value = "/empFutsalUpdateForm")
+    public String empFutsalUpdateForm(@RequestParam(value = "placeId")int placeId, Model model) throws Exception {
         String view = "/emp/empFutsalF";
-
+        
         PlaceDO empFutsalFix = empService.selectEmpFutsalFix(placeId);
+        
         model.addAttribute("empFutsalFix", empFutsalFix);
-
+        
         return view;
     }
     
-    
+    /* 풋살장 수정*/
     @RequestMapping(value = "/empFutsalF")
-    public ModelAndView empFutsalF(@ModelAttribute("placeDO") PlaceDO placeDO, @RequestParam(value = "placeId") int placeId) throws Exception {
+    public ModelAndView empFutsalUpdate(@ModelAttribute("placeDO")PlaceDO placeDO) throws Exception {
 
-        ModelAndView mv = new ModelAndView("redirect:/empFutsalFix?placeId"+placeId);
+        ModelAndView mv = new ModelAndView("redirect:/empFutsalFix");
 
         empService.updateEmpFutsalF(placeDO);
 
