@@ -90,11 +90,6 @@ window.onload = function() {
     });
 	}
 	
-
-
-        
-     
-	
 	function prevWeek() {
         weekCalendar(-7);    
     }
