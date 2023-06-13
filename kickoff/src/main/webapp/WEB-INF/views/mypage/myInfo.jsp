@@ -5,12 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Kick Off: 마이페이지</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
 	
 	<link rel="stylesheet" href="/myPage/css/myInfo.css">
 	<link rel="stylesheet" href="/myPage/css/main.css" />
+	
+	<title>Kick Off: 마이페이지</title>
 </head>
 <body>
 	<div id="wrapper">
@@ -24,7 +27,7 @@
 				<section class="checkout spad">
 					<div class="container">
 						<div class="checkout__form">
-							<form role="form" id="frm" name="frm" action="" method="POST">
+							<form role="form" id="frm" name="frm" action="/myInfoResult" method="POST">
 								<div class="row-request-container">
 									<div class="col-lg-8-1 col-md-6">
 										<div class="checkout__input__request">
@@ -41,7 +44,7 @@
 											<p class="atSign">@</p>
 											<div class="col-lg-6">
 												<div class="checkout__input__request email">
-													<select id="emailAddress" class="inputBox email" name="email">
+													<select id="emailAddress" class="inputBox email">
 					                                	<option value="">이메일 선택</option>
 					                                	<option value="naver.com" <c:if test="${map.email eq 'naver'}">selected</c:if>>naver.com</option>
 					                                	<option value="kakao.com" <c:if test="${map.email eq 'kakao'}">selected</c:if>>kakao.com</option>
@@ -52,8 +55,9 @@
 					                                </select>
 												</div>
 												<div class="checkout__input__request inputEmail">
-				                                	<input type="text" id="selboxDirect" class="inputBox email" name="email" />
+				                                	<input type="text" id="selboxDirect" class="inputBox email" />
 				                                </div>
+				                                <input type="hidden" id="email" name="email" value=""/>
 											</div>
 										</div>
 										<div class="checkout__input__request">
@@ -100,10 +104,10 @@
 											<input type="text" id="userAddress" class="inputBox" name="userAddress" value="${userInfo.userAddress}" onclick="kakaopost()">
 										</div>
 										<div class="btn-container">
- 											<input type="button" id="update" class="update" onclick="validCheck()" value="수정"/>
+ 											<input type="submit" id="update" class="update" onclick="validCheck()" value="수정"/>
 										</div>
 										<div class="">
-											<a href="/main" id="delete" class="delete" onclick="">회원 탈퇴</a>
+											<a href="javascript:void(0);" id="delete" class="delete" onclick="userDelete()">회원 탈퇴</a>
 										</div>
 									</div>
 								</div>
@@ -133,19 +137,64 @@
 	</div>
 	
 	<script>
-		$(function(){
-			$("#selboxDirect").hide();
-			$("#checkPhoneBox").hide();
-			$("#emailAddress").change(function() {
-				if($("#emailAddress").val() == "direct") {
-					$("#emailAddress").hide();
-					$("#selboxDirect").show();
-				}  else {
-					$("#selboxDirect").hide();
-				}
-			}) 
+		function userDelete() {
+			var confirmFlag = confirm("정말 탈퇴하시겠습니까?");
+	 	
+			if(confirmFlag) {
+				location.href="/userDelete";
+			} 
+		}
+	
+	
+		$("#sendPhone").click(function() {			
+			if($("#phone").val() != "")	{
+				$("#checkPhoneBox").show();
+			}  else {
+				$("#checkPhoneBox").hide();
+			}
+			
+			var phoneNumber = $('#phone').val();
+			
+			var obj = {"to" : phoneNumber};
+			
+			Swal.fire({
+                text: '인증번호 발송 완료!',
+            });
+			
+			$.ajax({
+				url: "/sms/send",
+				type: "post",
+				contentType: "application/json",
+				dataType: "json",
+				data: JSON.stringify(obj),
+				success: function(data) {
+		            $('#checkPhoneBtn').click(function() {
+		                if($.trim(data) == $('#checkPhone').val()){
+		                	alert(성공);
+		                    alert(data.content);
+		                   	alert(data.smsConfirmNum);
+		                    Swal.fire(
+		                        '인증성공!',
+		                        '휴대폰 인증이 정상적으로 완료되었습니다.',
+		                        'success'
+		                    )
+
+		                } else {
+		                	alert('실패');
+		                    Swal.fire({
+		                        icon: 'error',
+		                        title: '인증오류',
+		                        text: '인증번호가 올바르지 않습니다!',
+		                    });
+		                }
+		            });
+		        }
+			});
 		});
 		
+		
+		
+		/* 
 		$("#sendPhone").click(function() {
 			
 			if($("#phone").val() != "") {
@@ -156,6 +205,8 @@
 			
 			let phoneNumber = $('#phone').val();
 			
+			alert(phoneNumber);
+			
 			Swal.fire({
                 text: '인증번호 발송 완료!',
             });
@@ -164,11 +215,11 @@
 				type: "POST",
 				dataType: "json",
 				url: "/sms/send",
-				data: {
+ 				data: {
 					"to" : phoneNumber
 				},
-				success: function(res){
-		            $('#checkPhoneBtn').click(function(){
+				success: function(res) {
+		            $('#checkPhoneBtn').click(function() {
 		                if($.trim(res) == $('#checkPhone').val()){
 		                    Swal.fire(
 		                        '인증성공!',
@@ -186,7 +237,7 @@
 		            });
 		        }
 			});
-		}); 
+		});  */
 		
 	</script>
 	

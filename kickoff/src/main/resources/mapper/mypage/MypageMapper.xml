@@ -93,7 +93,7 @@
         ]]>
     </update>
     
-     <!-- User Info Update -->
+    <!-- User Info Update -->
     <update id="updateUserInfo" parameterType="com.teamcommit.kickoff.Do.UserDO">
         <![CDATA[
             UPDATE
@@ -108,7 +108,16 @@
         ]]>
     </update>
     
-    
+    <!-- User Info Delete -->
+    <update id="userDelete" parameterType="String">
+        <![CDATA[
+            DELETE
+            FROM
+                USERS
+            WHERE
+            	USER_ID = #{userId}
+        ]]>
+    </update>
     
     
     

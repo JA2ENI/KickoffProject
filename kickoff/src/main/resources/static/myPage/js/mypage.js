@@ -16,6 +16,29 @@ function cancel(url) {
 	} 
 }
 
+/* Email */
+$("#selboxDirect").change(function(){
+	$('#email').val($(this).val());
+});
+
+$("#emailAddress").click(function(){
+	$('#email').val($(this).val());
+});
+
+/* Email 직접입력 */
+$(function(){
+	$("#selboxDirect").hide();
+	$("#checkPhoneBox").hide();
+	$("#emailAddress").change(function() {
+		if($("#emailAddress").val() == "direct") {
+			$("#emailAddress").hide();
+			$("#selboxDirect").show();
+		}  else {
+			$("#selboxDirect").hide();
+		}
+	}) 
+});
+
 /* 유효성 검사 */
 /*function validCheck() {
     const frm = document.forms[0];

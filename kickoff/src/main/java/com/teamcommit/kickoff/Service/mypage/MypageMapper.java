@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.UserDO;
 
 @Mapper
@@ -26,5 +27,9 @@ public interface MypageMapper {
 	 public void updatePw(UserDO user);
 	 
 	 public void updateUserInfo(UserDO userDO);
+	 
+	 public List<TeamDO> myTeamList(String userId);
+	 
+	 public void userDelete(String userId);
 	 
 }

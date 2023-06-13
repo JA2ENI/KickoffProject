@@ -17,11 +17,15 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class SmsController {
 
-	private final SmsService smsService = new SmsService();
+	private final SmsService smsService;
 
 	@PostMapping("/sms/send")
     public SmsResponseDto sendSms(@RequestBody MessageDto messageDto) throws UnsupportedEncodingException, URISyntaxException, NoSuchAlgorithmException, InvalidKeyException, JsonProcessingException {
         SmsResponseDto responseDto = smsService.sendSms(messageDto);
+        
+        //null...
+        System.out.println("SmsConfirmNum() : " + responseDto.getSmsConfirmNum());
+        
         return responseDto;
     }
 	
