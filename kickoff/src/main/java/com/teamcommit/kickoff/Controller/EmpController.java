@@ -89,7 +89,7 @@ public class EmpController {
         	EmployerDO empInfo = empService.empInfoCheck(emp);
         	
         	if(empInfo != null) {
-        		mv.setViewName("redirect:/fixInfo");
+        		mv.setViewName("redirect:/fixInfoSelect");
         		return mv;
         	} else {
         		mv.setViewName("/emp/fixInfoCheck");
@@ -178,32 +178,41 @@ public class EmpController {
         String empId = (String)session.getAttribute("empId");
         
         EmployerDO empInfo = empService.empInfo(empId);
+        System.out.println("empId"+ empInfo.getEmpId());
         
         String empDay = empInfo.getEmpDate();
-        
     	String year = empDay.substring(0, 4);
     	String month = empDay.substring(5, 7);
     	String day = empDay.substring(8, 10);
+    	
+    	String empEmail = empInfo.getEmpEmail();
+    	String[] arrayEmail = empEmail.split("@|\\."); 
+    	String mail = arrayEmail[0];
+    	String email = arrayEmail[1];
     	
     	HashMap<String, String> map = new HashMap<>();
     	
     	map.put("year", year);
     	map.put("month", month);
     	map.put("day", day);
+    	map.put("mail", mail);
+    	map.put("email", email);
     	
     	model.addAttribute("empInfo", empInfo);
-    	model.addAttribute("empDate", map);
+    	model.addAttribute("map", map);
         
         return view;
     }
     
     @RequestMapping(value = "/fixInfoResult")
-    public String fixInfoResult(@ModelAttribute("employerDO")EmployerDO employerDO, @RequestParam("year")String year, @RequestParam("month")String month, @RequestParam("day")String day, HttpServletRequest request) throws Exception {
+    public String fixInfoResult(@ModelAttribute("employerDO")EmployerDO employerDO, @RequestParam("year")String year, @RequestParam("month")String month, @RequestParam("day")String day, @RequestParam("mail")String mail, @RequestParam("email")String email, HttpServletRequest request) throws Exception {
         String view = "redirect:/fixInfo";
 
         String empDay = year + month + day;
+        String empEmail = mail + "@" + email;
         
         employerDO.setEmpDate(empDay);
+        employerDO.setEmpEmail(empEmail);
         
 		empService.updateEmpInfo(employerDO); 
         
