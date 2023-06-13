@@ -145,7 +145,7 @@
 	border-color: #ffc090;
 }
 
-.delete {
+.empDelete {
 	width: 40%;
     height: 3em !important;
     margin-top: 2%;
@@ -156,8 +156,8 @@
     line-height: 2 !important;
 }
 
-.delete:hover,
-.delete_btn:hover {
+.empDelete:hover,
+.empDelete_btn:hover {
 	color: red !important;
 	font-weight: bold;
 }

@@ -32,12 +32,14 @@ public interface EmpMapper {
     
     public void updateEmpFutsalF(PlaceDO placeDO);
     
-    public EmployerDO empInfoCheck(EmployerDO emp);
+    public EmployerDO empInfoCheck(EmployerDO employer);
 	 
 	public EmployerDO empInfo(String empId);
 	 
-	public void updatePw(EmployerDO emp);
+	public void updatePw(EmployerDO employer);
 	 
-	public void updateEmpInfo(EmployerDO empDO);
+	public void updateEmpInfo(EmployerDO employerDO);
+	
+	public void deleteEmp(EmployerDO emoployerDO);
   
 }

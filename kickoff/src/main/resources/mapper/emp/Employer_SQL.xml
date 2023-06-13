@@ -83,6 +83,16 @@
         ]]>
     </update>
     
+    <!-- 회원 탈퇴 -->
+    <delete id="deleteEmp">
+    	DELETE FROM
+    		EMPLOYER
+    	WHERE
+    		EMP_ID = #{empId}
+    	AND
+    		EMP_PW = #{empPw}
+    </delete>
+    
 
     <insert id="empFutsalInsert" parameterType="com.teamcommit.kickoff.Do.PlaceDO">
         <![CDATA[

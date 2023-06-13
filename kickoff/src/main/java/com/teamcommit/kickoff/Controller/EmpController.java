@@ -178,7 +178,6 @@ public class EmpController {
         String empId = (String)session.getAttribute("empId");
         
         EmployerDO empInfo = empService.empInfo(empId);
-        System.out.println("empId"+ empInfo.getEmpId());
         
         String empDay = empInfo.getEmpDate();
     	String year = empDay.substring(0, 4);
@@ -218,6 +217,14 @@ public class EmpController {
         
         return view;
     }
+    
+    @RequestMapping("/empDelete")
+	public String delete(EmployerDO employerDO, HttpSession session) throws Exception {
+		String empId = (String) session.getAttribute("empId");
+		empService.deleteEmp(employerDO);
+		session.invalidate();
+		return "redirect:/main";
+	}
 
     /* 풋살장 등록 폼 */
     @RequestMapping(value = "/empFutsalForm")
@@ -294,14 +301,5 @@ public class EmpController {
         return mv;
     }
     
-
-    /* 회원 정보 수정 */
-    @RequestMapping(value = "/fixInfo", method = RequestMethod.GET)
-    public String updateEmpInfo() {
-
-        String view = "/emp/fixInfo";
-
-        return view;
-    }
 
 }

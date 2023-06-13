@@ -58,8 +58,8 @@ public class EmpServiceImpl implements EmpService {
     
     
     @Override
-    public EmployerDO empInfoCheck(EmployerDO emp) throws Exception {
-    	return empMapper.empInfoCheck(emp);
+    public EmployerDO empInfoCheck(EmployerDO employerDO) throws Exception {
+    	return empMapper.empInfoCheck(employerDO);
     }
     
     @Override
@@ -68,14 +68,20 @@ public class EmpServiceImpl implements EmpService {
     }
     
     @Override
-    public void updatePw(EmployerDO emp) throws Exception {
-    	empMapper.updatePw(emp);
+    public void updatePw(EmployerDO employerDO) throws Exception {
+    	empMapper.updatePw(employerDO);
     }
     
     @Override
     public void updateEmpInfo(EmployerDO employerDO) throws Exception {
     	empMapper.updateEmpInfo(employerDO);
     }
+
+	@Override
+	public void deleteEmp(EmployerDO employerDO) throws Exception {
+		empMapper.deleteEmp(employerDO);
+		
+	}
 
 
 }
