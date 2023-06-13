@@ -44,7 +44,7 @@
 											<div class="col-lg-6">
 												<div class="checkout__input__request mail">
 													<p>이메일<span>*</span></p>
-													<input type="text" id="empEmail" class="inputBox mail" name="mail" value="${empInfo.empEmail}"/>
+													<input type="text" id="empEmail" class="inputBox mail" name="mail" value="${map.empEmail}"/>
 												</div>
 											</div>
 											<p class="atSign">@</p>
@@ -52,11 +52,11 @@
 												<div class="checkout__input__request email">
 													<select id="emailAddress" class="inputBox email" name="email">
 					                                	<option value="">이메일 선택</option>
-					                                	<option value="naver.com">naver.com</option>
-					                                	<option value="kakao.com">kakao.com</option>
-					                                	<option value="gmail.com">gmail.com</option>
-					                                	<option value="daum.net">daum.net</option>
-					                                	<option value="nate.com">nate.com</option>
+					                                	<option value="naver.com" <c:if test="${map.email eq 'naver'}">selected</c:if>>naver.com</option>
+					                                	<option value="kakao.com" <c:if test="${map.email eq 'kakao'}">selected</c:if>>kakao.com</option>
+					                                	<option value="gmail.com" <c:if test="${map.email eq 'gmail'}">selected</c:if>>gmail.com</option>
+					                                	<option value="daum.net"  <c:if test="${map.email eq 'daum'}" >selected</c:if>>daum.net </option>
+					                                	<option value="nate.com"  <c:if test="${map.email eq 'nate'}" >selected</c:if>>nate.com </option>
 					                                	<option value="direct">직접입력</option>
 					                                </select>
 												</div>
@@ -80,19 +80,19 @@
 											<div class="col-lg-6">
 												<div class="checkout__input__request">
 													<p>설립 연도<span>*</span></p><!-- placeholder="2022" -->
-													<input type="text" id="year" class="inputBox" name="year" value="${birthday.year}" maxlength="4"/>
+													<input type="text" id="year" class="inputBox" name="year" value="${map.year}" maxlength="4"/>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="checkout__input__request">
 													<p>월<span>*</span></p><!-- placeholder="12" -->
-													<input type="text" id="month" class="inputBox" name="month" value="${birthday.month}" maxlength="2"/>
+													<input type="text" id="month" class="inputBox" name="month" value="${map.month}" maxlength="2"/>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="checkout__input__request">
 													<p>일<span>*</span></p><!-- placeholder="25" -->
-													<input type="text" id="day" class="inputBox" name="day" value="${birthday.day}" maxlength="2"/>
+													<input type="text" id="day" class="inputBox" name="day" value="${map.day}" maxlength="2"/>
 												</div>
 											</div>
 											<input type="hidden" id="" name="empBirthdate" value=""/>
