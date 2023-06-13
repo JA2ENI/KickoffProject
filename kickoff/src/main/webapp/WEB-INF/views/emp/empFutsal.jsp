@@ -155,39 +155,30 @@
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-				</section>
 
-				<!-- /.container-fluid -->
-			</div>
-		</div>
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
 
-		<!-- Sidebar -->
-		<div id="sidebar">
-			<div class="inner">
-
-				<!-- Menu -->
-				<nav id="menu">
-					<header class="major">
-						<h2>Menu</h2>
-					</header>
-					<ul>
-						<li><a href="/empReservation">예약관리</a></li>
-						<li><a href="/myBoard">내 게시글</a></li>
-						<li><a href="/fixInfo">회원 정보 수정</a></li>
-						<li>
-							<!-- opener 에 원래 active 열고 닫게 할 수 있어야 함 --> <span
-							class="opener active">풋살장 관리</span>
-							<ul>
-								<li><a href="/empFutsalForm">풋살장 등록</a></li>
-								<li><a href="/empFutsalFix">풋살장 조회</a></li>
-							</ul>
-						</li>
-					</ul>
-				</nav>
-
-
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="/empReservation">예약관리</a></li>
+										<li><a href="/myBoard">내 게시글</a></li>
+										<li><a href="/fixInfoCheck">회원 정보 수정</a></li>
+										<li>
+											<!-- opener 에 원래 active 열고 닫게 할 수 있어야 함 -->
+											<span class="opener active">풋살장 관리</span>
+											<ul>
+												<li><a href="/empFutsalForm">풋살장 등록</a></li>
+												<li><a href="/empFutsalFix">풋살장 조회</a></li>
+											</ul>
+										</li>										
+									</ul>
+								</nav>
 			</div>
 		</div>
 

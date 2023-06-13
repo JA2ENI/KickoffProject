@@ -5,6 +5,8 @@ import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.EmployerDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.UserDO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +54,27 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public void updateEmpFutsalF(PlaceDO placeDO) throws Exception {
         empMapper.updateEmpFutsalF(placeDO);
+    }
+    
+    
+    @Override
+    public EmployerDO empInfoCheck(EmployerDO emp) throws Exception {
+    	return empMapper.empInfoCheck(emp);
+    }
+    
+    @Override
+    public EmployerDO empInfo(String empId) throws Exception {
+    	return empMapper.empInfo(empId);
+    }
+    
+    @Override
+    public void updatePw(EmployerDO emp) throws Exception {
+    	empMapper.updatePw(emp);
+    }
+    
+    @Override
+    public void updateEmpInfo(EmployerDO employerDO) throws Exception {
+    	empMapper.updateEmpInfo(employerDO);
     }
 
 

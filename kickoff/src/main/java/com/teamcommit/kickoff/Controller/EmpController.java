@@ -19,6 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -61,24 +64,150 @@ public class EmpController {
 
         return view;
     }
+    
+    @RequestMapping(value = "/fixInfoCheck")
+    public String fixInfoCheck(Model model, HttpSession session) throws Exception {
+        String view = "/emp/fixInfoCheck";
+    	
+        String empId = (String)session.getAttribute("empId");
+        
+        model.addAttribute("empId", empId);
+        
+        return view;
+    }
 
-    @RequestMapping("/fixInfo")
-    public ModelAndView fixInfo(@ModelAttribute("empDO") EmployerDO employerDO, @RequestParam("empId") String empId, @RequestParam("empPw") String empPw, @RequestParam("empName") String empName, @RequestParam("empAddress") String empAddress, @RequestParam("empPhoneNumber") String empPhoneNumber, @RequestParam("empEmail") String empEmail, HttpSession session, Model model) throws Exception {
-
-        // EmployerDO.setEmpId(empId);
-        // EmployerDO.setEmpPw(empPw);
-
-        EmployerDO result = this.empService.info_fix(employerDO);
-
-        if (result != null) {
-            ModelAndView mv = new ModelAndView("redirect:/fixInfo"); // 바뀐 회원정보 조회로 가고 싶음
-            session.setAttribute("fixed_info", result);
-            return mv;
-        } else {
-            ModelAndView mv = new ModelAndView("redirect:/fixInfo");
-            session.removeAttribute("fixed_info");  // 로그인 실패 시 로그아웃 처리
-            return mv;
+    @RequestMapping(value = "/fixInfoCheckResult", method= RequestMethod.POST)
+    public ModelAndView fixInfoCheckResult(@RequestParam("empId")String empId, @RequestParam("empPw")String empPw) throws Exception {
+       
+    	ModelAndView mv = new ModelAndView("/emp/fixInfoCheck");
+    	
+        if(!empPw.isEmpty()) {
+        	EmployerDO emp = new EmployerDO();
+        	emp.setEmpId(empId);
+        	emp.setEmpPw(empPw);
+        	
+        	EmployerDO empInfo = empService.empInfoCheck(emp);
+        	
+        	if(empInfo != null) {
+        		mv.setViewName("redirect:/fixInfo");
+        		return mv;
+        	} else {
+        		mv.setViewName("/emp/fixInfoCheck");
+        		mv.addObject("msg", "입력하신 비밀번호가 올바르지 않습니다. 다시 확인해 주세요.");
+        		return mv;
+        	}
         }
+        
+        mv.addObject("msg", "비밀번호를 입력해주세요.");
+        
+        return mv;
+        
+    }
+    @RequestMapping(value ="/fixInfoSelect")
+    public String fixInfoSelect() throws Exception {
+    	String view = "/emp/fixInfoSelect";
+    	
+    	return view;
+    }
+    
+    @RequestMapping(value ="/fixInfoPw")
+    public String fixInfoPw() throws Exception {
+    	String view = "/emp/fixInfoPw";
+    	
+    	return view;
+    }
+    
+    @RequestMapping(value ="/fixInfoPwResult")
+    public ModelAndView fixInfoPw(HttpServletRequest request, HttpSession session) throws Exception {
+    	ModelAndView mv = new ModelAndView("/emp/fixInfoPw");
+    	
+    	String newPw = request.getParameter("empPw");
+    	String newPw2 = request.getParameter("empPw2");
+    	
+    	if(newPw == "" || newPw2 == "") {
+    		if(newPw == "") {
+    			mv.setViewName("/emp/fixInfoPw");
+    			mv.addObject("msg", "새 비밀번호를 입력해주세요.");
+    			return mv;
+    		} else if(newPw2 == "") {
+    			mv.setViewName("/emp/fixInfoPw");
+    			mv.addObject("msg2", "새 비밀번호 확인을 입력해주세요.");
+    			return mv;
+    		}
+    	}
+		
+    	if(newPw != "" && newPw2 != "") {
+    		if(newPw.equals(newPw2) == false) {
+    			mv.setViewName("/emp/fixInfoPw");
+    			mv.addObject("msg2", "비밀번호가 일치하지 않습니다.");
+    			return mv;
+    		} else if(newPw.equals(newPw2) == true) {
+    			String empId = (String)session.getAttribute("empId");
+    			
+    			EmployerDO empInfo = empService.empInfo(empId);
+    			
+    			String empPw = empInfo.getEmpPw();
+
+    			if(newPw.equals(empPw) == true) {
+    				mv.setViewName("/emp/fixInfoPw");
+        			mv.addObject("msg", "현재 비밀번호와 같습니다. 다시 입력해주세요.");
+        			return mv;
+    			} else if(newPw.equals(empPw) == false) {
+	    			EmployerDO emp = new EmployerDO();
+	    			emp.setEmpId(empId);
+	    			emp.setEmpPw(newPw);
+	
+	    			empService.updatePw(emp);
+	
+	    			mv.setViewName("/emp/fixInfoPw");
+	    			mv.addObject("success", "success");
+	    			
+	    			System.out.println("success : " + mv.getModel());
+	    			return mv;
+    			}
+    		}
+    	}
+    	
+    	return mv;
+    }
+    
+    @RequestMapping(value = "/fixInfo")
+    public String fixInfo(Model model, HttpSession session) throws Exception {
+        String view = "/emp/fixInfo";
+        
+        String empId = (String)session.getAttribute("empId");
+        
+        EmployerDO empInfo = empService.empInfo(empId);
+        
+        String empDay = empInfo.getEmpDate();
+        
+    	String year = empDay.substring(0, 4);
+    	String month = empDay.substring(5, 7);
+    	String day = empDay.substring(8, 10);
+    	
+    	HashMap<String, String> map = new HashMap<>();
+    	
+    	map.put("year", year);
+    	map.put("month", month);
+    	map.put("day", day);
+    	
+    	model.addAttribute("empInfo", empInfo);
+    	model.addAttribute("empDate", map);
+        
+        return view;
+    }
+    
+    @RequestMapping(value = "/fixInfoResult")
+    public String fixInfoResult(@ModelAttribute("employerDO")EmployerDO employerDO, @RequestParam("year")String year, @RequestParam("month")String month, @RequestParam("day")String day, HttpServletRequest request) throws Exception {
+        String view = "redirect:/fixInfo";
+
+        String empDay = year + month + day;
+        
+        employerDO.setEmpDate(empDay);
+        
+		empService.updateEmpInfo(employerDO); 
+        
+        return view;
     }
 
     /* 풋살장 등록 폼 */
