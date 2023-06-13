@@ -35,6 +35,6 @@ public interface EmpService {
 	
 	void updateEmpInfo(EmployerDO employerDO) throws Exception;
 
-	public void deleteEmp(EmployerDO employerDO) throws Exception;
+	public void deleteEmp(String empId) throws Exception;
 
 }

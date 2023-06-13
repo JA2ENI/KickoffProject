@@ -221,7 +221,7 @@ public class EmpController {
     @RequestMapping("/empDelete")
 	public String delete(EmployerDO employerDO, HttpSession session) throws Exception {
 		String empId = (String) session.getAttribute("empId");
-		empService.deleteEmp(employerDO);
+		empService.deleteEmp(empId);
 		session.invalidate();
 		return "redirect:/main";
 	}

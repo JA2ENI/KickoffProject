@@ -78,8 +78,8 @@ public class EmpServiceImpl implements EmpService {
     }
 
 	@Override
-	public void deleteEmp(EmployerDO employerDO) throws Exception {
-		empMapper.deleteEmp(employerDO);
+	public void deleteEmp(String empId) throws Exception {
+		empMapper.deleteEmp(empId);
 		
 	}
 

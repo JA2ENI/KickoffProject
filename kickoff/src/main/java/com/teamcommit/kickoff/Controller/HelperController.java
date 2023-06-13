@@ -64,7 +64,6 @@ public class HelperController {
     	return array.toString();
     }
 
-    // insert 부분은 아직 미완성...! 예약 내역 완성되는대로 다시 츄라이
     @GetMapping("/helperInsert")
     public String helperInsert(Model model, HttpSession session) {
         String view = "/helper/helperInsert";
