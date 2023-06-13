@@ -27,12 +27,14 @@ public interface EmpService {
     
     void updateEmpFutsalF(PlaceDO placeDO) throws Exception;
     
-	EmployerDO empInfoCheck(EmployerDO emp) throws Exception;
+	EmployerDO empInfoCheck(EmployerDO employerDO) throws Exception;
 
 	EmployerDO empInfo(String empId) throws Exception;
 	
-	void updatePw(EmployerDO emp) throws Exception;
+	void updatePw(EmployerDO employerDO) throws Exception;
 	
 	void updateEmpInfo(EmployerDO employerDO) throws Exception;
+
+	public void deleteEmp(EmployerDO employerDO) throws Exception;
 
 }
