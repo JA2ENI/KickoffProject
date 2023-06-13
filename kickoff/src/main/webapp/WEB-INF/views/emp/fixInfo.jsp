@@ -113,7 +113,7 @@
  											<input type="submit" id="update" class="update" value="수정"/>
 										</div>
 										<div class="btn-container">
-											<input type="button" id="delete" class="delete" value="회원 탈퇴" onclick=""/>
+											<input type="button" id="empDelete" class="empDelete" value="회원 탈퇴"/>
 										</div>
 									</div>
 								</div>
