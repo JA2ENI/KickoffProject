@@ -84,13 +84,11 @@
     </update>
     
     <!-- 회원 탈퇴 -->
-    <delete id="deleteEmp">
+    <delete id="deleteEmp" parameterType="String">
     	DELETE FROM
     		EMPLOYER
     	WHERE
     		EMP_ID = #{empId}
-    	AND
-    		EMP_PW = #{empPw}
     </delete>
     
 

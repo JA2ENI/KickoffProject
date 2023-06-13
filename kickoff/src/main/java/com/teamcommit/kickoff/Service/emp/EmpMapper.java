@@ -40,6 +40,6 @@ public interface EmpMapper {
 	 
 	public void updateEmpInfo(EmployerDO employerDO);
 	
-	public void deleteEmp(EmployerDO emoployerDO);
+	public void deleteEmp(String empId);
   
 }

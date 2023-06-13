@@ -19,8 +19,8 @@ window.onload = function() {
 	        document.getElementById("day" + (i + 1)).innerHTML = change.getDate() + '<br>' + days[dayNum] 
 	        + '<input type = "hidden" name = "helperTime" id = "helperTime" value =' 
 	        + '"' + change.getFullYear() + '-' 
-	        + ((change.getMonth()+1) < 9 ? '0' + (change.getMonth()+1) : (change.getMonth()+1)) + '-' 
-	        + (change.getDate() < 9 ? '0' + change.getDate() : change.getDate()) + '">';
+	        + ((change.getMonth()+1) <= 9 ? '0' + (change.getMonth()+1) : (change.getMonth()+1)) + '-' 
+	        + (change.getDate() <= 9 ? '0' + change.getDate() : change.getDate()) + '">';
 
 	        var buttons = document.getElementsByClassName("btn");
 	        if(days[dayNum] == "일") {

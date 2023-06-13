@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class SmsController {
 
-	private final SmsService smsService;
+	private final SmsService smsService = new SmsService();
 
 	@PostMapping("/sms/send")
     public SmsResponseDto sendSms(@RequestBody MessageDto messageDto) throws UnsupportedEncodingException, URISyntaxException, NoSuchAlgorithmException, InvalidKeyException, JsonProcessingException {

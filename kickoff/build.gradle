@@ -41,8 +41,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	
 	/* NAVER SMS API */
-	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13' 
+	implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
 	
+	/* 웹 소켓 의존 주입 */
+	implementation 'org.springframework.boot:spring-boot-starter-websocket' 
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
