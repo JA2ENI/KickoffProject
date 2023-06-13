@@ -1,6 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+<%
+
+	String number = (String)session.getAttribute("smsConfirmNum");
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,7 +95,7 @@
 											<p>휴대폰 번호<span>*</span></p>
 											<div class="phone_content">
 												<input type="text" id="phone" class="inputBox phone" name="userPhoneNumber" value="${userInfo.userPhoneNumber}" maxlength="13"/>
-												<input type="button" id="sendPhone" class="checkPhone phone" onclick="" value="번호 인증"/>
+												<input type="button" id="sendPhone" class="checkPhone phone" onclick="javascript:alert('test : ' + ${number});" value="번호 인증"/>
 												<!-- <a href="/reservation" id="cancle" class="cancle">취소</a> -->
 											</div>
 										</div>
@@ -96,6 +103,7 @@
 											<div id="checkPhoneBox" class="phone_content">
 												<input type="text" id="checkPhone" class="inputBox phone" name="checkPhone"/>
 												<input type="button" id="checkPhoneBtn" class="checkPhone phone" onclick="" value="확인"/>
+												<%-- <input type="hidden" id="smsConfirmNum" name="smsConfirmNum" value="${smsConfirmNum}"/> --%>
 												<!-- <a href="/reservation" id="cancle" class="cancle">취소</a> -->
 											</div>
 										</div>
@@ -136,133 +144,8 @@
 		</div>
 	</div>
 	
-	<script>
-		function userDelete() {
-			var confirmFlag = confirm("정말 탈퇴하시겠습니까?");
-	 	
-			if(confirmFlag) {
-				location.href="/userDelete";
-			} 
-		}
-	
-	
-		$("#sendPhone").click(function() {			
-			if($("#phone").val() != "")	{
-				$("#checkPhoneBox").show();
-			}  else {
-				$("#checkPhoneBox").hide();
-			}
-			
-			var phoneNumber = $('#phone').val();
-			
-			var obj = {"to" : phoneNumber};
-			
-			Swal.fire({
-                text: '인증번호 발송 완료!',
-            });
-			
-			$.ajax({
-				url: "/sms/send",
-				type: "post",
-				contentType: "application/json",
-				dataType: "json",
-				data: JSON.stringify(obj),
-				success: function(data) {
-		            $('#checkPhoneBtn').click(function() {
-		                if($.trim(data) == $('#checkPhone').val()){
-		                	alert(성공);
-		                    alert(data.content);
-		                   	alert(data.smsConfirmNum);
-		                    Swal.fire(
-		                        '인증성공!',
-		                        '휴대폰 인증이 정상적으로 완료되었습니다.',
-		                        'success'
-		                    )
-
-		                } else {
-		                	alert('실패');
-		                    Swal.fire({
-		                        icon: 'error',
-		                        title: '인증오류',
-		                        text: '인증번호가 올바르지 않습니다!',
-		                    });
-		                }
-		            });
-		        }
-			});
-		});
-		
-		
-		
-		/* 
-		$("#sendPhone").click(function() {
-			
-			if($("#phone").val() != "") {
-				$("#checkPhoneBox").show();
-			}  else {
-				$("#checkPhoneBox").hide();
-			}
-			
-			let phoneNumber = $('#phone').val();
-			
-			alert(phoneNumber);
-			
-			Swal.fire({
-                text: '인증번호 발송 완료!',
-            });
-			
-			$.ajax({
-				type: "POST",
-				dataType: "json",
-				url: "/sms/send",
- 				data: {
-					"to" : phoneNumber
-				},
-				success: function(res) {
-		            $('#checkPhoneBtn').click(function() {
-		                if($.trim(res) == $('#checkPhone').val()){
-		                    Swal.fire(
-		                        '인증성공!',
-		                        '휴대폰 인증이 정상적으로 완료되었습니다.',
-		                        'success'
-		                    )
-
-		                } else {
-		                    Swal.fire({
-		                        icon: 'error',
-		                        title: '인증오류',
-		                        text: '인증번호가 올바르지 않습니다!',
-		                    });
-		                }
-		            });
-		        }
-			});
-		});  */
-		
-	</script>
-	
-	
 	<!-- Kakao postcode -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script>
-		function kakaopost() {
-			var width = 500;
-			var height = 460;
-			
-		    new daum.Postcode({
-		    	width: width,
-		    	height: height,
-		    	
-		        oncomplete: function(data) {
-		           document.querySelector("#userAddress").value =  data.address;
-		        }
-		    }).open({
-		    	left: (window.screen.width / 2) - (width / 2),
-		    	top: (window.screen.height / 2) - (height / 2)
-		    });
-		}
-	</script>
-	
 	<!-- Scripts -->
 	<script src="/myPage/js/jquery.min.js"></script>
 	<script src="/myPage/js/skel.min.js"></script>

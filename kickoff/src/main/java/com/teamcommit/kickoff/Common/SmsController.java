@@ -5,8 +5,10 @@ import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,13 +22,17 @@ public class SmsController {
 	private final SmsService smsService;
 
 	@PostMapping("/sms/send")
-    public SmsResponseDto sendSms(@RequestBody MessageDto messageDto) throws UnsupportedEncodingException, URISyntaxException, NoSuchAlgorithmException, InvalidKeyException, JsonProcessingException {
+	@ResponseBody
+    public String sendSms(@RequestBody MessageDto messageDto) throws UnsupportedEncodingException, URISyntaxException, NoSuchAlgorithmException, InvalidKeyException, JsonProcessingException {
         SmsResponseDto responseDto = smsService.sendSms(messageDto);
         
-        //null...
-        System.out.println("SmsConfirmNum() : " + responseDto.getSmsConfirmNum());
+        String smsConfirmNum = responseDto.getSmsConfirmNum();
         
-        return responseDto;
+        JSONObject obj = new JSONObject();
+        
+        obj.put("smsConfirmNum", smsConfirmNum);
+        
+        return obj.toString();
     }
 	
 }
