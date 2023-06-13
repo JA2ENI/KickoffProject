@@ -124,6 +124,8 @@
 				if (status === kakao.maps.services.Status.OK) {
 
 					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+					var yResult = result[0].y;
+					var xResult = result[0].x;
 
 					// 결과값으로 받은 위치를 마커로 표시합니다
 					var marker = new kakao.maps.Marker({
@@ -133,7 +135,8 @@
 
 					// 인포윈도우로 장소에 대한 설명을 표시합니다
 					var infowindow = new kakao.maps.InfoWindow({
-						content: '<div style="width:150px;text-align:center;padding:6px 0;">${content.helperPlaceName}</div>'
+						content: '<div style="width:150px;text-align:center;padding:6px 0;">${content.helperPlaceName}<br />' +
+						'<a href="https://map.kakao.com/link/to/${content.helperPlaceName}' + ',' + yResult + ',' + xResult + '"' + 'style="color:blue" target="_blank">길찾기</a></div>'
 					});
 					infowindow.open(map, marker);
 
