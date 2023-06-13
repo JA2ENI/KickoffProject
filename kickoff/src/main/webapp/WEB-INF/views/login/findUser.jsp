@@ -18,11 +18,11 @@
 					<div class="subTitle">개인 회원용</div>
 					<input type="text" placeholder="아이디" name="userId" id="userId" />
 					<div class="sendContainer">
-					<input type="text" placeholder="핸드폰 번호" name="inputPhoneNumberPw" id="inputPhoneNumberPw" />
+					<input type="text" placeholder="휴대폰 번호" name="inputPhoneNumberPw" id="inputPhoneNumberPw" />
 					<button type="button" id="sendPhoneNumberPw" name="sendPhoneNumberPw">전송</button>
 					</div>
 					<div class="confirmContainer">
-					<input type="text" placeholder="인증 번호" id="inputCertifiedNumberPw" name="inputCertifiedNumberPw" style="width: 200px;" />
+					<input type="text" placeholder="인증 번호" id="inputCertifiedNumberPw" name="inputCertifiedNumberPw" />
 					<button type="button" id="confirmButtonPw" name="confirmButtonPw">인증</button>
 					</div>
 					<button type="submit" id="findUserPw" name="findUserPw" onclick="findUser.submit();">비밀번호 찾기</button>
@@ -37,11 +37,11 @@
 					<div class="subTitle">개인 회원용</div>
 					<input type="text" placeholder="이름" name="userName" id="userName" class="userName"/>
 					<div class="sendContainer">
-						<input type="text" placeholder="핸드폰 번호" name="inputPhoneNumber" id="inputPhoneNumber"/>
+						<input type="text" placeholder="휴대폰 번호" name="inputPhoneNumber" id="inputPhoneNumber"/>
 						<button type="button" id="sendPhoneNumber" name="sendPhoneNumber">전송</button>
 					</div>
 					<div class="confirmContainer">
-						<input type="text" placeholder="인증 번호" id="inputCertifiedNumber" name="inputCertifiedNumber" style="width: 200px;" />
+						<input type="text" placeholder="인증 번호" id="inputCertifiedNumber" name="inputCertifiedNumber" />
 						<button type="button" id="confirmButton" name="confirmButton">인증</button>
 					</div>
 					<button type="submit" id="findUserId" name="findUserId" onclick="findUser.submit();">아이디 찾기</button>

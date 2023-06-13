@@ -70,6 +70,14 @@
                                             </select>
                                             <div class="dropDownSelect2"></div>
                                         </div>
+                                        <!--
+                                        <form method="POST">
+                                        <div class="deleteUser">
+                                           <input type = "text" name="userId" placeholder="  탈퇴시킬 회원의 아이디를 입력하세요. ">
+										   <button type = "submit" name = "submit" > 회원 강제 탈퇴</button> 
+                                        </div>
+                                        </form>
+                                         -->
                                     </div>
                                     <div class="table-responsive table-data">
                                         <table class="table">

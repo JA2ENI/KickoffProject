@@ -11,4 +11,17 @@
             USERS
         ]]>
     </select>
+    
+    <!-- User Delete 
+    <delete id="user_delete" parameterType="com.teamcommit.kickoff.Do.BoardDO" >
+    <![CDATA[
+        DELETE
+        FROM
+            USERS
+        WHERE
+            USER_ID = #{userId}
+        ]]>
+	</delete> -->
+	
+	
 </mapper>

@@ -96,7 +96,7 @@
 										</div>
 										<!-- button -->
 										<div class="btn-container">
-											<a href="/empFutsalFupdate?placeId=${empFutsalList.get(num.index).placeId}" id="cancle" class="cancle">수정하기</a>
+											<a href="/empFutsalUpdateForm?placeId=${row.placeId}" id="cancle" class="cancle">수정하기</a>
 										</div>
 									
 									</div>
