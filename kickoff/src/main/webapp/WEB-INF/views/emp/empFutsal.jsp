@@ -63,7 +63,7 @@
 								<!-- 이미지 class 추가 -->
 								<div class="checkout__form">
 									<div class="futsal">
-										<form role="form" id="frmSubmit" name="frmSubmit" action="empFutsal" onsubmit="return _onSubmit();" method="POST">
+										<form role="form" id="frmSubmit" name="frmSubmit" action="empFutsalForm" onsubmit="return _onSubmit();" method="POST">
 											<div class="col-lg-8 col-md-6">
 												<div class="checkout__input">
 													<p>풋살장 이미지<span></span></p>

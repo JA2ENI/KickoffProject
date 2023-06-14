@@ -22,7 +22,7 @@ public interface EmpMapper {
 
     List<ReservationDO> selectReservation(ReservationDO reservationDO);
 
-    public PlaceDO empFutsalInsert(PlaceDO placeDO);
+    public void empFutsalInsert(PlaceDO placeDO);
 
     public void updateFutsal(PlaceDO placeDO);
     
