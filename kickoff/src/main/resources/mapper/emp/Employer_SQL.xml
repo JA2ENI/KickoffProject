@@ -91,7 +91,7 @@
     		EMP_ID = #{empId}
     </delete>
     
-
+	<!--  
     <insert id="empFutsalInsert" parameterType="com.teamcommit.kickoff.Do.PlaceDO">
         <![CDATA[
         INSERT INTO PLACE (
@@ -105,6 +105,7 @@
         )
         ]]>
     </insert>
+    -->
 
     <!-- Futsal(place) Insert -->
     <insert id="empFutsalInsert" parameterType="com.teamcommit.kickoff.Do.PlaceDO">

@@ -268,16 +268,7 @@ public class EmpController {
 
        ModelAndView mv = new ModelAndView();
         
-       try {
-    	   
-    	   empService.empFutsalInsert(placeDO);
-    	   
-    	   mv = new ModelAndView("redirect:/empFutsalFix");
-    	   
-    	   redirect.addFlashAttribute("msg", "등록 완료되었습니다.");
-       } catch (Exception e) {
-    	   redirect.addFlashAttribute("msg", "오류가 발생되었습니다. 다시 시도해주세요.");
-       }
+       
 
         return mv;
     }
