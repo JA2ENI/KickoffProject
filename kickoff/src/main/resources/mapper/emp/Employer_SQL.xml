@@ -3,23 +3,23 @@
 
 <mapper namespace="com.teamcommit.kickoff.Service.emp.EmpMapper">
 
-    <select id="selectReservation" parameterType="com.teamcommit.kickoff.Do.ReservationDO" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+    <select id="selectReservation" parameterType="String" resultType="com.teamcommit.kickoff.Do.ReservationDO">
         <![CDATA[
         SELECT
             *
         FROM
             RESERVATION
+        WHERE RESERVATION_ORIGIN_NO IN (
+                      SELECT 
+                            RESERVATION_NO
+                      FROM 
+                            RESERVATION
+                      WHERE 
+                            EMP_ID = #{empId} AND RESERVATION_TYPE = 'EMP' 
+                )                   
         ]]>
     </select>
 	
-	<select id = "" parameterType="String" resultType="com.teamcommit.kickoff.Do.ReservationDO">
-        <![CDATA[
-        SELECT *
-        FROM
-            RESERVATION
-        WHERE USER_ID = #{userId} AND RESERVATION_TYPE = 'USER' AND RESERVATION_DATE >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
-        ]]>
-    </select>
 	
     <!-- Employer Board List -->
     <select id="getList" parameterType="String" resultType="com.teamcommit.kickoff.Do.BoardDO">

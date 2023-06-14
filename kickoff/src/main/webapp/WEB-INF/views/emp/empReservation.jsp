@@ -12,8 +12,8 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="/emp/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="/emp/css/ie8.css" /><![endif]-->
 		
-	    <!-- Bootstrap CSS-->
-	    <link href="/emp/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+	    <!-- Bootstrap CSS
+	    <link href="/emp/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet"> -->
 	
 	    <!-- Vendor CSS-->
 	    <link href="/emp/vendor/select2/select2.min.css" rel="stylesheet" media="all">
@@ -126,36 +126,36 @@
 															
 															<div>
 																<table class = "tablehorizon">
-																<c:forEach var="list" items="${reservation}">
+																<c:forEach var="modal" items="${table}">
 																	<tr class="horizontr">
-																		<th class="horizonth">예약자 ID</th>	<td class="horizontd"><c:out value="${list.userId}"/></td>
+																		<th class="horizonth">예약자 ID</th>	<td class="horizontd"><c:out value="${modal.userId}"/></td>
 																	</tr>
 																	<tr class="horizontr">														
-																		<th class="horizonth">예약 풋살장</th> <td class="horizontd"><c:out value="${list.reservationPlaceName}"/></td>
+																		<th class="horizonth">예약 풋살장</th> <td class="horizontd"><c:out value="${modal.reservationPlaceName}"/></td>
 																	</tr>
 																	<tr class="horizontr">																		
-																		<th class="horizonth">예약 날짜</th> <td class="horizontd"><c:out value="${list.reservationDate}"/></td>
+																		<th class="horizonth">예약 날짜</th> <td class="horizontd"><c:out value="${modal.reservationDate}"/></td>
 																	</tr>
 																	<tr class="horizontr">																		
-																		<th class="horizonth">예약 인원</th> <td class="horizontd"><c:out value="${list.reservationNumber}"/></td>
+																		<th class="horizonth">예약 인원</th> <td class="horizontd"><c:out value="${modal.reservationNumber}"/></td>
 																	</tr>
 																	<tr class="horizontr">																		
-																		<th class="horizonth">예약 상태</th> <td class="horizontd"><c:out value="${list.reservationStatus}"/></td>
+																		<th class="horizonth">예약 상태</th> <td class="horizontd"><c:out value="${modal.reservationStatus}"/></td>
 																	</tr>
 																	<tr class="horizontr">																		
-																		<th class="horizonth">예약 등록일</th>	<td class="horizontd"><c:out value="${list.reservationRegDate}"/></td>
+																		<th class="horizonth">예약 등록일</th>	<td class="horizontd"><c:out value="${modal.reservationRegDate}"/></td>
 																	</tr>
 																	<tr class="horizontr">																			
-																		<th class="horizonth">예약 시작 시간</th> <td class="horizontd"><c:out value="${list.reservationStartTime}"/></td>
+																		<th class="horizonth">예약 시작 시간</th> <td class="horizontd"><c:out value="${modal.reservationStartTime}"/></td>
 																	</tr>
 																	<tr class="horizontr">																			
-																		<th class="horizonth">예약 종료 시간</th> <td class="horizontd"><c:out value="${list.reservationEndTime}"/></td>
+																		<th class="horizonth">예약 종료 시간</th> <td class="horizontd"><c:out value="${modal.reservationEndTime}"/></td>
 																	</tr>
 																	<tr class="horizontr">																			
-																		<th class="horizonth">예약 가격</th> <td class="horizontd"><c:out value="${list.rservationPrice}"/></td>
+																		<th class="horizonth">예약 가격</th> <td class="horizontd"><c:out value="${modal.reservationPrice}"/></td>
 																	</tr>
 																	<tr class="horizontr">																		
-																		<th class="horizonth">기타 사항</th> <td class="horizontd"><c:out value="${list.reservationComment}"/></td>
+																		<th class="horizonth">기타 사항</th> <td class="horizontd"><c:out value="${modal.reservationComment}"/></td>
 																	</tr>
 																	</c:forEach>																																													
 																</table>
