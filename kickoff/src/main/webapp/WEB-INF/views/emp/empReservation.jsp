@@ -163,6 +163,7 @@
 															</div>	                       		                                
 		                                </div>
                                 <!-- END DATA TABLE -->
+                                </div>
 					        </section>
 					        </div>
                         </div>
