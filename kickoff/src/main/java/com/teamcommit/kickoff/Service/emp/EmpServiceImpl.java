@@ -29,8 +29,8 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
-    public PlaceDO empFutsalInsert(PlaceDO placeDO) throws Exception {
-    	return empMapper.empFutsalInsert(placeDO);
+    public void empFutsalInsert(PlaceDO placeDO) throws Exception {
+    	empMapper.empFutsalInsert(placeDO);
     }
 
     @Override
