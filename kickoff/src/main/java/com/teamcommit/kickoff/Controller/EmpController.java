@@ -292,8 +292,10 @@ public class EmpController {
     	String empId = (String)session.getAttribute("empId");
     	
         List<PlaceDO> list = empService.empFutsalList(empId);
-        	
-        mv.addObject("empFutsalList", list);
+        
+        for(PlaceDO placeDO : list) {
+        	 mv.addObject("empFutsalList", placeDO);
+        }
         
         return mv;
     }
