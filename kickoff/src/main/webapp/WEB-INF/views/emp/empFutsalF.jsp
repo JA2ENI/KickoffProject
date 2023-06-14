@@ -79,7 +79,7 @@
                             						</div>
 						                           	<div class="checkout__input">
 						                                <p>위치<span>*</span></p>
-						                                <input type="text" value="'주소' 정보 가져오기 (입력 비활성화)" readonly>
+						                                <input type="text" class="inputAddress" id="inputAddress" name="empFutsalAddress" value="${empFutsalFix.placeAddress}" onclick="kakaopost()">
 						                            </div>
 						                            <div class="checkout__input">
 						                                <p>풋살장 형태<span>*</span></p>
@@ -191,6 +191,27 @@
 			format: "yyyy-mm-dd",
 		    uiLibrary: 'bootstrap4',
 		});
+	</script>
+	
+	<!-- Kakao postcode -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		function kakaopost() {
+			var width = 500;
+			var height = 460;
+			
+		    new daum.Postcode({
+		    	width: width,
+		    	height: height,
+		    	
+		        oncomplete: function(data) {
+		           document.querySelector("#placeAddress").value =  data.address;
+		        }
+		    }).open({
+		    	left: (window.screen.width / 2) - (width / 2),
+		    	top: (window.screen.height / 2) - (height / 2)
+		    });
+		}
 	</script>
 	
 

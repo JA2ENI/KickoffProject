@@ -29,12 +29,9 @@
 	rel="stylesheet" type="text/css" />
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="/emp/css/empFutsal/nice-select.css"
-	type="text/css">
-<link rel="stylesheet" href="/emp/css/empFutsal/style.css"
-	type="text/css">
-<link rel="stylesheet" href="/emp/css/empFutsal/jquery-ui.min.css"
-	type="text/css">
+<link rel="stylesheet" href="/emp/css/empFutsal/nice-select.css"  type="text/css">
+<link rel="stylesheet" href="/emp/css/empFutsal/style.css"	type="text/css">
+<link rel="stylesheet" href="/emp/css/empFutsal/jquery-ui.min.css"	type="text/css">
 
 
 </head>
@@ -87,7 +84,7 @@
 													</div>
 													<div class="checkout__input">
 														<p>위치<span>*</span></p>
-														<input type="text" class="inputAddress" id="inputAddress" name="empFutsalAddress">
+														<input type="text" class="inputAddress" id="inputAddress" name="empFutsalAddress" value="${placeAddress}" onclick="kakaopost()">
 													</div>
 													<div class="checkout__input">
 														<p>풋살장 형태<span>*</span></p>
@@ -185,8 +182,8 @@
 										</li>										
 									</ul>
 								</nav>
-			</div>
-		</div>
+						</div>
+					</div>
 		</div>
 
 		<script type="text/javascript">
@@ -197,6 +194,27 @@
 		});
 	</script>
 
+	
+	<!-- Kakao postcode -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		function kakaopost() {
+			var width = 500;
+			var height = 460;
+			
+		    new daum.Postcode({
+		    	width: width,
+		    	height: height,
+		    	
+		        oncomplete: function(data) {
+		           document.querySelector("#placeAddress").value =  data.address;
+		        }
+		    }).open({
+		    	left: (window.screen.width / 2) - (width / 2),
+		    	top: (window.screen.height / 2) - (height / 2)
+		    });
+		}
+	</script>
 
 		<!-- Scripts -->
 		<script src="/emp/js/jquery.min.js"></script>
@@ -205,17 +223,16 @@
 		<!--[if lte IE 8]><script src="/emp/js/ie/respond.min.js"></script><![endif]-->
 		<script src="/emp/js/main.js"></script>
 		<!-- Js Plugins -->
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="/emp/js/empFutsal/jquery-3.3.1.min.js"></script>
 		<script src="/emp/js/empFutsal/bootstrap.min.js"></script>
 		<script src="/emp/js/empFutsal/jquery.nice-select.min.js"></script>
 		<script src="/emp/js/empFutsal/jquery-ui.min.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="/emp/js/empFutsal/jquery.slicknav.js"></script>
 		<script src="/emp/js/empFutsal/validation.js"></script>
 		<script src="/emp/js/empFutsal/main.js"></script>
 		<script src="/emp/js/empFutsal/common.js"></script>
-</body>
+		
+	</body>
 </html>

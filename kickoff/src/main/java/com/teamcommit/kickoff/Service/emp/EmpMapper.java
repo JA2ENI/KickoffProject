@@ -20,7 +20,7 @@ public interface EmpMapper {
 
     List<BoardDO> getList(String empId);
 
-    List<ReservationDO> selectReservation(ReservationDO reservationDO);
+    List<ReservationDO> selectReservation(String empId);
 
     public void empFutsalInsert(PlaceDO placeDO);
 

@@ -37,8 +37,8 @@ public class EmpServiceImpl implements EmpService {
     public void updateFutsal(PlaceDO placeDO) { empMapper.updateFutsal(placeDO);  }
 
     @Override
-    public List<ReservationDO> selectReservation(ReservationDO reservationDO) throws Exception {
-        return empMapper.selectReservation(reservationDO);
+    public List<ReservationDO> selectReservation(String empId) throws Exception {
+        return empMapper.selectReservation(empId);
     }
     
     @Override
