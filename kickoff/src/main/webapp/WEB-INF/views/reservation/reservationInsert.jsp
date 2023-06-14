@@ -192,7 +192,6 @@
         </div>
     </section>
 
-    <%@include file="/includes/include-body.jspf"%>
     <!-- Footer -->
 	<%@include file="/includes/footer.jsp"%>
 
