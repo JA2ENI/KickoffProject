@@ -107,7 +107,7 @@
     </insert>
 
     <!-- Futsal(place) Insert -->
-    <insert id="updateFutsal" parameterType="com.teamcommit.kickoff.Do.PlaceDO">
+    <insert id="empFutsalInsert" parameterType="com.teamcommit.kickoff.Do.PlaceDO">
         <![CDATA[
         INSERT INTO PLACE (
         	PLACE_ID,
@@ -127,7 +127,7 @@
             PLACE_PARKING
         )
         VALUES (
-        	#{placeId},
+        	PLACE_ID.NEXTVAL,
             #{imgName},
             #{placeName},
             #{placeAddress},

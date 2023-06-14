@@ -63,7 +63,7 @@
 								<!-- 이미지 class 추가 -->
 								<div class="checkout__form">
 									<div class="futsal">
-										<form role="form" id="frmSubmit" name="frmSubmit" action="/empFutsal" method="POST">
+										<form role="form" id="frmSubmit" name="frmSubmit" action="empFutsalForm" onsubmit="return _onSubmit();" method="POST">
 											<div class="col-lg-8 col-md-6">
 												<div class="checkout__input">
 													<p>풋살장 이미지<span></span></p>
@@ -149,7 +149,7 @@
 														<textarea class="etc" name="placeOther"></textarea>
 													</div>
 												</div>
-												<button type="submit" id="insert" class="site-btn-insert" onclick="validCheck()" value="등록">등록하기</button>
+												<button type="submit" id="insert" class="site-btn-insert" onclick="document.getElementById('frmSubmit').submit();" value="등록">등록하기</button>
 											</div>
 										</form>
 									</div>
