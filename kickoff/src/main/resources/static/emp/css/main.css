@@ -2158,7 +2158,7 @@ strong {
 	h1, h2, h3, h4, h5, h6 {
 		color: #3d4449;
 		font-family: 'Noto Sans KR', sans-serif ;
-		font-weight: 700 !important;
+		font-weight: 700;
 		line-height: 1.5;
 		margin: 0 0 1em 0;
 	}

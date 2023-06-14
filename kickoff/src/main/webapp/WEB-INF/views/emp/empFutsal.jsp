@@ -63,7 +63,7 @@
 								<!-- 이미지 class 추가 -->
 								<div class="checkout__form">
 									<div class="futsal">
-										<form role="form" id="frmSubmit" name="frmSubmit" action="empFutsalForm" onsubmit="return _onSubmit();" method="POST">
+										<form role="form" id="frmSubmit" name="frmSubmit" action="empFutsal" onsubmit="return _onSubmit();" method="POST">
 											<div class="col-lg-8 col-md-6">
 												<div class="checkout__input">
 													<p>풋살장 이미지<span></span></p>
@@ -179,13 +179,14 @@
 											<!-- opener 에 원래 active 열고 닫게 할 수 있어야 함 -->
 											<span class="opener active">풋살장 관리</span>
 											<ul>
-												<li><a href="/empFutsalForm">풋살장 등록</a></li>
+												<li><a href="/empFutsal">풋살장 등록</a></li>
 												<li><a href="/empFutsalFix">풋살장 조회</a></li>
 											</ul>
 										</li>										
 									</ul>
 								</nav>
 			</div>
+		</div>
 		</div>
 
 		<script type="text/javascript">

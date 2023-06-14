@@ -268,39 +268,23 @@ public class EmpController {
 
        ModelAndView mv = new ModelAndView();
         
-       try {
-    	   
-    	   empService.empFutsalInsert(placeDO);
-    	   
-    	   mv = new ModelAndView("redirect:/empFutsalFix");
-    	   
-    	   redirect.addFlashAttribute("msg", "등록 완료되었습니다.");
-       } catch (Exception e) {
-    	   redirect.addFlashAttribute("msg", "오류가 발생되었습니다. 다시 시도해주세요.");
-       }
+       
 
         return mv;
     }
 
     /* 풋살장 조희 */
     @RequestMapping( "/empFutsalFix")
-    public ModelAndView empFutsalList(@ModelAttribute("placeDO") PlaceDO PlaceDO, HttpSession session) throws Exception {
+    public ModelAndView empFutsalList(HttpSession session) throws Exception {
 
-        ModelAndView mv = new ModelAndView("/emp/empFutsalFix");
-        
-        List<PlaceDO> list = empService.empFutsalList((String)session.getAttribute("empId"));
-        int listSize = list.size();
-        
-        for(int i = 0; i < listSize; i++) {
-        	mv.addObject("list", list.get(i));
-        	System.out.println("mv : " + mv);
+    	ModelAndView mv = new ModelAndView("/emp/empFutsalFix");
+    	
+    	String empId = (String)session.getAttribute("empId");
+    	
+        List<PlaceDO> list = empService.empFutsalList(empId);
         	
-        }
         mv.addObject("empFutsalList", list);
-        mv.addObject("listSize", listSize);
         
-        System.out.println("listSize: " + listSize);
-
         return mv;
     }
     

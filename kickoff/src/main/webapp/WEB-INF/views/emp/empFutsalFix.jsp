@@ -43,7 +43,7 @@
 							<!-- Begin Page Content -->
 							<c:choose>
 							<c:when test="${fn:length(empFutsalList) > 0}">
-							<c:forEach var="row" items="${empFutsalList}" begin="0" end="${listSize}" step="1" varStatus="num">
+							<c:forEach var="row" items="${empFutsalList}" varStatus="num">
 			                	<section>
 				                	<div class="container-fluid">				                 		
 										<div class="container">
@@ -87,10 +87,45 @@
 													구장위치<span>*</span>
 												</h4>
 											<div class="map-container">
-												<div id="map"></div>
-												<div class="title-wrap be-default mb-3">
-													<p>${empFutsalFix.placeAddress}</p>
-												</div>
+												<div id="map${num.index}" class="map-content"></div>
+											</div>
+											<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d724483fb639866457f6535349fcd24&libraries=services"></script>
+											<script>
+												/* Kakao Map */
+												var mapContainer${num.index} = document.getElementById('map${num.index}'); // 지도를 표시할 div
+																
+												var	mapOption${num.index} = {
+													center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+													level: 3 // 지도의 확대 레벨
+												};
+														
+												// 지도를 생성합니다
+												var map${num.index} = new kakao.maps.Map(mapContainer${num.index}, mapOption${num.index});
+														
+												// 주소-좌표 변환 객체를 생성합니다
+												var geocoder${num.index} = new kakao.maps.services.Geocoder();
+														
+												// 주소로 좌표를 검색합니다
+												geocoder${num.index}.addressSearch('${row.placeAddress}', function(result, status) {
+														
+													// 정상적으로 검색이 완료됐으면
+													if (status === kakao.maps.services.Status.OK) {
+															
+														var coords${num.index} = new kakao.maps.LatLng(result[0].y, result[0].x);
+																
+														// 결과값으로 받은 위치를 마커로 표시합니다
+														var marker${num.index} = new kakao.maps.Marker({
+															map: map${num.index},
+															position: coords${num.index}
+														});
+														
+														// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+														map${num.index}.setCenter(coords${num.index});
+													}
+												});
+												var zoomControl${num.index} = new kakao.maps.ZoomControl();
+												map${num.index}.addControl(zoomControl${num.index}, kakao.maps.ControlPosition.RIGHT);
+											</script>
 											</div>
 											</div>
 										</div>
@@ -98,14 +133,13 @@
 										<div class="btn-container">
 											<a href="/empFutsalUpdateForm?placeId=${row.placeId}" id="cancle" class="cancle">수정하기</a>
 										</div>
-									
-									</div>
 									</section>
 									</c:forEach>
-								</c:when>
-								</c:choose>
+									</c:when>
+									</c:choose>
 								</div>
-							</div>								
+								</div>
+													
 			                <!-- /.container-fluid -->
 								
 
@@ -127,7 +161,7 @@
 											<!-- opener 에 원래 active 열고 닫게 할 수 있어야 함 -->
 											<span class="opener active">풋살장 관리</span>
 											<ul>
-												<li><a href="/empFutsalForm">풋살장 등록</a></li>
+												<li><a href="/empFutsal">풋살장 등록</a></li>
 												<li><a href="/empFutsalFix">풋살장 조회</a></li>
 											</ul>
 										</li>										
@@ -144,47 +178,6 @@
 			<script src="/emp/js/util.js"></script>
 			<!--[if lte IE 8]><script src="/emp/js/ie/respond.min.js"></script><![endif]-->
 			<script src="/emp/js/main.js"></script>
-			
-	
-	<!-- script -->
-	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c12ebb063cb05a9fc037082cb8601ef1&libraries=services"></script> -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d724483fb639866457f6535349fcd24&libraries=services"></script>
-	<script>
-		/* Kakao Map */
-
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-				mapOption = {
-					center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-					level: 3 // 지도의 확대 레벨
-				};
-
-		// 지도를 생성합니다
-		var map = new kakao.maps.Map(mapContainer, mapOption);
-
-		// 주소-좌표 변환 객체를 생성합니다
-		var geocoder = new kakao.maps.services.Geocoder();
-
-		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('${address}', function(result, status) {
-
-			// 정상적으로 검색이 완료됐으면
-			if (status === kakao.maps.services.Status.OK) {
-
-				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-				// 결과값으로 받은 위치를 마커로 표시합니다
-				var marker = new kakao.maps.Marker({
-					map: map,
-					position: coords
-				});
-
-				// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-				map.setCenter(coords);
-			}
-		});
-		var zoomControl = new kakao.maps.ZoomControl();
-		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-	</script>
 	
 			
     <!-- Jquery JS-->
