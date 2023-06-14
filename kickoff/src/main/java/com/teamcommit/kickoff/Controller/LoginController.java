@@ -28,22 +28,7 @@ public class LoginController {
 	
 	@Resource(name="loginService")
     private LoginService loginService;
-
-//    @Autowired
-//    private AccountService accountService;
-//
-//    @RequestMapping(value = "/account/register", method = RequestMethod.GET)
-//    public String register() {
-//
-//        return "/account/register";
-//    }
-//
-//    @RequestMapping(value = "/account/login", method = RequestMethod.GET)
-//    public String login() {
-//
-//        return "/account/login";
-//    }
-
+	
     
     @GetMapping("/loginAgree")
     public String loginAgree() {

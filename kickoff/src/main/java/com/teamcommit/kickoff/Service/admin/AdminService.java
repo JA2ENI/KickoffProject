@@ -1,12 +1,13 @@
 package com.teamcommit.kickoff.Service.admin;
 
-import com.teamcommit.kickoff.Do.UserDO;
-
 import java.util.List;
+import java.util.Map;
 
 public interface AdminService {
 
-    List<UserDO> getList(UserDO userDO) throws Exception;
+	List<Map<String, Object>> getList(Map<String, Object> paramMap) throws Exception;
     
-//    void user_delete(String userId) throws Exception;
+    void user_delete(String userId) throws Exception;
+    
+    void emp_delete(String empId) throws Exception;
 }

@@ -3,17 +3,44 @@
 
 <mapper namespace="com.teamcommit.kickoff.Service.admin.AdminMapper">
 
-    <select id="getList" parameterType="com.teamcommit.kickoff.Do.UserDO" resultType="com.teamcommit.kickoff.Do.UserDO">
+    <select id="getList" parameterType="java.util.Map" resultType="java.util.Map">
         <![CDATA[
         SELECT
-            *
-        FROM
-            USERS
+	        NAME,
+	        ID,
+	        CLASSIFICATION,
+	        CANCEL_COUNT,
+	        STOP_COUNT,
+	        STATUS
+		FROM
+		    (
+		    SELECT 
+		            USER_NAME AS NAME,
+		            USER_ID AS ID,
+		            USER_CLASSIFICATION AS CLASSIFICATION,
+		            USER_CANCEL_COUNT AS CANCEL_COUNT,
+		            USER_STOP_COUNT AS STOP_COUNT,
+		            USER_STATUS AS STATUS
+		    FROM
+		            USERS
+		
+		            UNION ALL
+		
+		    SELECT
+		            EMP_NAME AS NAME,
+		            EMP_ID AS ID,
+		            EMP_CLASSIFICATION AS CLASSIFICATION,
+		            EMP_CANCEL_COUNT AS CANCEL_COUNT,
+		            EMP_STOP_COUNT AS STOP_COUNT,
+		            EMP_STATUS AS STATUS
+		    FROM
+		            EMPLOYER
+		    )
         ]]>
     </select>
     
-    <!-- User Delete 
-    <delete id="user_delete" parameterType="com.teamcommit.kickoff.Do.BoardDO" >
+    <!-- User Delete -->
+    <delete id="user_delete" parameterType="java.lang.String" >
     <![CDATA[
         DELETE
         FROM
@@ -21,7 +48,18 @@
         WHERE
             USER_ID = #{userId}
         ]]>
-	</delete> -->
+	</delete>
+	
+	<!-- Emp Delete -->
+    <delete id="emp_delete" parameterType="java.lang.String" >
+    <![CDATA[
+        DELETE
+        FROM
+            EMPLOYER
+        WHERE
+            EMP_ID = #{empId}
+        ]]>
+	</delete>
 	
 	
 </mapper>
