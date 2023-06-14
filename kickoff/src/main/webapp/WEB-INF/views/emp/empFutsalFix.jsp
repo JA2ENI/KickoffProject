@@ -22,6 +22,22 @@
 	<!--[if lte IE 9]><link rel="stylesheet" href="/emp/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="/emp/css/ie8.css" /><![endif]-->
 	
+		<!-- Scripts -->
+			 <script src="/emp/js/jquery.min.js"></script>
+			<script src="/emp/js/skel.min.js"></script>
+			<script src="/emp/js/util.js"></script>
+			<!-- [if lte IE 8]><script src="/emp/js/ie/respond.min.js"></script><![endif]  -->
+			<script src="/emp/js/main.js"></script>
+	
+			
+    <!-- Jquery JS -->
+	<script src="/myPage/vendor/jquery-3.2.1.min.js"></script>
+	<!-- Bootstrap JS --> 
+	<script src="/myPage/vendor/bootstrap-4.1/popper.min.js"></script>
+	<script src="/myPage/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+	 <!-- Vendor JS -->       
+	<script src="/myPage/vendor/select2/select2.min.js"></script> 
+	
 	
 	</head>
 	<body>
@@ -41,42 +57,40 @@
 								</header>
 							
 							<!-- Begin Page Content -->
-							<c:choose>
-							<c:when test="${fn:length(empFutsalList) > 0}">
-							<c:forEach var="row" items="${empFutsalList}" varStatus="num">
+							
 			                	<section>
 				                	<div class="container-fluid">				                 		
 										<div class="container">
 											<div class="facility-content">
 												<div class="image-wrap">
-													<img class="image" src="${row.imgPath}${row.imgName}" />
+													<img class="image" src="${empFutsalList.imgPath}${empFutsalList.imgName}" />
 												</div>
 												<div class="facility-wrap">
-													<h2>${row.placeName}</h2>
-													<h3>${row.placeAddress}</h3>
+													<h2>${empFutsalList.placeName}</h2>
+													<h3>${empFutsalList.placeAddress}</h3>
 													<p class="info">
-														규격<span>${row.placeSize}</span>
+														규격<span>${empFutsalList.placeSize}</span>
 													</p>
 													<p class="info">
-														풋살장 형태<span>${row.placeForm}</span>
+														풋살장 형태<span>${empFutsalList.placeForm}</span>
 													</p>
 													<p class="info">
-														바닥형태<span>${row.placeGround}</span>
+														바닥형태<span>${empFutsalList.placeGround}</span>
 													</p>
 													<p class="info">
-														대여시간<span>${row.placeTime}</span>
+														대여시간<span>${empFutsalList.placeTime}</span>
 													</p>
 													<p class="info">
-														개방일수<span>${row.placeOpen}</span>
+														개방일수<span>${empFutsalList.placeOpen}</span>
 													</p>
 													<p class="info">
-														주차장<span>${row.placeParking}</span>
+														주차장<span>${empFutsalList.placeParking}</span>
 													</p>
 													<p class="info">
-														가격<span>${row.placePrice}</span>
+														가격<span>${empFutsalList.placePrice}</span>
 													</p>
 													<p class="info">
-														조명 유무<span class="status">${row.placeLight}</span>
+														조명 유무<span class="status">${empFutsalList.placeLight}</span>
 													</p>
 												</div>
 											</div>
@@ -87,56 +101,16 @@
 													구장위치<span>*</span>
 												</h4>
 											<div class="map-container">
-												<div id="map${num.index}" class="map-content"></div>
+												<div id="map" class="map-content"></div>
 											</div>
-											<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d724483fb639866457f6535349fcd24&libraries=services"></script>
-											<script>
-												/* Kakao Map */
-												var mapContainer${num.index} = document.getElementById('map${num.index}'); // 지도를 표시할 div
-																
-												var	mapOption${num.index} = {
-													center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-													level: 3 // 지도의 확대 레벨
-												};
-														
-												// 지도를 생성합니다
-												var map${num.index} = new kakao.maps.Map(mapContainer${num.index}, mapOption${num.index});
-														
-												// 주소-좌표 변환 객체를 생성합니다
-												var geocoder${num.index} = new kakao.maps.services.Geocoder();
-														
-												// 주소로 좌표를 검색합니다
-												geocoder${num.index}.addressSearch('${row.placeAddress}', function(result, status) {
-														
-													// 정상적으로 검색이 완료됐으면
-													if (status === kakao.maps.services.Status.OK) {
-															
-														var coords${num.index} = new kakao.maps.LatLng(result[0].y, result[0].x);
-																
-														// 결과값으로 받은 위치를 마커로 표시합니다
-														var marker${num.index} = new kakao.maps.Marker({
-															map: map${num.index},
-															position: coords${num.index}
-														});
-														
-														// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-														map${num.index}.setCenter(coords${num.index});
-													}
-												});
-												var zoomControl${num.index} = new kakao.maps.ZoomControl();
-												map${num.index}.addControl(zoomControl${num.index}, kakao.maps.ControlPosition.RIGHT);
-											</script>
 											</div>
 											</div>
 										</div>
 										<!-- button -->
 										<div class="btn-container">
-											<a href="/empFutsalUpdateForm?placeId=${row.placeId}" id="cancle" class="cancle">수정하기</a>
+											<a href="/empFutsalUpdateForm?placeId=${empFutsalList.placeId}" id="cancle" class="cancle">수정하기</a>
 										</div>
-									</section>
-									</c:forEach>
-									</c:when>
-									</c:choose>
+									</section>									
 								</div>
 								</div>
 													
@@ -170,23 +144,44 @@
 
 						</div>
 					</div>
-
-
-		<!-- Scripts -->
-			<script src="/emp/js/jquery.min.js"></script>
-			<script src="/emp/js/skel.min.js"></script>
-			<script src="/emp/js/util.js"></script>
-			<!--[if lte IE 8]><script src="/emp/js/ie/respond.min.js"></script><![endif]-->
-			<script src="/emp/js/main.js"></script>
 	
-			
-    <!-- Jquery JS-->
-	<script src="/myPage/vendor/jquery-3.2.1.min.js"></script>
-	<!-- Bootstrap JS-->
-	<script src="/myPage/vendor/bootstrap-4.1/popper.min.js"></script>
-	<script src="/myPage/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-	<!-- Vendor JS       -->
-	<script src="/myPage/vendor/select2/select2.min.js"></script>
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d724483fb639866457f6535349fcd24&libraries=services"></script>
+					<script>
+					/* Kakao Map */
+					var mapContainer = document.getElementById('map'); // 지도를 표시할 div
+																
+					var	mapOption = {
+					center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+					level: 3 // 지도의 확대 레벨
+					};
+														
+					// 지도를 생성합니다
+					var map = new kakao.maps.Map(mapContainer, mapOption);
+														
+					// 주소-좌표 변환 객체를 생성합니다
+					var geocoder = new kakao.maps.services.Geocoder();
+														
+					// 주소로 좌표를 검색합니다
+					geocoder.addressSearch('${empFutsalList.placeAddress}', function(result, status) {
+														
+					// 정상적으로 검색이 완료됐으면
+					if (status === kakao.maps.services.Status.OK) {
+															
+					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+																
+					// 결과값으로 받은 위치를 마커로 표시합니다
+					var marker = new kakao.maps.Marker({
+					map: map,
+					position: coords
+					});
+														
+					// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+					map.setCenter(coords);
+					}
+					});
+					var zoomControl = new kakao.maps.ZoomControl();
+					map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+					</script>
 	
 	</body>
 </html>

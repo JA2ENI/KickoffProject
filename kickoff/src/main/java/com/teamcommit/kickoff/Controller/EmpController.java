@@ -49,25 +49,6 @@ public class EmpController {
         return view;
     }
 
-    @GetMapping("/empReservationDetail")
-    public String empReservationDetail(@RequestParam(value = "userId") String userId, @RequestParam(value = "reservationPlaceName") String reservationPlaceName, @RequestParam(value = "reservationStatus") String reservationStatus, @RequestParam(value = "reservationRegDate") String reservationRegDate,
-    						   @RequestParam(value = "reservationStartTime") String reservationStartTime, @RequestParam(value = "reservationEndTime") String reservationEndTime, @RequestParam(value = "reservationPrice") String reservationPrice, @RequestParam(value = "reservationComment") String reservationComment, @RequestParam(value = "reservationDate") String reservationDate, @RequestParam(value = "reservationNumber") String reservationNumber, Model model) {
-        String view = "forward:/empReservation";
-        model.addAttribute("userId", userId);
-        model.addAttribute("reservationPlaceName", reservationPlaceName);
-        model.addAttribute("reservationStatus", reservationStatus);
-        model.addAttribute("reservationRegDate", reservationRegDate);
-        model.addAttribute("reservationStartTime", reservationStartTime);
-        model.addAttribute("reservationEndTime", reservationEndTime);
-        model.addAttribute("reservationPrice", reservationPrice);
-        model.addAttribute("reservationComment", reservationComment);
-        model.addAttribute("reservationDate", reservationDate);
-        model.addAttribute("reservationNumber", reservationNumber);
-        return view;
-    }
-
-
-
     @RequestMapping( "/myBoard")
     public String boardList(HttpServletRequest request, Model model) throws Exception {
 
@@ -291,8 +272,10 @@ public class EmpController {
     	String empId = (String)session.getAttribute("empId");
     	
         List<PlaceDO> list = empService.empFutsalList(empId);
-        	
-        mv.addObject("empFutsalList", list);
+        
+        for(PlaceDO placeDO : list) {
+        	 mv.addObject("empFutsalList", placeDO);
+        }
         
         return mv;
     }
