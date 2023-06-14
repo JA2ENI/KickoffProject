@@ -59,7 +59,7 @@
 		                                        </div>
 		                                    </div>
 		                                    <div class="table-data__tool-right">
-		                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">예약 등록</button>
+		                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small" onclick="location.href='reservationInsert'">예약 등록</button>
 		                                        <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
 		                                            <select class="js-select2" name="type">
 		                                                <option selected="selected">정렬 방식</option>
@@ -178,7 +178,7 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<a href="/empReservation">예약관리</a>
+										<li><a href="/empReservation">예약관리</a></li>
 										<li><a href="/myBoard">내 게시글</a></li>
 										<li><a href="/fixInfoCheck">회원 정보 수정</a></li>
 										<li>

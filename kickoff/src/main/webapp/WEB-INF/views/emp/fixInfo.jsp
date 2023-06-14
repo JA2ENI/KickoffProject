@@ -136,7 +136,7 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<a href="/empReservation">예약관리</a>
+										<li><a href="/empReservation">예약관리</a></li>
 										<li><a href="/myBoard">내 게시글</a></li>
 										<li><a href="/fixInfoCheck">회원 정보 수정</a></li>
 										<li>

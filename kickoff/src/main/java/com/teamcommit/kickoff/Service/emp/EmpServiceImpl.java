@@ -30,7 +30,7 @@ public class EmpServiceImpl implements EmpService {
 
     @Override
     public PlaceDO empFutsalInsert(PlaceDO placeDO) throws Exception {
-        return empMapper.empFutsalInsert(placeDO);
+    	return empMapper.empFutsalInsert(placeDO);
     }
 
     @Override
@@ -50,6 +50,7 @@ public class EmpServiceImpl implements EmpService {
     public PlaceDO selectEmpFutsalFix(int placeId) throws Exception {
         return empMapper.selectEmpFutsalFix(placeId);
     }
+    
     
     @Override
     public void updateEmpFutsalF(PlaceDO placeDO) throws Exception {
@@ -82,6 +83,11 @@ public class EmpServiceImpl implements EmpService {
 		empMapper.deleteEmp(empId);
 		
 	}
+	
+	@Override
+    public PlaceDO insertPlaceInfo(int placeId) throws Exception {
+        return empMapper.insertPlaceInfo(placeId);
+    }
 
 
 }

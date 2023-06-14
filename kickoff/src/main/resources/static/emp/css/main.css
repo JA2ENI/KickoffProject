@@ -2158,7 +2158,7 @@ strong {
 	h1, h2, h3, h4, h5, h6 {
 		color: #3d4449;
 		font-family: 'Noto Sans KR', sans-serif ;
-		font-weight: 700;
+		font-weight: 700 !important;
 		line-height: 1.5;
 		margin: 0 0 1em 0;
 	}
@@ -4109,6 +4109,10 @@ strong {
 			padding-top: 0;
 		}
 		
+.li {
+	text-align: -webkit-match-parent;
+}
+
 
 *,
 *::before,

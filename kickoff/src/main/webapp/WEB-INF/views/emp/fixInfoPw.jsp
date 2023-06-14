@@ -39,7 +39,7 @@
 									<div class="container">
 										<div class="checkout__form">
 											<form role="form" id="frm" name="frm" action="/fixInfoPwResult" method="POST">
-												<div class="row-request-container">
+												<div class="row-request-container" style= "width: 50%;">
 													<div class="col-lg-8-1 col-md-6 check">
 														<div class="checkout__input__request pw">
 															<p>새 비밀번호<span>*</span></p>
@@ -75,7 +75,7 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<a href="/empReservation">예약관리</a>
+										<li><a href="/empReservation">예약관리</a></li>
 										<li><a href="/myBoard">내 게시글</a></li>
 										<li><a href="/fixInfoCheck">회원 정보 수정</a></li>
 										<li>

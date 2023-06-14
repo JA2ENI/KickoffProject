@@ -37,4 +37,6 @@ public interface EmpService {
 
 	public void deleteEmp(String empId) throws Exception;
 
+	PlaceDO insertPlaceInfo(int placeId) throws Exception;
+
 }
