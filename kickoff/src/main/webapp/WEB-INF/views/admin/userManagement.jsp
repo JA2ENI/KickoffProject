@@ -70,14 +70,18 @@
                                             </select>
                                             <div class="dropDownSelect2"></div>
                                         </div>
-                                        <!--
-                                        <form method="POST">
+                                        <form method="POST" action="/deleteUser">
+                                     
+                                        <div class="userType">
+										    <input type="radio" name="userType" value="user" checked> 개인 회원 &nbsp;
+										    <input type="radio" name="userType" value="emp"> 업체 회원 
+										</div>
+									
                                         <div class="deleteUser">
-                                           <input type = "text" name="userId" placeholder="  탈퇴시킬 회원의 아이디를 입력하세요. ">
-										   <button type = "submit" name = "submit" > 회원 강제 탈퇴</button> 
+                                            <input type="text" name="id" id="inputId" placeholder="탈퇴시킬 회원의 아이디를 입력하세요.">
+										    <button type="submit" id="deleteBtn" onclick="userDelete()">회원 강제 탈퇴</button>
                                         </div>
                                         </form>
-                                         -->
                                     </div>
                                     <div class="table-responsive table-data">
                                         <table class="table">
@@ -89,12 +93,12 @@
                                                             <span class="au-checkmark"></span>
                                                         </label>
                                                     </td>
-                                                    <td>이름/이메일</td>
+                                                    <td>이름/아이디</td>
                                                     <td>구분</td>
                                                     <td>취소 횟수</td>
                                                     <td>정지 횟수</td>
                                                     <td>상태</td>
-                                                    <td>관리</td>
+                                       
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -109,7 +113,7 @@
                                                         <div class="table-data__info">
                                                             <h6>kickoff</h6>
                                                             <span>
-                                                                <a>kickoff@gmail.com</a>
+                                                                <a>kickoff</a>
                                                             </span>
                                                         </div>
                                                     </td>
@@ -127,12 +131,8 @@
                                                             <span class="status-active">활동</span>
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                        <button class="btn-stop">정지</button>
-                                                        <button class="btn-out">탈퇴</button>
-                                                    </td>
                                                 </tr>
-                                                    <c:forEach var="list" items="${userList}">
+                                                    <c:forEach var="map" items="${userList}">
                                                 <tr>
                                                     <td>
                                                         <label class="au-checkbox">
@@ -142,47 +142,44 @@
                                                     </td>
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6><c:out value="${list.userName}" /></h6>
+                                                            <h6><c:out value="${map.NAME}" /></h6>
                                                             <span>
-                                                                <a><c:out value="${list.userEmail}" /></a>
+                                                                <a><c:out value="${map.ID}" /></a>
                                                             </span>
                                                         </div>
                                                     </td>
                                                     <td>
                                                          <span class="
                                                              <c:choose>
-                                                                <c:when test="${list.userClassification == 'Admin'}">role admin</c:when>
-                                                                <c:when test="${list.userClassification == 'Leader'}">role master</c:when>
-                                                                <c:when test="${list.userClassification == 'User'}">role user</c:when>
-                                                                <c:when test="${list.userClassification == 'Emp'}">role emp</c:when>
+                                                                <c:when test="${map.CLASSIFICATION == 'Admin'}">role admin</c:when>
+                                                                <c:when test="${map.CLASSIFICATION == 'Leader'}">role master</c:when>
+                                                                <c:when test="${map.CLASSIFICATION == 'User'}">role user</c:when>
+                                                                <c:when test="${map.CLASSIFICATION == 'Emp'}">role emp</c:when>
                                                                 <c:otherwise>default-role</c:otherwise>
                                                             </c:choose>
                                                          ">
-                                                             <c:out value="${list.userClassification}" />
+                                                             <c:out value="${map.CLASSIFICATION}" />
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        <span class="cancel-number"><c:out value="${list.userCancelCount}" /></span>
+                                                        <span class="cancel-number"><c:out value="${map.CANCEL_COUNT}" /></span>
                                                     </td>
                                                     <td>
-                                                        <span class="rest-number"><c:out value="${list.userStopCount}" /></span>
+                                                        <span class="rest-number"><c:out value="${map.STOP_COUNT}" /></span>
                                                     </td>
                                                     <td>
                                                         <div class="rs-select2--trans rs-select2--sm">
                                                             <span class="
                                                              <c:choose>
-                                                                <c:when test="${list.userStatus == '활동'}">status-active</c:when>
-                                                                <c:when test="${list.userStatus == '정지'}">status-stop</c:when>
+                                                                <c:when test="${map.STATUS == '활동'}">status-active</c:when>
+                                                                <c:when test="${map.STATUS == '정지'}">status-stop</c:when>
                                                             </c:choose>
                                                          ">
-                                                             <c:out value="${list.userStatus}" />
+                                                             <c:out value="${map.STATUS}" />
                                                         </span>
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                        <button class="btn-stop">정지</button>
-                                                        <button class="btn-out">탈퇴</button>
-                                                    </td>
+                                                    
                                                 </tr>
                                                     </c:forEach>
                                             </tbody>
@@ -219,13 +216,27 @@
 					</div>
 
 			</div>
+			
+	<script>
+		function userDelete() {
+			var confirmFlag = confirm("이 회원을 정말 탈퇴시키겠습니까?");
+	 	
+			if (confirmFlag) {
+	         	location.href = "/deleteUser";
+	        } 
+		}
+		
+	</script>
+			
+			
 
-		<!-- Scripts -->
-			<script src="/admin/js/jquery.min.js"></script>
-			<script src="/admin/js/skel.min.js"></script>
-			<script src="/admin/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="/admin/js/main.js"></script>
+	<!-- Scripts -->
+		<script src="/admin/js/jquery.min.js"></script>
+		<script src="/admin/js/skel.min.js"></script>
+		<script src="/admin/js/util.js"></script>
+		
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="/admin/js/main.js"></script>
 			
 		
    <!-- Jquery JS-->

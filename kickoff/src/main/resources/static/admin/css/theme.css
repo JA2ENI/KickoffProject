@@ -7,6 +7,26 @@
     box-sizing: border-box;
 }
 
+.deleteUser {
+	margin-top: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.userType {
+	margin-top: 20px;
+}
+
+#inputId {
+	width: 85%;
+}
+
+#deleteBtn {
+	margin-top: 0;
+}
+
 ul {
     margin: 0;
 }
