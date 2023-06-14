@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.UserDO;
 
 public interface MypageService {
@@ -23,5 +24,9 @@ public interface MypageService {
 	void updatePw(UserDO user) throws Exception;
 	
 	void updateUserInfo(UserDO userDO) throws Exception;
+	
+	List<TeamDO> myTeamList(String userId) throws Exception;
+	
+	void userDelete(String userId) throws Exception;
 	
 }

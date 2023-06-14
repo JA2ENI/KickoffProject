@@ -25,7 +25,9 @@
       					<option placeholder="여성">여성</option>
       				</select>
 					<input type="email" placeholder="이메일" /> 
-					<input type="date" placeholder="생년월일" />
+					<input type="text" placeholder="생년" />
+					<input type="text" placeholder="월" />
+					<input type="text" placeholder="일" />
 					<input type="text" placeholder="주소" />
 				</div>
 				<br />

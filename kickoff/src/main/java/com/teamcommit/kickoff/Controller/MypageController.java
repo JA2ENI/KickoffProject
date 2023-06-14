@@ -2,12 +2,14 @@ package com.teamcommit.kickoff.Controller;
 
 import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.UserDO;
 import com.teamcommit.kickoff.Service.mypage.MypageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -212,17 +214,20 @@ public class MypageController {
     @RequestMapping(value = "/myInfoResult")
     public String myInfoResult(@ModelAttribute("userDO")UserDO userDO, @RequestParam("year")String year, 
     						   @RequestParam("month")String month, @RequestParam("day")String day,
-    						   @RequestParam("mail")String mail, @RequestParam("email")String email,
+    						   @RequestParam("mail")String mail, @RequestParam(value="email", required=false)String email,
+    						   @RequestParam(value="email2", required=false)String email2,
     						   HttpServletRequest request) throws Exception {
     	
         String view = "redirect:/myInfo";
 
         String userDay = year + month + day;
         
-        String userEmail = mail + "@" + email;
+        String uEmail = mail + "@" + email;
+        String[] arrayEmail = uEmail.split(",");
+        String userEmail = arrayEmail[0];
         
         userDO.setUserBirthdate(userDay);
-        userDO.setUserBirthdate(userEmail);
+        userDO.setUserEmail(userEmail);
         
 		mypageService.updateUserInfo(userDO); 
         
@@ -230,11 +235,18 @@ public class MypageController {
     }
     
     @RequestMapping(value = "/myTeam")
-    public String myTeamList() throws Exception {
-        String view = "/mypage/myTeam";
+    public ModelAndView myTeamList(HttpSession session) throws Exception {
+    	ModelAndView mv = new ModelAndView("/mypage/myTeam");
+    	
+    	String userId = (String)session.getAttribute("userId");
+    	
+    	List<TeamDO> list = mypageService.myTeamList(userId);
 
-        return view;
+    	mv.addObject("myTeamList", list);
+    	
+        return mv;
     }
+    
 
     @RequestMapping(value = "/myMessage")
     public String myMessageList() throws Exception {
@@ -247,6 +259,19 @@ public class MypageController {
     public String myHelperList() throws Exception {
         String view = "/mypage/myHelper";
 
+        return view;
+    }
+    
+    @RequestMapping(value = "/userDelete")
+    public String userDelete(HttpSession session) throws Exception {
+        String view = "/main";
+        	
+        String userId = (String)session.getAttribute("userId");
+        
+        mypageService.userDelete(userId);
+        
+        session.invalidate();
+        
         return view;
     }
 }

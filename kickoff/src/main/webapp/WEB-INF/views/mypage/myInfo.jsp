@@ -1,16 +1,26 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+<%
+
+	String number = (String)session.getAttribute("smsConfirmNum");
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Kick Off: 마이페이지</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
 	
 	<link rel="stylesheet" href="/myPage/css/myInfo.css">
 	<link rel="stylesheet" href="/myPage/css/main.css" />
+	
+	<title>Kick Off: 마이페이지</title>
 </head>
 <body>
 	<div id="wrapper">
@@ -24,7 +34,7 @@
 				<section class="checkout spad">
 					<div class="container">
 						<div class="checkout__form">
-							<form role="form" id="frm" name="frm" action="" method="POST">
+							<form role="form" id="frm" name="frm" action="/myInfoResult" method="POST">
 								<div class="row-request-container">
 									<div class="col-lg-8-1 col-md-6">
 										<div class="checkout__input__request">
@@ -41,7 +51,7 @@
 											<p class="atSign">@</p>
 											<div class="col-lg-6">
 												<div class="checkout__input__request email">
-													<select id="emailAddress" class="inputBox email" name="email">
+													<select id="emailAddress" class="inputBox email">
 					                                	<option value="">이메일 선택</option>
 					                                	<option value="naver.com" <c:if test="${map.email eq 'naver'}">selected</c:if>>naver.com</option>
 					                                	<option value="kakao.com" <c:if test="${map.email eq 'kakao'}">selected</c:if>>kakao.com</option>
@@ -52,8 +62,9 @@
 					                                </select>
 												</div>
 												<div class="checkout__input__request inputEmail">
-				                                	<input type="text" id="selboxDirect" class="inputBox email" name="email" />
+				                                	<input type="text" id="selboxDirect" class="inputBox email" />
 				                                </div>
+				                                <input type="hidden" id="email" name="email" value=""/>
 											</div>
 										</div>
 										<div class="checkout__input__request">
@@ -84,7 +95,7 @@
 											<p>휴대폰 번호<span>*</span></p>
 											<div class="phone_content">
 												<input type="text" id="phone" class="inputBox phone" name="userPhoneNumber" value="${userInfo.userPhoneNumber}" maxlength="13"/>
-												<input type="button" id="sendPhone" class="checkPhone phone" onclick="" value="번호 인증"/>
+												<input type="button" id="sendPhone" class="checkPhone phone" onclick="javascript:alert('test : ' + ${number});" value="번호 인증"/>
 												<!-- <a href="/reservation" id="cancle" class="cancle">취소</a> -->
 											</div>
 										</div>
@@ -92,6 +103,7 @@
 											<div id="checkPhoneBox" class="phone_content">
 												<input type="text" id="checkPhone" class="inputBox phone" name="checkPhone"/>
 												<input type="button" id="checkPhoneBtn" class="checkPhone phone" onclick="" value="확인"/>
+												<%-- <input type="hidden" id="smsConfirmNum" name="smsConfirmNum" value="${smsConfirmNum}"/> --%>
 												<!-- <a href="/reservation" id="cancle" class="cancle">취소</a> -->
 											</div>
 										</div>
@@ -100,10 +112,10 @@
 											<input type="text" id="userAddress" class="inputBox" name="userAddress" value="${userInfo.userAddress}" onclick="kakaopost()">
 										</div>
 										<div class="btn-container">
- 											<input type="button" id="update" class="update" onclick="validCheck()" value="수정"/>
+ 											<input type="submit" id="update" class="update" onclick="validCheck()" value="수정"/>
 										</div>
 										<div class="">
-											<a href="/main" id="delete" class="delete" onclick="">회원 탈퇴</a>
+											<a href="javascript:void(0);" id="delete" class="delete" onclick="userDelete()">회원 탈퇴</a>
 										</div>
 									</div>
 								</div>
@@ -132,86 +144,8 @@
 		</div>
 	</div>
 	
-	<script>
-		$(function(){
-			$("#selboxDirect").hide();
-			$("#checkPhoneBox").hide();
-			$("#emailAddress").change(function() {
-				if($("#emailAddress").val() == "direct") {
-					$("#emailAddress").hide();
-					$("#selboxDirect").show();
-				}  else {
-					$("#selboxDirect").hide();
-				}
-			}) 
-		});
-		
-		$("#sendPhone").click(function() {
-			
-			if($("#phone").val() != "") {
-				$("#checkPhoneBox").show();
-			}  else {
-				$("#checkPhoneBox").hide();
-			}
-			
-			let phoneNumber = $('#phone').val();
-			
-			Swal.fire({
-                text: '인증번호 발송 완료!',
-            });
-			
-			$.ajax({
-				type: "POST",
-				dataType: "json",
-				url: "/sms/send",
-				data: {
-					"to" : phoneNumber
-				},
-				success: function(res){
-		            $('#checkPhoneBtn').click(function(){
-		                if($.trim(res) == $('#checkPhone').val()){
-		                    Swal.fire(
-		                        '인증성공!',
-		                        '휴대폰 인증이 정상적으로 완료되었습니다.',
-		                        'success'
-		                    )
-
-		                } else {
-		                    Swal.fire({
-		                        icon: 'error',
-		                        title: '인증오류',
-		                        text: '인증번호가 올바르지 않습니다!',
-		                    });
-		                }
-		            });
-		        }
-			});
-		}); 
-		
-	</script>
-	
-	
 	<!-- Kakao postcode -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script>
-		function kakaopost() {
-			var width = 500;
-			var height = 460;
-			
-		    new daum.Postcode({
-		    	width: width,
-		    	height: height,
-		    	
-		        oncomplete: function(data) {
-		           document.querySelector("#userAddress").value =  data.address;
-		        }
-		    }).open({
-		    	left: (window.screen.width / 2) - (width / 2),
-		    	top: (window.screen.height / 2) - (height / 2)
-		    });
-		}
-	</script>
-	
 	<!-- Scripts -->
 	<script src="/myPage/js/jquery.min.js"></script>
 	<script src="/myPage/js/skel.min.js"></script>

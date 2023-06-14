@@ -254,27 +254,33 @@ public class EmpController {
         그리고 emp의 5개 jsp마다 '풋살장 등록' 클릭 링크 주소 변경해 놓았어요.
     */
 
-    /* 풋살장 등록 
-    @RequestMapping(value="/empFutsalForm")
-    public ModelAndView empFutsal(@ModelAttribute("placeDO") PlaceDO placeDO, HttpServletRequest request, RedirectAttributes redirect) throws Exception {
-
-        ModelAndView mv = new ModelAndView("redirect:/empFutsalFix");
-
-        empService.empFutsalInsert(placeDO);
-
-        return mv;
-    }
-    
-*/
-    
-    /* 풋살장 등록 폼 */
-    @RequestMapping(value = "/empFutsalForm")
+    /* 풋살장 등록페이지로 이동 */
+    @RequestMapping(value = "/empFutsal")
     public String empFutsalForm(@ModelAttribute("placeDO") PlaceDO placeDO, Model model, HttpServletRequest request) throws Exception {
         String view = "/emp/empFutsal";
 
         return view;
-    }
+	}
 
+	/* 풋살장 등록 */
+	@RequestMapping(value="/empFutsalForm")
+    public ModelAndView empFutsalForm(@ModelAttribute("placeDO") PlaceDO placeDO, HttpServletRequest request, RedirectAttributes redirect) throws Exception {
+
+       ModelAndView mv = new ModelAndView();
+        
+       try {
+    	   
+    	   empService.empFutsalInsert(placeDO);
+    	   
+    	   mv = new ModelAndView("redirect:/empFutsalFix");
+    	   
+    	   redirect.addFlashAttribute("msg", "등록 완료되었습니다.");
+       } catch (Exception e) {
+    	   redirect.addFlashAttribute("msg", "오류가 발생되었습니다. 다시 시도해주세요.");
+       }
+
+        return mv;
+    }
 
     /* 풋살장 조희 */
     @RequestMapping( "/empFutsalFix")

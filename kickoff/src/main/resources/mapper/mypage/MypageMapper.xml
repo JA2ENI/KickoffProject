@@ -93,7 +93,7 @@
         ]]>
     </update>
     
-     <!-- User Info Update -->
+    <!-- User Info Update -->
     <update id="updateUserInfo" parameterType="com.teamcommit.kickoff.Do.UserDO">
         <![CDATA[
             UPDATE
@@ -108,7 +108,28 @@
         ]]>
     </update>
     
+    <!-- My Team List -->
+    <select id="myTeamList" parameterType="String" resultType="com.teamcommit.kickoff.Do.TeamDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                T
+            WHERE
+            	USER_ID = #{userId}
+            ORDER BY RESERVATION_DATE ASC	
+        ]]>
+    </select>
     
+    <!-- User Info Delete -->
+    <update id="userDelete" parameterType="String">
+        <![CDATA[
+            DELETE
+            FROM
+                USERS
+            WHERE
+            	USER_ID = #{userId}
+        ]]>
+    </update>
     
     
     
