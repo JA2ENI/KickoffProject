@@ -36,11 +36,11 @@ public class EmpController {
     private ReservationService reservationService;
 
     @GetMapping("/empReservation")
-    public String empReservation(@ModelAttribute("reservationDO") ReservationDO reservationDO, Model model) {
+    public String empReservation(HttpSession session, Model model) {
         String view = "/emp/empReservation";
 
         try {
-            List<ReservationDO> list = empService.selectReservation(reservationDO);
+            List<ReservationDO> list = empService.selectReservation((String)session.getAttribute("empId"));
             model.addAttribute("table", list);            
         }
         catch (Exception e) {
@@ -48,9 +48,9 @@ public class EmpController {
         }
         return view;
     }
- /*   
-    @GetMapping("empReservation")
-    public String helperInsert(@RequestParam(value = "userId") String userId, @RequestParam(value = "reservationPlaceName") String reservationPlaceName, @RequestParam(value = "reservationStatus") String reservationStatus, @RequestParam(value = "reservationRegDate") String reservationRegDate,
+
+    @GetMapping("/empReservationDetail")
+    public String empReservationDetail(@RequestParam(value = "userId") String userId, @RequestParam(value = "reservationPlaceName") String reservationPlaceName, @RequestParam(value = "reservationStatus") String reservationStatus, @RequestParam(value = "reservationRegDate") String reservationRegDate,
     						   @RequestParam(value = "reservationStartTime") String reservationStartTime, @RequestParam(value = "reservationEndTime") String reservationEndTime, @RequestParam(value = "reservationPrice") String reservationPrice, @RequestParam(value = "reservationComment") String reservationComment, @RequestParam(value = "reservationDate") String reservationDate, @RequestParam(value = "reservationNumber") String reservationNumber, Model model) {
         String view = "forward:/empReservation";
         model.addAttribute("userId", userId);
@@ -65,8 +65,7 @@ public class EmpController {
         model.addAttribute("reservationNumber", reservationNumber);
         return view;
     }
-    
-*/
+
 
 
     @RequestMapping( "/myBoard")
