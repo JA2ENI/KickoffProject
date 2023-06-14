@@ -20,7 +20,9 @@
 					<input type="text" id="empPhoneNumber" name="empPhoneNumber" placeholder="업체 번호" />
 					<input type="text" id="empAddress" name="empAddress" placeholder="업체 주소" />
 					<input type="email" id="empEmail" name="empEmail" placeholder="이메일" />
-					<input type="date" id="empDate" name="empDate" placeholder="업체 등록일" />
+					<input type="text" id="empDate" name="empDate" placeholder="업체 등록연도" />
+					<input type="text" id="empDate" name="empDate" placeholder="월" />
+					<input type="text" id="empDate" name="empDate" placeholder="일" />
 					<input type="text" id="empNo" name="empNo" placeholder="사업자 번호" />
 					<button>사업자 번호 인증</button>
 				</div>
