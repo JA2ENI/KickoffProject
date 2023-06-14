@@ -93,7 +93,7 @@
 								<li><a href="/helperInsert">용병 모집 등록</a></li>
 							</ul>
 						</li>
-						<li><a href="/applicationList">신청</a></li>
+						<li><a href="/applyList">신청</a></li>
 					</ul>
 				</div>
 				<div class="icons-wrap text-md-right">

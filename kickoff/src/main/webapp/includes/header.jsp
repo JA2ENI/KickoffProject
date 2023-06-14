@@ -18,7 +18,7 @@
 						<li><a href="/helperList">모집목록</a></li>
 						<li><a href="/helperInsert">용병모집 등록</a></li>
 					</ul></li>
-				<li><a href="/applicationList">신청</a></li>
+				<li><a href="/applyList">신청</a></li>
 			</ul>
 		</div>
 
