@@ -33,7 +33,7 @@
 									<div class="container">
 										<div class="checkout__form">
 											<form role="form" id="frm" name="frm" action="/fixInfoCheckResult" method="POST">
-												<div class="row-request-container">
+												<div class="row-request-container" style= "width: 50%;">
 													<div class="notice">회원님의 소중한 정보 보호를 위해,</div>
 													<div class="notice two">Kick Off의 현재 비밀번호를 확인해 주세요.</div>
 													<div class="col-lg-8-1 col-md-6 check">
@@ -70,7 +70,7 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<a href="/empReservation">예약관리</a>
+										<li><a href="/empReservation">예약관리</a></li>
 										<li><a href="/myBoard">내 게시글</a></li>
 										<li><a href="/fixInfoCheck">회원 정보 수정</a></li>
 										<li>

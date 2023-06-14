@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -47,8 +48,25 @@ public class EmpController {
         }
         return view;
     }
+ /*   
+    @GetMapping("empReservation")
+    public String helperInsert(@RequestParam(value = "userId") String userId, @RequestParam(value = "reservationPlaceName") String reservationPlaceName, @RequestParam(value = "reservationStatus") String reservationStatus, @RequestParam(value = "reservationRegDate") String reservationRegDate,
+    						   @RequestParam(value = "reservationStartTime") String reservationStartTime, @RequestParam(value = "reservationEndTime") String reservationEndTime, @RequestParam(value = "reservationPrice") String reservationPrice, @RequestParam(value = "reservationComment") String reservationComment, @RequestParam(value = "reservationDate") String reservationDate, @RequestParam(value = "reservationNumber") String reservationNumber, Model model) {
+        String view = "forward:/empReservation";
+        model.addAttribute("userId", userId);
+        model.addAttribute("reservationPlaceName", reservationPlaceName);
+        model.addAttribute("reservationStatus", reservationStatus);
+        model.addAttribute("reservationRegDate", reservationRegDate);
+        model.addAttribute("reservationStartTime", reservationStartTime);
+        model.addAttribute("reservationEndTime", reservationEndTime);
+        model.addAttribute("reservationPrice", reservationPrice);
+        model.addAttribute("reservationComment", reservationComment);
+        model.addAttribute("reservationDate", reservationDate);
+        model.addAttribute("reservationNumber", reservationNumber);
+        return view;
+    }
     
-
+*/
 
 
     @RequestMapping( "/myBoard")
@@ -226,13 +244,6 @@ public class EmpController {
 		return "redirect:/main";
 	}
 
-    /* 풋살장 등록 폼 */
-    @RequestMapping(value = "/empFutsalForm")
-    public String empFutsalForm(@ModelAttribute("placeDO") PlaceDO placeDO, Model model, HttpServletRequest request) throws Exception {
-        String view = "/emp/empFutsal";
-
-        return view;
-    }
 
     /*
         reservation에 placeInfo를 가져와서 넘길려고 만들어 놓은게 있어서,
@@ -243,8 +254,8 @@ public class EmpController {
         그리고 emp의 5개 jsp마다 '풋살장 등록' 클릭 링크 주소 변경해 놓았어요.
     */
 
-    /* 풋살장 등록 */
-    @RequestMapping(value="/empFutsal")
+    /* 풋살장 등록 
+    @RequestMapping(value="/empFutsalForm")
     public ModelAndView empFutsal(@ModelAttribute("placeDO") PlaceDO placeDO, HttpServletRequest request, RedirectAttributes redirect) throws Exception {
 
         ModelAndView mv = new ModelAndView("redirect:/empFutsalFix");
@@ -252,6 +263,16 @@ public class EmpController {
         empService.empFutsalInsert(placeDO);
 
         return mv;
+    }
+    
+*/
+    
+    /* 풋살장 등록 폼 */
+    @RequestMapping(value = "/empFutsalForm")
+    public String empFutsalForm(@ModelAttribute("placeDO") PlaceDO placeDO, Model model, HttpServletRequest request) throws Exception {
+        String view = "/emp/empFutsal";
+
+        return view;
     }
 
 

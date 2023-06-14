@@ -30,6 +30,10 @@ public interface EmpMapper {
     
     public PlaceDO selectEmpFutsalFix(int placeId);
     
+    public PlaceDO insertPlaceInfo(int placeId);
+    
+    public Integer procGetMaxId();
+    
     public void updateEmpFutsalF(PlaceDO placeDO);
     
     public EmployerDO empInfoCheck(EmployerDO employer);
