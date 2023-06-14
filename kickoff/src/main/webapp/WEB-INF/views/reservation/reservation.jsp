@@ -12,11 +12,8 @@
     <meta name="author" content="" />
     <title>Kick off: 풋살장 예약 목록</title>
     <link href="https://fonts.google.com/noto/specimen/Noto+Sans+KR?subset=korean&noto.script=Kore" rel="stylesheet">
-    <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="/reservation/assets/favicon.ico" />
-    <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
     <link rel = "stylesheet" href = "/main/css/vendor/icomoon/style.css">
     <link href="/reservation/css/styles.css" rel="stylesheet" />
     <link href="/includes/css/style.css" rel="stylesheet" />

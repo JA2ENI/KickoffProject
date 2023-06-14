@@ -1,0 +1,136 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+	max-width: 60%;
+	min-height: 10vh;
+	margin: 0 auto;
+}
+
+header {
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	margin-top: 8rem;
+}
+
+section {
+	width: 100%;
+	height: auto;
+	float: left;
+	margin: 0 auto;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+	
+}
+
+aside {
+	width: 80px;
+	height: 160px;
+	float: left;
+}
+
+footer {
+	clear: both;
+	width: 100%;
+}
+
+.title {
+	font-size: 33px;
+}
+
+#img_container {
+	display: block;
+	position: relative;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 780px;
+	margin-top: 8rem;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+}
+
+.futsal {
+	width: 100%;
+	margin-top: 5rem;
+}
+
+.ball {
+	display: block;
+	position: absolute;
+	width: 12%;
+	top: 50px;
+	transition: transform .5s 0.2s;
+	z-index: 2;
+}
+
+.icons {
+	display: block;
+	position: absolute;
+	top: 60px;
+	width: 9%;
+	z-index: 1;
+} 
+
+.ball:hover {
+	transform: translate(0px, -180px);
+}
+
+#ball {
+	left: 135px;
+}
+
+#ball2 {
+	left: 274px;
+}
+
+#ball3 {
+	left: 414px;
+}
+
+#ball4 {
+	left: 550px;
+}
+
+#imgCourt {
+	left: 148px;	
+}
+
+#imgGame {
+	left: 285px;
+}
+
+#imgTeam {
+	left: 425px;
+}
+
+#imgHelper {
+	left: 565px;
+}
+
+.text-container{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	font-size: 20px;
+	width: 70%;
+	margin: 0 auto;
+}
+
+.text {
+	display: block;
+	margin: 5px 5px;
+	padding: 7px;
+	width: calc(25% - 10px);
+	text-align: center;
+	font-weight: bold;
+}
+
+
+
+

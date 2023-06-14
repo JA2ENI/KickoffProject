@@ -215,7 +215,6 @@ public class MypageController {
     public String myInfoResult(@ModelAttribute("userDO")UserDO userDO, @RequestParam("year")String year, 
     						   @RequestParam("month")String month, @RequestParam("day")String day,
     						   @RequestParam("mail")String mail, @RequestParam(value="email", required=false)String email,
-    						   @RequestParam(value="email2", required=false)String email2,
     						   HttpServletRequest request) throws Exception {
     	
         String view = "redirect:/myInfo";
@@ -237,13 +236,13 @@ public class MypageController {
     @RequestMapping(value = "/myTeam")
     public ModelAndView myTeamList(HttpSession session) throws Exception {
     	ModelAndView mv = new ModelAndView("/mypage/myTeam");
-    	
+    	/*
     	String userId = (String)session.getAttribute("userId");
     	
     	List<TeamDO> list = mypageService.myTeamList(userId);
 
     	mv.addObject("myTeamList", list);
-    	
+    	*/
         return mv;
     }
     

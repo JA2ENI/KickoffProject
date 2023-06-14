@@ -7,12 +7,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="/myPage/css/main.css" />
-	<!-- Bootstrap CSS-->
 	<link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-	<!-- Vendor CSS-->
 	<link href="/myPage/vendor/select2/select2.min.css" rel="stylesheet" media="all">
 	<link href="/myPage/vendor/mdi-font/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-	<!-- Main CSS-->
 	<link href="/myPage/css/theme.css" rel="stylesheet" media="all">
 	
 	<title>Kick Off: 마이페이지</title>
@@ -21,13 +18,11 @@
 	<div id="wrapper">
 		<div id="main">
 			<div class="inner">
-				<!-- Header -->
 				<header id="header">
 					<input type="button" onclick="location.href='main'" class="kickoff" value="Kick Off"/>
 					<br>
 					<a href="/myTeam" class="logo"><strong>소속팀</strong></a>
 				</header>
-				<!-- Section -->
 				<section class="section">
 					<div class="container-fluid">
 						<div class="table-data__tool">
@@ -59,7 +54,6 @@
 								</p>
 							</div>
 						</div>
-						<c:choose>
 						<div class="table-responsive table-responsive-data2">
 							<table class="table table-data2">
 								<thead>
@@ -135,7 +129,6 @@
 								</tbody>
 							</table>
 						</div>
-						</c:choose>
 					</div>
 						<!-- END DATA TABLE -->
 				</section>

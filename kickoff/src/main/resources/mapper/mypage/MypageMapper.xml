@@ -113,9 +113,9 @@
         <![CDATA[
             SELECT *
             FROM
-                T
+                TEAM
             WHERE
-            	USER_ID = #{userId}
+            	LEADER_ID = #{userId}
             ORDER BY RESERVATION_DATE ASC	
         ]]>
     </select>
