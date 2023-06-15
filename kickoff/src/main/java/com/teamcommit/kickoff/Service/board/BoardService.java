@@ -10,31 +10,28 @@ import java.util.Map;
 
 public interface BoardService {
 
+	//게시판 리스트
     List<BoardDO> getList(BoardDO boardDO) throws Exception;
 
+    //게시판 삽입
     void insertBoard(BoardDO boardDO) throws Exception;
 
+    //게시판 상세보기
     BoardDO getBoardContents(int boardSeqno) throws Exception;
 
+    //게시판 수정
     void updateBoard(BoardDO boardDO) throws Exception;
 
+    //게시판 삭제
     void getBoardDelete(int boardSeqno) throws Exception;
 
+    //게시판 신고
     void reportBoard(ReportDO reportDO) throws Exception;
 
     // 가장큰 시퀀스 값 가져오기
     Integer procGetMaxSeqno() throws Exception;
 
-    // 가장큰 시퀀스 값 가져오기
-    Integer procGetMaxNo() throws Exception;
-
     //조회수 증가
     void procAddViewCount(BoardDO boardDO);
-
-    void insertReply(ReplyDO replyDO) throws Exception;
-
-    List<ReplyDO> getreplyList(int boardSeqno) throws Exception;
-
-    void getReplyDelete(int replyNo) throws Exception;
 
 }

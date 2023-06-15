@@ -16,65 +16,45 @@ public class BoardServiceImpl implements BoardService{
     @Autowired
     private BoardMapper boardMapper;
 
+    //게시판 리스트
     @Override
     public List<BoardDO> getList(BoardDO boardDO) throws Exception {
         return boardMapper.getList(boardDO);
     }
-
+    //게시판 삽입
     @Override
     public void insertBoard(BoardDO boardDO) throws Exception { 
         boardMapper.insertBoard(boardDO);
     }
-
+    //게시판 상세보기
     @Override
     public BoardDO getBoardContents(int boardSeqno) throws Exception {
         return boardMapper.getBoardContents(boardSeqno);
     }
-
+    //게시판 수정
     @Override
     public void updateBoard(BoardDO boardDO) throws Exception {
         boardMapper.updateBoard(boardDO);
     }
-
+    //게시판 삭제
     @Override
     public void getBoardDelete(int boardSeqno) throws Exception {
         boardMapper.getBoardDelete(boardSeqno);
     }
-
+    //게시판 신고
     @Override
     public void reportBoard(ReportDO reportDO) throws Exception {
         boardMapper.reportBoard(reportDO);
     }
-
+    //가장 큰 시퀀스 값 가져오기
     @Override
     public Integer procGetMaxSeqno() throws Exception {
         return boardMapper.procGetMaxSeqno();
     }
-
-    @Override
-    public Integer procGetMaxNo() throws Exception {
-        return boardMapper.procGetMaxNo();
-    }
-
     //조회수 증가
     @Override
     public void procAddViewCount(BoardDO boardDO) {
         boardMapper.procAddViewCount(boardDO);
-    }
-
-    @Override
-    public void insertReply(ReplyDO replyDO) throws Exception{
-        boardMapper.insertReply(replyDO);
-    }
-
-    @Override
-    public List<ReplyDO> getreplyList(int boardSeqno) throws Exception {
-        return boardMapper.getreplyList(boardSeqno);
-    }
-
-    @Override
-    public void getReplyDelete(int replyNo) throws Exception {
-        boardMapper.getReplyDelete(replyNo);
     }
 
 }

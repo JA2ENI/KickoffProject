@@ -1,5 +1,5 @@
 package com.teamcommit.kickoff.Service.signup;
 
-public interface signupMapper {
+public interface SignupMapper {
 
 }
