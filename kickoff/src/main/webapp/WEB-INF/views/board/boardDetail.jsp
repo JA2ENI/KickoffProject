@@ -19,7 +19,7 @@
 <script src="/includes/js/jquery.lettering.js"></script>
 <script src="/includes/js/jquery.sticky.js"></script>
 
-
+<script type="text/javascript" src="/board/js/reply.js"></script>
 <script src="/includes/js/ScrollMagic.min.js"></script>
 <script src="/includes/js/scrollmagic.animation.gsap.min.js"></script>
 
