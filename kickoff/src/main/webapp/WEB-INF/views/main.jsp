@@ -51,6 +51,9 @@
 
 
 <title>kickoff</title>
+<script>
+${msg}
+</script>
 </head>
 <body>
 

@@ -3,7 +3,8 @@
 
 <mapper namespace="com.teamcommit.kickoff.Service.admin.AdminMapper">
 
-    <select id="getList" parameterType="java.util.Map" resultType="java.util.Map">
+	<!-- Member List -->
+    <select id="memberList" parameterType="java.util.Map" resultType="java.util.Map">
         <![CDATA[
         SELECT
 	        NAME,
@@ -36,7 +37,7 @@
 		    FROM
 		            EMPLOYER
 		    )
-        ]]>
+       ]]>
     </select>
     
     <!-- User Delete -->
@@ -47,7 +48,7 @@
             USERS
         WHERE
             USER_ID = #{userId}
-        ]]>
+    ]]>
 	</delete>
 	
 	<!-- Emp Delete -->
@@ -58,8 +59,30 @@
             EMPLOYER
         WHERE
             EMP_ID = #{empId}
-        ]]>
+    ]]>
 	</delete>
+	
+	<!-- User Disable -->
+	<update id="user_disable" parameterType="java.lang.String">
+	<![CDATA[
+        UPDATE USERS
+        SET
+        	USER_STATUS = '정지'
+        WHERE
+        	USER_ID = #{userId}
+    ]]>
+	</update>
+	
+	<!-- EMP Disable -->
+	<update id="emp_disable" parameterType="java.lang.String">
+	<![CDATA[
+        UPDATE EMPLOYER
+        SET
+        	EMP_STATUS = '정지'
+        WHERE
+        	EMP_ID = #{empId}
+    ]]>
+	</update>
 	
 	
 </mapper>

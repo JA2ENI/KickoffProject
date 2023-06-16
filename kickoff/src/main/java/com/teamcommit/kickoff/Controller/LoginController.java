@@ -30,34 +30,6 @@ public class LoginController {
     private LoginService loginService;
 	
     
-    @GetMapping("/loginAgree")
-    public String loginAgree() {
-        String view = "/login/loginAgree";
-
-        return view;
-    }
-
-    @GetMapping("/loginAgreeEmp")
-    public String loginAgreeEmp() {
-        String view = "/login/loginAgreeEmp";
-
-        return view;
-    }
-
-    @GetMapping("/Signup")
-    public String Signup() {
-        String view = "/login/Signup";
-
-        return view;
-    }
-
-    @GetMapping("/SignupEmp")
-    public String SignupEmp() {
-        String view = "/login/SignupEmp";
-
-        return view;
-    }
-    
     // 로그인 페이지 이동
     @GetMapping("/loginAll")
     public String loginAll() {
@@ -73,7 +45,10 @@ public class LoginController {
                               @RequestParam(value = "empId", required = false) String empId,
                               @RequestParam(value = "empPw", required = false) String empPw,
                               HttpSession session, Model model, HttpServletRequest request) throws Exception {
-        if (userId != null && userPw != null) {
+    	
+    	ModelAndView mv = new ModelAndView("redirect:/main");
+    	
+    	if (userId != null && userPw != null) {
             // 회원 로그인 처리
             UserDO userDO = new UserDO();
             userDO.setUserId(userId);
@@ -81,9 +56,19 @@ public class LoginController {
             UserDO result = this.loginService.member_login(userDO);
 
             if (result != null) {
-                ModelAndView mv = new ModelAndView("redirect:/main");
+            	if(result.getUserStatus().equals("정지")) {
+            		// 정지된 회원은 로그인 불가 처리
+            		mv.addObject("msg", "alert('정지된 회원은 로그인이 불가능합니다.');");
+            		mv.setViewName("/main");
+            		
+            		return mv;
+            	}
+            	
                 session.setAttribute("userId", result.getUserId());
                 session.removeAttribute("empId");
+                model.addAttribute("msg", "alert('로그인이 완료되었습니다.');");
+                mv.setViewName("/main");
+                
                 return mv;
             }
         } else if (empId != null && empPw != null) {
@@ -94,24 +79,36 @@ public class LoginController {
             EmployerDO result = this.loginService.emp_login(empDO);
             
             if (result != null) {
-                ModelAndView mv = new ModelAndView("redirect:/main");
+            	if(result.getEmpStatus().equals("정지")) {
+            		// 정지된 회원은 로그인 불가 처리
+            		model.addAttribute("msg", "alert('정지된 회원은 로그인이 불가능합니다.');");
+            		mv.setViewName("/main");
+            		
+            		return mv;
+            	}
+            	
                 session.setAttribute("empId", result.getEmpId());
                 session.removeAttribute("userId");
+                model.addAttribute("msg", "alert('로그인이 완료되었습니다.');");
+                mv.setViewName("/main");
+                
                 return mv;
             }
         }
 
         // 로그인 실패 시 로그아웃 처리
-        ModelAndView mv = new ModelAndView("redirect:/loginAll");
         session.removeAttribute("userId");
         session.removeAttribute("empId");
+        model.addAttribute("msg", "alert('로그인에 실패했습니다.');");
+        mv.setViewName("/main");
+        
         return mv;
     }
 
 
     // 로그아웃
     @GetMapping("/logout")
-    public ModelAndView logout(HttpSession session) {
+    public ModelAndView logout(HttpSession session, Model model) {
         session.removeAttribute("userId");
         session.removeAttribute("empId");
         ModelAndView mv = new ModelAndView("redirect:/main");
