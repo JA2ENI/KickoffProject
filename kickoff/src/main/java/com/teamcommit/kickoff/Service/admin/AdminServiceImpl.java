@@ -13,8 +13,8 @@ public class AdminServiceImpl implements AdminService {
     private AdminMapper adminMapper;
 
     @Override
-    public List<Map<String, Object>> getList(Map<String, Object> paramMap) throws Exception {
-        return adminMapper.getList(paramMap);
+    public List<Map<String, Object>> memberList(Map<String, Object> paramMap) throws Exception {
+        return adminMapper.memberList(paramMap);
     }
     
     @Override
@@ -25,5 +25,15 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void emp_delete(String empId) throws Exception {
     	adminMapper.emp_delete(empId);
+    }
+    
+    @Override
+    public void user_disable(String userId) throws Exception {
+    	adminMapper.user_disable(userId);
+    }
+    
+    @Override
+    public void emp_disable(String empId) throws Exception {
+    	adminMapper.emp_disable(empId);
     }
 }

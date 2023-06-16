@@ -52,18 +52,19 @@
 								</select>
 								<div class="dropDownSelect2"></div>
 							</div>
-							<form method="POST" action="/deleteUser">
+							<form method="POST" action="/manageMember">
 								<div class="userType">
 									<label>
-										<input type="radio" name="userType" value="user" checked>개인 회원 &nbsp; 
+										<input type="radio" name="userType" value="user" checked>&nbsp; 개인 회원 &nbsp; 
 									</label>
 									<label>
-										<input type="radio" name="userType" value="emp">업체 회원
+										<input type="radio" name="userType" value="emp">&nbsp; 업체 회원
 									</label>
 								</div>
-								<div class="deleteUser">
-									<input type="text" name="id" id="inputId" placeholder="탈퇴시킬 회원의 아이디를 입력하세요.">
-									<button type="submit" id="deleteBtn" onclick="userDelete()">회원 강제 탈퇴</button>
+								<div class="managementUser">
+									<input type="text" name="id" id="inputId" placeholder="정지/탈퇴시킬 회원의 아이디를 입력하세요.">
+									<button type="submit" name="action" value="disable" id="disableBtn" onclick="userAction('disable')">회원 강제 정지</button>
+									<button type="submit" name="action" value="delete" id="deleteBtn" onclick="userAction('delete')">회원 강제 탈퇴</button>
 								</div>
 							</form>
 						</div>
@@ -195,12 +196,18 @@
 	</div>
 
 	<script>
-		function userDelete() {
-			var confirmFlag = confirm("이 회원을 정말 탈퇴시키겠습니까?");
+		function userAction(action) {
+			var confirmFlag = "";
 	 	
-			if (confirmFlag) {
-	         	location.href = "/deleteUser";
-	        } 
+			if (action === "disable") {
+				confirmFlag = "이 회원을 정말로 정지하시겠습니까?";
+	        } else if (action === "delete") {
+	        	confirmFlag = "이 회원을 정말로 탈퇴시키겠습니까?";
+	        }
+			
+			if(!confirm(confirmFlag)) {
+				return false;
+			}
 		}
 		
 	</script>

@@ -7,13 +7,14 @@
     box-sizing: border-box;
 }
 
-.deleteUser {
+.managementUser {
 	margin-top: 10px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 100%;
 }
+
 
 label {
 	display: contents !important;
@@ -24,11 +25,17 @@ label {
 }
 
 #inputId {
-	width: 85%;
+	width: 70%;
 }
 
 #deleteBtn {
 	margin-top: 0;
+	border: 1px solid #b8b6b6;
+	color: #b8b6b6;
+}
+
+#disableBtn {
+	margin-top: 0
 }
 
 ul {
@@ -162,6 +169,7 @@ strong {
 /* ----- Links ----- */
 a {
     display: inline-block;
+    font-weight: bold;
 }
 
 a:hover,

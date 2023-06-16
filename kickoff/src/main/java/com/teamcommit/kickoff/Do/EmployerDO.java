@@ -22,6 +22,15 @@ public class EmployerDO {
 	private int placeId;
 	// 사업자 번호
 	private String empNo;
+	// 업체 회원 정지 횟수
+	private int empStopCount;
+	// 업체 회원 예약 거절 횟수
+	private int empCancelCount;
+	// 업체 회원 상태
+	private String empStatus;
+	// 업체 회원 구분
+	private String empClassification;
+	
 
 
 	public String getEmpId() {
@@ -77,6 +86,30 @@ public class EmployerDO {
 	}
 	public void setEmpNo(String empNo) {
 		this.empNo = empNo;
+	}
+	public int getEmpStopCount() {
+		return empStopCount;
+	}
+	public void setEmpStopCount(int empStopCount) {
+		this.empStopCount = empStopCount;
+	}
+	public int getEmpCancelCount() {
+		return empCancelCount;
+	}
+	public void setEmpCancelCount(int empCancelCount) {
+		this.empCancelCount = empCancelCount;
+	}
+	public String getEmpStatus() {
+		return empStatus;
+	}
+	public void setEmpStatus(String empStatus) {
+		this.empStatus = empStatus;
+	}
+	public String getEmpClassification() {
+		return empClassification;
+	}
+	public void setEmpClassification(String empClassification) {
+		this.empClassification = empClassification;
 	}
 	
 }
