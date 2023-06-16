@@ -1,0 +1,195 @@
+/* Apply Helper */
+
+.myInfo,
+.helper {
+	background-color: #ffffff;
+	border-radius: 20px;
+}
+
+.myInfo {
+	width: 30%;
+}
+
+.myInfo-container,
+.helper-container {
+	width: 100%;
+	height: 100%;
+}
+
+.myInfo-wrap,
+.helper-wrap {
+	height: 100vh;
+	margin: 5px;
+	padding: 10px;
+}
+
+.uInfo {
+	display: flex;
+	padding-left: 8px;
+}
+
+.userName,
+.hTitle {
+	padding-left: 8px;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.userId {
+	margin-left: 5px;
+	padding-top: 10px;
+	font-size: 15px;
+	color: #848484;
+}
+
+.uTeam-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.uTeam-wrap {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 2fr;
+	margin: 10px 0px;
+	padding: 10px;
+	width: 100%;
+	height: 15vh;
+	border-radius: 10px;
+	background-color: #f8fafb;
+}
+
+.uTeam,
+.uTeamRank,
+.uPosition,
+.uGame {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.uTeamName,
+.uTeamRankName,
+.uPositionName,
+.uGameCount {
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.box-wrap {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.box-frame {
+	margin: 10px 0px;
+	padding: 10px;
+	width: 100%;
+	height: auto;
+	border-radius: 10px;
+	background-color: #f8fafb;
+}
+
+.box-content {
+	padding: 10px;
+	width: 100%;
+	border-radius: 10px;
+	background-color: #f8fafb;
+}
+
+.detail {
+	display: none;
+	border-radius: 10px;
+	background-color: #ffffff;
+}
+
+.status {
+	margin: 1px 2px;
+	padding: 2px 3px 2px 3px;
+	height: 80%;
+	border: solid 1px;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 18px;
+	color: #ffffff;
+}
+
+.status.ing {
+	border-color: #1970FF;
+	background-color: #1970FF;
+}
+
+.status.end {
+	border-color: #00A168;
+	background-color: #00A168;
+}
+
+.status.cancel {
+	border-color: #FF4D37;
+	background-color: #FF4D37;
+}
+
+.one-wrap {
+	display: flex;
+	margin-top: 5px;
+	padding-left: 5px;
+	font-size: 20px;
+}
+
+.date {
+	margin-left: 6px;
+}
+
+.date.day {
+	margin-left: 0px;
+	font-weight: bold;
+}
+
+
+.two-wrap {
+	display: flex;
+	height: 100%;
+}
+
+.placeName {
+	padding-left: 5px;
+	font-size: 23px;
+	font-weight: bold;
+}
+
+.numApply,
+.numHelper {
+	margin-left: 7px;
+	padding: 1px 2px;
+	text-align: center;
+	font-size: 19px;
+	border: solid 1px;
+	border-radius: 5px;
+	border-color: #eeeeee;
+	background: #eeeeee;
+}
+
+.three-wrap {
+	display: flex;
+	padding-left: 5px;
+	font-size: 15px;
+}
+
+.arrow {
+	font-size: 13px;
+}
+
+.gender, .hMatch, .hPosition {
+	margin: 0px 5px;
+}
+
+/* checkbox */
+.drop {
+	margin-left: 40%;
+}
+
+
+
+
+

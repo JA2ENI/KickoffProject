@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +23,6 @@
 	<section>
 		<div id="img_container" class="img_container">
 
-
 			<div class="text-container">
 				<div id="reservation" class="text">예약</div>
 				<div id="game" class="text">매칭</div>
@@ -44,13 +43,16 @@
 				<img id="imgTeam" class="icons" src="/apply/images/team.png" />
 			</button>
 			<img id="ball4" class="ball" src="/apply/images/ball.png" />
-			<button type="button" onclick="javascript:alert('용병 신청');">
+			<button type="button" onclick="location.href='/applyHelper';">
 				<img id="imgHelper" class="icons" src="/apply/images/helper.png" />
 			</button>
 			<img class="futsal" src="/apply/images/futsal.png" />
 		</div>
 	</section>
 </body>
+
+<!-- footer -->
+<%@include file="/includes/footer.jsp"%>
 
 <!-- script -->
 <script src="/includes/js/jquery-3.3.1.min.js"></script>

@@ -13,4 +13,11 @@ public class ApplyController {
 		return view;
 	}
 	
+	@RequestMapping(value="/applyHelper")
+	public String applyHelper() throws Exception {
+		String view = "/apply/applyHelper";
+		
+		return view;
+	}
+	
 }
