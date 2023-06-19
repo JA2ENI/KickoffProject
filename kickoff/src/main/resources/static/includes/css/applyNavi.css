@@ -54,7 +54,8 @@ footer {
 
 button {
 	border: none;
-	background-color: #ffffff;
+	background-color: #fff;
+	cursor: pointer;
 }
 
 .title-container,

@@ -133,6 +133,8 @@ footer {
 	font-weight: bold;
 }
 
-
+button {
+    cursor: pointer;
+}
 
 

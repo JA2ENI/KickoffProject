@@ -7,6 +7,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <link href="https://fonts.google.com/noto/specimen/Noto+Sans+KR?subset=korean&noto.script=Kore" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&family=Russo+One&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="/includes/css/style.css">
 <link rel="stylesheet" href="/main/css/vendor/icomoon/style.css">
 <link href="/apply/css/applyList.css" rel="stylesheet" />

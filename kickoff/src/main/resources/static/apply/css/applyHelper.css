@@ -1,8 +1,20 @@
 /* Apply Helper */
 
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
 .myInfo,
 .helper {
-	background-color: #ffffff;
+	background-color: #fff;
 	border-radius: 20px;
 }
 
@@ -25,6 +37,7 @@
 
 .uInfo {
 	display: flex;
+	justify-content: center;
 	padding-left: 8px;
 }
 
@@ -32,15 +45,16 @@
 .hTitle {
 	padding-left: 8px;
 	text-align: center;
-	font-size: 25px;
-	font-weight: bold;
+	font-size: 22px;
+	font-family: 'NanumSquareExtraBold' !important;
 }
 
 .userId {
 	margin-left: 5px;
-	padding-top: 10px;
+	padding-top: 8px;
 	font-size: 15px;
 	color: #848484;
+	font-family: 'NanumSquareExtraBold' !important;
 }
 
 .uTeam-container {
@@ -60,21 +74,17 @@
 	background-color: #f8fafb;
 }
 
-.uTeam,
-.uTeamRank,
-.uPosition,
-.uGame {
-	font-size: 16px;
+.uTitle {
+	font-size: 13px;
 	font-weight: bold;
+	font-family: 'Russo One', sans-serif !important;
 }
 
-.uTeamName,
-.uTeamRankName,
-.uPositionName,
-.uGameCount {
-	font-size: 25px;
-	font-weight: bold;
+.uContant {
+	margin-top: 9px;
+	font-size: 23px;
 	text-align: center;
+	font-family: 'NanumSquareBold' !important;
 }
 
 .box-wrap {
@@ -88,20 +98,15 @@
 	width: 100%;
 	height: auto;
 	border-radius: 10px;
-	background-color: #f8fafb;
+	background: #f8fafb;
 }
 
 .box-content {
+	position: relative;
 	padding: 10px;
 	width: 100%;
 	border-radius: 10px;
-	background-color: #f8fafb;
-}
-
-.detail {
-	display: none;
-	border-radius: 10px;
-	background-color: #ffffff;
+	background: #f8fafb;
 }
 
 .status {
@@ -111,23 +116,25 @@
 	border: solid 1px;
 	border-radius: 5px;
 	text-align: center;
-	font-size: 18px;
-	color: #ffffff;
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+	font-family: 'Russo One', sans-serif !important;
 }
 
 .status.ing {
-	border-color: #1970FF;
+ 	border-color: #1970FF;
 	background-color: #1970FF;
 }
 
 .status.end {
-	border-color: #00A168;
+ 	border-color: #00A168;
 	background-color: #00A168;
 }
 
 .status.cancel {
-	border-color: #FF4D37;
-	background-color: #FF4D37;
+ 	border-color: #FF4D37;
+	background-color: #FF4D37; 
 }
 
 .one-wrap {
@@ -153,15 +160,21 @@
 }
 
 .placeName {
+	padding-top: 10px;
 	padding-left: 5px;
 	font-size: 23px;
 	font-weight: bold;
+	font-family: 'GangwonEduPowerExtraBoldA' !important;
+}
+
+.placeName:hover {
+	color: #ff9933;
 }
 
 .numApply,
 .numHelper {
 	margin-left: 7px;
-	padding: 1px 2px;
+	padding: 2px;
 	text-align: center;
 	font-size: 19px;
 	border: solid 1px;
@@ -170,24 +183,251 @@
 	background: #eeeeee;
 }
 
+.ticket-wrap {
+	position: absolute;
+	top: 2.5em;
+	left: 24.5em;
+}
+
+.ticket {
+	position: static;
+}
+
+.btn-wrap {
+	margin-left: 33%;
+}
+
+.btn-detail {
+	padding: 7px 0px;
+	width: 70px;
+	border: solid 2px #848484;
+	border-radius: 5px;
+	font-size: 15px;
+	text-align: center;
+	color: #848484;
+	background: #f8fafb;;
+}
+
+.btn-detail:hover {
+	color: #fff;
+	border-color: #ffc090;
+	background: #ffc090;
+}
+
+
 .three-wrap {
 	display: flex;
 	padding-left: 5px;
 	font-size: 15px;
+	color: #848484;
 }
 
 .arrow {
 	font-size: 13px;
 }
 
-.gender, .hMatch, .hPosition {
+.three-content {
 	margin: 0px 5px;
 }
 
-/* checkbox */
-.drop {
-	margin-left: 40%;
+
+.detail-container {
+	display: none;
+	margin: 13px;
+    padding: 13px;
+	border-radius: 10px;
+	background: #fff;
 }
+
+.detail-wrap {
+    margin: 10px;
+	padding: 10px 0px;
+	border-radius: 10px;
+	background: #DBDDDE;
+	cursor: pointer;
+}
+
+.detail-wrap:hover{
+	color: #ff9933;
+}
+
+.detail-content {
+	display: flex;
+    padding: 0px 40px;
+	background: #fff;
+}
+
+.dContent {
+	flex: 1;
+	padding: 10px 0px;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 15px;
+	background: #fff;
+}
+
+/* checkbox */
+.checkbox-wrap {
+	margin-left: 36.5%;
+}
+
+.checkbox-wrap input[type=checkbox] {
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.checkbox-wrap label {
+	--size: 50px;
+	cursor: pointer;
+	width: var(--size);
+	height: calc(var(--size)/2);
+	background: grey;
+	display: inline-block;
+	margin-top: 5px;
+	border-radius: 100px;
+	position: relative;
+}
+
+.checkbox-wrap label:after {
+	content: '';
+	position: absolute;
+	top: 6%;
+	left: 2.5%;
+	width: calc(50% - 5%);
+	height: calc(100% - 11%);
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+.checkbox-wrap input:checked+label {
+	background: #ff9933;
+}
+
+.checkbox-wrap input:checked+label:after {
+	left: calc(100% - 2.5%);
+	transform: translateX(-100%);
+}
+
+.checkbox-wrap label:active:after {
+	width: 55%;
+}
+
+/* side-bar */
+.side-container .side-wrap {
+	position: absolute;
+	padding: 10px 15px;
+	top: 296px;
+	width: 309px;
+	left: -500px;
+	height: 100%;
+	border-radius: 20px;
+	background: #DBDDDE;
+	transform: translate(185px,0);
+	transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.side-container.menuon .side-wrap {
+	transform: translate(768px, 0);
+	box-shadow: 1px 1px 10px 0 raba(0,0,0,0.3);
+	background: #DBDDDE;
+}
+
+.side-head {
+	position: relative;
+	display: flex;	
+	align-items: center;
+	text-align: center;
+	margin: 7px 0px;
+}
+
+.side-title {
+	flex: 1;
+	padding-left: 25px;
+	font-size: 22px;
+	font-family: 'NanumSquareExtraBold' !important;
+}
+
+.btn-side {
+	padding: 1px;
+	cursor: pointer;
+}
+
+.i {
+	color: #fff;
+	font-size: 20px;
+	font-style: normal;
+	font-family: 'NanumSquareExtraBold' !important;
+}
+
+.side-body {
+	position: absolute;
+	display: grid;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    margin-right: 15px;
+    margin-bottom: 15px;
+	border-radius: 10px;
+	background: #fff;
+}
+
+.content {
+	margin: 10px 15px;
+	padding: 5px;
+	border-radius: 10px;
+	background: #DBDDDE;
+}
+
+.one {
+	margin-top: 20px;
+}
+
+.seven {
+	margin-bottom: 0px;
+}
+
+.sTitle {
+	font-size: 13px;
+	font-family: 'Russo One', sans-serif !important;
+}
+
+.sContent {
+    margin-top: 9px;
+	font-size: 20px;
+	text-align: center;
+	font-family: 'NanumSquareBold' !important;
+}
+
+.btn-side-wrap {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	margin: 3px;
+	padding: 3px;
+	background: #fff;
+}
+
+.sBtn {
+	flex: 1;
+	margin: 0px 9px;
+	padding: 3px;
+	width: 80px;
+	font-size: 18px;
+	color: #848484;
+	border: solid 2px #848484;
+	border-radius: 5px;
+	background: #fff;
+}
+
+.sBtn:hover {
+	color: #fff;
+	border-color: #ff9933;
+	background: #ff9933;
+}
+
+
+
 
 
 
