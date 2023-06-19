@@ -12,14 +12,13 @@
 <!-- include할 문서에 스타일, js -->
 <link rel="stylesheet" href="/includes/css/style.css">
 <link rel = "stylesheet" href = "/main/css/vendor/icomoon/style.css">
-	<link rel = "stylesheet" href = "/includes/css/footer.css" />
+<link rel = "stylesheet" href = "/includes/css/footer.css" />
 
 <script src="/includes/js/jquery-3.3.1.min.js"></script>
 
 <script src="/includes/js/jquery.lettering.js"></script>
 <script src="/includes/js/jquery.sticky.js"></script>
 
-<script type="text/javascript" src="/board/js/reply.js"></script>
 <script src="/includes/js/ScrollMagic.min.js"></script>
 <script src="/includes/js/scrollmagic.animation.gsap.min.js"></script>
 
@@ -58,6 +57,23 @@
 
 			location.href="/boardReport?boardSeqno=${boardContents.boardSeqno}";
 		}
+		
+		function replySubmit() {
+	        if ($("#replyContent").val() == "") {
+	            alert("댓글을 입력해주세요");
+	            $("#replyContent").focus();
+	            return false;
+	        }
+	        else {
+	        	alert("21321321");
+	        	document.getElementById('frm').submit();
+	            return false;
+	        }
+
+	        /* if (!confirm("댓글을 등록하시겠습니까?")) {
+	        	
+	        } */
+	    }
 	</script>
 
 <link rel="stylesheet" href="/board/css/boardDetail.css" />
@@ -73,7 +89,7 @@
 			</div>
 		</div>
 	</div>
-	<form role="form" method="post">
+	<form id="frm" name="frm" action="reply_insert_action" method="post" onsubmit="return _onSubmit();">
 		<div class="container">
 			<div class="table-responsive">
 				<table class="board_detail">
@@ -113,24 +129,24 @@
 			<div class="reply">
 				<table id="tblListComment" class="table table-bordered">
 
-					<c:if test="${ replyList.size() == 0 }">
+					<c:if test="${ replyDOs.size() == 0 }">
 						<tr>
 							<td colspan="2">댓글이 없습니다.</td>
 						</tr>
 					</c:if>
 
-					<c:forEach items="${ replyList }" var="list">
+					<c:forEach items="${ replyDOs }" var="list">
 						<tr>
-							<td>${ replyList.replyContent } <span>${ replyList.replyId }${ replyList.replyIdEmp }</span>
+							<td>${ list.replyContent } <span>${ list.replyId }${ list.replyIdEmp } | ${list.replyRegDate }</span>
 							</td>
 							<td><input type="button" value="삭제하기" class="btn btn-default" id="deleteRely" name="deleteRely"
-								onclick="location.href='/boardDetil?boardSeqno=' + boardSeqno + 'replyNo=' + replyNo;" />
+								onclick="location.href='/replyDelete?replyNo=${list.replyNo}&boardSeqno=${list.boardSeqno }'" />
 							</td>
 						</tr>
 					</c:forEach>
 				</table>
 				<%-- action="/insert_reply"  --%>
-				<form  method="POST" id="frm" name="frm">
+				
 					<table id="tblAddComment" class="table table-bordered">
 						<tr>
 							<td>
@@ -141,11 +157,17 @@
 								<input type="text" name="replyContent" id="replyContent" class="form-control" />
 							</td>
 							<td>
-								<input type="submit" id="btn btn-primary" class="btn btn-primary" value="댓글쓰기" onclick="document.getElementById('frm').submit();">
+							<c:if test="${userId !=null || empId !=null }">
+								<input type="submit" id="btn btn-primary" value="댓글쓰기" class="btn btn-primary" onclick="document.getElementById('frm').submit(); return false;">
+							</c:if>
+							<c:if test="${userId == null && empId == null }">
+								<input type="submit" id="btn btn-primary" value="댓글쓰기" class="btn btn-primary" onclick="javascript:alert('로그인 후 이용 가능합니다.'); return false;">
+							</c:if>
 							</td>
 						</tr>
 					</table>
-				</form>
+					<input type="hidden" name="boardSeqno" id="boardSeqno" value="${boardContents.boardSeqno}" >
+				
 			</div>
 
 			<div class="btn_boarddetail">

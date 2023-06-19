@@ -7,9 +7,9 @@
     <select id="getList" parameterType="com.teamcommit.kickoff.Do.BoardDO" resultType="com.teamcommit.kickoff.Do.BoardDO">
         <![CDATA[
         SELECT
-            *
+            B.*,(SELECT COUNT(*) FROM REPLY WHERE BOARD_SEQNO = B.BOARD_SEQNO) AS replyCount
         FROM
-            BOARD
+            BOARD B
         ORDER BY 
         	BOARD_SEQNO DESC
         ]]>
@@ -127,5 +127,51 @@
             BOARD_SEQNO = #{boardSeqno}
         ]]>
     </update>
+    
+    <!-- reply Insert -->
+    <insert id="replyInsert" parameterType="com.teamcommit.kickoff.Do.ReplyDO">
+        <![CDATA[
+        INSERT INTO REPLY
+        (
+            REPLY_NO,
+            REPLY_ID,
+            BOARD_SEQNO,
+            REPLY_REG_DATE,
+            REPLY_EDIT_DATE,
+            REPLY_CONTENT,
+            REPLY_ID_EMP
+        )
+        VALUES
+            (
+                REPLY_NO.NEXTVAL,
+                #{replyId},
+                #{boardSeqno},
+                #{replyRegDate},
+                #{replyEditDate},
+                #{replyContent},
+                #{replyIdEmp}
+            )
+        ]]>
+    </insert>
+    <select id="procGetReplyInfo" parameterType="com.teamcommit.kickoff.Do.ReplyDO">
+        <![CDATA[
+        SELECT
+            *
+        FROM
+            REPLY
+        WHERE BOARD_SEQNO = #{boardSeqno}
+        ]]>
+    </select>
+    
+    <delete id="procReplyDelete" parameterType="com.teamcommit.kickoff.Do.ReplyDO" >
+    <![CDATA[
+        DELETE
+        FROM
+            REPLY
+        WHERE
+            REPLY_NO = #{replyNo}
+        ]]>
+	</delete>
+    
 
 </mapper>

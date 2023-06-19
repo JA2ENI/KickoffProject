@@ -56,5 +56,20 @@ public class BoardServiceImpl implements BoardService{
     public void procAddViewCount(BoardDO boardDO) {
         boardMapper.procAddViewCount(boardDO);
     }
+    //댓글 등록
+	@Override
+	public void replyInsert(ReplyDO replyDO) throws Exception {
+		boardMapper.replyInsert(replyDO);
+	}
+	//댓글 리스트 가져오기
+	@Override
+	public List<ReplyDO> procGetReplyInfo(ReplyDO replyDO) throws Exception {
+		return boardMapper.procGetReplyInfo(replyDO);
+	}
+	//댓글 삭제하기
+	@Override
+	public void procReplyDelete(ReplyDO replyDO) throws Exception {
+		boardMapper.procReplyDelete(replyDO);
+	}
 
 }

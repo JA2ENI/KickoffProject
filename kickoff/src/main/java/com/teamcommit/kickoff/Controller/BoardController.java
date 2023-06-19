@@ -4,6 +4,7 @@ import com.teamcommit.kickoff.Do.*;
 import com.teamcommit.kickoff.Service.board.BoardService;
 import com.teamcommit.kickoff.Service.login.LoginService;
 
+import org.sonatype.aether.transfer.TransferEvent.RequestType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -118,10 +119,17 @@ public class BoardController {
         String userId = (String) request.getSession().getAttribute("userId");
         //로그인한 업체 ID로 로그인 정보 가져오기
         String empId = (String) request.getSession().getAttribute("empId");
-
+        
         BoardDO boardContents = boardService.getBoardContents(boardSeqno);
-
+        
+        //댓글 가져오기
+        ReplyDO replyDO = new ReplyDO();
+        replyDO.setBoardSeqno(boardSeqno);
+        List<ReplyDO> replyDOs = boardService.procGetReplyInfo(replyDO);
+        
         boardService.procAddViewCount(boardContents);
+        
+        model.addAttribute("replyDOs", replyDOs);
         model.addAttribute("boardContents", boardContents);
         model.addAttribute("userId", userId);
         model.addAttribute("empId", empId);
@@ -211,6 +219,53 @@ public class BoardController {
             redirect.addFlashAttribute("redirect", reportDO.getBoardSeqno());
 
             redirect.addFlashAttribute("msg", "신고 완료되었습니다.");
+        } catch (Exception e) {
+            redirect.addFlashAttribute("msg", "오류가 발생되었습니다. 다시 시도해주세요.");
+        }
+
+        return mv;
+    }
+    
+    //댓글 등록
+    @RequestMapping("/reply_insert_action")
+    public ModelAndView reply_insert_action(@ModelAttribute("replyDO") ReplyDO replyDO, ModelMap model, HttpServletRequest request, RedirectAttributes redirect) throws Exception {
+        int boardSeq = 0;
+        ModelAndView mv = new ModelAndView();
+        try{
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+            Date time = new Date();
+
+            String time1 = format.format(time);
+            
+            //작성 일자
+            replyDO.setReplyEditDate(time1);
+            replyDO.setReplyRegDate(time1);
+            
+            boardService.replyInsert(replyDO);
+            boardSeq = replyDO.getBoardSeqno();
+
+            mv = new ModelAndView("redirect:/boardDetail?boardSeqno=" + boardSeq);
+
+            redirect.addFlashAttribute("redirect", boardSeq);
+            redirect.addFlashAttribute("msg", "등록 완료되었습니다.");
+        } catch (Exception e) {
+            redirect.addFlashAttribute("msg", "오류가 발생되었습니다. 다시 시도해주세요.");
+        }
+
+        return mv;
+    }
+    
+    //게시판 삭제
+    @RequestMapping("/replyDelete")
+    public ModelAndView replyDelete(@ModelAttribute("replyDO") ReplyDO replyDO, @RequestParam("replyNo") int replyNo, @RequestParam("boardSeqno") int boardSeqno , RedirectAttributes redirect, Model model) throws Exception {
+        
+        ModelAndView mv = new ModelAndView("redirect:/boardDetail?boardSeqno=" + boardSeqno);
+
+        try {
+        	replyDO.setReplyNo(replyNo);
+            boardService.procReplyDelete(replyDO);
+            redirect.addFlashAttribute("msg", "삭제 완료되었습니다.");
         } catch (Exception e) {
             redirect.addFlashAttribute("msg", "오류가 발생되었습니다. 다시 시도해주세요.");
         }

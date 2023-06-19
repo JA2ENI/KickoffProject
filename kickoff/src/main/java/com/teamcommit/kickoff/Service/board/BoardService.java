@@ -33,5 +33,14 @@ public interface BoardService {
 
     //조회수 증가
     void procAddViewCount(BoardDO boardDO);
+    
+    //댓글 등록
+	void replyInsert(ReplyDO replyDO) throws Exception;
+	
+	//댓글 가져오기
+	List<ReplyDO> procGetReplyInfo(ReplyDO replyDO) throws Exception;
+	
+	//댓글 삭제하기
+	void procReplyDelete(ReplyDO replyDO) throws Exception;
 
 }

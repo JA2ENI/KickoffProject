@@ -33,5 +33,14 @@ public interface BoardMapper {
 
     //조회수 증가
     public void procAddViewCount(BoardDO boardDO);
+    
+    //댓글 등록
+	public void replyInsert(ReplyDO replyDO);
+	
+	//댓글 리스트 가져오기
+	public List<ReplyDO> procGetReplyInfo(ReplyDO replyDO);
+	
+	//댓글 삭제하기
+	public void procReplyDelete(ReplyDO replyDO);
 
 }
