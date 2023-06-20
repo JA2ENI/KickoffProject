@@ -70,4 +70,9 @@ public class MypageServiceImpl implements MypageService {
     public List<GameDO> myGameRecordList(String userId) throws Exception {
     	return mypageMapper.myGameRecordList(userId);
     }
+    
+    @Override
+    public GameDO getGameRecord(int gameSeqno) throws Exception {
+        return mypageMapper.getGameRecord(gameSeqno);
+    }
 }

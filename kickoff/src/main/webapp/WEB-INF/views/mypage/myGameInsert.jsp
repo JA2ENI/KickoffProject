@@ -15,6 +15,7 @@
 	
 	<title>Kick Off: 마이페이지</title>
 	
+	<!-- 
 	<script type="text/javascript">
 		$(document).ready(function() {
 
@@ -47,6 +48,7 @@
 		
 	    }
 	</script>
+	-->
 	
 </head>
 <body>
@@ -78,11 +80,20 @@
 										<td>${gameRecord.gameStyle}</td>
 									</tr>
 									<tr>
-										<th scope="row" class="active" >팀 1 V/S 팀 2</th>
-										<td colspan="3">${gameRecord.team1Name} V/S ${gameRecord.team2Name}</td>
+										<th scope="row" class="active">경기 장소</th>
+										<td>${gameRecord.placeName}</td>
+										<th scope="row" class="active">매칭 상태</th>
+										<td>${gameRecord.gameStatus}</td>
 									</tr>
 									<tr>
-										<td colspan="4" class="view_text" id="view_text">${gameRecord.gameScore}</td>
+										<th scope="row" class="active" >팀 1 V/S 팀 2</th>
+										<td>${gameRecord.team1Name} V/S ${gameRecord.team2Name}</td>
+									</tr>
+									<tr>
+										<th scope="row" class="active" >경기 점수</th>
+										<td>
+											<input type="text" name="text" size="7" style="width:50%;"> :	<input type="text" name="text" size="7" style="width:50%;">
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -91,14 +102,10 @@
 					
 					
 					<div class="btn_boarddetail">
-						<button type="reset" class="btn_reset" onclick="location.href='/board';">목록</button>
-						<c:if test="${(userId ne boardContents.writeId) || (empId ne boardContents.writeIdEmp)}">
-							<button class="btn_report" onclick="reportConfirm(); return false;">신고</button>
-						</c:if>
+						<button type="reset" class="btn_reset" onclick="location.href='/myGameRecord';">목록</button>
 		
-						<c:if test="${(userId eq boardContents.writeId) && (empId eq boardContents.writeIdEmp)}">
-							<button class="btn_update" onclick="updateConfirm(); return false;">수정</button>
-							<button class="btn_delete" onclick="deleteConfirm(); return false;">삭제</button>
+						<c:if test="${(userId eq gameRecord.writerId)}">
+							<button class="btn_update" onclick="updateConfirm(); return false;">등록하기</button>
 						</c:if>
 					</div>
 		</div>
