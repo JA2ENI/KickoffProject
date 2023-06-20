@@ -89,11 +89,11 @@ public class UserDO {
 	public void setUserMainPosition(String userMainPosition) {
 		this.userMainPosition = userMainPosition;
 	}
+	public String getUserSubPosition() {
+		return userSubPosition;
+	}
 	public void setUserSubPosition(String userSubPosition) {
 		this.userSubPosition = userSubPosition;
-	}
-	public String getUserPosition() {
-		return userMainPosition;
 	}
 	public int getUserStopCount() {
 		return userStopCount;
