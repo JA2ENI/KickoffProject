@@ -47,5 +47,6 @@
     </div>
   </div>
 </div>
+	<script src = "/login/js/loginAll.js"></script>
 </body>
 </html>
