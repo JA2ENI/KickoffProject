@@ -62,7 +62,7 @@
 				</header>
 				<section class="section">
 					<form id="frm" name="frm" action="reply_insert_action" method="post" onsubmit="return _onSubmit();">
-						<article class="article-container">
+						<div class="article-container">
 							<div class="all-container">
 								<div class="content-wrap">
 									<div class="wrap">
@@ -124,9 +124,9 @@
 										<input type="number" class="inputbox num2" />
 									</div>
 								</div>
-							</div>
 							<button type="button" class="btn-list" onclick="location.href='myGameRecordList';">목록</button>
-						</article>
+							</div>
+						</div>
 					</form>
 				</section>
 			</div>

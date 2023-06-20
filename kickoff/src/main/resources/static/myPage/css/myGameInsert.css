@@ -4,14 +4,16 @@ section {
 }
 
 .article-container {
-	margin: 10px;
+	margin: 0 auto;
 	padding: 10px;
+	width: 100%;
 }
 
 .all-container {
 	display: flex;
 	flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
 	margin: 5px;
 	padding: 5px;
 }
@@ -25,7 +27,6 @@ section {
 
 .wrap {
 	justify-items: center;
-    align-content: center;
 	width: 100%;
 	padding: 10px;
 	background: #ECEFF1;
@@ -37,7 +38,8 @@ section {
 }
 
 .subject {
-	font-size: 25px;
+	padding-left: 20px;
+	font-size: 23px;
 	font-weight: bold;
 }
 
@@ -87,7 +89,7 @@ section {
 
 .btn-list {
 	width: 10em;
-	margin: 20px 400px;
+    margin-top: 25px;
 	padding: 5px;
 	font-size: 25px;
 	border: #7fb77e;
