@@ -73,20 +73,20 @@
 										<div class="date">20:00</div>
 									</div>
 									<div class="two-wrap">
-										<a href="javascript:alert('제목 상세보기 test');" class="placeName">내가 바로 독수리슛 풋살장</a>
+										<a href="javascript:alert('제목 상세보기 test');" class="placeName">서울 송파 천마 풋살파크 2구장</a>
 										<!-- 모집자_총 모집인원수 & 신청자 수 -->
 										<div class="numApply">5/10명</div>
 										<!-- 신청자_총 모집인원수 -->
 										<!-- <div class="numHelper">10명</div> -->
-										<!-- 모집자_디테일 체크박스 -->
-										<div class="checkbox-wrap">
-											<input type="checkbox" id="drop" class="drop" onclick="drop()" /><label for="drop"></label>
-										</div>
-										<!-- 신청자_상세보기 버튼 -->
-										<!-- <div class="btn-wrap">
-											<button type="button" class="btn-detail" onclick="javascript:alert('test')">상세보기</button>
-										</div> -->
 									</div>
+									<!-- 모집자_디테일 체크박스 -->
+									<div class="checkbox-wrap">
+										<input type="checkbox" id="drop" class="drop" onclick="drop()" /><label for="drop"></label>
+									</div>
+									<!-- 신청자_상세보기 버튼 -->
+									<!-- <div class="btn-wrap">
+										<button type="button" class="btn-detail" onclick="javascript:alert('test')">상세보기</button>
+									</div> -->
 									<!-- 신청자_신청 수락/거절 상태 -->
 									<div class="ticket-wrap">
 										<img class="ticket" src="/apply/images/thanks.png" />
@@ -178,8 +178,6 @@
 										</div>
 									</div>
 								</div>
-								
-								
 							</div>
 						</div>
 					</div>
