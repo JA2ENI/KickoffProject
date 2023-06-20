@@ -1,21 +1,22 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="/myPage/css/main.css" />
-	<link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-	<link href="/myPage/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-	<link href="/myPage/vendor/mdi-font/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-	<link href="/myPage/css/theme.css" rel="stylesheet" media="all">
-	
-	<title>Kick Off: 마이페이지</title>
-	
-	<!-- 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link href="/myPage/css/myGameInsert.css" rel="stylesheet" media="all">
+<link rel="stylesheet" href="/myPage/css/main.css" />
+<link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+<link href="/myPage/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="/myPage/vendor/mdi-font/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<link href="/myPage/css/theme.css" rel="stylesheet" media="all">
+
+<title>Kick Off: 마이페이지</title>
+
+<!-- 
 	<script type="text/javascript">
 		$(document).ready(function() {
 
@@ -49,68 +50,84 @@
 	    }
 	</script>
 	-->
-	
+
 </head>
 <body>
 	<div id="wrapper">
 		<div id="main">
 			<div class="inner">
 				<header id="header">
-					<input type="button" onclick="location.href='main'" class="kickoff" value="Kick Off"/>
-					<br>
-					<a href="/myTeam" class="logo"><strong>매칭 기록</strong></a>
+					<input type="button" onclick="location.href='main'" class="kickoff" value="Kick Off" /><br>
+					<a href="/myTeam" class="logo"><strong>매칭기록</strong></a>
 				</header>
 				<section class="section">
-				<form id="frm" name="frm" action="reply_insert_action" method="post" onsubmit="return _onSubmit();">
-					<div class="container-fluid">
-						<div class="table-data__tool">
-							<div class="table-data__tool-left">
-								<table class="board_detail">
-								<tbody>
-									<tr>
-										<th scope="row" class="active">경기 번호</th>
-										<td>${gameRecord.gameSeqno}</td>
-										<th scope="row" class="active">경기 시간</th>
-										<td>${gameRecord.gameStartTime}~${gameRecord.gameEndTime}</td>
-									</tr>
-									<tr>
-										<th scope="row" class="active">경기 날짜</th>
-										<td>${gameRecord.gameDate}</td>
-										<th scope="row" class="active">경기 형태</th>
-										<td>${gameRecord.gameStyle}</td>
-									</tr>
-									<tr>
-										<th scope="row" class="active">경기 장소</th>
-										<td>${gameRecord.placeName}</td>
-										<th scope="row" class="active">매칭 상태</th>
-										<td>${gameRecord.gameStatus}</td>
-									</tr>
-									<tr>
-										<th scope="row" class="active" >팀 1 V/S 팀 2</th>
-										<td>${gameRecord.team1Name} V/S ${gameRecord.team2Name}</td>
-									</tr>
-									<tr>
-										<th scope="row" class="active" >경기 점수</th>
-										<td>
-											<input type="text" name="text" size="7" style="width:50%;"> :	<input type="text" name="text" size="7" style="width:50%;">
-										</td>
-									</tr>
-								</tbody>
-							</table>
+					<form id="frm" name="frm" action="reply_insert_action" method="post" onsubmit="return _onSubmit();">
+						<div class="article-container">
+							<div class="all-container">
+								<div class="content-wrap">
+									<div class="wrap">
+										<div class="subject">경기 번호</div>
+									</div>
+									<div class="wrap">
+										<div class="content">1</div>
+									</div>
+									<div class="wrap">
+										<div class="subject">경기 시간</div>
+									</div>
+									<div class="wrap">
+										<div class="content">11:00~13:00</div>
+									</div>
+								</div>
+								<div class="content-wrap">
+									<div class="wrap two">
+										<div class="subject">경기 날짜</div>
+									</div>
+									<div class="wrap two">
+										<div class="content">2023-06-04 00:00:00</div>
+									</div>
+									<div class="wrap two">
+										<div class="subject">경기 형태</div>
+									</div>
+									<div class="wrap two">
+										<div class="content">5vs5</div>
+									</div>
+								</div>
+								<div class="content-wrap">
+									<div class="wrap">
+										<div class="subject">경기 장소</div>
+									</div>
+									<div class="wrap">
+										<div class="content"></div>
+									</div>
+									<div class="wrap">
+										<div class="subject">매칭 상태</div>
+									</div>
+									<div class="wrap">
+										<div class="content">매칭완료</div>
+									</div>
+								</div>
+								<div class="content-wrap">
+									<div class="wrap two">
+										<div class="subject">팀 vs 팀</div>
+									</div>
+									<div class="wrap two">
+										<div class="content">A팀 vs B팀</div>
+									</div>
+								</div>
+								<div class="content-wrap second">
+									<div class="wrap">
+										<div class="subject">경기 점수</div>
+									</div>
+									<div class="wrap three">
+										<input type="number" class="inputbox num1" />
+										<div class="colons">&#58;</div>
+										<input type="number" class="inputbox num2" />
+									</div>
+								</div>
+							<button type="button" class="btn-list" onclick="location.href='myGameRecordList';">목록</button>
+							</div>
 						</div>
-					</div>
-					
-					
-					<div class="btn_boarddetail">
-						<button type="reset" class="btn_reset" onclick="location.href='/myGameRecord';">목록</button>
-		
-						<c:if test="${(userId eq gameRecord.writerId)}">
-							<button class="btn_update" onclick="updateConfirm(); return false;">등록하기</button>
-						</c:if>
-					</div>
-		</div>
-	</form>
-						<!-- END DATA TABLE -->
+					</form>
 				</section>
 			</div>
 		</div>
@@ -127,7 +144,7 @@
 						<li><a href="/myTeam">팀</a></li>
 						<li><a href="/myMessage">메시지</a></li>
 						<li><a href="/myHelper">용병</a></li>
-						<li><a href="/myGameRecord">매칭</a></li>
+						<li><a href="/myGameRecordList">매칭</a></li>
 					</ul>
 				</nav>
 			</div>
