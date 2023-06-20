@@ -34,4 +34,6 @@ public interface MypageMapper {
 	 public void userDelete(String userId);
 	 
 	 public List<GameDO> myGameRecordList(String String);
+	 
+	 public GameDO getGameRecord(int gameSeqno);
 }

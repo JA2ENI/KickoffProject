@@ -65,7 +65,7 @@
 										<td>${line.gameStyle}</td>
 										<td>
 											<div class="table-data-feature">
-												<button class="send" title="Send" onclick="location.href='/myGameInsert'">
+												<button class="send" title="Send" onclick="location.href='/myGameInsert?gameSeqno=${line.gameSeqno}'">
 													<i>기록하기</i>
 												</button>
 											</div>

@@ -280,22 +280,27 @@ public class MypageController {
     public ModelAndView myGameRecordList(HttpSession session) throws Exception {
     	
         ModelAndView mv = new ModelAndView("/mypage/myGameRecord");
-        
-       /*
+      
         String userId = (String)session.getAttribute("userId");
 
         List<GameDO> myGameRecordList = mypageService.myGameRecordList(userId);
         
         mv.addObject("myGameRecordList", myGameRecordList);
-        */
-        
+       
         return mv;
     }
     
     @RequestMapping(value = "/myGameInsert")
-    public String myGameInsert() throws Exception {
+    public String myGameInsert(@ModelAttribute("GameDO") GameDO gameDO, @RequestParam(value = "gameSeqno") int gameSeqno, HttpServletRequest request, Model model) throws Exception {
         String view = "/mypage/myGameInsert";
-
+        
+        String userId = (String) request.getSession().getAttribute("userId");
+        
+        GameDO gameRecord = mypageService.getGameRecord(gameSeqno);
+        
+        model.addAttribute("userId", userId);
+        model.addAttribute("gameRecord", gameRecord);
+        
         return view;
     }
 }

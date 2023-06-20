@@ -31,5 +31,7 @@ public interface MypageService {
 	void userDelete(String userId) throws Exception;
 
 	List<GameDO> myGameRecordList(String userId) throws Exception;
+
+	GameDO getGameRecord(int gameSeqno)throws Exception;
 	
 }

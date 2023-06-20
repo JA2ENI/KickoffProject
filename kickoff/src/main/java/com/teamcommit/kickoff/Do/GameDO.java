@@ -40,7 +40,7 @@ public class GameDO {
 
 	private String team2Name;
 	
-	private String writerID;
+	private String writerId;
 
 	public int getGameSeqno() {
 		return gameSeqno;
@@ -170,11 +170,11 @@ public class GameDO {
 		this.team2Name = team2Name;
 	}
 
-	public String getWriterID() {
-		return writerID;
+	public String getWriterId() {
+		return writerId;
 	}
 
-	public void setWriterID(String writerID) {
-		this.writerID = writerID;
+	public void setWriterId(String writerId) {
+		this.writerId = writerId;
 	}
 }
