@@ -20,8 +20,10 @@ public class UserDO {
 	private String userBirthdate;
 	//사용자 성별
 	private String userGender;
-	//사용자 포지션
-	private String userPosition;
+	//사용자 메인 포지션
+	private String userMainPosition;
+	//사용자 서브 포지션
+	private String userSubPosition;
 	//사용자 정지 횟수
 	private int userStopCount;
 	// 사용자 예약 취소 횟수
@@ -30,6 +32,8 @@ public class UserDO {
 	private String userStatus;
 	// 사용자 구분
 	private String userClassification;
+	
+	private Date userStopDate;
 	
 	public String getUserId() {
 		return userId;
@@ -79,11 +83,17 @@ public class UserDO {
 	public void setUserGender(String userGender) {
 		this.userGender = userGender;
 	}
-	public String getUserPosition() {
-		return userPosition;
+	public String getUserMainPosition() {
+		return userMainPosition;
 	}
-	public void setUserPosition(String userPosition) {
-		this.userPosition = userPosition;
+	public void setUserMainPosition(String userMainPosition) {
+		this.userMainPosition = userMainPosition;
+	}
+	public void setUserSubPosition(String userSubPosition) {
+		this.userSubPosition = userSubPosition;
+	}
+	public String getUserPosition() {
+		return userMainPosition;
 	}
 	public int getUserStopCount() {
 		return userStopCount;
@@ -108,5 +118,12 @@ public class UserDO {
 	}
 	public void setUserClassification(String userClassification) {
 		this.userClassification = userClassification;
+	}
+	
+	public Date getUserStopDate() {
+		return userStopDate;
+	}
+	public void setUserStopDate(Date userStopDate) {
+		this.userStopDate = userStopDate;
 	}
 }
