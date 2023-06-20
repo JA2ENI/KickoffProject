@@ -33,7 +33,7 @@
 			</div>
 			<div class="nav-wrap">
 				<div class="icon-wrap">
-					<button type="button" onclick="javascript:alert('팀 신청');">
+					<button type="button" onclick="location.href='/applyTeam';">
 						<img id="imgTeam" class="icons" src="/apply/images/team.png" />
 					</button>
 				</div>

@@ -33,7 +33,7 @@
 			</div>
 
 			<img id="ball" class="ball" src="/apply/images/ball.png" />
-			<button type="button" onclick="javascript:alert('예약 신청');">
+			<button type="button" onclick="location.href='/applyReservation';">
 				<img id="imgCourt" class="icons" src="/apply/images/court.png" />
 			</button>
 			<img id="ball2" class="ball" src="/apply/images/ball.png" />
