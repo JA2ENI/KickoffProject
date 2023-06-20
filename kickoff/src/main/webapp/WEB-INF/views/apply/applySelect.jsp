@@ -23,13 +23,17 @@
 		<div class="title">"신청자, 모집자 중 선택하세요"</div>
 	</header>
 	<section>
-		<div id="img_container" class="img_container">
-			<button type="button" onclick="location.href='/applyReservation';">
-				<img id="imgCourt" class="icons" src="/apply/images/court.png" />
+		<div class="img_container">
+			<button type="button" onclick="location.href='/applySelect?num=1';">
+				<img id="imgCourt" class="icons" src="/apply/images/applicant2.png" />
 			</button>
-			<button type="button" onclick="javascript:alert('매칭 신청');">
-				<img id="imgGame" class="icons" src="/apply/images/game.png" />
+			<button type="button" onclick="location.href='/applySelect?num=2';">
+				<img id="imgGame" class="icons" src="/apply/images/recruiter2.png" />
 			</button>
+		</div>
+		<div class="text-wrap">
+			<div class="text applicant">신청자</div>
+			<div class="text recruiter">모집자</div>
 		</div>
 	</section>
 </body>
