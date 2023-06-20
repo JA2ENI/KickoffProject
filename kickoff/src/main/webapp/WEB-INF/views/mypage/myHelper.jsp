@@ -152,7 +152,7 @@
 						<li><a href="/myTeam">팀</a></li>
 						<li><a href="/myMessage">메시지</a></li>
 						<li><a href="/myHelper">용병</a></li>
-						<li><a href="/myGameRecord">매칭</a></li>
+						<li><a href="/myGameRecordList">매칭</a></li>
 					</ul>
 				</nav>
 

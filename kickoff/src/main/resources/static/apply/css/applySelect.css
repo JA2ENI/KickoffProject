@@ -1,0 +1,48 @@
+/* Apply List */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+	max-width: 100%;
+	min-height: 10vh;
+	margin: 0 auto;
+}
+
+header {
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	margin-top: 8rem;
+}
+
+section {
+	width: 100%;
+	height: auto;
+	float: left;
+	margin: 0 auto;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+	
+}
+
+aside {
+	width: 80px;
+	height: 160px;
+	float: left;
+}
+
+footer {
+	clear: both;
+	width: 100%;
+}
+
+button {
+    cursor: pointer;
+}
+
+
