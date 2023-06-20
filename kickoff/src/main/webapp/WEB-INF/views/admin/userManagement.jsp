@@ -72,12 +72,14 @@
 							<table class="table">
 								<thead>
 									<tr>
-										<td>
-											<label class="au-checkbox"> 
-												<input type="checkbox"> 
-												<span class="au-checkmark"></span>
-											</label>
-										</td>
+										<!--
+											<td>
+												<label class="au-checkbox"> 
+													<input type="checkbox"> 
+													<span class="au-checkmark"></span>
+												</label>
+											</td>
+										-->
 										<td>이름/아이디</td>
 										<td>구분</td>
 										<td>취소 횟수</td>
@@ -87,15 +89,10 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>
-											<label class="au-checkbox"> 
-												<input type="checkbox"> 
-												<span class="au-checkmark"></span>
-											</label>
-										</td>
+										
 										<td>
 											<div class="table-data__info">
-												<h6>kickoff</h6>
+												<h4>kickoff</h4>
 												<span> 
 													<a>kickoff</a>
 												</span>
@@ -112,17 +109,12 @@
 									</tr>
 									<c:forEach var="map" items="${userList}">
 										<tr>
-											<td>
-												<label class="au-checkbox"> 
-													<input type="checkbox"> 
-													<span class="au-checkmark"></span>
-												</label>
-											</td>
+								
 											<td>
 												<div class="table-data__info">
-													<h6>
+													<h4>
 														<c:out value="${map.NAME}" />
-													</h6>
+													</h4>
 													<span> 
 														<a><c:out value="${map.ID}" /></a>
 													</span>
