@@ -39,7 +39,8 @@ public class GameDO {
 	private String team1Name;
 
 	private String team2Name;
-
+	
+	private String writerID;
 
 	public int getGameSeqno() {
 		return gameSeqno;
@@ -167,5 +168,13 @@ public class GameDO {
 
 	public void setTeam2Name(String team2Name) {
 		this.team2Name = team2Name;
+	}
+
+	public String getWriterID() {
+		return writerID;
+	}
+
+	public void setWriterID(String writerID) {
+		this.writerID = writerID;
 	}
 }

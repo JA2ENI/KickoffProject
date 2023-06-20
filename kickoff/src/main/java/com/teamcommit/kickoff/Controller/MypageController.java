@@ -3,6 +3,7 @@ package com.teamcommit.kickoff.Controller;
 import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Do.TeamDO;
+import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.UserDO;
 import com.teamcommit.kickoff.Service.mypage.MypageService;
 
@@ -271,6 +272,30 @@ public class MypageController {
         
         session.invalidate();
         
+        return view;
+    }
+    
+    
+    @RequestMapping(value = "/myGameRecordList")
+    public ModelAndView myGameRecordList(HttpSession session) throws Exception {
+    	
+        ModelAndView mv = new ModelAndView("/mypage/myGameRecord");
+        
+       /*
+        String userId = (String)session.getAttribute("userId");
+
+        List<GameDO> myGameRecordList = mypageService.myGameRecordList(userId);
+        
+        mv.addObject("myGameRecordList", myGameRecordList);
+        */
+        
+        return mv;
+    }
+    
+    @RequestMapping(value = "/myGameInsert")
+    public String myGameInsert() throws Exception {
+        String view = "/mypage/myGameInsert";
+
         return view;
     }
 }

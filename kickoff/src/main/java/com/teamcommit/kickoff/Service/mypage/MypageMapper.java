@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.teamcommit.kickoff.Do.BoardDO;
+import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.UserDO;
@@ -32,4 +33,5 @@ public interface MypageMapper {
 	 
 	 public void userDelete(String userId);
 	 
+	 public List<GameDO> myGameRecordList(String String);
 }
