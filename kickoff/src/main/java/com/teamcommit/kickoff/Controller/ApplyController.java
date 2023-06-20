@@ -13,6 +13,13 @@ public class ApplyController {
 		return view;
 	}
 	
+	@RequestMapping(value="/applySelect")
+	public String applySelect() throws Exception {
+		String view = "/apply/applySelect";
+		
+		return view;
+	}
+	
 	@RequestMapping(value="/applyTeam")
 	public String applyTeam() throws Exception {
 		String view = "/apply/applyTeam";
