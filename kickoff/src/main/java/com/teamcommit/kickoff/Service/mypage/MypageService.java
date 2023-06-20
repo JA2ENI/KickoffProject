@@ -3,6 +3,7 @@ package com.teamcommit.kickoff.Service.mypage;
 import java.util.List;
 
 import com.teamcommit.kickoff.Do.BoardDO;
+import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.UserDO;
@@ -28,5 +29,7 @@ public interface MypageService {
 	List<TeamDO> myTeamList(String userId) throws Exception;
 	
 	void userDelete(String userId) throws Exception;
+
+	List<GameDO> myGameRecordList(String userId) throws Exception;
 	
 }

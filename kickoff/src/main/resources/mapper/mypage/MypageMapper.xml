@@ -297,5 +297,28 @@
             )
         ]]>
     </insert>
+    
+    
+    <!-- My GameRecord List -->
+    <select id="myGameRecordList" parameterType="String" resultType="com.teamcommit.kickoff.Do.GameDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                GAME
+            WHERE
+            	USER_ID = #{writerId}
+        ]]>
+    </select>
+    
+    <!-- My GameRecord Insert -->
+    <select id="myGameInsert" parameterType="String" resultType="com.teamcommit.kickoff.Do.GameDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                GAME
+            WHERE
+            	WRITER_ID = #{userId}
+        ]]>
+    </select>
 
 </mapper>

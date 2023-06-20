@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.teamcommit.kickoff.Do.BoardDO;
+import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.UserDO;
@@ -65,4 +66,8 @@ public class MypageServiceImpl implements MypageService {
     	mypageMapper.userDelete(userId);
     }
     
+    @Override
+    public List<GameDO> myGameRecordList(String userId) throws Exception {
+    	return mypageMapper.myGameRecordList(userId);
+    }
 }
