@@ -36,4 +36,6 @@ public interface MypageMapper {
 	 public List<GameDO> myGameRecordList(String String);
 	 
 	 public GameDO getGameRecord(int gameSeqno);
+	 
+	 public GameDO updateGameScore(int gameSeqno);
 }

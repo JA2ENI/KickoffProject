@@ -313,13 +313,26 @@
     <!-- My GameRecord Insert -->
     <select id="getGameRecord" parameterType="com.teamcommit.kickoff.Do.GameDO" resultType="com.teamcommit.kickoff.Do.GameDO">
         <![CDATA[
-            SELECT *
-            FROM
-                GAME
-            WHERE
-            	GAME_SEQNO = #{gameSeqno}
-        ]]>
+        	SELECT *
+        	FROM
+        		GAME
+        	WHERE 
+        		WRITER_ID = #{userId}        	    
+         ]]>
     </select>
+    
+    <update id="updateGameScore" parameterType="com.teamcommit.kickoff.Do.GameDO">
+    	<![CDATA[
+        	UPDATE 
+        		GAME
+        	SET
+        		GAME_SCORE1 = #{gameScore1},
+        		GAME_SCORE2 = #{gameScore2}
+        	WHERE
+        		GAME_SEQNO = #{gameSeqno}
+         ]]>
+    
+    </update>
     
     
 </mapper>
