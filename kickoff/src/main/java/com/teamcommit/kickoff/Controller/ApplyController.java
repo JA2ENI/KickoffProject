@@ -12,18 +12,13 @@ public class ApplyController {
 	@RequestMapping(value="/applyList")
 	public String applyList(HttpServletRequest request, HttpSession session) throws Exception {
 		String view = "/apply/applyList";
-		
 		String parameter = null;
 		
 		if(request.getParameter("page") != null) {
 			parameter = request.getParameter("page");
-		
-			if(parameter.equals("helper")) {
-				String page = parameter;
-				session.setAttribute("page", page);
-				view = applySelectList(request, session);
-				return view;
-			}
+			session.setAttribute("page", parameter);
+			view = applySelectList(request, session);
+			return view;
 		}
 		
 		return view;
@@ -32,19 +27,39 @@ public class ApplyController {
 	@RequestMapping(value="/applySelect")
 	public String applySelectList(HttpServletRequest request, HttpSession session) throws Exception {
 		String view = "/apply/applySelect"; 
-		
 		String page = null;
 		
 		if(session.getAttribute("page") != null) {
 			page = (String)session.getAttribute("page");
+			String num = request.getParameter("num");
 			
-			if(page.equals("helper")) {
-				String num = request.getParameter("num");
-				
-				if(num != null) {
-					if(num.equals("2")) {
-						view = "redirect:/applyHelper";
-						session.removeAttribute("page");
+			if(num != null) {
+				if(num.equals("1")) {
+					if(page.equals("reservation")) {
+						view = "";
+						return view;
+					} else if(page.equals("game")) {
+						view = "";
+						return view;
+					} else if(page.equals("team")) {
+						view = "";
+						return view;
+					} else 	if(page.equals("helper")) {
+						view = "redirect:/applyHelperApplicant";
+						return view;
+					}
+				} else if(num.equals("2")) {
+					if(page.equals("reservation")) {
+						view = "";
+						return view;
+					} else if(page.equals("game")) {
+						view = "";
+						return view;
+					} else if(page.equals("team")) {
+						view = "";
+						return view;
+					} else 	if(page.equals("helper")) {
+						view = "redirect:/applyHelperRecruiter";
 						return view;
 					}
 				}
@@ -60,9 +75,18 @@ public class ApplyController {
 		return view;
 	}
 	
-	@RequestMapping(value="/applyHelper")
-	public String applyHelper() throws Exception {
-		String view = "/apply/applyHelper";
+	//용병 신청자 페이지 
+	@RequestMapping(value="/applyHelperApplicant")
+	public String applyHelperApplicant() throws Exception {
+		String view = "/apply/applyHelperApplicant";
+		
+		return view;
+	}
+	
+	//용병 모집자 페이지 
+	@RequestMapping(value="/applyHelperRecruiter")
+	public String applyHelperRecruiter(HttpSession session) throws Exception {
+		String view = "/apply/applyHelperRecruiter";
 		
 		return view;
 	}

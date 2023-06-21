@@ -43,7 +43,6 @@
 				<img id="imgTeam" class="icons" src="/apply/images/team.png" />
 			</button>
 			<img id="ball4" class="ball" src="/apply/images/ball.png" />
-			<!-- <button type="button" onclick="location.href='/applyHelper';"> -->
 			<button type="button" onclick="location.href='/applyList?page=helper';">
 				<img id="imgHelper" class="icons" src="/apply/images/helper.png" />
 			</button>
