@@ -38,7 +38,6 @@ public class ReservationController {
         String view = "/reservation/reservation";
 
         List<ReservationDO> list = reservationService.selectReservationList(reservationDO);
-
         model.addAttribute("reservationList", list);
 
         return view;
@@ -88,7 +87,7 @@ public class ReservationController {
 
         ReservationDO reservationDetail = reservationService.selectReservationDetail(reservationNo);
         model.addAttribute("reservationDetail", reservationDetail);
-
+        	
         return view;
     }
 

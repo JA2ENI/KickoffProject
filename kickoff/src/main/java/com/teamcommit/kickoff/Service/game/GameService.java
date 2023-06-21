@@ -2,6 +2,7 @@ package com.teamcommit.kickoff.Service.game;
 
 import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
+import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ public interface GameService {
 
     void insertGame(GameDO gameDO) throws Exception;
 
-	PlaceDO selectPlaceInfo(String userId) throws Exception;
+    List<ReservationDO>selectPlaceInfo(String userId) throws Exception;
 
 	TeamDO selectTeamInfo(String userId) throws Exception;
 

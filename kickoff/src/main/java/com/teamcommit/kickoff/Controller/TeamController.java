@@ -144,5 +144,21 @@ public class TeamController {
     	
     	return mv;
     }
+    
+    // 팀 생성 폼
+    @RequestMapping(value = "/teamCreateForm")
+    public String teamCreateForm() throws Exception {
+        String view = "/team/teamCreate";
+
+        return view;
+    }
+    
+    // 팀 생성
+    @RequestMapping(value = "/teamCreate")
+    public String teamCreate() throws Exception {
+        String view = "";
+
+        return view;
+    }
 
 }

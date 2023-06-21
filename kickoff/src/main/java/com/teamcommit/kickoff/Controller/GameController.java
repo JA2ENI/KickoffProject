@@ -1,9 +1,9 @@
 package com.teamcommit.kickoff.Controller;
 
-import com.teamcommit.kickoff.Common.CommandMap;
 import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
+import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Do.UserDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -13,13 +13,11 @@ import com.teamcommit.kickoff.Service.login.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class GameController {
@@ -86,22 +84,20 @@ public class GameController {
     }*/
 
     @RequestMapping("/gameUpdate")
-    public String insertGame(HttpServletRequest request, Model model) throws Exception {
-        String view = "redirect:/game";
+    public String gameUpdate(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+        String view = "/game/gameUpdate";
         
-        String userId = (String) request.getSession().getAttribute("userId");
-        UserDO userDO = new UserDO();
-        userDO.setUserId(userId);
+        String userId = (String)session.getAttribute("userId");
         
-        userDO = loginService.procSetUserInfo(userDO);
+        List<ReservationDO> placeInfo = gameService.selectPlaceInfo(userId);
         
-        PlaceDO placeInfo = gameService.selectPlaceInfo(userDO.getUserId());
         model.addAttribute("placeInfo", placeInfo);
-        System.out.println("출력" + placeInfo);
         
-        TeamDO teamInfo = gameService.selectTeamInfo(userDO.getUserId());
+        TeamDO teamInfo = gameService.selectTeamInfo(userId);
+        
         model.addAttribute("teamInfo", teamInfo);
 
+        return view;
         /*
         try{
             gameService.insertGame(gameDO);
@@ -113,7 +109,6 @@ public class GameController {
         }
         */
 
-        return view;
     }
 }
 

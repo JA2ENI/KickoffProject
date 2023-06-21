@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -58,10 +59,19 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
 							<div class="checkout__input">
-                               <p>풋살장<span>*</span></p>
-                               <input type="text" name="placeName" value="${placeInfo.reservationPlaceName}" readonly>
-                           	</div>
-                           	<div class="checkout__input">
+								<p>풋살장<span>*</span></p>
+								<select id="placeName" name="placeName" onChange="selectPlaceName(this)">
+									<option value="">예약한 풋살장 선택하기</option>
+									<c:choose>
+										<c:when test="${fn:length(placeInfo) > 0}">
+											<c:forEach var="row" items="${placeInfo}">
+												<option value="${row.reservationPlaceName}">${row.reservationPlaceName}</option>
+											</c:forEach>
+										</c:when>
+									</c:choose>
+								</select>
+							</div>
+							<div class="checkout__input">
                                 <p>경기 형태<span>*</span></p>
                                 <select id="inputGameStyle" name="gameStyle" onChange="selectgameStyle(this)">
                                     <option value="">경기형태 선택하기</option>
@@ -115,19 +125,19 @@
                             <div class="checkout__input">
                                 <p>성별<span>*</span></p>
                                 <label>
-                                	<input type="radio" name="gender" value="female" onclick='getPlaceForm(event)' <c:if test="${insertGame.gameGender eq 'female'}">checked="checked"</c:if>/>&nbsp여성
+                                	<input type="radio" name="gender" value="female" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq 'female'}">checked="checked"</c:if>/>&nbsp여성
                                 </label>
                                 <label>
-                                	<input type="radio" name="gender" value="male" onclick='getPlaceForm(event)' <c:if test="${insertGame.gameGender eq 'male'}">checked="checked"</c:if>/>&nbsp남성
+                                	<input type="radio" name="gender" value="male" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq 'male'}">checked="checked"</c:if>/>&nbsp남성
                                 </label>
                                 <label>
-                                	<input type="radio" name="gender" value="mix" onclick='getPlaceForm(event)' <c:if test="${insertGame.gameGender eq 'mix'}">checked="checked"</c:if>/>&nbsp혼성
+                                	<input type="radio" name="gender" value="mix" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq 'mix'}">checked="checked"</c:if>/>&nbsp혼성
                                 </label>
                             </div>
                             
                             <div class="checkout__input">
                                 <p>팀 정보<span>*</span></p>
-                                <input type="text" class="teamName" id="teamName" name="teamName" value="${teamInfo.team1Name}" readonly>
+                                <input type="text" class="teamName" id="teamName" name="teamName" value="${teamInfo.teamName}" readonly>
                             </div>
                             <div class="checkout__input">
                                 <p>매칭 상태<span>*</span></p>
@@ -149,13 +159,13 @@
 							<div class="checkout__order">
 								<h4>등록하기</h4>
 								<ul>
-									<li>풋살장<span>${placeInfo.reservationPlaceName}</span></li>
+									<li>풋살장<span id="selectPlaceName"></span></li>
                                     <li>경기 형태<span id="gameStyle"></span></li>
 									<li>경기 날짜<span id="gameDate"></span></li>
 									<li>시작 시간<span id="startTime"></span></li>
 									<li>종료 시간<span id="endTime"></span></li>
 									<li>성별<span id="gender"></span></li>
-									<li>팀 정보<span id="teamName">${teamInfo.teamName}</span></li>
+									<li>팀 정보<span>${teamInfo.teamName}</span></li>
 									<li>매칭 상태<span id="status"></span></li>
 								</ul>
                                 <input type="hidden" name="reservationNo" value="${insertGame.gameSeqno}" />
@@ -190,7 +200,7 @@
     <script src="/reservation/js/mixitup.min.js"></script>
     <script src="/reservation/js/owl.carousel.min.js"></script>
     <script src="/reservation/js/main.js"></script>
-	<script src="/reservation/js/common.js"></script>
+	<script src="/team/js/common.js"></script>
 	
     <script src="/includes/js/jquery.lettering.js"></script>
     <script src="/includes/js/jquery.sticky.js"></script>
