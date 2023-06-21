@@ -14,6 +14,11 @@
 	<link href="/myPage/css/theme.css" rel="stylesheet" media="all">
 	
 	<title>Kick Off: 마이페이지</title>
+	
+	<script>
+		${sucess}
+	</script>
+	
 </head>
 <body>
 	<div id="wrapper">

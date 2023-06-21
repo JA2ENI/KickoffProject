@@ -306,18 +306,18 @@
             FROM
                 GAME
             WHERE
-            	WRITER_ID = #{userId}
+            	WRITER_ID = #{userId} AND GAME_SCORE1 IS NULL
         ]]>
     </select>
     
     <!-- My GameRecord Insert -->
-    <select id="getGameRecord" parameterType="com.teamcommit.kickoff.Do.GameDO" resultType="com.teamcommit.kickoff.Do.GameDO">
+    <select id="getGameRecord" parameterType="Integer" resultType="com.teamcommit.kickoff.Do.GameDO">
         <![CDATA[
         	SELECT *
         	FROM
         		GAME
         	WHERE 
-        		WRITER_ID = #{userId}        	    
+        		GAME_SEQNO = #{gameSeqno}        	    
          ]]>
     </select>
     

@@ -37,5 +37,5 @@ public interface MypageMapper {
 	 
 	 public GameDO getGameRecord(int gameSeqno);
 	 
-	 public GameDO updateGameScore(int gameSeqno);
+	 public void updateGameScore(GameDO gameDO);
 }

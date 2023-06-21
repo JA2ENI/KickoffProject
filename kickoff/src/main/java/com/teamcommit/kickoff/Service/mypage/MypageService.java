@@ -34,6 +34,6 @@ public interface MypageService {
 
 	GameDO getGameRecord(int gameSeqno)throws Exception;
 
-	GameDO updateGameScore(int gameSeqno) throws Exception;
+	void updateGameScore(GameDO gameDO) throws Exception;
 	
 }

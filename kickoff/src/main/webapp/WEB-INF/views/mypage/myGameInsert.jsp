@@ -61,7 +61,7 @@
 					<a href="/myGameInsert" class="logo"><strong>매칭기록</strong></a>
 				</header>
 				<section class="section">
-					<form id="frm" name="frm" action="reply_insert_action" method="post" onsubmit="return _onSubmit();">
+					<form id="frm" name="frm" method="post" action = "/myGameRecordList">
 						<div class="article-container">
 							<div class="all-container">
 								<div class="content-wrap">
@@ -119,12 +119,13 @@
 										<div class="subject ">경기 점수</div>
 									</div>
 									<div class="wrap three">
-										<input type="number" class="inputbox num1" value="${gameScore.gameScore1}"/>
+										<input type="number" class="inputbox num1" name = "gameScore1" required />
 										<div class="colons">&#58;</div>
-										<input type="number" class="inputbox num2" value="${gameScore.gameScore2}" />
+										<input type="number" class="inputbox num2" name = "gameScore2" required />
+										<input type = "hidden" name = "gameSeqno" value = "${gameRecord.gameSeqno}" />
 									</div>
 								</div>
-							<button type="submit" class="btn_submit" onclick="location.href='myGameRecordList';">기록하기</button>
+							<button type="submit" class="btn_submit" >기록하기</button>
 							</div>
 						</div>
 					</form>
