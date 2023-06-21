@@ -2,7 +2,6 @@ package com.teamcommit.kickoff.Do;
 
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 
 @Component
 public class GameDO {
@@ -25,8 +24,7 @@ public class GameDO {
 	private String gameEndTime;
 	//경기 형태
 	private String gameStyle;
-	//경기 점수
-	private String gameScore;
+	
 	//성별
 	private String gameGender;
 	//매칭 상태
@@ -41,6 +39,10 @@ public class GameDO {
 	private String team2Name;
 	
 	private String writerId;
+	
+	private int gameScore1;
+	
+	private int gameScore2;
 
 	public int getGameSeqno() {
 		return gameSeqno;
@@ -114,14 +116,6 @@ public class GameDO {
 		this.gameStyle = gameStyle;
 	}
 
-	public String getGameScore() {
-		return gameScore;
-	}
-
-	public void setGameScore(String gameScore) {
-		this.gameScore = gameScore;
-	}
-
 	public String getGameGender() {
 		return gameGender;
 	}
@@ -177,4 +171,23 @@ public class GameDO {
 	public void setWriterId(String writerId) {
 		this.writerId = writerId;
 	}
+
+	public int getGameScore1() {
+		return gameScore1;
+	}
+
+	public void setGameScore1(int gameScore1) {
+		this.gameScore1 = gameScore1;
+	}
+
+	public int getGameScore2() {
+		return gameScore2;
+	}
+
+	public void setGameScore2(int gameScore2) {
+		this.gameScore2 = gameScore2;
+	}
+	
+	
+	
 }

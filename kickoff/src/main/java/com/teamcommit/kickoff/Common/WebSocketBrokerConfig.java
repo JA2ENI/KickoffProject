@@ -18,6 +18,7 @@ public class WebSocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         
         //for subscribe prefix(1:N일땐 "/topic", 특정 대상만 보낼 땐 "/queue"를 사용하는데, 여기선 왜 user인지 나중에 분석해보기)
+		// queue 쓰는게 맞는거 같은데.. 뭘까 이건..
         registry.enableSimpleBroker("/user");
         //for publish prefix
         registry.setApplicationDestinationPrefixes("/app");

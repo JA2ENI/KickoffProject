@@ -280,14 +280,30 @@ public class MypageController {
     public ModelAndView myGameRecordList(HttpSession session) throws Exception {
     	
         ModelAndView mv = new ModelAndView("/mypage/myGameRecord");
-      
+        
         String userId = (String)session.getAttribute("userId");
 
         List<GameDO> myGameRecordList = mypageService.myGameRecordList(userId);
         
-        mv.addObject("myGameRecordList", myGameRecordList);
+        session.setAttribute("myGameRecordList", myGameRecordList);
        
         return mv;
+    }
+    
+    @RequestMapping(value = "/myGameRecordList", method = RequestMethod.POST)
+    public String myGameRecordList(Model model, @ModelAttribute("gameDO") GameDO gameDO) {
+    	String view = "/mypage/myGameRecord";
+    	
+    	try {
+    		mypageService.updateGameScore(gameDO);
+    		model.addAttribute("sucess", "alert('기록에 성공했습니다');");
+    	}
+    	catch(Exception e) {
+    		e.printStackTrace();
+    		model.addAttribute("sucess", "alert('기록에 실패했습니다');"); 
+    	}
+    	
+    	return view;
     }
     
     @RequestMapping(value = "/myGameInsert")
@@ -304,14 +320,14 @@ public class MypageController {
         return view;
     }
     
-    /*게시판 상세보기(작성자)*/
-    @RequestMapping(value = "/myGameInsertForm")
-    public String  myGameScore(@RequestParam("gameSeqno")int gameSeqno, Model model) throws Exception {
-        String view = "/mypage/myGameInsert";
-        
-        GameDO gameScore = mypageService.updateGameScore(gameSeqno);
-        model.addAttribute("gameScore", gameScore);
-        
-        return view;
-    }
+//    /*게시판 상세보기(작성자)*/
+//    @RequestMapping(value = "/myGameInsertForm")
+//    public String  myGameScore(@RequestParam("gameSeqno")int gameSeqno, Model model) throws Exception {
+//        String view = "/mypage/myGameInsert";
+//        
+//        GameDO gameScore = mypageService.updateGameScore(gameSeqno); 
+//        model.addAttribute("gameScore", gameScore);
+//        
+//        return view;
+//    }
 }
