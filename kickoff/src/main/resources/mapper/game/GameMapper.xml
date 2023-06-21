@@ -53,7 +53,7 @@
     </insert>
     
     <!-- place info -->
-    <select id="selectPlaceInfo" parameterType="com.teamcommit.kickoff.Do.PlaceDO" resultType="com.teamcommit.kickoff.Do.PlaceDO">
+    <select id="selectPlaceInfo" parameterType="com.teamcommit.kickoff.Do.ReservationDO" resultType="com.teamcommit.kickoff.Do.ReservationDO">
         <![CDATA[
             SELECT *
             FROM
@@ -70,7 +70,7 @@
             FROM
                 TEAM
             WHERE
-                USER_ID = #{userId}
+                LEADER_ID = #{userId}
         ]]>
     </select>
     

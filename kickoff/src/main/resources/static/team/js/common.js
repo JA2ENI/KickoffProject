@@ -7,38 +7,51 @@ $('input[type="text"]').keydown(function() {
 	};
 });
 
-/* court */
-function teamNumber(e) {
+/* 풋살장 이름 */
+function selectPlaceName(e) {
 	const text = e.options[e.selectedIndex].text;
 
-	document.getElementById('teamNumber').innerText = text;
+	document.getElementById('selectPlaceName').innerText = text;
 }
 
-/* placeForm */
-function getPlaceForm(event) {
-	document.getElementById('placeForm').innerText = event.target.value;
+/* 경기형태 */
+function selectgameStyle(e) {
+	const text = e.options[e.selectedIndex].text;
+
+	document.getElementById('gameStyle').innerText = text;
 }
 
-/* startTime */
+/* 경기 날짜 */
+function getDate()  {
+	const text = document.getElementById('setDate').value;
+	
+	document.getElementById('gameDate').innerText = text;
+}
+
+/* 시작 시간 */
 function getStartTime(e) {
 	const text = e.options[e.selectedIndex].text;
 
 	document.getElementById('startTime').innerText = text;
 }
 
-/* endTime */
+/* 종료 시간 */
 function getEndTime(e) {
 	const text = e.options[e.selectedIndex].text;
 
 	document.getElementById('endTime').innerText = text;
 }
 
-/* input text */
-function getPrice()  {
-	const text = document.getElementById('inputPrice').value;
-	
-	document.getElementById('price').innerText = text;
+/* 성별 */
+function getGender(event) {
+	document.getElementById('gender').innerText = event.target.value;
 }
+
+/* 매칭 상태*/
+function getGameStatus(event) {
+	document.getElementById('status').innerText = event.target.value;
+}
+
 
 /* check */
 $(document).ready(function() {
