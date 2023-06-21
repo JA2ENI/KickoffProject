@@ -5,14 +5,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kick off: 매칭 등록</title>
 
     <!-- Google Font -->
-    <link rel="stylesheet" href="/includes/css/style.css">
-    <link rel = "stylesheet" href = "/includes/css/footer.css" />
-    <link rel = "stylesheet" href = "/main/css/vendor/icomoon/style.css">
     <link href="https://fonts.google.com/noto/specimen/Noto+Sans+KR?subset=korean&noto.script=Kore" rel="stylesheet">
 	
     <!-- Css Styles -->
@@ -23,85 +22,63 @@
     <link rel="stylesheet" href="/reservation/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="/reservation/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/reservation/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/reservation/css/styles.css" type="text/css">
     <link rel="stylesheet" href="/reservation/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/includes/css/style.css">
     
     <!-- calendar -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-
+    <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />    
+	
+ 	<link rel = "stylesheet" href = "/main/css/vendor/icomoon/style.css">
 </head>
 
 <body>
 	<div class="header-container">
 		<%@include file="/includes/header.jsp"%>
 	</div>
-        <!-- title -->
-        <header class="bg-dark py-5" style="background-color: #7fb77e !important;">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">매칭 등록</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">팀 별로 경쟁하여 순위를 겨루세요</p>
-                </div>
+	<!-- Header -->
+     <div class="bg-dark py-5" style="background-color: #7fb77e !important;">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">매칭 등록</h1>
+                <p class="lead fw-normal text-white-50 mb-0">열정 넘치게 벌어질 경기를 등록해보세요.</p>
             </div>
-        </header>
+        </div>
+    </div>
 
     <!-- Section -->
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <form id="frm" name="frm" method="POST">
+                <form role="frm" id="frm" name="frm" action="/gameUpdate" method="POST">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
 							<div class="checkout__input">
-                               <p>풋살장 선택<span>*</span></p>
-                               <input type="text" class="inputPlaceName" id="inputPlaceName" name="reservationPlaceName" value="${placeInfo.placeName}" readonly/>
-                               
+                               <p>풋살장<span>*</span></p>
+                               <input type="text" name="placeName" value="${placeInfo.reservationPlaceName}" readonly>
                            	</div>
-                          	<div class="checkout__input">
+                           	<div class="checkout__input">
                                 <p>경기 형태<span>*</span></p>
-                                <select id="courtName" onChange="selectCourt(this)">
-                                	<option value="">경기 형태 선택하기</option>
-                                	<option value="A">3 v/s 3</option>
-                                	<option value="B">5 v/s 5</option>
-                                	<option value="C">6 v/s 6</option>                                	
+                                <select id="inputGameStyle" name="gameStyle" onChange="selectgameStyle(this)">
+                                    <option value="">경기형태 선택하기</option>
+                                    <option value="4 vs 4" <c:if test="${insertGame.gameStyle == '4 vs 4'}">selected</c:if>>4 vs 4</option>
+                                    <option value="5 vs 5" <c:if test="${insertGame.gameStyle == '5 vs 5'}">selected</c:if>>5 vs 5</option>
+                                    <option value="6 vs 6" <c:if test="${insertGame.gameStyle == '6 vs 6'}">selected</c:if>>6 vs 6</option>
                                 </select>
                             </div>
-                           	<div class="checkout__input">
-                                <p>팀 이름<span>*</span></p>
-                                <input type="text" value="정보 가져오기 (입력 비활성화)" readonly>
-                            </div>
                             <div class="checkout__input">
-                                <p>팀 등급<span>*</span></p>
-                                <input type="text" value="정보 가져오기 (입력 비활성화)" readonly>
-                            </div>
-                            <div class="checkout__input">
-                                <p>성별<span>*</span></p>
-                                <label>
-                                	<input type="radio" name="placeForm" value="indoor" onclick='getPlaceForm(event)' />&nbsp남성
-                                </label>
-                                <label>
-                                	<input type="radio" name="placeForm" value="outdoor" onclick='getPlaceForm(event)' />&nbsp여성
-                                </label>
-                                <label>
-                                	<input type="radio" name="placeForm" value="outdoor" onclick='getPlaceForm(event)' />&nbsp혼성
-                                </label>
-                            </div>                   
-                            <div class="row">
-                            	<div class="col-lg-6">
-                           			<div class="checkout__input">
-                                		<p>매칭 일정<span>*</span></p>
-                               			<input id="setStartDate" onChange="getStartDate()" />
-                           			</div>
-                           		</div>                           		
-                          	</div>
+                        		<p>경기 날짜<span>*</span></p>
+                       			<input id="setDate" name="gameDate" value="${insertGame.gameDate}" onChange="getDate()" />
+                   			</div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                        <p>매칭 시작 시간<span>*</span></p>
-                                        <select id="openTime" name="openTime" onChange="getStartTime(this)">
+                                        <p>시작 시간<span>*</span></p>
+                                        <select id="openTime" name="gameStartTime" value="${insertGame.gameStartTime}" onChange="getStartTime(this)">
                                         	<option value="">시작 시간 선택</option>
                                         	<c:forEach var="i" begin="1" end="24">
 	                                        	<c:choose>
@@ -118,8 +95,8 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                        <p>매칭 종료 시간<span>*</span></p>
-                                        <select id="closeTime" name="closeTime" onChange="getEndTime(this)">
+                                        <p>종료 시간<span>*</span></p>
+                                        <select id="closeTime" name="gameEndTime" onChange="getEndTime(this)">
                                         	<option value="">종료 시간 선택</option>
                                         	<c:forEach var="i" begin="1" end="24">
 	                                        	<c:choose>
@@ -136,43 +113,55 @@
                                 </div>
                             </div>
                             <div class="checkout__input">
+                                <p>성별<span>*</span></p>
+                                <label>
+                                	<input type="radio" name="gender" value="female" onclick='getPlaceForm(event)' <c:if test="${insertGame.gameGender eq 'female'}">checked="checked"</c:if>/>&nbsp여성
+                                </label>
+                                <label>
+                                	<input type="radio" name="gender" value="male" onclick='getPlaceForm(event)' <c:if test="${insertGame.gameGender eq 'male'}">checked="checked"</c:if>/>&nbsp남성
+                                </label>
+                                <label>
+                                	<input type="radio" name="gender" value="mix" onclick='getPlaceForm(event)' <c:if test="${insertGame.gameGender eq 'mix'}">checked="checked"</c:if>/>&nbsp혼성
+                                </label>
+                            </div>
+                            
+                            <div class="checkout__input">
+                                <p>팀 정보<span>*</span></p>
+                                <input type="text" class="teamName" id="teamName" name="teamName" value="${teamInfo.team1Name}" readonly>
+                            </div>
+                            <div class="checkout__input">
                                 <p>매칭 상태<span>*</span></p>
                                 <label>
-                                	<input type="radio" name="status" value="매칭 중" onclick='getStatus(event)' checked/>&nbsp매칭 중
+                                    <input type="radio" name="gameStatus" value="매칭 중" onclick='getGameStatus(event)' <c:if test="${insertGame.gameStatus eq '매칭 중'}">checked="checked"</c:if>/>&nbsp매칭 중
                                 </label>
                                 <label>
-                                	<input type="radio" disabled/>&nbsp마감 임박
-                                </label>
-                                <label>
-                                	<input type="radio" disabled/>&nbsp매칭 완료
+                                    <input type="radio" name="gameStatus" value="매칭 대기" onclick='getGameStatus(event)'<c:if test="${insertGame.gameStatus eq '매칭 대기'}">checked="checked"</c:if>/>&nbsp매칭 대기
                                 </label>
                             </div>
                             <div class="checkout__input">
 								<p>기타사항</p>
-                               	<textarea class="etc"></textarea>
+                               	<textarea class="etc" name="Comment">${insertGame.gameOther}</textarea>
                             </div>
                         </div>
                         
                         <!-- Check List -->
 						<div class="col-lg-4 col-md-6">
 							<div class="checkout__order">
-								<h4>Check List</h4>
-								<div class="checkout__order__products">
-									Title<span>Content</span>
-								</div>
+								<h4>등록하기</h4>
 								<ul>
-									<li>풋살장<span>이름이름</span></li>
-									<li>경기 형태<span id="court"></span></li>
-									<li>팀 이름<span>주소주소</span></li>
-									<li>팀 등급<span id="placeForm"></span></li>
-									<li>매칭 일정<span id="startDate"></span></li>
-									<li>매칭 종료<span id="endDate"></span></li>
+									<li>풋살장<span>${placeInfo.reservationPlaceName}</span></li>
+                                    <li>경기 형태<span id="gameStyle"></span></li>
+									<li>경기 날짜<span id="gameDate"></span></li>
 									<li>시작 시간<span id="startTime"></span></li>
 									<li>종료 시간<span id="endTime"></span></li>
-									<li>매칭 상태<span id="status">매칭 중</span></li>									
+									<li>성별<span id="gender"></span></li>
+									<li>팀 정보<span id="teamName">${teamInfo.teamName}</span></li>
+									<li>매칭 상태<span id="status"></span></li>
 								</ul>
-                                <button type = "submit" id="insert" class="site-btn-insert" onclick="location.href='/helperInsert';">등록</button>
-								<a href="game.jsp" id="cancle" class="site-btn-cancle">취소</a>
+                                <input type="hidden" name="reservationNo" value="${insertGame.gameSeqno}" />
+                                <%-- Button --%>
+                                <input type="submit" id="insert" class="site-btn-insert" value="등록"/>
+								<a href="/game" id="cancle" class="site-btn-cancle">취소</a>
 							</div>
 						</div>
 					</div>
@@ -181,28 +170,15 @@
         </div>
     </section>
 
-    <!-- Footer / 메인과 통일-->
-    <%@include file="/includes/footer.jsp"%>
-	<!-- Footer Section End -->
+    <!-- Footer -->
+	<%@include file="/includes/footer.jsp"%>
 
 	<script type="text/javascript">
 		/* calendar */
-		var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-		$('#setStartDate').datepicker({
+		$('#setDate').datepicker({
 			format: "yyyy-mm-dd",
-		    uiLibrary: 'bootstrap4',
-		    minDate: today,
-		    maxDate: function () {
-		        return $('#endDate').val();
-		    }
-		});
-		$('#setEndDate').datepicker({
-			format: "yyyy-mm-dd",
-		    uiLibrary: 'bootstrap4',
-		    minDate: function () {
-		        return $('#startDate').val();
-		    }
-		});
+            uiLibrary: 'bootstrap4'
+        });
 	</script>
 	
     <!-- Js Plugins -->
@@ -216,11 +192,11 @@
     <script src="/reservation/js/main.js"></script>
 	<script src="/reservation/js/common.js"></script>
 	
-    <script src="/main/js/vendor/jquery.lettering.js"></script>
-    <script src="/main/js/vendor/jquery.sticky.js"></script>
-    <script src="/main/js/vendor/ScrollMagic.min.js"></script>
-    <script src="/main/js/vendor/scrollmagic.animation.gsap.min.js"></script>
-    <script src="/main/js/main.js"></script>
+    <script src="/includes/js/jquery.lettering.js"></script>
+    <script src="/includes/js/jquery.sticky.js"></script>
+    <script src="/includes/js/ScrollMagic.min.js"></script>
+    <script src="/includes/js/scrollmagic.animation.gsap.min.js"></script>
+    <script src="/includes/js/main.js"></script>
 	
 </body>
 		

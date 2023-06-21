@@ -3,6 +3,7 @@ package com.teamcommit.kickoff.Service.game;
 import com.teamcommit.kickoff.Dao.GameDAO;
 import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.HelperDO;
+import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,15 @@ public class GameServiceImpl implements GameService {
     @Override
     public void insertGame(GameDO gameDO) throws Exception {
         gameMapper.insertGame(gameDO);
+    }
+    
+    @Override
+    public PlaceDO selectPlaceInfo(String userId) throws Exception {
+        return gameMapper.selectPlaceInfo(userId);
+    }
+    
+    @Override
+    public TeamDO selectTeamInfo(String userId) throws Exception {
+        return gameMapper.selectTeamInfo(userId);
     }
 }
