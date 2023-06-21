@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="com.teamcommit.kickoff.Service.game.GameMapper">
 
     <select id="gameDetail" parameterType="com.teamcommit.kickoff.Do.GameDO" resultType="com.teamcommit.kickoff.Do.GameDO">
         <![CDATA[
-        SELECT PLACE_NAME, TEAM1_NAME, TEAM2_NAME, GAME_DATE, GAME_STYLE, GAME_GENDER, GAME_STATUS
-        FROM GAME
+        SELECT
+        	*
+        FROM 
+        	GAME
         ]]>
     </select>
 
@@ -28,23 +29,49 @@
         INSERT INTO GAME
         (
             GAME_SEQNO,
-            PLACE_ID,
-            TEAM1_ID,TEAM2_ID,
+            PLACE_NAME,
+            TEAM1_NAME,
+            GAME_START_TIME,
             GAME_DATE,
             GAME_STYLE,
             GAME_GENDER,
-            GAME_STATUS
+            GAME_STATUS,
+            GAME_OTHER
         )
         VALUES(
                   GAME_SEQ.NEXTVAL,
-                  #{placeId},
-                  #{team1Id},
-                  #{tema2Id},
+                  #{placeName},
+                  #{team1Name},
+                  #{gameStartTime},
                   #{gameDate},
                   #{gameStyle},
                   #{gameGender},
-                  #{gameStatus}
+                  #{gameStatus},
+                  #{gameOther}
               )
         ]]>
     </insert>
+    
+    <!-- place info -->
+    <select id="selectPlaceInfo" parameterType="com.teamcommit.kickoff.Do.PlaceDO" resultType="com.teamcommit.kickoff.Do.PlaceDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                RESERVATION
+            WHERE
+                USER_ID = #{userId}
+        ]]>
+    </select>
+    
+    <!-- team info -->
+    <select id="selectTeamInfo" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                TEAM
+            WHERE
+                USER_ID = #{userId}
+        ]]>
+    </select>
+    
 </mapper>

@@ -3,9 +3,13 @@ package com.teamcommit.kickoff.Controller;
 import com.teamcommit.kickoff.Common.CommandMap;
 import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.TeamDO;
+import com.teamcommit.kickoff.Do.PlaceDO;
+import com.teamcommit.kickoff.Do.UserDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.teamcommit.kickoff.Service.game.GameService;
+import com.teamcommit.kickoff.Service.login.LoginService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +26,9 @@ public class GameController {
 
     @Autowired
     private GameService gameService;
+    
+    @Autowired
+    private LoginService loginService;
 
     @GetMapping("/game")
     public String gameDetail(Model model) throws Exception {
@@ -67,6 +74,7 @@ public class GameController {
         return mv;
     }
 
+    /*
     @GetMapping("/gameUpdate")
     public String insert(@ModelAttribute("gameDO") GameDO gameDO, HttpServletRequest request, Model model) throws Exception {
         String view = "/game/gameUpdate";
@@ -75,12 +83,26 @@ public class GameController {
         teamDO.setTeamName(teamName);
 
         return view;
-    }
+    }*/
 
-    @RequestMapping("/gameInsert")
-    public String insertGame(@ModelAttribute("gameDO") GameDO gameDO, HttpServletRequest session, Model model) {
+    @RequestMapping("/gameUpdate")
+    public String insertGame(HttpServletRequest request, Model model) throws Exception {
         String view = "redirect:/game";
+        
+        String userId = (String) request.getSession().getAttribute("userId");
+        UserDO userDO = new UserDO();
+        userDO.setUserId(userId);
+        
+        userDO = loginService.procSetUserInfo(userDO);
+        
+        PlaceDO placeInfo = gameService.selectPlaceInfo(userDO.getUserId());
+        model.addAttribute("placeInfo", placeInfo);
+        System.out.println("출력" + placeInfo);
+        
+        TeamDO teamInfo = gameService.selectTeamInfo(userDO.getUserId());
+        model.addAttribute("teamInfo", teamInfo);
 
+        /*
         try{
             gameService.insertGame(gameDO);
             session.setAttribute("script", "alert('매칭 경기를 등록했습니다! 메시지를 기다려주세요 :)');");
@@ -89,7 +111,7 @@ public class GameController {
             e.printStackTrace();
             session.setAttribute("script", "alert('문제가 발생했습니다. 다시 시도해주세요.');");
         }
-
+        */
 
         return view;
     }

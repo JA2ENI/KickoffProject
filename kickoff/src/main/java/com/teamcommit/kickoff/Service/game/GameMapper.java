@@ -1,6 +1,7 @@
 package com.teamcommit.kickoff.Service.game;
 
 import com.teamcommit.kickoff.Do.GameDO;
+import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,4 +17,8 @@ public interface GameMapper {
     Map<String, Object> selectMemInfo(Map<String, Object> map);
 
     public void insertGame(GameDO gameDO);
+
+	public TeamDO selectTeamInfo(String userId);
+
+	public PlaceDO selectPlaceInfo(String userId);
 }
