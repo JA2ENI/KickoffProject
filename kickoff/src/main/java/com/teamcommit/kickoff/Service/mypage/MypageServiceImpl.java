@@ -75,4 +75,9 @@ public class MypageServiceImpl implements MypageService {
     public GameDO getGameRecord(int gameSeqno) throws Exception {
         return mypageMapper.getGameRecord(gameSeqno);
     }
+    
+    @Override
+    public GameDO updateGameScore(int gameSeqno) throws Exception {
+        return mypageMapper.updateGameScore(gameSeqno);
+    }
 }

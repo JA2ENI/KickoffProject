@@ -58,7 +58,7 @@
 			<div class="inner">
 				<header id="header">
 					<input type="button" onclick="location.href='main'" class="kickoff" value="Kick Off" /><br>
-					<a href="/myTeam" class="logo"><strong>매칭기록</strong></a>
+					<a href="/myGameInsert" class="logo"><strong>매칭기록</strong></a>
 				</header>
 				<section class="section">
 					<form id="frm" name="frm" action="reply_insert_action" method="post" onsubmit="return _onSubmit();">
@@ -69,13 +69,13 @@
 										<div class="subject">경기 번호</div>
 									</div>
 									<div class="wrap">
-										<div class="content">1</div>
+										<div class="content">${gameRecord.gameSeqno}</div>
 									</div>
 									<div class="wrap">
 										<div class="subject">경기 시간</div>
 									</div>
 									<div class="wrap">
-										<div class="content">11:00~13:00</div>
+										<div class="content">${gameRecord.gameStartTime} ~ ${gameRecord.gameEndTime}</div>
 									</div>
 								</div>
 								<div class="content-wrap">
@@ -83,13 +83,13 @@
 										<div class="subject">경기 날짜</div>
 									</div>
 									<div class="wrap two">
-										<div class="content">2023-06-04 00:00:00</div>
+										<div class="content">${gameRecord.gameDate}</div>
 									</div>
 									<div class="wrap two">
 										<div class="subject">경기 형태</div>
 									</div>
 									<div class="wrap two">
-										<div class="content">5vs5</div>
+										<div class="content">${gameRecord.gameStyle}</div>
 									</div>
 								</div>
 								<div class="content-wrap">
@@ -97,21 +97,21 @@
 										<div class="subject">경기 장소</div>
 									</div>
 									<div class="wrap">
-										<div class="content"></div>
+										<div class="content">${gameRecord.placeName}</div>
 									</div>
 									<div class="wrap">
 										<div class="subject">매칭 상태</div>
 									</div>
 									<div class="wrap">
-										<div class="content">매칭완료</div>
+										<div class="content">${gameRecord.gameStatus}</div>
 									</div>
 								</div>
-								<div class="content-wrap">
+								<div class="content-wrap second sec">
 									<div class="wrap two">
-										<div class="subject">팀 vs 팀</div>
+										<div class="subject">팀 1 vs 팀 2</div>
 									</div>
 									<div class="wrap two">
-										<div class="content">A팀 vs B팀</div>
+										<div class="content nyam">${gameRecord.team1Name} v/s ${gameRecord.team2Name}</div>
 									</div>
 								</div>
 								<div class="content-wrap second">
@@ -119,12 +119,12 @@
 										<div class="subject ">경기 점수</div>
 									</div>
 									<div class="wrap three">
-										<input type="number" class="inputbox num1" />
+										<input type="number" class="inputbox num1" value="${gameScore.gameScore1}"/>
 										<div class="colons">&#58;</div>
-										<input type="number" class="inputbox num2" />
+										<input type="number" class="inputbox num2" value="${gameScore.gameScore2}" />
 									</div>
 								</div>
-							<button type="button" class="btn-list" onclick="location.href='myGameRecordList';">목록</button>
+							<button type="submit" class="btn_submit" onclick="location.href='myGameRecordList';">기록하기</button>
 							</div>
 						</div>
 					</form>

@@ -57,7 +57,6 @@
 								<tbody>
 								<c:forEach var="line" items="${myGameRecordList}">
 									<tr class="tr-shadow">
-										<td>팀장</td>
 										<td><span class="block-email">${line.gameSeqno}</span></td>
 										<td class="desc">${line.gameDate}</td>
 										<td>${line.team1Name}</td>

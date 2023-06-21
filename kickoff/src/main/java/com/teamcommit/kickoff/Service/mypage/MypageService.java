@@ -33,5 +33,7 @@ public interface MypageService {
 	List<GameDO> myGameRecordList(String userId) throws Exception;
 
 	GameDO getGameRecord(int gameSeqno)throws Exception;
+
+	GameDO updateGameScore(int gameSeqno) throws Exception;
 	
 }

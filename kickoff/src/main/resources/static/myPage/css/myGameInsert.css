@@ -67,6 +67,15 @@ section {
 	border-bottom: solid 3px #CFD8DC;
 }
 
+.sec {
+	border-bottom: none;	
+}
+
+.nyam{
+	padding-left: 40px;
+}
+
+
 .three {
 	display: flex;
 }
@@ -87,7 +96,7 @@ section {
 }
 
 
-.btn-list {
+.btn_submit {
 	width: 10em;
     margin-top: 25px;
 	padding: 5px;
@@ -97,7 +106,7 @@ section {
     background: #7fb77e;
 }
 
-.btn-list:hover {
+.btn-submit:hover {
 	border-color: #ffc090;
 	background: #ffc090;
 }

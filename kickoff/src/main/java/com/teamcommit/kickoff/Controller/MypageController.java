@@ -303,4 +303,15 @@ public class MypageController {
         
         return view;
     }
+    
+    /*게시판 상세보기(작성자)*/
+    @RequestMapping(value = "/myGameInsertForm")
+    public String  myGameScore(@RequestParam("gameSeqno")int gameSeqno, Model model) throws Exception {
+        String view = "/mypage/myGameInsert";
+        
+        GameDO gameScore = mypageService.updateGameScore(gameSeqno);
+        model.addAttribute("gameScore", gameScore);
+        
+        return view;
+    }
 }
