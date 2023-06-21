@@ -68,7 +68,7 @@
 						</tr>
 						<tr>
 							<th scope="row">매칭 시간</th>
-							<td>${gameScoreDetail.gameStartTime}</td>
+							<td>${gameScoreDetail.gameStartTime} ~ ${gameScoreDetail.gameEndTime}</td>
 						</tr>
 						<tr>
 							<th scope="row">성별</th>
