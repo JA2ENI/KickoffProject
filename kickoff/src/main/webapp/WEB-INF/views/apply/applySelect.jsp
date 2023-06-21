@@ -25,15 +25,11 @@
 	<section>
 		<div class="img_container">
 			<button type="button" onclick="location.href='/applySelect?num=1';">
-				<img id="imgCourt" class="icons" src="/apply/images/applicant2.png" />
+				<img id="imgCourt" class="icons" src="/apply/images/applicant.png" />
 			</button>
 			<button type="button" onclick="location.href='/applySelect?num=2';">
-				<img id="imgGame" class="icons" src="/apply/images/recruiter2.png" />
+				<img id="imgGame" class="icons" src="/apply/images/recruiter.png" />
 			</button>
-		</div>
-		<div class="text-wrap">
-			<div class="text applicant">신청자</div>
-			<div class="text recruiter">모집자</div>
 		</div>
 	</section>
 </body>
