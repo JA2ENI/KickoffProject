@@ -1,4 +1,11 @@
-/* Apply List */
+/* Apply Select */
+
+@font-face {
+	font-family: 'GangwonEduPowerExtraBoldA';
+	src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff')format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
 
 * {
 	margin: 0;
@@ -21,19 +28,11 @@ header {
 }
 
 section {
-	width: 100%;
+	width: 50%;
 	height: auto;
-	float: left;
 	margin: 0 auto;
-	padding-top: 3rem;
-	padding-bottom: 3rem;
-	
-}
-
-aside {
-	width: 80px;
-	height: 160px;
-	float: left;
+	padding-top: 4rem;
+	padding-bottom: 7rem;
 }
 
 footer {
@@ -43,6 +42,51 @@ footer {
 
 button {
     cursor: pointer;
+    margin: 20px;
 }
+
+.img_container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 5px;
+	padding: 5px;
+}
+
+.title {
+	font-size: 33px;
+}
+
+.icons {
+	width: 300px;
+}
+
+.text-wrap {
+	display: flex;
+    justify-content: space-around;
+	margin: 0px 5px 5px 5px;
+	padding: 0px 5px 5px 5px;
+}
+
+.text {
+	font-size: 30px;
+	font-weight: bold;
+	font-family: 'GangwonEduPowerExtraBoldA' !important;
+}
+
+.applicant {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.recruiter {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+
+
+
+
 
 

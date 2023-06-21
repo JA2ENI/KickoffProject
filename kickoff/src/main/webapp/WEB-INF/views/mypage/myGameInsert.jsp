@@ -116,7 +116,7 @@
 								</div>
 								<div class="content-wrap second">
 									<div class="wrap">
-										<div class="subject">경기 점수</div>
+										<div class="subject ">경기 점수</div>
 									</div>
 									<div class="wrap three">
 										<input type="number" class="inputbox num1" />
