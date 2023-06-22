@@ -67,7 +67,8 @@
 	<![CDATA[
         UPDATE USERS
         SET
-        	USER_STATUS = '정지'
+        	USER_STATUS = '정지',
+        	USER_STOP_COUNT = USER_STOP_COUNT + 1
         WHERE
         	USER_ID = #{userId}
     ]]>
@@ -78,7 +79,8 @@
 	<![CDATA[
         UPDATE EMPLOYER
         SET
-        	EMP_STATUS = '정지'
+        	EMP_STATUS = '정지',
+        	EMP_STOP_COUNT = EMP_STOP_COUNT + 1
         WHERE
         	EMP_ID = #{empId}
     ]]>
