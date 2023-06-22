@@ -7,8 +7,6 @@ import java.util.Date;
 @Component
 public class TeamDO {
 
-	//풋살팀 아이디
-	private int teamSeqId;
 	//팀 이름
 	private String teamName;
 	//팀 인원수
@@ -21,27 +19,22 @@ public class TeamDO {
 	private String teamStartDate;
 	//팀원 모집 종료 기간
 	private String teamEndDate;
-	//랭킹 순위
-	private int teamRank;
-	//게임 점수
-	private int teamGameScore;
 	//팀 등급
-	private String teamGrade;
+	private String teamLevel;
 	//기타 사항
 	private String teamOther;
 	//팀원 모집 상태
 	private String teamStatus;
-	// 팀 게시글 번호
+	//팀 게시글 번호
 	private int teamSeqNo;
-
-	private String leaderId;
+	//팀 연령대
+	private String teamAge;
+	//팀 주 이용 요일
+	private String teamDay;
+	//팀 주 이용 시간
+	private String teamTime;
 	
-	public int getTeamSeqId() {
-		return teamSeqId;
-	}
-	public void setTeamSeqId(int teamSeqId) {
-		this.teamSeqId = teamSeqId;
-	}
+	
 	public String getTeamName() {
 		return teamName;
 	}
@@ -78,23 +71,11 @@ public class TeamDO {
 	public void setTeamEndDate(String teamEndDate) {
 		this.teamEndDate = teamEndDate;
 	}
-	public int getTeamRank() {
-		return teamRank;
+	public String getTeamLevel() {
+		return teamLevel;
 	}
-	public void setTeamRank(int teamRank) {
-		this.teamRank = teamRank;
-	}
-	public int getTeamGameScore() {
-		return teamGameScore;
-	}
-	public void setTeamGameScore(int teamGameScore) {
-		this.teamGameScore = teamGameScore;
-	}
-	public String getTeamGrade() {
-		return teamGrade;
-	}
-	public void setTeamGrade(String teamGrade) {
-		this.teamGrade = teamGrade;
+	public void setTeamLevel(String teamLevel) {
+		this.teamLevel = teamLevel;
 	}
 	public String getTeamOther() {
 		return teamOther;
@@ -108,12 +89,29 @@ public class TeamDO {
 	public void setTeamStatus(String teamStatus) {
 		this.teamStatus = teamStatus;
 	}
-	public int getTeamSeqNo() {return teamSeqNo;}
-	public void setTeamSeqNo(int teamSeqNo) {this.teamSeqNo = teamSeqNo;}
-	public String getLeaderId() {
-		return leaderId;
+	public int getTeamSeqNo() {
+		return teamSeqNo;
 	}
-	public void setLeaderId(String leaderId) {
-		this.leaderId = leaderId;
+	public void setTeamSeqNo(int teamSeqNo) {
+		this.teamSeqNo = teamSeqNo;
 	}
+	public String getTeamAge() {
+		return teamAge;
+	}
+	public void setTeamAge(String teamAge) {
+		this.teamAge = teamAge;
+	}
+	public String getTeamDay() {
+		return teamDay;
+	}
+	public void setTeamDay(String teamDay) {
+		this.teamDay = teamDay;
+	}
+	public String getTeamTime() {
+		return teamTime;
+	}
+	public void setTeamTime(String teamTime) {
+		this.teamTime = teamTime;
+	}
+
 }

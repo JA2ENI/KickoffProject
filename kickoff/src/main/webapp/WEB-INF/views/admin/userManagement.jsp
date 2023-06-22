@@ -72,14 +72,9 @@
 							<table class="table">
 								<thead>
 									<tr>
-										<!--
-											<td>
-												<label class="au-checkbox"> 
-													<input type="checkbox"> 
-													<span class="au-checkmark"></span>
-												</label>
-											</td>
-										-->
+										<td>
+
+										</td>
 										<td>이름/아이디</td>
 										<td>구분</td>
 										<td>취소 횟수</td>
@@ -88,28 +83,14 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										
-										<td>
-											<div class="table-data__info">
-												<h4>kickoff</h4>
-												<span> 
-													<a>kickoff</a>
-												</span>
-											</div>
-										</td>
-										<td><span class="role admin">admin</span></td>
-										<td><span class="cancel-number">0</span></td>
-										<td><span class="rest-number">0</span></td>
-										<td>
-											<div class="rs-select2--trans rs-select2--sm">
-												<span class="status-active">활동</span>
-											</div>
-										</td>
-									</tr>
 									<c:forEach var="map" items="${userList}">
 										<tr>
-								
+											<td>
+												<label class="au-checkbox"> 
+													<input type="checkbox" name="selectMember" value="${map.ID}"> 
+													<span class="au-checkmark"></span>
+												</label>
+											</td>
 											<td>
 												<div class="table-data__info">
 													<h4>
@@ -121,33 +102,21 @@
 												</div>
 											</td>
 											<td>
-												<span class="
-                                                             <c:choose>
-                                                                <c:when test="${map.CLASSIFICATION == 'Admin'}">role admin</c:when>
-                                                                <c:when test="${map.CLASSIFICATION == 'Leader'}">role master</c:when>
-                                                                <c:when test="${map.CLASSIFICATION == 'User'}">role user</c:when>
-                                                                <c:when test="${map.CLASSIFICATION == 'Emp'}">role emp</c:when>
-                                                                <c:otherwise>default-role</c:otherwise>
-                                                            </c:choose>
-                                                         ">
+												<span class="classification" data-classification="${map.CLASSIFICATION}">
 													<c:out value="${map.CLASSIFICATION}" />
-											</span></td>
-											<td><span class="cancel-number"><c:out
-														value="${map.CANCEL_COUNT}" /></span></td>
-											<td><span class="rest-number"><c:out
-														value="${map.STOP_COUNT}" /></span></td>
+												</span>
+											</td>
+											<td><span class="cancel-number">
+												<c:out value="${map.CANCEL_COUNT}" /></span>
+											</td>
+											<td><span class="rest-number">
+												<c:out value="${map.STOP_COUNT}" /></span>
+											</td>
 											<td>
-												<div class="rs-select2--trans rs-select2--sm">
-													<span
-														class="
-                                                             <c:choose>
-                                                                <c:when test="${map.STATUS == '활동'}">status-active</c:when>
-                                                                <c:when test="${map.STATUS == '정지'}">status-stop</c:when>
-                                                            </c:choose>
-                                                         ">
-														<c:out value="${map.STATUS}" />
-													</span>
-												</div>
+												<span class="status" data-status="${map.STATUS}">
+													<c:out value="${map.STATUS}" />
+												</span>
+												<button type="button" class="cancel-button">정지 취소</button>
 											</td>
 
 										</tr>
@@ -155,11 +124,6 @@
 								</tbody>
 							</table>
 						</div>
-						<!--
-                                    <div class="user-data__footer">
-                                        <button class="au-btn au-btn-load">load more</button>
-                                    </div>
-                                    -->
 					</div>
 					<!-- END USER DATA-->
 				</div>
@@ -187,6 +151,62 @@
 
 	</div>
 
+	<script>
+
+		function updateClassificationElements() {
+		    const classificationElements = document.querySelectorAll('.classification');
+		    classificationElements.forEach((element) => {
+		        const classification = element.getAttribute('data-classification');
+		        let classificationText;
+		        switch (classification) {
+		            case 'Leader':
+		            	classificationText = 'role-leader';
+		                break;
+		            case 'User':
+		            	classificationText = 'role-user';
+		                break;
+		            case 'Emp':
+		            	classificationText = 'role-emp';
+		                break;
+		            default:
+		            	classificationText = 'role-default';
+		                break;
+		        }
+		        element.className = classificationText;
+		    });
+		}
+		
+		function updateStatusElements() {
+		    const statusElements = document.querySelectorAll('.status');
+		    statusElements.forEach((element) => {
+		        const status = element.getAttribute('data-status');
+		        let statusText;
+		        let displayCancelBtn;
+		        switch (status) {
+		            case '활동':
+		                statusText = 'status-active';
+		                displayCancelBtn = 'none';
+		                break;
+		            case '정지':
+		                statusText = 'status-stop';
+		                displayCancelBtn = 'block';
+		                break;
+		            default:
+		                statusText = '';
+		            	displayCancelBtn = 'none';
+		                break;
+		        }
+		        element.className = statusText;
+		        const cancelButton = element.parentElement.querySelector('.cancel-button');
+		        cancelButton.style.display = displayCancelBtn;
+		    });
+		}
+		
+
+		updateClassificationElements();
+		updateStatusElements();
+	</script>
+		
 	<script>
 		function userAction(action) {
 			var confirmFlag = "";
