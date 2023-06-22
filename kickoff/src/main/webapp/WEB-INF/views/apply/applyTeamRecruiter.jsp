@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,39 +18,43 @@
 </head>
 <body>
 	<div class="header-container">
-		<%@include file="/includes/headerApply.jsp"%>
+		<%@include file="/includes/header.jsp"%>
 	</div>
 	<%@include file="/includes/applyNavi.jsp"%>
 	<section>
+		<!-- Session User Info -->
 		<article class="myInfo">
 			<div class="myInfo-container">
 				<div class="myInfo-wrap">
 					<div class="uInfo">
-						<!-- session user name -->
 						<div class="userName">안재은</div>
-						<!-- user ID -->
 						<div class="userId">ja2eni</div>
 					</div>
 					<div class="uTeam-container">
 						<div class="uTeam-wrap">
 							<div class="uTitle">TEAM</div>
 							<div class="uContant">우최팀</div>
-							<!-- 소속팀이 없으면 다른 문구 기입 -->
 						</div>
 						<div class="uTeam-wrap">
 							<div class="uTitle">TEAM RANK</div>
 							<div class="uContant">루키</div>
-							<!-- 필수일거 같지만 혹시 모르니 없으면 다른 문구 기입 -->
 						</div>
 						<div class="uTeam-wrap">
 							<div class="uTitle">POSITION</div>
-							<div class="uContant">피보(Pivo)</div>
-							<!-- 필수일거 같지만 혹시 모르니 없으면 다른 문구 기입 -->
+							<!-- MIAN/SUB -->
+							<div class="uContant">피보/아라</div>
+							<!-- 포지션 null -->
+							<!-- <div class="uContant">-</div> -->
 						</div>
-						<!-- 매칭(게임) 총 횟수 -->
+						<!-- 매칭 경기 횟수 -->
 						<div class="uTeam-wrap">
 							<div class="uTitle">GAME</div>
 							<div class="uContant">5</div>
+						</div>
+						<!-- 용병 경기 횟수 -->
+						<div class="uTeam-wrap">
+							<div class="uTitle">HELPER</div>
+							<div class="uContant">0</div>
 						</div>
 					</div>
 				</div>
@@ -69,38 +73,28 @@
 									<!-- <div class="status cancel">모집 취소</div> -->
 									<div class="one-wrap">
 										<div class="date day">6월 14일</div>
-										<div class="date">~</div>
-										<div class="date">7월 13일</div>
+										<div class="date">수요일</div>
+										<div class="date">20:00</div>
 									</div>
 									<div class="two-wrap">
-										<a href="javascript:alert('제목 상세보기 test');" class="placeName">우리 동네 최강 풋살팀</a>
-										<!-- 모집자_총 모집인원수 & 신청자 수 -->
+										<!-- 상세보기 -->
+										<a href="javascript:alert('제목 상세보기 test');" class="placeName">서울 송파 천마 풋살파크 2구장</a>
+										<!-- 신청자 수/모집인원수 -->
 										<div class="numApply">5/10명</div>
-										<!-- 신청자_총 모집인원수 -->
-										<!-- <div class="numTeam">10명</div> -->
-										<!-- 모집자_디테일 체크박스 -->
-										<div class="checkbox-wrap">
-											<input type="checkbox" id="drop" class="drop" onclick="drop()" /><label for="drop"></label>
-										</div>
-										<!-- 신청자_상세보기 버튼 -->
-										<!-- <div class="btn-wrap">
-											<button type="button" class="btn-detail" onclick="javascript:alert('test')">상세보기</button>
-										</div> -->
 									</div>
-									<!-- 신청자_신청 수락/거절 상태 -->
-									<div class="ticket-wrap">
-										<!-- <img class="ticket" src="/apply/images/thanks.png" /> -->
-										<!-- <img class="ticket" src="/apply/images/sorry.png" /> -->
+									<div class="checkbox-wrap">
+										<input type="checkbox" id="drop" class="drop" onclick="drop()" /><label for="drop"></label>
 									</div>
 									<div class="three-wrap">
 										<div class="arrow">▶</div>
-										<div class="three-content">성별무관</div>
+										<div class="three-content">남성</div>
 										<div>&sdot;</div>
 										<div class="three-content">5vs5</div>
 										<div>&sdot;</div>
 										<div class="three-content">피보(Pivo)</div>
 									</div>
 								</div>
+								<!-- 신청자 리스트 -->
 								<div id="detail" class="detail-container">
 									<div class="detail-wrap" id="sideon">
 										<div class="detail-content">
@@ -111,7 +105,6 @@
 											<div class="dContent">피보</div>
 										</div>
 									</div>
-									
 									<!-- test (추후 삭제)-->
 									<div class="detail-wrap">
 										<div class="detail-content">
@@ -133,8 +126,7 @@
 									</div>
 									<!-- test END -->
 								</div>
-								
-								<!-- 모집자_수락/거절(side bar) -->
+								<!-- 수락&거절(side bar) -->
 								<div class="side-container">
 									<div class="side-wrap">
 										<div class="side-head">
@@ -160,12 +152,12 @@
 												<div class="sTitle">TEAM</div>
 												<div class="sContent">우최팀</div>
 											</div>
-											<!-- 총경기 횟수 -->									
+											<!-- 매칭 경기 횟수 -->									
 											<div class="content">
 												<div class="sTitle">GAME</div>
 												<div class="sContent">7</div>
 											</div>
-											<!-- 용병지원 횟수 -->
+											<!-- 용병 경기 횟수 -->
 											<div class="content seven">
 												<div class="sTitle">HELPER</div>
 												<div class="sContent">10</div>
@@ -178,8 +170,6 @@
 										</div>
 									</div>
 								</div>
-								
-								
 							</div>
 						</div>
 					</div>
@@ -194,7 +184,7 @@
 <script>
 	/* side-bar */
 	$(function(){
-		/* #sideon + 숫자(반복문) */
+		/* #sideon + 숫자(반복) */
 		$("#sideon").on("click", function(){
 			$(".side-container").toggleClass("menuon");
 		});
@@ -213,6 +203,6 @@
 <script src="/includes/js/scrollmagic.animation.gsap.min.js"></script>
 <script src="/includes/js/main.js"></script>
 <script src="/apply/js/applyList.js"></script>
-<script src="/apply/js/applyHelper.js"></script>
+<script src="/apply/js/applyTeam.js"></script>
 
 </html>

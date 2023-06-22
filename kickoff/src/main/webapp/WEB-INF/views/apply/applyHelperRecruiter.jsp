@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div class="header-container">
-		<%@include file="/includes/headerApply.jsp"%>
+		<%@include file="/includes/header.jsp"%>
 	</div>
 	<%@include file="/includes/applyNavi.jsp"%>
 	<section>

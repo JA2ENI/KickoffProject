@@ -42,7 +42,7 @@ public class ApplyController {
 						view = "";
 						return view;
 					} else if(page.equals("team")) {
-						view = "";
+						view = "redirect:/applyTeamApplicant";
 						return view;
 					} else 	if(page.equals("helper")) {
 						view = "redirect:/applyHelperApplicant";
@@ -56,7 +56,7 @@ public class ApplyController {
 						view = "";
 						return view;
 					} else if(page.equals("team")) {
-						view = "";
+						view = "redirect:/applyTeamRecruiter";
 						return view;
 					} else 	if(page.equals("helper")) {
 						view = "redirect:/applyHelperRecruiter";
@@ -71,6 +71,22 @@ public class ApplyController {
 	@RequestMapping(value="/applyTeam")
 	public String applyTeam() throws Exception {
 		String view = "/apply/applyTeam";
+		
+		return view;
+	}
+	
+	//팀 신청자 페이지 
+	@RequestMapping(value="/applyTeamApplicant")
+	public String applyTeamApplicant() throws Exception {
+		String view = "/apply/applyTeamApplicant";
+		
+		return view;
+	}
+	
+	//팀 모집자 페이지 
+	@RequestMapping(value="/applyTeamRecruiter")
+	public String applyTeamRecruiter(HttpSession session) throws Exception {
+		String view = "/apply/applyTeamRecruiter";
 		
 		return view;
 	}
