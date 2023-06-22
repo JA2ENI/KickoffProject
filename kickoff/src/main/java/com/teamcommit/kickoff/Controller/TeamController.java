@@ -32,14 +32,10 @@ public class TeamController {
     private LoginService loginService;
 
 
-    // 팀 목록
-    @RequestMapping(value = "/team", method = RequestMethod.GET)
-    public String TeamList(@ModelAttribute("teamDO") TeamDO teamDO, HttpServletRequest request, Model model) throws Exception {
-
+    // 팀 목록 & 게시글 목록
+    @RequestMapping(value = "/team")
+    public String TeamList() throws Exception {
         String view = "/team/team";
-
-        List<TeamDO> teamList = teamService.getList(teamDO);
-        model.addAttribute("teamList", teamList);
 
         return view;
     }

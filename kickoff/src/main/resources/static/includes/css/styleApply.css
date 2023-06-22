@@ -96,6 +96,10 @@ a, a:hover {
   transition: .3s all ease;
 }
 
+.js-sticky-nav {
+	display: flex;
+}
+
 .sticky-wrapper .untree_co--site-nav .container {
   position: relative;
 }

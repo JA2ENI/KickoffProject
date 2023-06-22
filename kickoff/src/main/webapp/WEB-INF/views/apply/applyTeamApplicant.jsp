@@ -12,9 +12,9 @@
 <link rel="stylesheet" href="/includes/css/styleApply.css">
 <link rel="stylesheet" href="/main/css/vendor/icomoon/style.css">
 <link href="/includes/css/applyNavi.css" rel="stylesheet" />
-<link href="/apply/css/applyHelper.css" rel="stylesheet" />
+<link href="/apply/css/applyTeam.css" rel="stylesheet" />
 
-<title>Kick off: 용병 신청</title>
+<title>Kick off: 팀 신청</title>
 </head>
 <body>
 	<div class="header-container">
@@ -64,10 +64,10 @@
 				</div>
 			</div>
 		</article>
-		<article class="helper">
-			<div class="helper-container">
-				<div class="helper-wrap">
-					<div class="hTitle">용병 신청</div>
+		<article class="team">
+			<div class="team-container">
+				<div class="team-wrap">
+					<div class="team-title">팀 신청</div>
 						<div class="box-wrap">
 							<div class="box-frame">
 								<div class="box-content">
@@ -84,7 +84,7 @@
 										<!-- 상세보기 -->
 										<a href="javascript:alert('제목 상세보기 test');" class="placeName">서울 송파 천마 풋살파크 2구장</a>
 										<!-- 총 모집인원 수 -->
-										<div class="numHelper">10명</div>
+										<div class="numTeam">10명</div>
 									</div>
 									<!-- 신청 취소 -->
 									<div class="btn-wrap">
@@ -137,6 +137,6 @@
 <script src="/includes/js/scrollmagic.animation.gsap.min.js"></script>
 <script src="/includes/js/main.js"></script>
 <script src="/apply/js/applyList.js"></script>
-<script src="/apply/js/applyHelper.js"></script>
+<script src="/apply/js/applyTeam.js"></script>
 
 </html>

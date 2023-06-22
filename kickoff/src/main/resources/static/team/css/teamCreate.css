@@ -1,5 +1,12 @@
 /* team create */
 
+@font-face {
+	font-family: 'GangwonEduPowerExtraBoldA';
+	src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff')format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -21,7 +28,7 @@ body {
 
 section {
     top: 0;
-    height: 100vh;
+    height: 135vh;
     padding-top: 5rem;
     text-align: center;
 }
@@ -31,14 +38,25 @@ article {
 }
 
 p {
+	margin-bottom: 2px;
+	padding-left: 2px;
 	text-align: left;
 	font-weight: bold;
+}
+
+.age-title {
+	margin-bottom: 0px;
+}
+
+span {
+	font-size: 12px;
 }
 
 .text-box {
 	width: 100%;
 	height: 2.5rem;
-	border: solid 1px #9E9E9E;
+	padding: 10px;
+	border: solid 1px #ccc;
 	border-radius: 5px;
 }
 
@@ -48,15 +66,30 @@ p {
     justify-content: space-evenly;
     width: 750px;
     max-width: 960px;
-    height: 80vh;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
-    padding: 1.5rem 0.5rem;
+    padding: 1rem 0.5rem;
 }
 
+.teamMark {
+	margin: 5px;
+	padding: 5px;
+}
+
+.img-teamMark {
+	width: 350px;
+	border-bottom: solid 1px #666;
+}
+
+
 .title {
+	margin-top: 35px;
+	line-height: 50px;
+	color: #000;
 	font-size: 30px;
 	font-weight: bold;
+	font-family: 'GangwonEduPowerExtraBoldA' !important;
 }
 
 .article-container {
@@ -70,15 +103,269 @@ p {
 	height: auto;	
 }
 
-.item {
+.inner-btn {
+	position: relative;
+	margin-top: 2px;
+	margin-bottom: 20px;
 }
 
+.btn-check {
+	position: absolute;
+	top: 27px;
+    right: 4px;
+    color: white;
+    background-color: #1B5E20;
+    padding: 6.5px 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 13px;
+}
 
-.text-box:hover {
-	border: solid 2px;
+.all {
+	margin-bottom: 20px;
+}
+
+.formation-wrap,
+.select-gender {
+	margin-bottom: 27.5px;
+}
+
+.select-age input[type=radio],
+.select-level input[type=radio],
+.select-gender input[type=radio],
+.select-total input[type=radio],
+.select-color input[type=radio] {
+	display: none;
+}
+
+.select-age input[type=radio]+label,
+.select-level input[type=radio]+label,
+.select-gender input[type=radio]+label,
+.select-total input[type=radio]+label {
+	display: inline-block;
+	cursor:pointer;
+  	width: 106.5px;
+    margin: 2px 0px;
+    padding: 0.65rem 0.25rem;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #666;
+    background: #fff;
+}
+
+.area,
+.formation {
+	width: 100%;
+	height: 2.5rem;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	color: #666;
+}
+
+.text-wrap {
+	position: relative;
+	margin-top: 2px;
+	margin-bottom: 20px;
+}
+
+#font-count {
+	position: absolute;
+	top: 26px;
+    right: 4px;
+    color: #666;
+    padding: 5px 10px;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.court {
+	height: 200px;
+	transform: skewX(30deg, 60deg);
+}
+
+.date-container {
+	width: 100%;
+}
+
+.date-wrap {
+	display: flex;
+	justify-content: space-between;
+}
+
+.day {
+	width: 162px;
+	height: 2.5rem;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	color: #666;
+}
+
+.time {
+	width: 162px;
+	height: 2.5rem;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	color: #666;
+}
+
+.select-color {
+	display: flex;
+}
+
+.select-color input[type=radio]+label {
+	width: 40px;
+	height: 40px;
+	cursor:pointer;
+    margin: 2px;
+    font-size: 14px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.select-color input[type=radio] + .red {
+	border: solid 2px #E53935;	
+	background: #E53935;
+}
+
+.select-color input[type=radio] + .orange {
+	border: solid 2px #F4511E;
+	background: #F4511E;
+}
+
+.select-color input[type=radio] + .yellow {
+	border: solid 2px #FFB300;
+	background: #FFB300;
+}
+
+.select-color input[type=radio] + .green {
+	border: solid 2px #43A047;
+	background: #43A047;
+}
+
+.select-color input[type=radio] + .blue {
+	border: solid 2px #1E88E5;
+	background: #1E88E5;
+}
+
+.select-color input[type=radio] + .skyblue {
+	border: solid 2px #03A9F4;
+	background: #03A9F4;
+}
+
+.select-color input[type=radio] + .navy {
+	border: solid 2px #0D47A1;
+	background: #0D47A1;
+}
+
+.select-color input[type=radio] + .purple {
+	border: solid 2px #5E35B1;
+	background: #5E35B1;
+}
+
+.img-wrap {
+	margin: 5px;
+	padding: 5px;
+}
+
+.img-png {
+	width: 60%;
+}
+
+.one {
+	display: block;
+}
+
+.two {
+	display: none;
+}
+
+.three {
+	display: none;
+}
+
+.formation-wrap {
+	margin-top: 11px;
+}
+
+.btn-wrap {
+	margin: 40px 1px;
+	padding: 1px;
+}
+
+.create {
+	width: 100%;
+	height: 2.5rem;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	background: #1B5E20;
+}
+
+.text-box:hover,
+.area:hover,
+.day:hover,
+.time:hover,
+.formation:hover {
+	border: solid 2px #ffc090;
+}
+
+.age:hover,
+.level:hover,
+.gender:hover,
+.total:hover,
+.create:hover {
+	color: #fff;
+	border: solid 1px #ffc090;
+	background: #ffc090;
+}
+
+.btn-check:hover {
+	color: #fff;
+	background: #ffc090;
+}
+
+.text-box:focus,
+.area:focus,
+.gender:focus,
+.day:focus,
+.time:focus,
+.formation:focus {
 	border-color: #ffc090;
+    box-shadow: 0 0 1px 2px rgba(255, 192, 144, 0.5);
+    color: #666;
+    outline: none;
 }
 
+.select-age input[type=radio]+label:hover,
+.select-level input[type=radio]+label:hover,
+.select-gender input[type=radio]+label:hover,
+.select-total input[type=radio]+label:hover {
+	color: #fff;
+	border: solid 1px #ffc090;
+	background: #ffc090;
+}
 
+.select-age input[type=radio]:checked + label, 
+.select-level input[type=radio]:checked + label,
+.select-gender input[type=radio]:checked + label,
+.select-total input[type=radio]:checked + label {
+	color: #fff;
+	border: solid 1px #ffc090;
+	background: #ffc090;
+}
 
+.select-color input[type=radio]+label:hover {
+	border: solid 2px #000;	
+}
 
+.select-color input[type=radio]:checked + label {
+	border: solid 2px #000;	
+}
+	
+	
+	
+	
+	
