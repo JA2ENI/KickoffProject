@@ -81,22 +81,31 @@
                                 </select>
                             </div>
                             <div class="checkout__input">
-                        		<p>경기 날짜<span>*</span></p>
-                       			<input id="setDate" name="gameDate" value="${insertGame.gameDate}" onChange="getDate()" />
+                        		<p>예약 날짜<span>*</span></p>
+                        		<select id="reservationDate" name="reservationDate" onChange="selectreservationDate(this)">
+									<option value="">예약한 날짜 선택하기</option>
+                        		<c:choose>
+										<c:when test="${fn:length(dateInfo) > 0}">
+											<c:forEach var="row" items="${dateInfo}">
+												<option value="${row.reservationDate}">${row.reservationDate}</option>
+											</c:forEach>
+										</c:when>
+									</c:choose>
+									</select>
                    			</div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>시작 시간<span>*</span></p>
-                                        <select id="openTime" name="gameStartTime" value="${insertGame.gameStartTime}" onChange="getStartTime(this)">
+                                        <select id="openTime" name="reservationStartTime" value="${row.reservationStartTime}" onChange="getStartTime(this)"> 
                                         	<option value="">시작 시간 선택</option>
-                                        	<c:forEach var="i" begin="1" end="24">
+                                        	<c:forEach var="i" items="${startTimeInfo}">
 	                                        	<c:choose>
-	                                        		<c:when test="${i lt 10}">
-	                                        			<option value="0${i}">0${i}:00</option>
+	                                        		<c:when test="${fn:length(startTimeInfo) > 0}">
+	                                        			<option value="0${i.reservationStartTime}">0${i.reservationStartTime}:00</option>
 	                                        		</c:when>
 	                                        		<c:otherwise>
-	                                        			<option value="${i}">${i}:00</option>
+	                                        			<option value="${i.reservationStartTime}">${i.reservationStartTime}:00</option>
 	                                        		</c:otherwise>
 	                                        	</c:choose>
                                         	</c:forEach>
@@ -106,7 +115,7 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>종료 시간<span>*</span></p>
-                                        <select id="closeTime" name="gameEndTime" onChange="getEndTime(this)">
+                                        <select id="closeTime" name="reservationEndTime" value="${row.reservationStartTime}" onChange="getEndTime(this)">
                                         	<option value="">종료 시간 선택</option>
                                         	<c:forEach var="i" begin="1" end="24">
 	                                        	<c:choose>
@@ -125,13 +134,13 @@
                             <div class="checkout__input">
                                 <p>성별<span>*</span></p>
                                 <label>
-                                	<input type="radio" name="gender" value="female" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq 'female'}">checked="checked"</c:if>/>&nbsp여성
+                                	<input type="radio" name="gender" value="여성" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq '여성'}">checked="checked"</c:if>/>&nbsp여성
                                 </label>
                                 <label>
-                                	<input type="radio" name="gender" value="male" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq 'male'}">checked="checked"</c:if>/>&nbsp남성
+                                	<input type="radio" name="gender" value="남성" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq '남성'}">checked="checked"</c:if>/>&nbsp남성
                                 </label>
                                 <label>
-                                	<input type="radio" name="gender" value="mix" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq 'mix'}">checked="checked"</c:if>/>&nbsp혼성
+                                	<input type="radio" name="gender" value="혼성" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq '혼성'}">checked="checked"</c:if>/>&nbsp혼성
                                 </label>
                             </div>
                             
@@ -161,7 +170,7 @@
 								<ul>
 									<li>풋살장<span id="selectPlaceName"></span></li>
                                     <li>경기 형태<span id="gameStyle"></span></li>
-									<li>경기 날짜<span id="gameDate"></span></li>
+									<li>예약 날짜<span id="gameDate"></span></li>
 									<li>시작 시간<span id="startTime"></span></li>
 									<li>종료 시간<span id="endTime"></span></li>
 									<li>성별<span id="gender"></span></li>

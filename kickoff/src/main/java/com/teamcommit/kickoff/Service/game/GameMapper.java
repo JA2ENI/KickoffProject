@@ -22,4 +22,6 @@ public interface GameMapper {
 	public TeamDO selectTeamInfo(String userId);
 
 	public List<ReservationDO> selectPlaceInfo(String userId);
+	
+	public List<ReservationDO> selectDateInfo(String userId);
 }

@@ -23,4 +23,6 @@ public interface GameService {
 
 	TeamDO selectTeamInfo(String userId) throws Exception;
 
+	List<ReservationDO> selectDateInfo(String userId) throws Exception;
+
 }

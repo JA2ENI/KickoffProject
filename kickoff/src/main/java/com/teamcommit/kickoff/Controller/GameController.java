@@ -93,7 +93,15 @@ public class GameController {
         
         model.addAttribute("placeInfo", placeInfo);
         
-        TeamDO teamInfo = gameService.selectTeamInfo(userId);
+        if(model.getAttribute("placeInfo") == null) {
+        	model.addAttribute("script", "alert('풋살장 선택을 먼저 해주세요.');");
+        }
+        else if(model.getAttribute("placeInfo") !=  null) {
+        	List<ReservationDO> dateInfo = gameService.selectDateInfo(userId);
+	        model.addAttribute("dateInfo", dateInfo);
+        } 
+        
+        TeamInfoDO teamInfo = gameService.selectTeamInfo(userId);
         
         model.addAttribute("teamInfo", teamInfo);
 

@@ -63,12 +63,23 @@
         ]]>
     </select>
     
+    <!-- Date info -->
+    <select id="selectDateInfo" parameterType="com.teamcommit.kickoff.Do.ReservationDO" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                RESERVATION
+            WHERE
+                USER_ID = #{userId}
+        ]]>
+    </select>
+    
     <!-- team info -->
     <select id="selectTeamInfo" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">
         <![CDATA[
             SELECT *
             FROM
-                TEAM
+                TEAM_INFO
             WHERE
                 LEADER_ID = #{userId}
         ]]>

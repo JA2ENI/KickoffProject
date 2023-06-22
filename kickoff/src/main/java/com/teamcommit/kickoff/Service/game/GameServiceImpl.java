@@ -46,6 +46,11 @@ public class GameServiceImpl implements GameService {
     }
     
     @Override
+    public List<ReservationDO> selectDateInfo(String userId) throws Exception {
+        return gameMapper.selectDateInfo(userId);
+    }
+    
+    @Override
     public TeamDO selectTeamInfo(String userId) throws Exception {
         return gameMapper.selectTeamInfo(userId);
     }
