@@ -10,17 +10,60 @@
 
 /* add */
 
+
+/*
+.role.admin {
+    background: #fa4251;
+}
+*/
+
+span.role-user {
+	display: inline-block;
+    line-height: 30px;
+    font-size: 16px;
+    color: #fff;
+    padding: 0 15px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-transform: capitalize;
+    background: #00b5e9;
+}
+
+span.role-leader {
+	display: inline-block;
+    line-height: 30px;
+    font-size: 16px;
+    color: #fff;
+    padding: 0 15px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-transform: capitalize;
+    background: #57b846;
+}
+
+span.role-emp {
+	display: inline-block;
+    line-height: 30px;
+    font-size: 16px;
+    color: #fff;
+    padding: 0 15px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-transform: capitalize;
+    background: #ffa617;
+}
+
 span.status-active {
 	font-weight: bold;
 	font-size: 16px;
-	color: blue;
 	
 }
 
 span.status-stop {
-	font-weight: bold;
-	font-size: 16px;
-	color: red;
+	display:none;
 	
 }
 
@@ -32,10 +75,10 @@ span.rest-number {
 	font-size: 16px;
 }
 
-button.btn-remove {
+.cancel-button {
     border: 1px solid #9a9b9c;
     background: none;
-    display: block;
+    display: none;
     border-radius: 20px;
     padding: 8px 13px;
     margin-bottom: 0.5em;
@@ -2452,10 +2495,10 @@ button.btn-remove {
 	}
 
 	input[type="checkbox"] {
-		/*-moz-appearance: none;
+		-moz-appearance: none;
 		-webkit-appearance: none;
 		-ms-appearance: none;
-		appearance: none;*/
+		appearance: none;
 		display: block;
 		float: left;
 		margin-right: -2em;

@@ -75,6 +75,12 @@ public class AdminController {
 			return view;
 	}
     
+    // 회원 정지 취소
+//    @RequestMapping("/cancelDisable")
+//    public String cancelDisable(@RequestParam) {
+//    	
+//    }
+    
     // 신고 게시물 관리 페이지 이동
     @GetMapping("/boardManagement")
     public String boardList() {
