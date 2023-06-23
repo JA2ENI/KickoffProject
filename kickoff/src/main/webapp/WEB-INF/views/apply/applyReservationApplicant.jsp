@@ -12,9 +12,9 @@
 <link rel="stylesheet" href="/includes/css/styleApply.css">
 <link rel="stylesheet" href="/main/css/vendor/icomoon/style.css">
 <link href="/includes/css/applyNavi.css" rel="stylesheet" />
-<link href="/apply/css/applyTeam.css" rel="stylesheet" />
+<link href="/apply/css/applyReservation.css" rel="stylesheet" />
 
-<title>Kick off: 팀 신청</title>
+<title>Kick off: 예약 신청</title>
 </head>
 <body>
 	<div class="header-container">
@@ -32,6 +32,14 @@
 					</div>
 					<div class="uTeam-container">
 						<div class="uTeam-wrap">
+							<div class="uTitle">TEAM</div>
+							<div class="uContant">독수리슛FC</div>
+						</div>
+						<div class="uTeam-wrap">
+							<div class="uTitle">TEAM LEVEL</div>
+							<div class="uContant">플래티넘</div>
+						</div>
+						<div class="uTeam-wrap">
 							<div class="uTitle">POSITION</div>
 							<!-- MIAN/SUB -->
 							<div class="uContant">PIVO/GOLEIRO</div>
@@ -46,39 +54,30 @@
 							<div class="uTitle">HELPER</div>
 							<div class="uContant">10</div>
 						</div>
-						<div class="uTeam-wrap">
-							<div class="uTitle">TEAM</div>
-							<div class="uContant">-</div>
-						</div>
-						<div class="uTeam-wrap">
-							<div class="uTitle">TEAM LEVEL</div>
-							<div class="uContant">-</div>
-						</div>
 					</div>
 				</div>
 			</div>
 		</article>
-		<article class="team">
-			<div class="team-container">
-				<div class="team-wrap">
-					<div class="team-title">팀 신청</div>
+		<article class="reservation">
+			<div class="reservation-container">
+				<div class="reservation-wrap">
+					<div class="reservation-title">예약 신청</div>
 						<div class="box-wrap">
 							<div class="box-frame">
 								<div class="box-content">
 									<!-- 모집 상태에 따라 -->
-									<div class="status ing">모집 중</div>
-									<!-- <div class="status end">모집 완료</div> -->
-									<!-- <div class="status cancel">모집 취소</div> -->
+									<div class="status ing">예약 중</div>
+									<!-- <div class="status end">예약 완료</div> -->
+									<!-- <div class="status cancel">예약 취소</div> -->
 									<div class="one-wrap">
-										<div class="date day">2023년 6월 15일</div>
-										<div class="date">~</div>
-										<div class="date day">2023년 7월 3일</div>
+										<div class="date day">2023년 6월 14일</div>
+										<div class="date">수요일</div>
+										<div class="date">20:00~22:00</div>
 									</div>
 									<div class="two-wrap">
 										<!-- 상세보기 -->
-										<a href="javascript:alert('제목 상세보기 test');" class="teamName">독수리슛FC</a>
-										<!-- 총 모집인원 수 -->
-										<div class="numTeam">10명</div>
+										<a href="javascript:alert('제목 상세보기 test');" class="placeName">안재풋살장</a>
+										<div class="numReservation">A코트</div>
 									</div>
 									<!-- 신청 취소 -->
 									<div class="btn-wrap">
@@ -86,16 +85,16 @@
 									</div>
 									<!-- 신청 수락&거절 상태 -->
 									<div class="ticket-wrap">
-										<img class="ticket" src="/apply/images/teamThanks.png" />
-										<!-- <img class="ticket" src="/apply/images/teamSorry.png" /> -->
+										<img class="ticket" src="/apply/images/reservationThanks.png" />
+										<!-- <img class="ticket" src="/apply/images/reservationSorry.png" /> -->
 									</div>
 									<div class="three-wrap">
 										<div class="arrow">▶</div>
-										<div class="three-content">서울특별시</div>
+										<div class="three-content">인조잔디</div>
 										<div>&sdot;</div>
-										<div class="three-content">남성</div>
+										<div class="three-content">5vs5</div>
 										<div>&sdot;</div>
-										<div class="three-content">20대</div>
+										<div class="three-content">13x28</div>
 									</div>
 								</div>
 							</div>
@@ -103,19 +102,18 @@
 							<div class="box-frame">
 								<div class="box-content">
 									<!-- 모집 상태에 따라 -->
-									<!-- <div class="status ing">모집 중</div> -->
-									<div class="status end">모집 완료</div>
-									<!-- <div class="status cancel">모집 취소</div> -->
+									<!-- <div class="status ing">예약 중</div> -->
+									<div class="status end">예약 완료</div>
+									<!-- <div class="status cancel">예약 취소</div> -->
 									<div class="one-wrap">
-										<div class="date day">2023년 6월 10일</div>
-										<div class="date">~</div>
-										<div class="date day">2023년 8월 20일</div>
+										<div class="date day">2023년 6월 14일</div>
+										<div class="date">수요일</div>
+										<div class="date">20:00~22:00</div>
 									</div>
 									<div class="two-wrap">
 										<!-- 상세보기 -->
-										<a href="javascript:alert('제목 상세보기 test');" class="teamName">우리 동네 풋살왕FC</a>
-										<!-- 총 모집인원 수 -->
-										<div class="numTeam">10명</div>
+										<a href="javascript:alert('제목 상세보기 test');" class="placeName">안재풋살장</a>
+										<div class="numReservation">A코트</div>
 									</div>
 									<!-- 신청 취소 -->
 									<div class="btn-wrap">
@@ -123,16 +121,16 @@
 									</div>
 									<!-- 신청 수락&거절 상태 -->
 									<div class="ticket-wrap">
-										<!-- <img class="ticket" src="/apply/images/teamThanks.png" /> -->
-										<img class="ticket" src="/apply/images/teamSorry.png" />
+										<!-- <img class="ticket" src="/apply/images/reservationThanks.png" /> -->
+										<img class="ticket" src="/apply/images/reservationSorry.png" />
 									</div>
 									<div class="three-wrap">
 										<div class="arrow">▶</div>
-										<div class="three-content">서울특별시</div>
+										<div class="three-content">인조잔디</div>
 										<div>&sdot;</div>
-										<div class="three-content">혼성</div>
+										<div class="three-content">5vs5</div>
 										<div>&sdot;</div>
-										<div class="three-content">40대</div>
+										<div class="three-content">13x28</div>
 									</div>
 								</div>
 							</div>
@@ -169,6 +167,6 @@
 <script src="/includes/js/scrollmagic.animation.gsap.min.js"></script>
 <script src="/includes/js/main.js"></script>
 <script src="/apply/js/applyList.js"></script>
-<script src="/apply/js/applyTeam.js"></script>
+<script src="/apply/js/applyReservation.js"></script>
 
 </html>

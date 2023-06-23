@@ -36,7 +36,7 @@
 							<div class="uContant">우최팀</div>
 						</div>
 						<div class="uTeam-wrap">
-							<div class="uTitle">TEAM RANK</div>
+							<div class="uTitle">TEAM LEVEL</div>
 							<div class="uContant">루키</div>
 						</div>
 						<div class="uTeam-wrap">
