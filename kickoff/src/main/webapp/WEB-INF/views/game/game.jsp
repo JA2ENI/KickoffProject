@@ -49,12 +49,15 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
+					<!-- Page Heading-->
+                    <h1 class="h3 mb-2 text-gray-800" style="text-align: center;">매칭 게시판</h1>
+                    <br/>
+					
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class = "calender">
-                            <div class="card-header py-3">
+                            <div class="card-header py-3" style="border-bottom: none; background-color: #ffff">
 
-                        <%@include file = "/includes/weeks.jsp" %>
                         </div>
                         </div>
                 <div class="card-body">

@@ -5,7 +5,7 @@ import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
-import com.teamcommit.kickoff.Do.TeamDO;
+import com.teamcommit.kickoff.Do.TeamInfoDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +51,33 @@ public class GameServiceImpl implements GameService {
     }
     
     @Override
-    public TeamDO selectTeamInfo(String userId) throws Exception {
-        return gameMapper.selectTeamInfo(userId);
+    public TeamInfoDO selectTeamInfoName(String userId) throws Exception {
+        return gameMapper.selectTeamInfoName(userId);
+    }
+    
+    @Override
+    public GameDO selectGameFixForm(int gameSeqno) throws Exception {
+        return gameMapper.selectGameFixForm(gameSeqno);
+    }
+    
+    
+    @Override
+    public void fixGameForm(GameDO gameDO) throws Exception {
+        gameMapper.fixGameForm(gameDO);
+    }
+    
+    @Override
+    public List<ReservationDO> updatePlaceInfo(int gameSeqno) throws Exception {
+        return gameMapper.updatePlaceInfo(gameSeqno);
+    }
+    
+    @Override
+    public List<ReservationDO> updateDateInfo(int gameSeqno) throws Exception {
+        return gameMapper.updateDateInfo(gameSeqno);
+    }
+    
+    @Override
+    public TeamInfoDO updateTeamInfoName(String userId) throws Exception {
+        return gameMapper.updateTeamInfoName(userId);
     }
 }

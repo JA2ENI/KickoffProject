@@ -3,7 +3,7 @@ package com.teamcommit.kickoff.Service.game;
 import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
-import com.teamcommit.kickoff.Do.TeamDO;
+import com.teamcommit.kickoff.Do.TeamInfoDO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -19,9 +19,20 @@ public interface GameMapper {
 
     public void insertGame(GameDO gameDO);
 
-	public TeamDO selectTeamInfo(String userId);
+	public TeamInfoDO selectTeamInfoName(String userId);
 
 	public List<ReservationDO> selectPlaceInfo(String userId);
 	
 	public List<ReservationDO> selectDateInfo(String userId);
+
+	public GameDO selectGameFixForm(int gameSeqno);
+
+	public void fixGameForm(GameDO gameDO);
+
+	public List<ReservationDO> updatePlaceInfo(int gameSeqno);
+
+	public List<ReservationDO> updateDateInfo(int gameSeqno);
+
+	public TeamInfoDO updateTeamInfoName(String userId);
+
 }

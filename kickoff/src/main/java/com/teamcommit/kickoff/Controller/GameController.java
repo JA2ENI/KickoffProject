@@ -1,6 +1,7 @@
 package com.teamcommit.kickoff.Controller;
 
 import com.teamcommit.kickoff.Do.GameDO;
+import com.teamcommit.kickoff.Do.TeamInfoDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
@@ -51,37 +52,6 @@ public class GameController {
         return view;
     }
 
-    @GetMapping("/gameScore")
-    public String gameScore() {
-        String view = "/game/gameScore";
-        return view;
-    }
-
-    @PostMapping("/gameScore")
-    public ModelAndView gameScore(@ModelAttribute("gameDO") GameDO gameDO, @RequestParam("gameSeqno") int gameSeqno, Model model) throws Exception {
-        ModelAndView mv = new ModelAndView("/game/gameScore");
-
-        try {
-            GameDO gameScoreDetail = gameService.getGameScoreDetail(gameSeqno);
-            model.addAttribute("gameScoreDetail", gameScoreDetail);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return mv;
-    }
-
-    /*
-    @GetMapping("/gameUpdate")
-    public String insert(@ModelAttribute("gameDO") GameDO gameDO, HttpServletRequest request, Model model) throws Exception {
-        String view = "/game/gameUpdate";
-        String teamName = (String) request.getSession().getAttribute("teamName");
-        TeamDO teamDO = new TeamDO();
-        teamDO.setTeamName(teamName);
-
-        return view;
-    }*/
 
     @RequestMapping("/gameUpdate")
     public String gameUpdate(HttpServletRequest request, Model model, HttpSession session) throws Exception {
@@ -101,60 +71,42 @@ public class GameController {
 	        model.addAttribute("dateInfo", dateInfo);
         } 
         
-        TeamInfoDO teamInfo = gameService.selectTeamInfo(userId);
+        TeamInfoDO teamInfoName = gameService.selectTeamInfoName(userId);    
+        model.addAttribute("teamInfoName", teamInfoName);
         
-        model.addAttribute("teamInfo", teamInfo);
-
         return view;
-        /*
-        try{
-            gameService.insertGame(gameDO);
-            session.setAttribute("script", "alert('매칭 경기를 등록했습니다! 메시지를 기다려주세요 :)');");
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            session.setAttribute("script", "alert('문제가 발생했습니다. 다시 시도해주세요.');");
-        }
-        */
-
     }
+    
+    /* 매칭 수정 */
+    @RequestMapping("/gameFix")
+    public String gameFixForm(@RequestParam("gameSeqno") int gameSeqno, Model model, HttpSession session) throws Exception {
+        String view = "/game/gameFix";
+        System.out.println("출력" + gameSeqno);
+        String userId = (String)session.getAttribute("userId");
+        
+        List<ReservationDO> placeInfo = gameService.updatePlaceInfo(gameSeqno);
+        
+        model.addAttribute("placeInfo", placeInfo);
+        
+        if(model.getAttribute("placeInfo") == null) {
+        	model.addAttribute("script", "alert('풋살장 선택을 먼저 해주세요.');");
+        }
+        else if(model.getAttribute("placeInfo") !=  null) {
+        	List<ReservationDO> dateInfo = gameService.updateDateInfo(gameSeqno);
+	        model.addAttribute("dateInfo", dateInfo);
+        } 
+        
+        TeamInfoDO teamInfoName = gameService.updateTeamInfoName(userId);    
+        model.addAttribute("teamInfoName", teamInfoName);
+        
+        GameDO gameFixForm = gameService.selectGameFixForm(gameSeqno);
+        model.addAttribute("gameFixForm", gameFixForm);
+        
+        
+        return view;
+    }
+    
+    
+    
 }
 
-
-
-
-
-    /*
-    @RequestMapping("/gameDetail")
-    public ModelAndView gameDetail(CommandMap commandMap, HttpSession session) throws Exception {
-
-        ModelAndView mv = new ModelAndView();
-
-        Map<String, Object> map = new HashMap<String, Object>();
-
-        if (session.getAttribute("user_id") != null) {
-            String id = (String) session.getAttribute("user_id");
-            map.put("id", id);
-        } else if (session.getAttribute("emp_id") != null) {
-            String id = (String) session.getAttribute("emp_id");
-            map.put("id", id);
-        }
-
-        Map<String, Object> mem = gameService.selectMemInfo(map);
-
-        mv.addObject("mem", mem);
-        mv.setViewName("/game/gameDeatail");
-
-        return mv;
-    }
-
-    @RequestMapping(value = "/gameUpdate")
-    public ModelAndView gameUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception {
-
-        ModelAndView mv = new ModelAndView("redirect:/game");
-
-        gameService.gameDetail(commandMap.getMap(), request);
-
-        return mv;
-    }
-     */

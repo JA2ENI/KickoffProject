@@ -16,15 +16,15 @@
     <link href="https://fonts.google.com/noto/specimen/Noto+Sans+KR?subset=korean&noto.script=Kore" rel="stylesheet">
 	
     <!-- Css Styles -->
-    <link rel="stylesheet" href="/reservation/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/styles.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/style.css" type="text/css">
     <link rel="stylesheet" href="/includes/css/style.css">
     
     <!-- calendar -->
@@ -146,7 +146,7 @@
                             
                             <div class="checkout__input">
                                 <p>팀 정보<span>*</span></p>
-                                <input type="text" class="teamName" id="teamName" name="teamName" value="${teamInfo.teamName}" readonly>
+                                <input type="text" name="teamName" value="${teamInfoName.teamName}" readonly>
                             </div>
                             <div class="checkout__input">
                                 <p>매칭 상태<span>*</span></p>
@@ -179,8 +179,8 @@
 								</ul>
                                 <input type="hidden" name="reservationNo" value="${insertGame.gameSeqno}" />
                                 <%-- Button --%>
-                                <input type="submit" id="insert" class="site-btn-insert" value="등록"/>
-								<a href="/game" id="cancle" class="site-btn-cancle">취소</a>
+                                <input type="submit" id="insert" class="site-btn-insert" onclick="requestCheck()" value="등록"/>
+								<input type="button" id="cancle" class="site-btn-cancle" onclick="location.href='/game'" value="취소" />
 							</div>
 						</div>
 					</div>
@@ -201,14 +201,15 @@
 	</script>
 	
     <!-- Js Plugins -->
-    <script src="/reservation/js/jquery-3.3.1.min.js"></script>
-    <script src="/reservation/js/bootstrap.min.js"></script>
-    <script src="/reservation/js/jquery.nice-select.min.js"></script>
-    <script src="/reservation/js/jquery-ui.min.js"></script>
-    <script src="/reservation/js/jquery.slicknav.js"></script>
-    <script src="/reservation/js/mixitup.min.js"></script>
-    <script src="/reservation/js/owl.carousel.min.js"></script>
-    <script src="/reservation/js/main.js"></script>
+    <script src="/game/js/jquery-3.3.1.min.js"></script>
+    <script src="/game/js/bootstrap.min.js"></script>
+    <script src="/game/js/jquery.nice-select.min.js"></script>
+    <script src="/game/js/jquery-ui.min.js"></script>
+    <script src="/game/js/jquery.slicknav.js"></script>
+    <script src="/game/js/mixitup.min.js"></script>
+    <script src="/game/js/owl.carousel.min.js"></script>
+    <script src="/game/js/main.js"></script>
+    <script src="/game/js/validation.js"></script>
 	<script src="/team/js/common.js"></script>
 	
     <script src="/includes/js/jquery.lettering.js"></script>
