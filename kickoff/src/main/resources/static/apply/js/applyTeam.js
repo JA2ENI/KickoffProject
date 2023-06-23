@@ -1,4 +1,4 @@
-/* apply helper */
+/* apply team */
 
 /* checkbox */
 function drop() {

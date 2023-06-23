@@ -41,7 +41,6 @@
 									<div class="content area">서울특별시</div>
 								</div>
 							</button>
-							
 							<!-- Test 추후 삭제 -->
 							<button type="button" class="detail">
 								<div class="content-wrap">
@@ -49,7 +48,6 @@
 									<div class="content area">서울특별시</div>
 								</div>
 							</button>
-							
 							<button type="button" class="detail">
 								<div class="content-wrap">
 									<div class="content team">풋살이 최고야</div>
@@ -62,7 +60,10 @@
 				</article>
 				<article id="boxDetail" class="article-container two">
 					<div class="item-wrap">
-						<div class="title">TEAM BOARD</div>
+						<div class="wrap">
+							<div class="title board">TEAM BOARD</div>
+							<a href="/teamInsert" class="btn-teamInsert">모집 등록</a>
+						</div>
 						<div class="content-container">
 							<div class="title-wrap">
 								<div class="subject team2">팀</div>

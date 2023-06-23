@@ -32,23 +32,9 @@
 					</div>
 					<div class="uTeam-container">
 						<div class="uTeam-wrap">
-							<div class="uTitle">TEAM</div>
-							<div class="uContant">우최팀</div>
-							<!-- 팀 null -->
-							<!-- <div class="uContant">-</div> -->
-						</div>
-						<div class="uTeam-wrap">
-							<div class="uTitle">TEAM RANK</div>
-							<div class="uContant">루키</div>
-							<!-- 팀 null -->
-							<!-- <div class="uContant">-</div> -->
-						</div>
-						<div class="uTeam-wrap">
 							<div class="uTitle">POSITION</div>
 							<!-- MIAN/SUB -->
-							<div class="uContant">피보/아라</div>
-							<!-- 포지션 null -->
-							<!-- <div class="uContant">-</div> -->
+							<div class="uContant">PIVO/GOLEIRO</div>
 						</div>
 						<!-- 매칭 경기 횟수 -->
 						<div class="uTeam-wrap">
@@ -59,6 +45,14 @@
 						<div class="uTeam-wrap">
 							<div class="uTitle">HELPER</div>
 							<div class="uContant">10</div>
+						</div>
+						<div class="uTeam-wrap">
+							<div class="uTitle">TEAM</div>
+							<div class="uContant">-</div>
+						</div>
+						<div class="uTeam-wrap">
+							<div class="uTitle">TEAM RANK</div>
+							<div class="uContant">-</div>
 						</div>
 					</div>
 				</div>
@@ -76,13 +70,13 @@
 									<!-- <div class="status end">모집 완료</div> -->
 									<!-- <div class="status cancel">모집 취소</div> -->
 									<div class="one-wrap">
-										<div class="date day">6월 14일</div>
-										<div class="date">수요일</div>
-										<div class="date">20:00</div>
+										<div class="date day">2023년 6월 15일</div>
+										<div class="date">~</div>
+										<div class="date day">2023년 7월 3일</div>
 									</div>
 									<div class="two-wrap">
 										<!-- 상세보기 -->
-										<a href="javascript:alert('제목 상세보기 test');" class="placeName">서울 송파 천마 풋살파크 2구장</a>
+										<a href="javascript:alert('제목 상세보기 test');" class="teamName">독수리슛FC</a>
 										<!-- 총 모집인원 수 -->
 										<div class="numTeam">10명</div>
 									</div>
@@ -92,19 +86,57 @@
 									</div>
 									<!-- 신청 수락&거절 상태 -->
 									<div class="ticket-wrap">
-										<img class="ticket" src="/apply/images/thanks.png" />
-										<!-- <img class="ticket" src="/apply/images/sorry.png" /> -->
+										<img class="ticket" src="/apply/images/teamThanks.png" />
+										<!-- <img class="ticket" src="/apply/images/teamSorry.png" /> -->
 									</div>
 									<div class="three-wrap">
 										<div class="arrow">▶</div>
+										<div class="three-content">서울특별시</div>
+										<div>&sdot;</div>
 										<div class="three-content">남성</div>
 										<div>&sdot;</div>
-										<div class="three-content">5vs5</div>
-										<div>&sdot;</div>
-										<div class="three-content">피보(Pivo)</div>
+										<div class="three-content">20대</div>
 									</div>
 								</div>
 							</div>
+							<!-- test 추후 삭제 -->
+							<div class="box-frame">
+								<div class="box-content">
+									<!-- 모집 상태에 따라 -->
+									<!-- <div class="status ing">모집 중</div> -->
+									<div class="status end">모집 완료</div>
+									<!-- <div class="status cancel">모집 취소</div> -->
+									<div class="one-wrap">
+										<div class="date day">2023년 6월 10일</div>
+										<div class="date">~</div>
+										<div class="date day">2023년 8월 20일</div>
+									</div>
+									<div class="two-wrap">
+										<!-- 상세보기 -->
+										<a href="javascript:alert('제목 상세보기 test');" class="teamName">우리 동네 풋살왕FC</a>
+										<!-- 총 모집인원 수 -->
+										<div class="numTeam">10명</div>
+									</div>
+									<!-- 신청 취소 -->
+									<div class="btn-wrap">
+										<button type="button" class="btn-detail" onclick="javascript:alert('test')">신청취소</button>
+									</div>
+									<!-- 신청 수락&거절 상태 -->
+									<div class="ticket-wrap">
+										<!-- <img class="ticket" src="/apply/images/teamThanks.png" /> -->
+										<img class="ticket" src="/apply/images/teamSorry.png" />
+									</div>
+									<div class="three-wrap">
+										<div class="arrow">▶</div>
+										<div class="three-content">서울특별시</div>
+										<div>&sdot;</div>
+										<div class="three-content">혼성</div>
+										<div>&sdot;</div>
+										<div class="three-content">40대</div>
+									</div>
+								</div>
+							</div>
+							<!-- test END -->
 						</div>
 					</div>
 				</div>

@@ -89,7 +89,7 @@ a {
 }
 
 .box-frame {
-	margin: 10px 0px;
+	margin: 0 auto;
 	padding: 10px;
 	width: 100%;
 	height: 100%;
@@ -98,7 +98,6 @@ a {
 
 .box-content {
 	position: relative;
-	margin-bottom: 15px;
 	padding: 10px;
 	width: 100%;
 	border-radius: 10px;
