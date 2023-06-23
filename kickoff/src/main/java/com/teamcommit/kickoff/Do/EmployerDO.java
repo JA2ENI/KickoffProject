@@ -30,7 +30,8 @@ public class EmployerDO {
 	private String empStatus;
 	// 업체 회원 구분
 	private String empClassification;
-	
+	//업체 회원 정지 날자
+	private Date empStopDate;
 
 
 	public String getEmpId() {
@@ -110,6 +111,12 @@ public class EmployerDO {
 	}
 	public void setEmpClassification(String empClassification) {
 		this.empClassification = empClassification;
+	}
+	public Date getEmpStopDate() {
+		return empStopDate;
+	}
+	public void setEmpStopDate(Date empStopDate) {
+		this.empStopDate = empStopDate;
 	}
 	
 }

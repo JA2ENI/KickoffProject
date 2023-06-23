@@ -72,9 +72,6 @@
 							<table class="table">
 								<thead>
 									<tr>
-										<td>
-
-										</td>
 										<td>이름/아이디</td>
 										<td>구분</td>
 										<td>취소 횟수</td>
@@ -85,12 +82,6 @@
 								<tbody>
 									<c:forEach var="map" items="${userList}">
 										<tr>
-											<td>
-												<label class="au-checkbox"> 
-													<input type="checkbox" name="selectMember" value="${map.ID}"> 
-													<span class="au-checkmark"></span>
-												</label>
-											</td>
 											<td>
 												<div class="table-data__info">
 													<h4>
@@ -116,7 +107,7 @@
 												<span class="status" data-status="${map.STATUS}">
 													<c:out value="${map.STATUS}" />
 												</span>
-												<button type="button" class="cancel-button">정지 취소</button>
+												<button type="button" class="cancel-button" onclick="cancelDisable('${map.ID}')">정지 취소</button>
 											</td>
 
 										</tr>
@@ -150,81 +141,11 @@
 		</div>
 
 	</div>
-
-	<script>
-
-		function updateClassificationElements() {
-		    const classificationElements = document.querySelectorAll('.classification');
-		    classificationElements.forEach((element) => {
-		        const classification = element.getAttribute('data-classification');
-		        let classificationText;
-		        switch (classification) {
-		            case 'Leader':
-		            	classificationText = 'role-leader';
-		                break;
-		            case 'User':
-		            	classificationText = 'role-user';
-		                break;
-		            case 'Emp':
-		            	classificationText = 'role-emp';
-		                break;
-		            default:
-		            	classificationText = 'role-default';
-		                break;
-		        }
-		        element.className = classificationText;
-		    });
-		}
-		
-		function updateStatusElements() {
-		    const statusElements = document.querySelectorAll('.status');
-		    statusElements.forEach((element) => {
-		        const status = element.getAttribute('data-status');
-		        let statusText;
-		        let displayCancelBtn;
-		        switch (status) {
-		            case '활동':
-		                statusText = 'status-active';
-		                displayCancelBtn = 'none';
-		                break;
-		            case '정지':
-		                statusText = 'status-stop';
-		                displayCancelBtn = 'block';
-		                break;
-		            default:
-		                statusText = '';
-		            	displayCancelBtn = 'none';
-		                break;
-		        }
-		        element.className = statusText;
-		        const cancelButton = element.parentElement.querySelector('.cancel-button');
-		        cancelButton.style.display = displayCancelBtn;
-		    });
-		}
-		
-
-		updateClassificationElements();
-		updateStatusElements();
-	</script>
-		
-	<script>
-		function userAction(action) {
-			var confirmFlag = "";
-	 	
-			if (action === "disable") {
-				confirmFlag = "이 회원을 정말로 정지하시겠습니까?";
-	        } else if (action === "delete") {
-	        	confirmFlag = "이 회원을 정말로 탈퇴시키겠습니까?";
-	        }
-			
-			if(!confirm(confirmFlag)) {
-				return false;
-			}
-		}
-		
-	</script>
+	
 
 
+	<!-- userManagement -->
+	<script src="/admin/js/userManagement.js"></script>
 
 	<!-- Scripts -->
 	<script src="/admin/js/jquery.min.js"></script>
