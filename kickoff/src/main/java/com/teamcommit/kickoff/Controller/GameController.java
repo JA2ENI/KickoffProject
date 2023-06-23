@@ -96,7 +96,7 @@ public class GameController {
     	return view;
     }
     
-    @RequestMapping("/gameFix")
+    @RequestMapping("")
     public String gameFixUpdate() throws Exception {
     	String view = "";
     	
