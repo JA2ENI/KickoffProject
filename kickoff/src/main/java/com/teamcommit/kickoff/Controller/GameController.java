@@ -45,10 +45,14 @@ public class GameController {
     @RequestMapping( "/gameDetail")
     public String gameDetail(@ModelAttribute("gameDO") GameDO gameDO, @RequestParam("gameSeqno") int gameSeqno, HttpServletRequest request, Model model) throws Exception {
         String view = "/game/gameDetail";
-
+        
+        String userId = (String) request.getSession().getAttribute("userId");
+        
         GameDO gameScoreDetail = gameService.getGameScoreDetail(gameSeqno);
         model.addAttribute("gameScoreDetail", gameScoreDetail);
-
+        
+        model.addAttribute("userId", userId);
+        
         return view;
     }
 

@@ -83,7 +83,9 @@
 			<br />
 
 			<div class="btn_boarddetail">
+			<c:if test="${(userId eq gameScoreDetail.writerId)}">
 				<button type="reset" class="btn_reset" onclick="location.href='/gameFix?gameSeqno=${gameScoreDetail.gameSeqno}';">매칭 수정</button>
+			</c:if>
 				<button class="btn_delete" onclick="location.href='/gameApply';">매칭 신청</button>
 			</div>
 		</div>
