@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div class="header-container">
-		<%@include file="/includes/headerApply.jsp"%>
+		<%@include file="/includes/header.jsp"%>
 	</div>
 	<%@include file="/includes/applyNavi.jsp"%>
 	<section>
@@ -42,9 +42,7 @@
 						<div class="uTeam-wrap">
 							<div class="uTitle">POSITION</div>
 							<!-- MIAN/SUB -->
-							<div class="uContant">피보/아라</div>
-							<!-- 포지션 null -->
-							<!-- <div class="uContant">-</div> -->
+							<div class="uContant">PIVO/GOLEIRO</div>
 						</div>
 						<!-- 매칭 경기 횟수 -->
 						<div class="uTeam-wrap">
@@ -91,7 +89,7 @@
 										<div>&sdot;</div>
 										<div class="three-content">5vs5</div>
 										<div>&sdot;</div>
-										<div class="three-content">피보(Pivo)</div>
+										<div class="three-content">PIVO</div>
 									</div>
 								</div>
 								<!-- 신청자 리스트 -->
@@ -102,7 +100,7 @@
 											<div class="dContent">&#149;</div>
 											<div class="dContent">남성</div>
 											<div class="dContent">&#149;</div>
-											<div class="dContent">피보</div>
+											<div class="dContent">PIVO/GOLEIRO</div>
 										</div>
 									</div>
 									<!-- test (추후 삭제)-->
@@ -112,7 +110,7 @@
 											<div class="dContent">&#149;</div>
 											<div class="dContent">남성</div>
 											<div class="dContent">&#149;</div>
-											<div class="dContent">아라</div>
+											<div class="dContent">ALA/PIVO</div>
 										</div>
 									</div>
 									<div class="detail-wrap">
@@ -121,7 +119,7 @@
 											<div class="dContent">&#149;</div>
 											<div class="dContent">여성</div>
 											<div class="dContent">&#149;</div>
-											<div class="dContent">골레이로</div>
+											<div class="dContent">GOLEIRO/ALA</div>
 										</div>
 									</div>
 									<!-- test END -->
@@ -146,7 +144,7 @@
 											</div>
 											<div class="content">
 												<div class="sTitle">POSITION</div>
-												<div class="sContent">피보(Pivo)</div>
+												<div class="uContant">PIVO/GOLEIRO</div>
 											</div>
 											<div class="content">
 												<div class="sTitle">TEAM</div>

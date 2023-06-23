@@ -39,7 +39,7 @@
 				<img id="imgGame" class="icons" src="/apply/images/game.png" />
 			</button>
 			<img id="ball3" class="ball" src="/apply/images/ball.png" />
-			<button type="button" onclick="javascript:alert('팀 신청');">
+			<button type="button" onclick="location.href='/applyList?page=team';">
 				<img id="imgTeam" class="icons" src="/apply/images/team.png" />
 			</button>
 			<img id="ball4" class="ball" src="/apply/images/ball.png" />

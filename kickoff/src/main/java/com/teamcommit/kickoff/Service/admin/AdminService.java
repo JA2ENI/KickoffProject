@@ -14,4 +14,12 @@ public interface AdminService {
     void user_disable(String userId) throws Exception;
     
     void emp_disable(String empId) throws Exception;
+    
+//    void user_activate(String userId) throws Exception;
+//    
+//    void emp_activate(String empId) throws Exception;
+    
+//    void user_cancel_disable(String userId) throws Exception;
+//    
+//    void emp_cancel_disable(String empId) throws Exception;
 }

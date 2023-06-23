@@ -33,7 +33,7 @@
 			</div>
 			<div class="nav-wrap">
 				<div class="icon-wrap">
-					<button type="button" onclick="location.href='/applyTeam';">
+					<button type="button" onclick="location.href='/applyList?page=team';">
 						<img id="imgTeam" class="icons" src="/apply/images/team.png" />
 					</button>
 				</div>
@@ -41,7 +41,7 @@
 			</div>
 			<div class="nav-wrap">
 				<div class="icon-wrap">
-					<button type="button" onclick="location.href='/applyHelper';">
+					<button type="button" onclick="location.href='/applyList?page=helper';">
 						<img id="imgHelper" class="icons" src="/apply/images/helper.png" />
 					</button>
 				</div>
