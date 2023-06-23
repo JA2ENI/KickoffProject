@@ -55,6 +55,7 @@ public class AdminController {
 			if(action != null && action.equals("disable")) {
 				// 개인 회원 정지 처리
 				adminService.user_disable(id);
+//				adminService.user_activate(id);
 			} else {
 				// 개인 회원 탈퇴 처리
 				adminService.user_delete(id);
@@ -65,6 +66,7 @@ public class AdminController {
 			if(action != null && action.equals("disable")) {
 				// 업체 회원 정지 처리
 				adminService.emp_disable(id);
+//				adminService.emp_activate(id);
 			} else {
 				// 업체 회원 탈퇴 처리
 				adminService.emp_delete(id);
@@ -77,8 +79,17 @@ public class AdminController {
     
     // 회원 정지 취소
 //    @RequestMapping("/cancelDisable")
-//    public String cancelDisable(@RequestParam) {
+//    public String cancelDisable(@RequestParam(value = "userId", required = false) String userId,
+//            					@RequestParam(value = "empId", required = false) String empId) throws Exception {
+//    	String view = "redirect:/userManagement";
 //    	
+//    	if(userId != null) {    		
+//    		adminService.user_cancel_disable(userId);
+//    	} else if(empId != null) {
+//    		adminService.emp_cancel_disable(empId);
+//    	}
+//    	
+//    	return view;
 //    }
     
     // 신고 게시물 관리 페이지 이동
