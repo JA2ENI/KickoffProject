@@ -84,33 +84,28 @@ public class GameController {
     /* 매칭 수정 */
     @RequestMapping("/gameFix")
     public String gameFixForm(@RequestParam("gameSeqno") int gameSeqno, Model model, HttpSession session) throws Exception {
-        String view = "/game/gameFix";
-        System.out.println("출력" + gameSeqno);
-        String userId = (String)session.getAttribute("userId");
-        
-        List<ReservationDO> placeInfo = gameService.updatePlaceInfo(gameSeqno);
-        
-        model.addAttribute("placeInfo", placeInfo);
-        
-        if(model.getAttribute("placeInfo") == null) {
-        	model.addAttribute("script", "alert('풋살장 선택을 먼저 해주세요.');");
-        }
-        else if(model.getAttribute("placeInfo") !=  null) {
-        	List<ReservationDO> dateInfo = gameService.updateDateInfo(gameSeqno);
-	        model.addAttribute("dateInfo", dateInfo);
-        } 
-        
-        TeamInfoDO teamInfoName = gameService.updateTeamInfoName(userId);    
-        model.addAttribute("teamInfoName", teamInfoName);
-        
-        GameDO gameFixForm = gameService.selectGameFixForm(gameSeqno);
-        model.addAttribute("gameFixForm", gameFixForm);
-        
-        
-        return view;
+    	String view = "/game/gameFix";
+    	String userId = (String)session.getAttribute("userId");
+    	
+    	List<ReservationDO> placeInfo = gameService.updatePlaceInfo(gameSeqno);
+    	model.addAttribute("placeInfo", placeInfo);
+    	
+    	TeamInfoDO teamInfoName = gameService.updateTeamInfoName(userId);
+    	model.addAttribute("teamInfoName", teamInfoName);
+    	
+    	return view;
     }
     
-    
-    
+    @RequestMapping("/gameFix")
+    public String gameFixUpdate() throws Exception {
+    	String view = "";
+    	
+		/*
+		  GameDO gameFixForm = gameService.selectGameFixForm(gameSeqno);
+		  model.addAttribute("gameFixForm", gameFixForm);
+		 */
+    	
+    	return view;
+    }
 }
 

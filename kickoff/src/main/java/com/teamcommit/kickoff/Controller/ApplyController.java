@@ -36,10 +36,10 @@ public class ApplyController {
 			if(num != null) {
 				if(num.equals("1")) {
 					if(page.equals("reservation")) {
-						view = "";
+						view = "redirect:/applyReservationApplicant";
 						return view;
 					} else if(page.equals("game")) {
-						view = "";
+						view = "redirect:/applyGameApplicant";
 						return view;
 					} else if(page.equals("team")) {
 						view = "redirect:/applyTeamApplicant";
@@ -50,10 +50,10 @@ public class ApplyController {
 					}
 				} else if(num.equals("2")) {
 					if(page.equals("reservation")) {
-						view = "";
+						view = "redirect:/applyReservationRecruiter";
 						return view;
 					} else if(page.equals("game")) {
-						view = "";
+						view = "redirect:/applyGameRecruiter";
 						return view;
 					} else if(page.equals("team")) {
 						view = "redirect:/applyTeamRecruiter";
@@ -68,13 +68,38 @@ public class ApplyController {
 		return view;
 	}
 	
-	@RequestMapping(value="/applyTeam")
-	public String applyTeam() throws Exception {
-		String view = "/apply/applyTeam";
+	//에약 신청자 페이지 
+	@RequestMapping(value="/applyReservationApplicant")
+	public String applyReservationApplicant() throws Exception {
+		String view = "/apply/applyReservationApplicant";
 		
 		return view;
 	}
 	
+	//예약 모집자 페이지 
+	@RequestMapping(value="/applyReservationRecruiter")
+	public String applyReservationRecruiter(HttpSession session) throws Exception {
+		String view = "/apply/applyReservationRecruiter";
+		
+		return view;
+	}
+	
+	//매칭 신청자 페이지 
+	@RequestMapping(value="/applyGameApplicant")
+	public String applyGameApplicant() throws Exception {
+		String view = "/apply/applyGameApplicant";
+		
+		return view;
+	}
+	
+	//매칭 모집자 페이지 
+	@RequestMapping(value="/applyGameRecruiter")
+	public String applyGameRecruiter(HttpSession session) throws Exception {
+		String view = "/apply/applyGameRecruiter";
+		
+		return view;
+	}
+		
 	//팀 신청자 페이지 
 	@RequestMapping(value="/applyTeamApplicant")
 	public String applyTeamApplicant() throws Exception {
