@@ -42,9 +42,7 @@
 						<div class="uTeam-wrap">
 							<div class="uTitle">POSITION</div>
 							<!-- MIAN/SUB -->
-							<div class="uContant">피보/아라</div>
-							<!-- 포지션 null -->
-							<!-- <div class="uContant">-</div> -->
+							<div class="uContant">PIVO/GOLEIRO</div>
 						</div>
 						<!-- 매칭 경기 횟수 -->
 						<div class="uTeam-wrap">
@@ -60,10 +58,10 @@
 				</div>
 			</div>
 		</article>
-		<article class="helper">
-			<div class="helper-container">
-				<div class="helper-wrap">
-					<div class="hTitle">팀 신청</div>
+		<article class="team">
+			<div class="team-container">
+				<div class="team-wrap">
+					<div class="team-title">팀 신청</div>
 						<div class="box-wrap">
 							<div class="box-frame">
 								<div class="box-content">
@@ -72,13 +70,13 @@
 									<!-- <div class="status end">모집 완료</div> -->
 									<!-- <div class="status cancel">모집 취소</div> -->
 									<div class="one-wrap">
-										<div class="date day">6월 14일</div>
-										<div class="date">수요일</div>
-										<div class="date">20:00</div>
+										<div class="date day">2023년 6월 15일</div>
+										<div class="date">~</div>
+										<div class="date day">2023년 7월 3일</div>
 									</div>
 									<div class="two-wrap">
 										<!-- 상세보기 -->
-										<a href="javascript:alert('제목 상세보기 test');" class="placeName">서울 송파 천마 풋살파크 2구장</a>
+										<a href="javascript:alert('제목 상세보기 test');" class="teamName">독수리슛FC</a>
 										<!-- 신청자 수/모집인원수 -->
 										<div class="numApply">5/10명</div>
 									</div>
@@ -87,11 +85,11 @@
 									</div>
 									<div class="three-wrap">
 										<div class="arrow">▶</div>
+										<div class="three-content">서울특별시</div>
+										<div>&sdot;</div>
 										<div class="three-content">남성</div>
 										<div>&sdot;</div>
-										<div class="three-content">5vs5</div>
-										<div>&sdot;</div>
-										<div class="three-content">피보(Pivo)</div>
+										<div class="three-content">20대</div>
 									</div>
 								</div>
 								<!-- 신청자 리스트 -->
@@ -102,7 +100,7 @@
 											<div class="dContent">&#149;</div>
 											<div class="dContent">남성</div>
 											<div class="dContent">&#149;</div>
-											<div class="dContent">피보</div>
+											<div class="dContent">PIVO/GOLEIRO</div>
 										</div>
 									</div>
 									<!-- test (추후 삭제)-->
@@ -112,7 +110,7 @@
 											<div class="dContent">&#149;</div>
 											<div class="dContent">남성</div>
 											<div class="dContent">&#149;</div>
-											<div class="dContent">아라</div>
+											<div class="dContent">ALA/PIVO</div>
 										</div>
 									</div>
 									<div class="detail-wrap">
@@ -121,7 +119,7 @@
 											<div class="dContent">&#149;</div>
 											<div class="dContent">여성</div>
 											<div class="dContent">&#149;</div>
-											<div class="dContent">골레이로</div>
+											<div class="dContent">GOLEIRO/ALA</div>
 										</div>
 									</div>
 									<!-- test END -->
@@ -146,7 +144,7 @@
 											</div>
 											<div class="content">
 												<div class="sTitle">POSITION</div>
-												<div class="sContent">피보(Pivo)</div>
+												<div class="uContant">PIVO/GOLEIRO</div>
 											</div>
 											<div class="content">
 												<div class="sTitle">TEAM</div>
