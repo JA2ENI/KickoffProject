@@ -31,11 +31,11 @@
 				<div id="helper" class="text">용병</div>
 			</div>
 			<img id="ball" class="ball" src="/apply/images/ball.png" />
-			<button type="button" onclick="location.href='/applyReservation';">
+			<button type="button" onclick="location.href='/applyList?page=reservation';">
 				<img id="imgCourt" class="icons" src="/apply/images/court.png" />
 			</button>
 			<img id="ball2" class="ball" src="/apply/images/ball.png" />
-			<button type="button" onclick="javascript:alert('매칭 신청');">
+			<button type="button" onclick="location.href='/applyList?page=game';">
 				<img id="imgGame" class="icons" src="/apply/images/game.png" />
 			</button>
 			<img id="ball3" class="ball" src="/apply/images/ball.png" />

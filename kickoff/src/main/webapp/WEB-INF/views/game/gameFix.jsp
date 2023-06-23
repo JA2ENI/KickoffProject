@@ -60,7 +60,6 @@
                         <div class="col-lg-8 col-md-6">
 							<div class="checkout__input">
 								<p>풋살장<span>*</span></p>
-								<input type="hidden"
 								<select id="placeName" name="placeName" onChange="selectPlaceName(this)">
 									<option value="">예약한 풋살장 선택하기</option>
 									<c:choose>
@@ -71,7 +70,6 @@
 										</c:when>
 									</c:choose>
 								</select>
-								/>
 							</div>
 							<div class="checkout__input">
                                 <p>경기 형태<span>*</span></p>

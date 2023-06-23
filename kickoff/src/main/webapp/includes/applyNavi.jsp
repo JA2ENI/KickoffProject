@@ -17,7 +17,7 @@
 		<nav class="nav-container">
 			<div class="nav-wrap">
 				<div class="icon-wrap">
-					<button type="button" onclick="javascript:alert('예약 신청');">
+					<button type="button" onclick="location.href='/applyList?page=reservation';">
 						<img id="imgCourt" class="icons" src="/apply/images/court.png" />
 					</button>
 				</div>
@@ -25,7 +25,7 @@
 			</div>
 			<div class="nav-wrap">
 				<div class="icon-wrap">
-					<button type="button" onclick="javascript:alert('매칭 신청');">
+					<button type="button" onclick="location.href='/applyList?page=game';">
 						<img id="imgGame" class="icons" src="/apply/images/game.png" />
 					</button>
 				</div>
