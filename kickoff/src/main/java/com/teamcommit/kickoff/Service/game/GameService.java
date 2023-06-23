@@ -4,6 +4,7 @@ import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Do.TeamDO;
+import com.teamcommit.kickoff.Do.TeamInfoDO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -21,6 +22,18 @@ public interface GameService {
 
     List<ReservationDO>selectPlaceInfo(String userId) throws Exception;
 
-	TeamDO selectTeamInfo(String userId) throws Exception;
+	TeamInfoDO selectTeamInfoName(String userId) throws Exception;
+
+	List<ReservationDO> selectDateInfo(String userId) throws Exception;
+
+	GameDO selectGameFixForm(int gameSeqno) throws Exception;
+
+	void fixGameForm(GameDO gameDO) throws Exception;
+
+	List<ReservationDO> updatePlaceInfo(int gameSeqno) throws Exception;
+
+	List<ReservationDO> updateDateInfo(int gameSeqno) throws Exception;
+
+	TeamInfoDO updateTeamInfoName(String userId) throws Exception;
 
 }

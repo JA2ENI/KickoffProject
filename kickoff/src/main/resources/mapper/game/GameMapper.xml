@@ -32,6 +32,7 @@
             PLACE_NAME,
             TEAM1_NAME,
             GAME_START_TIME,
+            GAME_END_TIME,
             GAME_DATE,
             GAME_STYLE,
             GAME_GENDER,
@@ -43,6 +44,7 @@
                   #{placeName},
                   #{team1Name},
                   #{gameStartTime},
+                  #{gameEndTime},
                   #{gameDate},
                   #{gameStyle},
                   #{gameGender},
@@ -63,12 +65,75 @@
         ]]>
     </select>
     
-    <!-- team info -->
-    <select id="selectTeamInfo" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">
+    <!-- Date info -->
+    <select id="selectDateInfo" parameterType="com.teamcommit.kickoff.Do.ReservationDO" resultType="com.teamcommit.kickoff.Do.ReservationDO">
         <![CDATA[
             SELECT *
             FROM
-                TEAM
+                RESERVATION
+            WHERE
+                USER_ID = #{userId}
+        ]]>
+    </select>
+    
+    <!-- team info -->
+    <select id="selectTeamInfoName" parameterType="com.teamcommit.kickoff.Do.TeamInfoDO" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                TEAM_INFO
+            WHERE
+                LEADER_ID = #{userId}
+        ]]>
+    </select>
+    
+    <update id="selectGameFixForm" parameterType="com.teamcommit.kickoff.Do.GameDO">
+    	<![CDATA[
+    		UPDATE
+    			GAME
+    		SET
+    			PLACE_NAME = #{placeName},
+                TEAM1_NAME = #{team1Name},
+                GAME_START_TIME = #{gameStartTime},
+                GAME_END_TIME = #{gameEndTime},
+                GAME_DATE = #{gameDate},
+                GAME_STYLE = #{gameStyle},
+                GAME_GENDER = #{gameGender},
+                GAME_STATUS = #{gameStatus},
+                GAME_OTHER = #{gameOther}
+    		WHERE
+    			GAME_SEQNO = #{gameSeqno}
+    	]]>
+    </update>
+    
+    <!-- place info -->
+    <select id="updatePlaceInfo" parameterType="com.teamcommit.kickoff.Do.GameDO" resultType="com.teamcommit.kickoff.Do.GameDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                GAME
+            WHERE
+                GAME_SEQNO = #{gameSeqno}
+        ]]>
+    </select>
+    
+    <!-- Date info -->
+    <select id="updateDateInfo" parameterType="com.teamcommit.kickoff.Do.GameDO" resultType="com.teamcommit.kickoff.Do.GameDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                GAME
+            WHERE
+                GAME_SEQNO = #{gameSeqno}
+        ]]>
+    </select>
+    
+    <!-- team info -->
+    <select id="updateTeamInfoName" parameterType="com.teamcommit.kickoff.Do.TeamInfoDO" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                TEAM_INFO
             WHERE
                 LEADER_ID = #{userId}
         ]]>

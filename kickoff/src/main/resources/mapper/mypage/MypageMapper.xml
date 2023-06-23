@@ -113,7 +113,7 @@
         <![CDATA[
             SELECT *
             FROM
-                TEAM
+                TEAM_INFO
             WHERE
             	LEADER_ID = #{userId}
             ORDER BY RESERVATION_DATE ASC	

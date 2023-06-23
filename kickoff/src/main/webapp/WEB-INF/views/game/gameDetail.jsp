@@ -14,22 +14,21 @@
 	href="/includes/css/style.css">
 	<link rel = "stylesheet" href = "/main/css/vendor/icomoon/style.css">
 
-<script src="/includes/js/jquery-3.3.1.min.js"></script>
+	<script src="/includes/js/jquery-3.3.1.min.js"></script>
+	
+	<script src="/includes/js/jquery.lettering.js"></script>
+	<script src="/includes/js/jquery.sticky.js"></script>
+	
+	
+	<script src="/includes/js/ScrollMagic.min.js"></script>
+	<script
+		src="/includes/js/scrollmagic.animation.gsap.min.js"></script>
 
-<script src="/includes/js/jquery.lettering.js"></script>
-<script src="/includes/js/jquery.sticky.js"></script>
 
+	<script src="/includes/js/main.js"></script>
 
-<script src="/includes/js/ScrollMagic.min.js"></script>
-<script
-	src="/includes/js/scrollmagic.animation.gsap.min.js"></script>
-
-
-<script src="/includes/js/main.js"></script>
-<!-- 여기까지 복붙하기 -->
-
-<link rel="stylesheet"
-	href="/game/css/boardDetail.css" />
+	<link rel="stylesheet"
+		href="/game/css/boardDetail.css" />
 
 </head>
 <body>
@@ -45,6 +44,12 @@
 	</div>
 	<form role="form" action="/board/create_action" method="post">
 		<div class="container">
+		<div class="img-box">
+			<h3 class="first">${gameScoreDetail.team1Name}</h3><h3 class="sec">${gameScoreDetail.team2Name}</h3>
+			<img src="/game/images/vs.png" style="width:30%; margin-top:40px;">
+			
+		</div>
+		<h2>${gameScoreDetail.placeName}</h2>
 			<div class="table-responsive">
 				<table class="board_detail">
 					<colgroup>
@@ -55,20 +60,10 @@
 					</colgroup>
 					<tbody>
 						<tr>
-							<th scope="row">풋살장 이름</th>
-							<td>${gameScoreDetail.placeName}</td>
-						</tr>
-						<tr>
-							<th scope="row">팀 이름</th>
-							<td>${gameScoreDetail.team1Name} <span style="text-weight:bold; color:red;">&nbsp;VS&nbsp;</span> ${gameScoreDetail.team2Name}</td>
-						</tr>
-						<tr>
 							<th scope="row">매칭 일정</th>
 							<td>${gameScoreDetail.gameDate}</td>
-						</tr>
-						<tr>
 							<th scope="row">매칭 시간</th>
-							<td>${gameScoreDetail.gameStartTime}</td>
+							<td>${gameScoreDetail.gameStartTime} ~ ${gameScoreDetail.gameEndTime}</td>
 						</tr>
 						<tr>
 							<th scope="row">성별</th>
@@ -86,11 +81,12 @@
 				</table>
 			</div>
 			<br />
-			<hr style="color: #B1D7B4;">
 
 			<div class="btn_boarddetail">
-				<button type="reset" class="btn_reset" onclick="location.href='/game/gameDetail.jsp';">매칭 수정</button>
-				<button class="btn_delete" onclick="location.href='/game/game.jsp';">매칭 신청</button>
+			<c:if test="${(userId eq gameScoreDetail.writerId)}">
+				<button type="reset" class="btn_reset" onclick="location.href='/gameFix?gameSeqno=${gameScoreDetail.gameSeqno}';">매칭 수정</button>
+			</c:if>
+				<button class="btn_delete" onclick="location.href='/gameApply';">매칭 신청</button>
 			</div>
 		</div>
 	</form>

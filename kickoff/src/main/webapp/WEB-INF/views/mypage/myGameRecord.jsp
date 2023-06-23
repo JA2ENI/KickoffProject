@@ -48,7 +48,7 @@
 							</div>
 						</div>
 						<div class="table-responsive table-responsive-data2">
-							<table class="table table-data2">
+							<table class="table table-data2" id="dataTable">
 								<thead>
 									<tr>
 										<th class="title">경기 번호</th>

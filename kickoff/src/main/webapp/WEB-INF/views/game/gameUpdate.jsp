@@ -16,15 +16,15 @@
     <link href="https://fonts.google.com/noto/specimen/Noto+Sans+KR?subset=korean&noto.script=Kore" rel="stylesheet">
 	
     <!-- Css Styles -->
-    <link rel="stylesheet" href="/reservation/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/styles.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/style.css" type="text/css">
     <link rel="stylesheet" href="/includes/css/style.css">
     
     <!-- calendar -->
@@ -81,22 +81,31 @@
                                 </select>
                             </div>
                             <div class="checkout__input">
-                        		<p>경기 날짜<span>*</span></p>
-                       			<input id="setDate" name="gameDate" value="${insertGame.gameDate}" onChange="getDate()" />
+                        		<p>예약 날짜<span>*</span></p>
+                        		<select id="reservationDate" name="reservationDate" onChange="selectreservationDate(this)">
+									<option value="">예약한 날짜 선택하기</option>
+                        		<c:choose>
+										<c:when test="${fn:length(dateInfo) > 0}">
+											<c:forEach var="row" items="${dateInfo}">
+												<option value="${row.reservationDate}">${row.reservationDate}</option>
+											</c:forEach>
+										</c:when>
+									</c:choose>
+									</select>
                    			</div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>시작 시간<span>*</span></p>
-                                        <select id="openTime" name="gameStartTime" value="${insertGame.gameStartTime}" onChange="getStartTime(this)">
+                                        <select id="openTime" name="reservationStartTime" value="${row.reservationStartTime}" onChange="getStartTime(this)"> 
                                         	<option value="">시작 시간 선택</option>
-                                        	<c:forEach var="i" begin="1" end="24">
+                                        	<c:forEach var="i" items="${startTimeInfo}">
 	                                        	<c:choose>
-	                                        		<c:when test="${i lt 10}">
-	                                        			<option value="0${i}">0${i}:00</option>
+	                                        		<c:when test="${fn:length(startTimeInfo) > 0}">
+	                                        			<option value="0${i.reservationStartTime}">0${i.reservationStartTime}:00</option>
 	                                        		</c:when>
 	                                        		<c:otherwise>
-	                                        			<option value="${i}">${i}:00</option>
+	                                        			<option value="${i.reservationStartTime}">${i.reservationStartTime}:00</option>
 	                                        		</c:otherwise>
 	                                        	</c:choose>
                                         	</c:forEach>
@@ -106,7 +115,7 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>종료 시간<span>*</span></p>
-                                        <select id="closeTime" name="gameEndTime" onChange="getEndTime(this)">
+                                        <select id="closeTime" name="reservationEndTime" value="${row.reservationStartTime}" onChange="getEndTime(this)">
                                         	<option value="">종료 시간 선택</option>
                                         	<c:forEach var="i" begin="1" end="24">
 	                                        	<c:choose>
@@ -125,19 +134,19 @@
                             <div class="checkout__input">
                                 <p>성별<span>*</span></p>
                                 <label>
-                                	<input type="radio" name="gender" value="female" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq 'female'}">checked="checked"</c:if>/>&nbsp여성
+                                	<input type="radio" name="gender" value="여성" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq '여성'}">checked="checked"</c:if>/>&nbsp여성
                                 </label>
                                 <label>
-                                	<input type="radio" name="gender" value="male" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq 'male'}">checked="checked"</c:if>/>&nbsp남성
+                                	<input type="radio" name="gender" value="남성" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq '남성'}">checked="checked"</c:if>/>&nbsp남성
                                 </label>
                                 <label>
-                                	<input type="radio" name="gender" value="mix" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq 'mix'}">checked="checked"</c:if>/>&nbsp혼성
+                                	<input type="radio" name="gender" value="혼성" onclick='getGender(event)' <c:if test="${insertGame.gameGender eq '혼성'}">checked="checked"</c:if>/>&nbsp혼성
                                 </label>
                             </div>
                             
                             <div class="checkout__input">
                                 <p>팀 정보<span>*</span></p>
-                                <input type="text" class="teamName" id="teamName" name="teamName" value="${teamInfo.teamName}" readonly>
+                                <input type="text" name="teamName" value="${teamInfoName.teamName}" readonly>
                             </div>
                             <div class="checkout__input">
                                 <p>매칭 상태<span>*</span></p>
@@ -161,7 +170,7 @@
 								<ul>
 									<li>풋살장<span id="selectPlaceName"></span></li>
                                     <li>경기 형태<span id="gameStyle"></span></li>
-									<li>경기 날짜<span id="gameDate"></span></li>
+									<li>예약 날짜<span id="gameDate"></span></li>
 									<li>시작 시간<span id="startTime"></span></li>
 									<li>종료 시간<span id="endTime"></span></li>
 									<li>성별<span id="gender"></span></li>
@@ -170,8 +179,8 @@
 								</ul>
                                 <input type="hidden" name="reservationNo" value="${insertGame.gameSeqno}" />
                                 <%-- Button --%>
-                                <input type="submit" id="insert" class="site-btn-insert" value="등록"/>
-								<a href="/game" id="cancle" class="site-btn-cancle">취소</a>
+                                <input type="submit" id="insert" class="site-btn-insert" onclick="requestCheck()" value="등록"/>
+								<input type="button" id="cancle" class="site-btn-cancle" onclick="location.href='/game'" value="취소" />
 							</div>
 						</div>
 					</div>
@@ -192,14 +201,15 @@
 	</script>
 	
     <!-- Js Plugins -->
-    <script src="/reservation/js/jquery-3.3.1.min.js"></script>
-    <script src="/reservation/js/bootstrap.min.js"></script>
-    <script src="/reservation/js/jquery.nice-select.min.js"></script>
-    <script src="/reservation/js/jquery-ui.min.js"></script>
-    <script src="/reservation/js/jquery.slicknav.js"></script>
-    <script src="/reservation/js/mixitup.min.js"></script>
-    <script src="/reservation/js/owl.carousel.min.js"></script>
-    <script src="/reservation/js/main.js"></script>
+    <script src="/game/js/jquery-3.3.1.min.js"></script>
+    <script src="/game/js/bootstrap.min.js"></script>
+    <script src="/game/js/jquery.nice-select.min.js"></script>
+    <script src="/game/js/jquery-ui.min.js"></script>
+    <script src="/game/js/jquery.slicknav.js"></script>
+    <script src="/game/js/mixitup.min.js"></script>
+    <script src="/game/js/owl.carousel.min.js"></script>
+    <script src="/game/js/main.js"></script>
+    <script src="/game/js/validation.js"></script>
 	<script src="/team/js/common.js"></script>
 	
     <script src="/includes/js/jquery.lettering.js"></script>
