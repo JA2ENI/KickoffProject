@@ -59,53 +59,46 @@
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="text-center text-white">
 				<h1 class="display-4 fw-bolder">자유게시판 게시글 등록</h1>
-				<p class="lead fw-normal text-white-50 mb-0">풋살 관련 이야기할 주제들을
-					자유롭게 게시해주세요.</p>
+				<p class="lead fw-normal text-white-50 mb-0">풋살 관련 이야기할 주제들을 자유롭게 게시해주세요.</p>
 			</div>
 		</div>
 	</div>
 	<br>
 	<br>
-	<form id="frm" name="frm" action="insert_action" method="post"
-		onsubmit="return _onSubmit();">
+	<form id="frm" name="frm" action="insert_action" method="post" onsubmit="return _onSubmit();">
 		<h4>게시글 등록</h4>
 		<div class="table-responsive">
 
 			<div class="board_title">
 				<span class="formInline"> <label for="writeTitle">제목</label>
-					<input type="text" id="writeTitle" name="writeTitle"
-					class="form-control">
+					<input type="text" id="writeTitle" name="writeTitle" class="form-control">
 				</span>
 			</div>
 
 			<div class="writer">
-				<span class="formWriter"> <label for="writeId"
-					class="writeId">작성자 : ${userId}</label> <label class="writeIdEmp">${empId}</label>
-				</span> <input type="hidden" id="writeId" name="writeId" value="${userId}">
-				<input type="hidden" id="writeIdEmp" name="writeIdEmp"
-					value="${empId}">
+				<span class="formWriter"> 
+				<label for="writeId" class="writeId">작성자 : ${userId}</label> 
+				<label class="writeIdEmp">${empId}</label>
+				</span> 
+				<input type="hidden" id="writeId" name="writeId" value="${userId}">
+				<input type="hidden" id="writeIdEmp" name="writeIdEmp" value="${empId}">
 			</div>
 
 			<div class="filebox bs3-primary preview-image">
-				<input id="file" name="file" class="custom-file-input"
-					id="customFile" value="파일선택" disabled="disabled"
-					style="width: 200px;"> <label for="custom-file-label"
-					for="customFile">>업로드</label> <input type="file" id="filePath"
-					name="filePath" class="filePath">
+				<input id="file" name="file" class="custom-file-input" id="customFile" value="파일선택" disabled="disabled" style="width: 200px;"> 
+				<label for="custom-file-label" for="customFile">업로드</label> 
+				<input type="file" id="filePath" name="filePath" class="filePath">
 			</div>
 
 			<div class="content">
 				<label for="writeContent">내용</label><br>
-				<textarea id="writeContent" name="writeContent" cols="100" rows="20"
-					class="form-content"></textarea>
+				<textarea id="writeContent" name="writeContent" cols="100" rows="20" class="form-content"></textarea>
 			</div>
 
 			<div class="btn_board">
-				<button type="reset" class="btn_reset"
-					onclick="location.href='/board';">취소</button>
+				<button type="reset" class="btn_reset" onclick="location.href='/board';">취소</button>
 				<!-- <a href="boardDetail.jsp"><button type="submit" class="btn_submit">등록</button></a> -->
-				<button type="submit" class="btn_submit"
-					onclick="document.getElementById('frm').submit();">등록</button>
+				<button type="submit" class="btn_submit" onclick="document.getElementById('frm').submit();">등록</button>
 			</div>
 		</div>
 		</div>

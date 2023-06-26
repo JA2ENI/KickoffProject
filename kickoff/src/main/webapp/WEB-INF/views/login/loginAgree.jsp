@@ -5,6 +5,35 @@
 <head>
 <meta charset="UTF-8">
 <link rel = "stylesheet" href = "/login/css/loginAgree.css">
+<script type="text/javascript">
+	const form = document.querySelector(".form__wrap"); // 데이터 전송 form
+	const submitButton = document.querySelector(".next-button"); // 확인 버튼
+	
+	// 체크박스의 체크 여부 임시 저장 공간
+	const agreements = {
+	    termsOfService: false, // 첫번째 체크박스
+	    privacyPolicy: false, // 두번째 체크박스
+	};
+	
+	// 필수동의 체크 여부를 확인한 뒤 버튼을 활성화 , 비활성화 동작 함수
+	function toggleSubmitButoon() {
+	    const {termsOfService, privacyPolicy} = agreements;
+	    if (termsOfService && privacyPolicy) {
+	        submitButton.disabled = false; // 버튼 활성화
+	    } else {
+	        submitButton.disabled = true; // 버튼 비활성화
+	    };
+	};
+	
+	checkBoxes.forEach((item) => item.addEventListener('input', toggleCheckbox));
+
+	function toggleCheckbox(e) {
+	    const { checked , id } = e.target;
+	    agreements[id] = checked;
+	    this.parentNode.classList.toggle('active');
+	    toggleSubmitButoon();
+	}
+</script>
 <title>Kick Off: 약관동의</title>
 </head>
 <body style="overflow-y: hidden">
@@ -13,7 +42,7 @@
       <h1>Kick Off</h1>
       </div>
       <div class="contents">
-        <form action="/" method="POST" id="form__wrap">
+        <form action="/" method="POST" id="form__wrap" name="form__wrap">
           <ul class="terms__list">
             <li class="terms__box">
               <div class="input__check">
@@ -65,7 +94,7 @@
             </li>
           </ul>
           <button type="button" class="nope-button" onclick="location.href='/main';">비동의</button>
-          <button type="button" class="next-button" onclick="location.href='/Signup';">동의</button>
+          <button type="button" class="next-button" id="next-button" name="next-button" onclick="location.href='/Signup';">동의</button>
         </form>
       </div>    
 </div>
