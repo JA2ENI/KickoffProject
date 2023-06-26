@@ -3,4 +3,65 @@
 
 <mapper namespace="com.teamcommit.kickoff.Service.signup.SignupMapper">
 
+	<!-- User Insert -->
+    <insert id="insertUser" parameterType="com.teamcommit.kickoff.Do.UserDO">
+        <![CDATA[
+        INSERT INTO USERS
+        (
+            USER_ID,
+            USER_PW,
+            USER_NAME,
+            USER_ADDRESS,
+            USER_PHONE_NUMBER,
+            USER_EMAIL,
+            USER_BIRTHDATE,
+            USER_GENDER,
+            USER_MAIN_POSITION,
+            USER_SUB_POSITION
+        )
+        VALUES
+            (
+                #{userId},
+                #{userPw},
+                #{userName},
+                #{userAddress},
+                #{userPhoneNumber},
+                #{userEmail},
+                #{userBirthdate},
+                #{userGender},
+                #{userMainPosition},
+                #{userSubPosition}
+            )
+        ]]>
+    </insert>
+    
+    <!-- Emp Insert -->
+    <insert id="insertEmp" parameterType="com.teamcommit.kickoff.Do.EmployerDO">
+        <![CDATA[
+        INSERT INTO EMPLOYER
+        (
+            EMP_ID,
+            EMP_PW,
+            EMP_NAME,
+            EMP_ADDRESS,
+            EMP_PHONE_NUMBER,
+            EMP_EMAIL,
+            EMP_NO,
+            EMP_DATE
+        )
+        VALUES
+            (
+                #{empId},
+                #{empPw},
+                #{empName},
+                #{empAddress},
+                #{empPhoneNumber},
+                #{empEmail},
+                #{empNo},
+                #{empDate},
+                #{userMainPosition},
+                #{userSubPosition}
+            )
+        ]]>
+    </insert>
 </mapper>

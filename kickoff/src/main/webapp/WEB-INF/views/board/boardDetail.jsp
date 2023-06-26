@@ -137,11 +137,22 @@
 
 					<c:forEach items="${ replyDOs }" var="list">
 						<tr>
-							<td>${ list.replyContent } <span>${ list.replyId }${ list.replyIdEmp } | ${list.replyRegDate }</span>
+							<td>${ list.replyContent }<span>${ list.replyId }${ list.replyIdEmp }
+									| ${list.replyRegDate }</span>
 							</td>
-							<td><input type="button" value="삭제하기" class="btn btn-default" id="deleteRely" name="deleteRely"
-								onclick="location.href='/replyDelete?replyNo=${list.replyNo}&boardSeqno=${list.boardSeqno }'" />
-							</td>
+							<c:if test="${list.replyId != null && list.replyId == userId }">
+								<td><input type="button" value="삭제하기"
+									class="btn btn-default" id="deleteRely" name="deleteRely"
+									onclick="location.href='/replyDelete?replyNo=${list.replyNo}&boardSeqno=${list.boardSeqno }'" />
+								</td>
+							</c:if>
+							<c:if test="${list.replyIdEmp != null && list.replyIdEmp == empId }">
+								<td><input type="button" value="삭제하기"
+									class="btn btn-default" id="deleteRely" name="deleteRely"
+									onclick="location.href='/replyDelete?replyNo=${list.replyNo}&boardSeqno=${list.boardSeqno }'" />
+								</td>
+							</c:if>
+
 						</tr>
 					</c:forEach>
 				</table>
