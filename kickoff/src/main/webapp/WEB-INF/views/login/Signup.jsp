@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/login/css/login.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="/login/js/Signup.js"></script>
@@ -15,8 +16,9 @@
 				<h1>회원가입</h1>
 				<br /> <br />
 			<div class="signupform" style="overflow: auto; width: 350px; height: 350px; background: #F7F6DC​; border-radius: 10px;">
+				
 				<input type="text" id="userId" name="userId" placeholder="아이디" />
-				<button type="button">중복확인</button>
+				<button type="button" id="idCheck" onclick="return false;">중복확인</button>
 				
 				<input type="password" id="userPw" name="userPw" placeholder="비밀번호" /> 
 				<input type="password" id="userPw2" name="userPw2" placeholder="비밀번호확인" /> 
@@ -77,6 +79,25 @@
 				</div>
 		</form>
 	</div>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+    	var isIdChecked=false; //중복체크했을 땐 true로 변경
+		$("#idCheck").on("click", function(e){
+			e.preventDefault();   //form태그안의 있는 버튼이라 그냥 submit되는거 방지
+			$.ajax({
+				url : "<c:url value='idCheck.wow'  />" 
+				,data : {"id" : $("input[name='userId']").val()}
+				,success :function(data){
+                                    if(data=="사용할 수 있는 아이디입니다.") isIdChecked=true;  
+                                    alert(data);
+				},error : function(req,status,err){
+					console.log(req);
+				}
+			}); //ajax
+		});// idCheck
+	}); //ready
+	</script>
 
 	<script>
 		$('#signup_action').click(function(e) {

@@ -9,4 +9,6 @@ public interface SignupMapper {
 
 	//사용자 회원가입(정보 등록)
 	public void insertUser(UserDO userDO);
+	
+	
 }

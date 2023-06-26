@@ -1,5 +1,7 @@
 package com.teamcommit.kickoff.Controller;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,10 +46,12 @@ public class AdminController {
     }
 
     // 회원 정지, 탈퇴 기능
-    @RequestMapping("/manageMember")
+	@RequestMapping("/manageMember")
     public String manageMember(@RequestParam("id") String id,
             				   @RequestParam("userType") String userType,
-            				   @RequestParam(value = "action", required = false) String action) throws Exception {
+            				   @RequestParam(value = "action", required = false) String action,
+            				   @RequestParam("userStopDate") String userStopDate,
+            				   @RequestParam("empStopDate") String empStopDate) throws Exception {
     	
 		String view = "redirect:/userManagement";
 		
@@ -55,7 +59,11 @@ public class AdminController {
 			if(action != null && action.equals("disable")) {
 				// 개인 회원 정지 처리
 				adminService.user_disable(id);
-//				adminService.user_activate(id);
+				
+				if(LocalDate.parse(userStopDate).equals(LocalDate.now().plusDays(1))) {
+					// 개인 회원 정지 취소 처리
+					adminService.user_activate(id);
+				}
 			} else {
 				// 개인 회원 탈퇴 처리
 				adminService.user_delete(id);
@@ -66,7 +74,11 @@ public class AdminController {
 			if(action != null && action.equals("disable")) {
 				// 업체 회원 정지 처리
 				adminService.emp_disable(id);
-//				adminService.emp_activate(id);
+				
+				if(LocalDate.parse(empStopDate).equals(LocalDate.now().plusDays(1))) {
+					// 업체 회원 정지 취소 처리
+					adminService.emp_activate(id);
+				}
 			} else {
 				// 업체 회원 탈퇴 처리
 				adminService.emp_delete(id);

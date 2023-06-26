@@ -2,6 +2,7 @@ package com.teamcommit.kickoff.Do;
 
 import java.util.Date;
 
+
 public class UserDO {
 
 	//사용자 아이디

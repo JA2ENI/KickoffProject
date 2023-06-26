@@ -4,12 +4,35 @@
 <mapper namespace="com.teamcommit.kickoff.Service.team.TeamMapper">
 
     <!-- Team List -->
-    <select id="getList" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">
+    <select id="teamInfoList" parameterType="com.teamcommit.kickoff.Do.TeamInfoDO" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
+        <![CDATA[
+        SELECT
+            TEAM_NAME, TEAM_LOCAL
+        FROM
+            TEAM_INFO
+        GROUP BY TEAM_NAME, TEAM_LOCAL
+        ]]>
+    </select>
+    
+    <!-- Team Board List -->
+    <select id="teamBoardList" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">
         <![CDATA[
         SELECT
             *
         FROM
             TEAM
+        ]]>
+    </select>
+    
+    <!-- Team Recruit List -->
+    <select id="teamRecruitList" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">
+        <![CDATA[
+        SELECT
+            *
+        FROM
+            TEAM
+        WHERE
+        	TEAM_NAME = #{teamName}
         ]]>
     </select>
 
@@ -58,6 +81,19 @@
             TEAM_SEQNO = #{teamSeqNo}
         ]]>
     </select>
+    
+      <!-- Team Member List 
+    <select id="teamMemberList" parameterType="com.teamcommit.kickoff.Do.UserDO" resultType="com.teamcommit.kickoff.Do.UserDO">
+        <![CDATA[
+        SELECT
+        	USER_CLASSIFICATION, USER_ID, USER_NAME, USER_GENDER
+		FROM
+			USERS
+		WHERE
+			USER_ID IN (SELECT MEMBER_ID
+					FROM TEAM_INFO WHERE TEAM_NAME = #{teamName});
+        ]]>
+    </select>-->
 
     <!-- TeamRank List -->
     <select id="rankList" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">

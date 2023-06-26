@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.teamcommit.kickoff.Do.UserDO;
-import com.teamcommit.kickoff.Service.login.CertificationService;
 import com.teamcommit.kickoff.Service.login.LoginService;
 import com.teamcommit.kickoff.Service.signup.SignupService;
 

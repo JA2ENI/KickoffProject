@@ -61,6 +61,12 @@ p {
     font-family: 'GangwonEduPowerExtraBoldA' !important;
 }
 
+.text-menu:hover {
+	color: #7fb77e;
+	font-size: 25px;
+    font-family: 'GangwonEduPowerExtraBoldA' !important;
+}
+
 .container {
     background: #F5F5F5;
 }
@@ -73,7 +79,7 @@ p {
     max-width: 90rem;
     height: auto;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto; 
     padding: 1rem 0.5rem;
 }
 
@@ -112,8 +118,8 @@ p {
 	padding: 3px;
 	font-size: 15px;
 	font-weight: bold;
-	color: #9E9E9E;
-	border: solid 2px #9E9E9E;
+	color: #7fb77e;
+	border: solid 2px #7fb77e;
 	border-radius: 5px;
 	background: #fff;
 	outline: none;
@@ -197,26 +203,40 @@ p {
 
 .subject.team2,
 .content.team2 {
-	width: 40%;
+	width: 35%;
 }
 
-.subject.date,
 .subject.total,
 .subject.gender,
-.subject.status {
-	width: 14%;
+.subject.status,
+.subject.type,
+.subject.id,
+.subject.name,
+.subject.manage {
+	width: 12%;
 }
 
-.content.date,
 .content.total,
 .content.gender,
 .content.status,
-.content.status2 {
-	width: 14%;
+.content.status2,
+.content.type,
+.content.id,
+.content.name,
+.content.manage {
+	width: 12%;
+}
+
+.content.date {
+	width: 20%;
+}
+
+.subject.date {
+	width: 20%;
 }
 
 .content.status {
-	color: #FF9800;	
+	color: #7fb77e;	
 }
 
 .content.status2 {
