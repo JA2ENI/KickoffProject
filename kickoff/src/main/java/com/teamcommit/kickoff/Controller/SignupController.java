@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.teamcommit.kickoff.Service.login.CertificationService;
 import com.teamcommit.kickoff.Service.login.LoginService;
 import com.teamcommit.kickoff.Service.signup.SignupService;
 

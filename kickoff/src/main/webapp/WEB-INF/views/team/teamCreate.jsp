@@ -36,7 +36,7 @@
 							<input type="text" class="text-box" name="" value="" readonly/>
 						</div>
 						<div class="select-age all">
-							<p class="age-title">주요 나이대</p>
+							<p class="age-title">주요 연령대</p>
 							<input type="radio" id="teenager" class="age" name="teamAge"/><label for="teenager">10대</label>
 							<input type="radio" id="twenties" class="age" name="teamAge"/><label for="twenties">20대</label>
 							<input type="radio" id="thirties" class="age" name="teamAge"/><label for="thirties">30대</label>

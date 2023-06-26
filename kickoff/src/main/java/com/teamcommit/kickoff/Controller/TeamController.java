@@ -2,6 +2,7 @@ package com.teamcommit.kickoff.Controller;
 
 import com.teamcommit.kickoff.Do.TeamApplyDO;
 import com.teamcommit.kickoff.Do.TeamDO;
+import com.teamcommit.kickoff.Do.TeamInfoDO;
 import com.teamcommit.kickoff.Do.UserDO;
 import com.teamcommit.kickoff.Service.team.TeamService;
 import com.teamcommit.kickoff.Service.login.LoginService;
@@ -34,8 +35,17 @@ public class TeamController {
 
     // 팀 목록 & 게시글 목록
     @RequestMapping(value = "/team")
-    public String TeamList() throws Exception {
+    public String TeamList(@ModelAttribute("teamInfoDO") TeamInfoDO teamInfoDO, TeamDO teamDO, Model model) throws Exception {
         String view = "/team/team";
+        
+        List<TeamInfoDO> teamList = teamService.teamInfoList(teamInfoDO);
+        model.addAttribute("teamList", teamList);
+        
+        List<TeamDO> teamBoard = teamService.teamBoardList(teamDO);
+        model.addAttribute("teamBoard", teamBoard);
+        
+        List<TeamDO> teamRecruit = teamService.teamRecruitList(teamDO);
+        model.addAttribute("teamRecruit", teamRecruit);
 
         return view;
     }
@@ -51,7 +61,7 @@ public class TeamController {
         return view;
     }
 
-    // 팀 등록 페이지 이동
+    // 팀 모집 글 등록 페이지 이동
     @GetMapping("/teamInsert")
     public String teamInsert(HttpSession session, Model model, HttpServletRequest request) {
         String view = "";
@@ -141,11 +151,18 @@ public class TeamController {
     	return mv;
     }
     
-    // 팀 생성 폼
+    // 팀 생성 페이지 이동
     @RequestMapping(value = "/teamCreateForm")
-    public String teamCreateForm() throws Exception {
-        String view = "/team/teamCreate";
+    public String teamCreateForm(HttpSession session, Model model, HttpServletRequest request) {
+        String view = "";
 
+        if(session.getAttribute("userId") == null) {
+            model.addAttribute("script", "alert('로그인 후 이용하실 수 있습니다.');");
+            view = "login/loginAll";
+        }
+        else if (session.getAttribute("userId") != null) {
+            view = "team/teamCreate";
+        }
         return view;
     }
     
@@ -156,5 +173,32 @@ public class TeamController {
 
         return view;
     }
+    
+    // 팀 관리 페이지 이동
+    @RequestMapping(value = "/teamManage")
+    public String teamManage(HttpSession session, Model model, HttpServletRequest request) throws Exception {
+        String view = "";
+
+        if(session.getAttribute("userId") == null) {
+            model.addAttribute("script", "alert('로그인 후 이용하실 수 있습니다.');");
+            view = "login/loginAll";
+        }
+        else if (session.getAttribute("userId") != null) {
+        	view = "team/teamManage";
+        }
+        return view;
+    }
+    
+    // 팀원 리스트
+//    @RequestMapping(value = "/teamManage")
+//    public String TeamMemberList(@ModelAttribute("teamInfoDO") UserDO userDO, Model model) throws Exception {
+//        String view = "/team/teamManage";
+//        
+//        List<UserDO> memberList = teamService.teamMemberList(userDO);
+//        model.addAttribute("memberList", memberList);
+//        
+//
+//        return view;
+//    }
 
 }

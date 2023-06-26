@@ -37,15 +37,15 @@ public class AdminServiceImpl implements AdminService {
     	adminMapper.emp_disable(empId);
     }
     
-//    @Override
-//    public void user_activate(String userId) throws Exception {
-//    	adminMapper.user_activate(userId);
-//    }
-//    
-//    @Override
-//    public void emp_activate(String empId) throws Exception {
-//    	adminMapper.emp_activate(empId);
-//    }
+    @Override
+    public void user_activate(String userId) throws Exception {
+    	adminMapper.user_activate(userId);
+    }
+    
+    @Override
+    public void emp_activate(String empId) throws Exception {
+    	adminMapper.emp_activate(empId);
+    }
     
 //    @Override
 //    public void user_cancel_disable(String userId) throws Exception {
