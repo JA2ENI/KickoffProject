@@ -18,9 +18,9 @@ public interface AdminMapper {
     
     public void emp_disable(String empId);
     
-//    public void user_activate(String userId);
-//    
-//    public void emp_activate(String empId);
+    public void user_activate(String userId);
+    
+    public void emp_activate(String empId);
     
 //    public void user_cancel_disable(String userId);
 //    

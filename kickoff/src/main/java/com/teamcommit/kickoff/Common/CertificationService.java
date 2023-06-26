@@ -1,4 +1,4 @@
-package com.teamcommit.kickoff.Service.login;
+package com.teamcommit.kickoff.Common;
 
 import java.util.HashMap;
 

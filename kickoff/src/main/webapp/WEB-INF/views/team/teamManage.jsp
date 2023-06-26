@@ -50,15 +50,15 @@
 					<div class="item-wrap">
 						<div class="wrap">
 							<div class="title board">TEAM BOARD</div>
-							<a href="/teamInsert" class="btn-teamInsert">모집 등록</a>
+							<a href="/teamCreateForm" class="btn-teamInsert">팀 생성</a>
 						</div>
 						<div class="content-container">
 							<div class="title-wrap">
-								<div class="subject team2">팀</div>
-								<div class="subject date">모집일자</div>
-								<div class="subject total">모집인원</div>
-								<div class="subject gender">모집성별</div>
-								<div class="subject status">모집상태</div>
+								<div class="subject type">구분</div>
+								<div class="subject id">아이디</div>
+								<div class="subject name">이름</div>
+								<div class="subject gender">성별</div>
+								<div class="subject manage">관리</div>
 							</div>
 							<c:forEach var="board" items="${teamBoard}">
 							<button type="button" class="detail" onclick="javascript:alert('게시글 상세보기');">
@@ -68,32 +68,6 @@
 									<div class="content total"><c:out value="${board.teamNumber}" /></div>
 									<div class="content gender"><c:out value="${board.teamGender}" /></div>
 									<div class="content status"><c:out value="${board.teamStatus}" /></div>
-								</div>
-							</button>
-							</c:forEach>
-						</div>
-					</div>
-				</article>
-				<!-- Team 모집글 -->
-				<article id="boxDetail2" class="article-container two">
-					<div class="item-wrap">
-						<div class="title">TEAM BOARD</div>
-						<div class="content-container">
-							<div class="title-wrap">
-								<div class="subject team2">팀</div>
-								<div class="subject date">모집일자</div>
-								<div class="subject total">모집인원</div>
-								<div class="subject gender">모집성별</div>
-								<div class="subject status">모집상태</div>
-							</div>
-							<c:forEach var="recruit" items="${teamRecruit}">
-							<button type="button" class="detail" onclick="javascript:alert('게시글 상세보기');">
-								<div class="content-wrap">
-									<div class="content team2"><c:out value="${recruit.teamName}" /></div>
-									<div class="content date">~<c:out value="${recruit.teamEndDate}" /></div>
-									<div class="content total"><c:out value="${recruit.teamNumber}" /></div>
-									<div class="content gender"><c:out value="${recruit.teamGender}" /></div>
-									<div class="content status"><c:out value="${recruit.teamStatus}" /></div>
 								</div>
 							</button>
 							</c:forEach>

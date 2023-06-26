@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/teamInsert/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="/teamInsert/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/teamInsert/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/team/css/teamCreate.css" type="text/css">
     <link rel="stylesheet" href="/team/css/style.css" type="text/css">
     <link rel="stylesheet" href="/includes/css/style.css">
 </head>
@@ -39,97 +40,89 @@
 <div class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">풋살팀 등록</h1>
+            <h1 class="display-4 fw-bolder">풋살팀 모집 글 등록</h1>
             <p class="lead fw-normal text-white-50 mb-0">팀 등록을 통해 새로운 팀원들을 만나 승리를 경험해보세요.</p>
         </div>
     </div>
 </div>
 
-<!-- Section -->
-<section class="checkout spad">
-    <div class="container">
-        <div class="checkout__form">
-            <form id="frm" name="frm" action="/teamInsertAction" method="POST" onsubmit="return _onSubmit();">
-<%--                <div class="row">--%>
-                <div class="row-request-container">
-                    <div class="col-lg-8 col-md-6">
-                        <div class="checkout__input">
-                            <p>풋살팀 이름<span>*</span></p>
-                            <input type="text" name="teamName">
-                        </div>
-                        <div class="checkout__input">
-                            <p>모집 인원<span>*</span></p>
-                            <input type="text" name="teamNumber" onChange="selectNumber(this)">
-                        </div>
-                        <div class="checkout__input">
-                            <p>풋살팀 성별<span>*</span></p>
-                            <select name="teamGender" onChange="selectGender(this)">
-                                <option value="">성별 선택하기</option>
-                                <option value="남성">남성</option>
-                                <option value="여성">여성</option>
-                                <option value="혼성">혼성</option>
-                            </select>
-                        </div>
-                        <div class="checkout__input">
-                            <p>풋살팀 소속지역<span>*</span></p>
-                            <select name="teamLocal" onChange="selectTeam(this)">
-                                <option value="">지역 선택하기</option>
-                                <option>서울</option>
-                                <option>경기</option>
-                                <option>인천</option>
-                                <option>강원</option>
-                                <option>대전</option>
-                                <option>충남</option>
-                                <option>세종</option>
-                                <option>충북</option>
-                                <option>대구</option>
-                                <option>경북</option>
-                                <option>부산</option>
-                                <option>울산</option>
-                                <option>경남</option>
-                                <option>광주</option>
-                                <option>전남</option>
-                                <option>전북</option>
-                                <option>제주</option>
-                            </select>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
+<section>
+		
+			<div class="container">
+				<article class="article-container">
+					<div class="item-wrap">
+						<div class="inner-btn">
+							<p>팀 이름</p>
+							<input type="text" class="text-box" value="${teamInfo.teamName}" />
+						</div>
+						<div class="text-wrap all">
+							<p>팀 모집 인원</p>
+							<input type="text" class="text-box" placeholder="숫자만 입력해주세요." />
+						</div>
+						<div class="select-age all">
+							<p class="age-title">주요 연령대</p>
+							<input type="text" class="text-box" value="${teamInfo.teamAge}"/>
+						</div>
+						<div class="select-gender">
+							<p>팀 성별</p>
+							<input type="text" class="text-box" value="${teamInfo.teamGender}"/>
+						</div>
+						<div class="select-level all">
+							<p>팀 레벨</p>
+							<input type="text" class="text-box" value="${teamInfo.teamLevel}"/>
+						</div>
+						<div class="area-wrap all">
+							<p>주 활동지역</p>
+							<input type="text" class="text-box" value="${teamInfo.teamLocal}"/>
+						</div>
+					</div>
+				</article>
+				<article class="article-container">
+					<div class="item-wrap">
+						<div class="date-container">
+							<div class="date-wrap">
+								<div class="day-wrap all">
+									<p>주 이용요일</p>
+									<input type="text" class="text-box2" value="${teamInfo.teamDay}"/>
+								</div>
+								<div class="time-wrap all">
+									<p>주 이용시간</p>
+									<input type="text" class="text-box2" value="${teamInfo.teamTime}"/>
+								</div>
+							</div>
+						</div>
+							<div class="start-date">
                                 <div class="checkout__input">
-                                    <p>모집 시작일<span>*</span></p>
+                                    <p>모집 시작일</p>
                                     <input type="date" name="teamStartDate" onChange="getStartDate(this)">
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
+                        	</div>
+                            <div class="end-date">
                                 <div class="checkout__input">
-                                    <p>모집 종료일<span>*</span></p>
+                                    <p>모집 종료일</p>
                                     <input type="date" name="teamEndDate" onChange="getEndDate(this)">
                                 </div>
                             </div>
-                        </div>
-                        <div class="checkout__input">
-                            <p>모집 상태<span>*</span></p>
-                            <label>
-                                <input type="radio" name="teamStatus" value="모집 중" onclick='getPlaceForm(event)' checked/>&nbsp모집중
-                            </label>
-                            <label>
-                                <input type="radio" name="teamStatus" value="모집 완료" onclick='getPlaceForm(event)' />&nbsp모집완료
-                            </label>
-                        </div>
-                        <div class="checkout__input">
-                            <p>기타사항</p>
-                            <textarea class="etc" name="teamOther"></textarea>
-                        </div>
-                    </div>
-                    <div class="btn_container">
-                        <button type="submit" onclick="document.getElementById('frm').submit();" id="insert" class="site-btn-insert">등록</button>
-                        <button type="reset" onclick="location.href='/team';" id="cancel" class="site-btn-cancel">취소</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</section>
+                            <div class="text-wrap all">
+								<p>기타사항</p>
+	                            <textarea class="etc" name="teamOther" ></textarea>
+							</div>
+                            <div class="checkout__input">
+                                <p>모집 상태</p>
+                                <label>
+                                	<input type="radio" onclick='getStatus(event)' checked/>&nbsp모집 중
+                                </label>
+                                <label>
+                                	<input type="radio" disabled/>&nbsp모집 완료
+                                </label>
+                            </div>
+						<div class="btn-wrap">
+							<button type="submit" class="create" onclick="javascript:alert('test!');">팀 생성하기</button>
+						</div>
+					</div>
+				</article>
+			</div>
+	</section>
 
 <!-- Footer -->
 <%@include file="/includes/footer.jsp"%>

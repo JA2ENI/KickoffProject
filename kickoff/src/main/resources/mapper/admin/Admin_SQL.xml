@@ -75,8 +75,8 @@
     ]]>
 	</update>
 	
-	<!-- User Activate  
-	<update id="user_activate" parameterType="java.lang.String">
+	<!-- User Activate --> 
+	<update id="user_activate" parameterType="com.teamcommit.kickoff.Do.UserDO">
 	<![CDATA[
 	    UPDATE USERS
 	    SET
@@ -85,7 +85,7 @@
 	    WHERE
 	        USER_ID = #{userId} AND USER_STATUS = '정지' AND SYSDATE - USER_STOP_DATE >= 1
 	]]>
-	</update>-->
+	</update>
 	
 	<!-- EMP Disable -->
 	<update id="emp_disable" parameterType="java.lang.String">
@@ -100,8 +100,8 @@
     ]]>
 	</update>
 	
-	<!-- Emp Activate 
-	<update id="emp_activate" parameterType="java.lang.String">
+	<!-- Emp Activate -->
+	<update id="emp_activate" parameterType="com.teamcommit.kickoff.Do.EmployerDO">
 	<![CDATA[
 	    UPDATE EMPLOYER
 	    SET
@@ -110,7 +110,7 @@
 	    WHERE
 	        EMP_ID = #{empId} AND EMP_STATUS = '정지' AND SYSDATE - EMP_STOP_DATE >= 1
 	]]>
-	</update> -->
+	</update>
 	
 	<!-- User Cancel Disable
 	<update id="user_cancel_disable" parameterType="java.lang.String">
