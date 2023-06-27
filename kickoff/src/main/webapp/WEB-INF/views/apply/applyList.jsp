@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="/main/css/vendor/icomoon/style.css">
 <link href="/apply/css/applyList.css" rel="stylesheet" />
 
+<script type="text/javascript">
+</script>
+
 <title>Kick off: 신청 목록</title>
 </head>
 <body>
