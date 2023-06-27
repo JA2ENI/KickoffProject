@@ -88,6 +88,9 @@ public class ApplyController {
 		return view;
 	}
 	
+	/* '예약 신청' 다른 파일에서 작업중 */
+	
+/*	
 	//에약 신청자 페이지 
 	@RequestMapping(value="")
 	public String applyReservationApplicant(HttpSession session) throws Exception {
@@ -121,6 +124,7 @@ public class ApplyController {
 		
 		return view;
 	}
+*/	
 	
 	//매칭 신청자 페이지 
 	@RequestMapping(value="/applyGameApplicant")

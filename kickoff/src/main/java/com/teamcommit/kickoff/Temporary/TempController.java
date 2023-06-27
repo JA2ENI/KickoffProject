@@ -1,10 +1,7 @@
 package com.teamcommit.kickoff.Temporary;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
-import com.teamcommit.kickoff.Service.apply.ApplyService;
-
-import edu.emory.mathcs.backport.java.util.Arrays;
 
 
 @Controller
-public class TampController {
+public class TempController {
 
 	@Autowired
-	ApplyService applyService;
+	TempService teampService;
 	
 	//에약 신청자 페이지 
 	@RequestMapping(value="/applyReservationApplicant")
@@ -40,8 +34,8 @@ public class TampController {
 		String empId = (String)session.getAttribute("empId");
 		
 		if(empId != null) {
-			PlaceDO placeInfo = applyService.placeInfo(empId);
-			List<ReservationDO> reservation = applyService.reservationList(empId);
+			PlaceDO placeInfo = teampService.placeInfo(empId);
+			List<ReservationDO> reservation = teampService.reservationList(empId);
 			
 			for(int i=0; i<reservation.size(); i++) {
 				String getDate = reservation.get(i).getReservationDate();
@@ -58,14 +52,5 @@ public class TampController {
 		
 		return view;
 	}
-	
-	//매칭 신청자 페이지 
-	@RequestMapping(value="/applyGameApplicant")
-	public String applyGameApplicant() throws Exception {
-		String view = "/apply/applyGameApplicant";
-		
-		return view;
-	}
-
 	
 }
