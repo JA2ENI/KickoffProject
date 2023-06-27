@@ -73,14 +73,14 @@
 										<div class="checkout__input__request">
 											<p>사업자 번호 인증<span>*</span></p>
 											<div class="number_content">
-												<input type="button" id="checkEmpNum" class="checkEmpNum empNum" onclick="" value="사업자 번호 인증"/>
+												<input type="button" id="checkEmpNum" class="checkEmpNum empNum" value="사업자 번호 인증"/>
 												<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 											    <script>
 											      $(document).ready(function () {
-											        $("button").click(function () {
+											        $("checkEmpNum").click(function () {
 											          var data = {
 											            b_no: ["8164700297"], // 실제 존재하는 사업자 번호
-											          };
+											          };											       
 											
 											          let serviceKey ="g5kss8B127iH%2BqCnOL%2B3SpgFPUssF8IPJLv%2BP4LY%2BTFMRcCL6P6l4y6su6WUJgrHxJI0PtU9dGeda5hHq70Kag%3D%3D";
 											          $.ajax({
