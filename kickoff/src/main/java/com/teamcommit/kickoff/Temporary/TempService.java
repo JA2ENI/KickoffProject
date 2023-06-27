@@ -5,7 +5,7 @@ import java.util.List;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 
-public interface TampService {
+public interface TempService {
 	
 	PlaceDO placeInfo(String empId) throws Exception;
 	

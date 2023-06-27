@@ -3,10 +3,11 @@
 
 <mapper namespace="com.teamcommit.kickoff.Service.apply.ApplyMapper">
 	
-	<!-- reservation applicant -->
+	<!-- '예약 신청' 다른 파일에서 작업중 -->
 	
+	<!-- reservation applicant -->
 	<!-- reservation recruiter -->
-	<select id="placeInfo" parameterType="String" resultType="com.teamcommit.kickoff.Do.PlaceDO">
+	<!-- <select id="placeInfo" parameterType="String" resultType="com.teamcommit.kickoff.Do.PlaceDO">
         <![CDATA[
             SELECT *
             FROM
@@ -24,6 +25,6 @@
             WHERE
             	EMP_ID = #{empId}
         ]]>
-    </select>
+    </select> -->
     
 </mapper>
