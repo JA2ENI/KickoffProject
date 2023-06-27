@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.teamcommit.kickoff.Do.EmployerDO;
 import com.teamcommit.kickoff.Do.UserDO;
 import com.teamcommit.kickoff.Service.login.LoginService;
-import com.teamcommit.kickoff.Service.login.CertificationService;
 
 
 
@@ -130,24 +129,6 @@ public class LoginController {
         String view = "/login/findEmp";
 
         return view;
-    }
-    
-    // coolsms api
-    @GetMapping("/check/sendSMS")
-    public @ResponseBody String sendSMS(String phoneNumber) {
-
-    	// 4자리 난수 생성
-        Random rand  = new Random();
-        String numStr = "";
-        for(int i=0; i<4; i++) {
-            String ran = Integer.toString(rand.nextInt(10));
-            numStr+=ran;
-        }
-        // CertificationService를 사용하여 SMS 전송
-        CertificationService.certifiedPhoneNumber(phoneNumber,numStr);
-        
-        // 생성된 4자리 난수 반환
-        return numStr;
     }
     
     

@@ -133,7 +133,12 @@ ol {
 	padding-bottom: 100px;
 }
 
-.text-white h1,
+.text-white h1 {
+	color: #fff;
+	font-weight: 400;
+	font-size: calc(1.475rem + 2vw);
+}
+
 .text-white h2,
 .text-white h3,
 .text-white h4,
@@ -337,7 +342,7 @@ ol {
 }
 
 .checkout__input p {
-	color: #1c1c1c;
+	color: #6f6f6f;
 	margin-bottom: 20px;
 }
 
@@ -348,7 +353,7 @@ ol {
 .checkout__input input {
 	width: 100%;
 	height: 46px;
-	border: 1px solid #ebebeb;
+	border: 1px solid #ccc;
 	padding-left: 20px;
 	font-size: 16px;
 	color: #b2b2b2;

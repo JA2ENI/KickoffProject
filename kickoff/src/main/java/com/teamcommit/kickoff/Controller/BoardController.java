@@ -36,8 +36,13 @@ public class BoardController {
         String view = "/board/board";
 
         List<BoardDO> boardList = boardService.getList(boardDO);
+        
+        int dataSeq = boardList.size();
+        for (int i=0; i<boardList.size(); i++) {
+        	boardList.get(i).setBoardSeqno(dataSeq);
+        	dataSeq--;
+        }
         model.addAttribute("boardList", boardList);
-
         return view;
     }
 

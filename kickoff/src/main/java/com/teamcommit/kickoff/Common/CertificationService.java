@@ -1,4 +1,4 @@
-package com.teamcommit.kickoff.Service.login;
+package com.teamcommit.kickoff.Common;
 
 import java.util.HashMap;
 
@@ -11,8 +11,8 @@ public class CertificationService {
 	
 		public static void certifiedPhoneNumber(String phoneNumber, String cerNum) {
 	
-		    String api_key = "NCSRKDI2QI0XS6BJ";
-		    String api_secret = "JPAKCDTW2LCJVQ3YKO7XOC5WLHIWPD5C";
+		    String api_key = "NCSMLTX8CMNORVUF";
+		    String api_secret = "RBKQOIIRJHKI1IBKQZR3HQFPUVBMVNAN";
 		    Message coolsms = new Message(api_key, api_secret);
 	
 		    // 4 params(to, from, type, text) are mandatory. must be filled

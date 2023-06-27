@@ -12,9 +12,9 @@
 <link rel="stylesheet" href="/includes/css/styleApply.css">
 <link rel="stylesheet" href="/main/css/vendor/icomoon/style.css">
 <link href="/includes/css/applyNavi.css" rel="stylesheet" />
-<link href="/apply/css/applyGame.css" rel="stylesheet" />
+<link href="/apply/css/applyReservation.css" rel="stylesheet" />
 
-<title>Kick off: 용병 신청</title>
+<title>Kick off: 예약 신청</title>
 </head>
 <body>
 	<div class="header-container">
@@ -26,105 +26,94 @@
 		<article class="myInfo">
 			<div class="myInfo-container">
 				<div class="myInfo-wrap">
-					<div class="userName">나의 팀</div>
+					<div class="userName">나의 풋살장</div>
 					<div class="uTeam-container">
 						<div class="uTeam-wrap">
-							<div class="uTitle">TEAM</div>
-							<div class="uContant">우최팀</div>
+							<div class="uTitle">PLACE NAME</div>
+							<div class="uContant">안재풋살장</div>
 						</div>
 						<div class="uTeam-wrap">
-							<div class="uTitle">TEAM LEVEL</div>
-							<div class="uContant">루키</div>
+							<div class="uTitle">PLACE AREA</div>
+							<div class="uContant">서울특별시</div>
 						</div>
 						<div class="uTeam-wrap">
-							<div class="uTitle">TEAM RANK</div>
-							<div class="uContant">unRank</div>
+							<div class="uTitle">OPEN TIME</div>
+							<div class="uContant">08:00</div>
 						</div>
-						<!-- 매칭 경기 횟수 -->
 						<div class="uTeam-wrap">
-							<div class="uTitle">GAME</div>
-							<div class="uContant">5</div>
+							<div class="uTitle">PLACE FORM</div>
+							<div class="uContant">실외</div>
 						</div>
-						<!-- 용병 경기 횟수 -->
 						<div class="uTeam-wrap">
-							<div class="uTitle">HELPER</div>
-							<div class="uContant">0</div>
+							<div class="uTitle">PLACE GROUND</div>
+							<div class="uContant">인조잔디</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</article>
-		<article class="game">
-			<div class="game-container">
-				<div class="game-wrap">
-					<div class="game-title">매칭 신청</div>
+		<article class="reservation">
+			<div class="reservation-container">
+				<div class="reservation-wrap">
+					<div class="reservation-title">예약 신청</div>
 						<div class="box-wrap">
 							<div class="box-frame">
 								<div class="box-content">
 									<!-- 모집 상태에 따라 -->
-									<div class="status ing">매칭 중</div>
-									<!-- <div class="status end">매칭 완료</div> -->
-									<!-- <div class="status cancel">매칭 취소</div> -->
+									<div class="status ing">예약 중</div>
+									<!-- <div class="status end">예약 완료</div> -->
+									<!-- <div class="status cancel">예약 취소</div> -->
 									<div class="one-wrap">
-										<div class="date day">6월 14일</div>
+										<div class="date day">2023년 6월 14일</div>
 										<div class="date">수요일</div>
-										<div class="date">20:00</div>
+										<div class="date">20:00~22:00</div>
 									</div>
 									<div class="two-wrap">
 										<!-- 상세보기 -->
-										<a href="javascript:alert('제목 상세보기 test');" class="placeName">우리동네풋살왕FC</a>
+										<a href="javascript:alert('제목 상세보기 test');" class="placeName">안재풋살장</a>
 										<!-- 신청자 수/모집인원수 -->
-										<div class="numGame">루키</div>
+										<div class="numReservation">A코트</div>
 									</div>
 									<div class="checkbox-wrap">
 										<input type="checkbox" id="drop" class="drop" onclick="drop()" /><label for="drop"></label>
 									</div>
 									<div class="three-wrap">
 										<div class="arrow">▶</div>
-										<div class="three-content">남성</div>
+										<div class="three-content">인조잔디</div>
 										<div>&sdot;</div>
 										<div class="three-content">5vs5</div>
 										<div>&sdot;</div>
-										<div class="three-content">루키</div>
+										<div class="three-content">13x28</div>
 									</div>
 								</div>
 								<!-- 신청자 리스트 -->
 								<div id="detail" class="detail-container">
 									<div class="detail-wrap" id="sideon">
 										<div class="detail-content">
-											<div class="dContent">동현FC</div>
+											<div class="dContent">ja2eni</div>
 											<div class="dContent">&#149;</div>
 											<div class="dContent">남성</div>
 											<div class="dContent">&#149;</div>
-											<div class="dContent">플래티넘</div>
+											<div class="dContent">안재FC</div>
 										</div>
 									</div>
 									<!-- test (추후 삭제)-->
 									<div class="detail-wrap">
 										<div class="detail-content">
-											<div class="dContent">여누FC</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">혼성</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">프로</div>
-										</div>
-									</div>
-									<div class="detail-wrap">
-										<div class="detail-content">
-											<div class="dContent">아인FC</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">여성</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">다이아</div>
-										</div>
-									</div>
-									<div class="detail-wrap">
-										<div class="detail-content">
-											<div class="dContent">채린FC</div>
+											<div class="dContent">ja2eni</div>
 											<div class="dContent">&#149;</div>
 											<div class="dContent">남성</div>
 											<div class="dContent">&#149;</div>
-											<div class="dContent">세미프로</div>
+											<div class="dContent">안재FC</div>
+										</div>
+									</div>
+									<div class="detail-wrap">
+										<div class="detail-content">
+											<div class="dContent">ja2eni</div>
+											<div class="dContent">&#149;</div>
+											<div class="dContent">남성</div>
+											<div class="dContent">&#149;</div>
+											<div class="dContent">안재FC</div>
 										</div>
 									</div>
 									<!-- test END -->
@@ -133,36 +122,37 @@
 								<div class="side-container">
 									<div class="side-wrap">
 										<div class="side-head">
-											<div class="side-title">신청팀</div>
+											<div class="side-title">신청자</div>
 											<div class="btn-side">
 												<i class="i">X</i>
 											</div>
 										</div>
 										<div class="side-body">
 											<div class="content one">
-												<div class="sTitle">TEAM</div>
-												<div class="sContent">동현FC</div>
-											</div>
-											<div class="content">
-												<div class="sTitle">TEAM LEVEL</div>
-												<div class="sContent">플래티넘</div>
-											</div>
-											<div class="content">
-												<div class="sTitle">TEAM RANK</div>
-												<div class="uContant">10</div>
-											</div>
-											<!-- 매칭 경기 횟수 -->									
-											<div class="content">
-												<div class="sTitle">GAME</div>
-												<div class="sContent">23</div>
+												<div class="sTitle">ID</div>
+												<div class="sContent">ja2eni</div>
 											</div>
 											<div class="content">
 												<div class="sTitle">GENDER</div>
 												<div class="sContent">남성</div>
 											</div>
+											<div class="content">
+												<div class="sTitle">POSITION</div>
+												<div class="uContant">PIVO/GOLEIRO</div>
+											</div>
+											<div class="content">
+												<div class="sTitle">TEAM</div>
+												<div class="sContent">우최팀</div>
+											</div>
+											<!-- 매칭 경기 횟수 -->									
+											<div class="content">
+												<div class="sTitle">GAME</div>
+												<div class="sContent">7</div>
+											</div>
+											<!-- 용병 경기 횟수 -->
 											<div class="content seven">
-												<div class="sTitle">TEAM AREA</div>
-												<div class="sContent">울산광역시</div>
+												<div class="sTitle">HELPER</div>
+												<div class="sContent">10</div>
 											</div>
 											<!-- alert 띄우기(?) -->
 											<div class="content btn-side-wrap">
@@ -205,6 +195,6 @@
 <script src="/includes/js/scrollmagic.animation.gsap.min.js"></script>
 <script src="/includes/js/main.js"></script>
 <script src="/apply/js/applyList.js"></script>
-<script src="/apply/js/applyGame.js"></script>
+<script src="/apply/js/applyReservation.js"></script>
 
 </html>
