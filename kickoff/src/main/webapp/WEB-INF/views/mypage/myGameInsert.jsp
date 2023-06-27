@@ -16,41 +16,6 @@
 
 <title>Kick Off: 마이페이지</title>
 
-<!-- 
-	<script type="text/javascript">
-		$(document).ready(function() {
-
-			var msg = "${msg}";
-
-			if(msg != ""){
-				alert(msg);
-			}
-
-		});
-
-		function deleteConfirm(){
-
-			if(!confirm("삭제 하시겠습니까?")){
-				return false;
-			}else{
-				location.href="/delete?boardSeqno=${boardContents.boardSeqno}";
-			}
-		}
-
-		function updateConfirm(){
-
-			if(!confirm("수정 하시겠습니까?")){
-				return false;
-			}else{
-				location.href="/boardUpdate?boardSeqno=${boardContents.boardSeqno}";
-			}
-		}
-
-		
-	    }
-	</script>
-	-->
-
 </head>
 <body>
 	<div id="wrapper">
