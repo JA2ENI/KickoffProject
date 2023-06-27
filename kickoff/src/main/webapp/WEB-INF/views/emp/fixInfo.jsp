@@ -9,6 +9,7 @@
 		<!--[if lte IE 8]><script src="/emp/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel = "stylesheet" href = "/emp/css/fixInfo.css">
 		<link rel="stylesheet" href="/emp/css/main.css" />
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<!--[if lte IE 9]><link rel="stylesheet" href="/emp/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="/emp/css/ie8.css" /><![endif]-->
 	</head>
@@ -72,8 +73,35 @@
 										<div class="checkout__input__request">
 											<p>사업자 번호 인증<span>*</span></p>
 											<div class="number_content">
-												<input type="button" id="checkEmpNum" class="checkEmpNum empNum" onclick="" value="사업자 번호 인증"/>
-												<!-- <a href="/reservation" id="cancle" class="cancle">취소</a> -->
+												<input type="button" id="checkEmpNum" class="checkEmpNum empNum" value="사업자 번호 인증"/>
+												<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+											    <script>
+											      $(document).ready(function () {
+											        $("checkEmpNum").click(function () {
+											          var data = {
+											            b_no: ["8164700297"], // 실제 존재하는 사업자 번호
+											          };											       
+											
+											          let serviceKey ="g5kss8B127iH%2BqCnOL%2B3SpgFPUssF8IPJLv%2BP4LY%2BTFMRcCL6P6l4y6su6WUJgrHxJI0PtU9dGeda5hHq70Kag%3D%3D";
+											          $.ajax({
+											            url:
+											              "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=g5kss8B127iH%2BqCnOL%2B3SpgFPUssF8IPJLv%2BP4LY%2BTFMRcCL6P6l4y6su6WUJgrHxJI0PtU9dGeda5hHq70Kag%3D%3D" +
+											              serviceKey,
+											            type: "POST",
+											            data: JSON.stringify(data),
+											            dataType: "JSON",
+											            contentType: "application/json",
+											            accept: "application/json",
+											            success: function (result) {
+											              console.log("결과:: ", result);
+											            },
+											            error: function (error) {
+											              console.log("에러: ", error);
+											            },
+											          });
+											        });
+											      });
+											    </script>
 											</div>
 										</div>
 										<div class="row">
@@ -100,9 +128,17 @@
 										<div class="checkout__input__request">
 											<p>업체 번호<span>*</span></p>
 											<div class="phone_content">
-												<input type="text" id="phone" class="inputBox phone" name="empPhoneNumber" value="${empInfo.empPhoneNumber}" maxlength="13"/>
+												<div class="sendContainer">
+												<input type="text" placeholder="휴대폰 번호" name="inputPhoneNumber" id="inputPhoneNumber"  value="${empInfo.empPhoneNumber}"/>
+												<button type="button" id="sendPhoneNumber" name="sendPhoneNumber">전송</button>
+												</div>
+												<div class="confirmContainer">
+												<input type="text" placeholder="인증 번호" id="inputCertifiedNumber" name="inputCertifiedNumber" />
+												<button type="button" id="confirmButton" name="confirmButton">인증</button>
+												</div>
+												<!-- <input type="text" id="phone" class="inputBox phone" name="empPhoneNumber" value="${empInfo.empPhoneNumber}" maxlength="13"/>
 												<input type="button" id="checkPhone" class="checkPhone phone" onclick="" value="번호 인증"/>
-												<!-- <a href="/reservation" id="cancle" class="cancle">취소</a> -->
+												<a href="/reservation" id="cancle" class="cancle">취소</a> -->
 											</div>
 										</div>
 										<div class="checkout__input__request address">
@@ -175,6 +211,47 @@
 			}) 
 		});
 	</script>
+	
+	<script>
+	$('#sendPhoneNumber').click(function(){
+	    let phoneNumber = $('#inputPhoneNumber').val();
+	    
+            Swal.fire({
+                text: '인증번호 발송 완료!',
+            });
+	
+	    $.ajax({
+	        type: "GET",
+	        url: "/check/sendSMS",
+	        data: {
+	            "phoneNumber" : phoneNumber
+	        },
+	        success: function(res){
+	            $('#confirmButton').click(function(){
+	                if($.trim(res) == $('#inputCertifiedNumber').val()){
+	                    Swal.fire(
+	                        '인증성공!',
+	                        '휴대폰 인증이 정상적으로 완료되었습니다.',
+	                        'success'
+	                    ).then(function() {
+                        	
+                        	// 아이디 입력과 휴대폰 인증이 완료되면 아이디 찾기 버튼 활성화
+                        	$('#sign').prop('disabled', false);
+                        });
+
+	                } else {
+	                    Swal.fire({
+	                        icon: 'error',
+	                        title: '인증오류',
+	                        text: '인증번호가 올바르지 않습니다!',
+	                    });
+	                }
+	            });
+	        }
+	    });
+	});
+	</script>
+	
 	<!-- Kakao postcode -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>

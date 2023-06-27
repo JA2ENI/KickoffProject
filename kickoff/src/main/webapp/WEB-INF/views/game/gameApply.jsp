@@ -15,15 +15,15 @@
     <link href="https://fonts.google.com/noto/specimen/Noto+Sans+KR?subset=korean&noto.script=Kore" rel="stylesheet">
 	
     <!-- Css Styles -->
-    <link rel="stylesheet" href="/reservation/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/styles.css" type="text/css">
-    <link rel="stylesheet" href="/reservation/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="/game/css/style.css" type="text/css">
     <link rel="stylesheet" href="/includes/css/style.css">
     
     <!-- calendar -->
@@ -44,8 +44,8 @@
      <div class="bg-dark py-5" style="background-color: #7fb77e !important;">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">풋살장 예약 신청</h1>
-                <p class="lead fw-normal text-white-50 mb-0">멋진 경기가 펼쳐 질 풋살장 예약 신청하세요.</p>
+                <h1 class="display-4 fw-bolder">매칭 신청</h1>
+                <p class="lead fw-normal text-white-50 mb-0">열띈 경기를 위해 매칭을 신청해보세요.</p>
             </div>
         </div>
     </div>
@@ -103,8 +103,8 @@
 							<input type="hidden" name="reservationPlaceAddress" value="${reservationDetail.reservationPlaceAddress}" />
 							<input type="hidden" name="reservationOriginNo" value="${reservationDetail.reservationNo}" />
 							<div class="btn-container">
-								<input type="submit" id="insert" class="request" onclick="requestCheck()" value="신청"/>
-								<a href="/reservation" id="cancle" class="cancle">취소</a>
+								<input type="submit" id="insert" class="request" onclick="validCheck()" value="신청"/>
+								<a href="location.href='/gameDetail?gameSeqno=${list.gameSeqno}';" id="cancle" class="cancle">취소</a>
 							</div>
 						</div>
 					</div>
@@ -127,22 +127,22 @@
 			if(!confirm("신청하시겠습니까?")){
 				return false;
 			} else {
-				location.href="/reservationRequest";
+				location.href='/game';
 			}
 		}
 	</script>
 	
     <!-- Js Plugins -->
-    <script src="/reservation/js/jquery-3.3.1.min.js"></script>
-    <script src="/reservation/js/bootstrap.min.js"></script>
-    <script src="/reservation/js/jquery.nice-select.min.js"></script>
-    <script src="/reservation/js/jquery-ui.min.js"></script>
-    <script src="/reservation/js/jquery.slicknav.js"></script>
-    <script src="/reservation/js/mixitup.min.js"></script>
-    <script src="/reservation/js/owl.carousel.min.js"></script>
-    <script src="/reservation/js/main.js"></script>
-    <script src="/reservation/js/validation.js"></script>
-	<script src="/reservation/js/common.js"></script>
+    <script src="/game/js/jquery-3.3.1.min.js"></script>
+    <script src="/game/js/bootstrap.min.js"></script>
+    <script src="/game/js/jquery.nice-select.min.js"></script>
+    <script src="/game/js/jquery-ui.min.js"></script>
+    <script src="/game/js/jquery.slicknav.js"></script>
+    <script src="/game/js/mixitup.min.js"></script>
+    <script src="/game/js/owl.carousel.min.js"></script>
+    <script src="/game/js/main.js"></script>
+    <script src="/game/js/validation.js"></script>
+	<script src="/game/js/common.js"></script>
 
     <script src="/includes/js/jquery.lettering.js"></script>
     <script src="/includes/js/jquery.sticky.js"></script>
