@@ -1,25 +1,46 @@
 package com.teamcommit.kickoff.Controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.teamcommit.kickoff.Do.PlaceDO;
+import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Service.apply.ApplyService;
+
+import edu.emory.mathcs.backport.java.util.Arrays;
+
 
 @Controller
 public class ApplyController {
 
+	@Autowired
+	ApplyService applyService;
+	
 	@RequestMapping(value="/applyList")
 	public String applyList(HttpServletRequest request, HttpSession session) throws Exception {
 		String view = "/apply/applyList";
-		String parameter = null;
+		String parameter = request.getParameter("page");
+		session.removeAttribute("msg");
 		
-		if(request.getParameter("page") != null) {
-			parameter = request.getParameter("page");
+		if(parameter != null) {
+			if(!parameter.equals("reservation") && !parameter.equals("game") && !parameter.equals("team") && !parameter.equals("helper")) {
+				session.setAttribute("msg", "alert('유효하지 않는 요청입니다.');");
+				view = "redirect:/applySelect";
+				return view;
+			}
 			session.setAttribute("page", parameter);
-			view = applySelectList(request, session);
+			view = "/apply/applySelect";
 			return view;
-		}
+		} 
 		
 		return view;
 	}
@@ -27,12 +48,10 @@ public class ApplyController {
 	@RequestMapping(value="/applySelect")
 	public String applySelectList(HttpServletRequest request, HttpSession session) throws Exception {
 		String view = "/apply/applySelect"; 
-		String page = null;
+		String page = (String)session.getAttribute("page");
 		
-		if(session.getAttribute("page") != null) {
-			page = (String)session.getAttribute("page");
+		if(page != null) {
 			String num = request.getParameter("num");
-			
 			if(num != null) {
 				if(num.equals("1")) {
 					if(page.equals("reservation")) {
@@ -62,24 +81,43 @@ public class ApplyController {
 						view = "redirect:/applyHelperRecruiter";
 						return view;
 					}
-				}
+				} 
 			}
 		}
+		
 		return view;
 	}
 	
 	//에약 신청자 페이지 
-	@RequestMapping(value="/applyReservationApplicant")
-	public String applyReservationApplicant() throws Exception {
+	@RequestMapping(value="")
+	public String applyReservationApplicant(HttpSession session) throws Exception {
 		String view = "/apply/applyReservationApplicant";
 		
 		return view;
 	}
 	
 	//예약 모집자 페이지 
-	@RequestMapping(value="/applyReservationRecruiter")
-	public String applyReservationRecruiter(HttpSession session) throws Exception {
+	@RequestMapping(value="")
+	public String applyReservationRecruiter(HttpSession session, Model model) throws Exception {
 		String view = "/apply/applyReservationRecruiter";
+		String empId = (String)session.getAttribute("empId");
+		
+		if(empId != null) {
+			PlaceDO placeInfo = applyService.placeInfo(empId);
+			List<ReservationDO> reservation = applyService.reservationList(empId);
+			
+			for(int i=0; i<reservation.size(); i++) {
+				String getDate = reservation.get(i).getReservationDate();
+				System.out.println(reservation.get(i).getReservationDate());
+				
+				String year = getDate.substring(0, 4);
+				String month = getDate.substring(5, 7);
+				String day = getDate.substring(8, 10);
+			}
+			
+			model.addAttribute("placeInfo", placeInfo);
+			model.addAttribute("reservationList", reservation);
+		}
 		
 		return view;
 	}

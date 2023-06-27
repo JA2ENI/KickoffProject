@@ -139,10 +139,10 @@
                             <div class="checkout__input">
                                 <p>예약 상태<span>*</span></p>
                                 <label>
-                                    <input type="radio" name="reservationStatus" value="예약대기" onclick='getStatus(event)' <c:if test="${reservationDetail.reservationStatus eq '예약대기'}">checked="checked"</c:if>/>&nbsp예약대기
+                                    <input type="radio" name="reservationStatus" value="예약 중" onclick='getStatus(event)' <c:if test="${reservationDetail.reservationStatus eq '예약 중'}">checked="checked"</c:if>/>&nbsp예약 중
                                 </label>
                                 <label>
-                                    <input type="radio" name="reservationStatus" value="예약완료" onclick='getStatus(event)'<c:if test="${reservationDetail.reservationStatus eq '예약완료'}">checked="checked"</c:if>/>&nbsp예약완료
+                                    <input type="radio" name="reservationStatus" value="예약 완료" onclick='getStatus(event)'<c:if test="${reservationDetail.reservationStatus eq '예약 완료'}">checked="checked"</c:if>/>&nbsp예약 완료
                                 </label>
                             </div>
                             <div class="checkout__input">

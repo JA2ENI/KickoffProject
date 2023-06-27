@@ -139,7 +139,7 @@
                             <div class="checkout__input">
                                 <p>예약 상태<span>*</span></p>
                                 <label>
-                                	<input type="radio" onclick='getStatus(event)' checked/>&nbsp예약대기
+                                	<input type="radio" onclick='getStatus(event)' checked/>&nbsp예약 중
                                 </label>
                                 <label>
                                 	<input type="radio" disabled/>&nbsp예약완료
@@ -171,7 +171,7 @@
 									<li>예약 날짜<span id="date"></span></li>
 									<li>시작 시간<span id="startTime"></span></li>
 									<li>종료 시간<span id="endTime"></span></li>
-									<li>예약 상태<span id="status">예약대기</span></li>
+									<li>예약 상태<span id="status">예약 중</span></li>
 									<li>대관비<span id="price"></span></li>
 								</ul>
                                 <input type="hidden" name="empId" value="${empId}" />
