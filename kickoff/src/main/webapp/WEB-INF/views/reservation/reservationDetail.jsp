@@ -82,11 +82,11 @@
 									<img src="/reservation/images/loading.png">
 								</div>
 								<c:choose>
-									<c:when test="${reservationDetail.reservationStatus == '예약대기'}">
-										<b class="text-dark">예약상태</b><small>예약대기</small>
+									<c:when test="${reservationDetail.reservationStatus == '예약 중'}">
+										<b class="text-dark">예약상태</b><small>예약 중</small>
 									</c:when>
 									<c:otherwise>
-										<b class="text-dark">예약상태</b><small>예약완료</small>
+										<b class="text-dark">예약상태</b><small>예약 완료</small>
 									</c:otherwise>
 								</c:choose>
 							</div>

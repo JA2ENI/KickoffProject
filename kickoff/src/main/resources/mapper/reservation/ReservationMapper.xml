@@ -51,7 +51,7 @@
                 #{reservationDate},
                 #{reservationStartTime},
                 #{reservationEndTime},
-                '예약대기',
+                '예약 중',
                 #{reservationPrice},
                 #{reservationComment},
                 #{reservationHeadcount},

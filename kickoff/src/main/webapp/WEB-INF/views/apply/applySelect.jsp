@@ -32,10 +32,20 @@
 			</button>
 		</div>
 	</section>
+	<input type="hidden" id="msg" name="msg" value="${msg}"/>
 </body>
 
 <!-- footer -->
 <%@include file="/includes/footer.jsp"%>
+
+<script>
+	const msg = $('input[name=msg]').val();
+	
+	if(msg != "") {
+		${msg}
+		location.href="/applyList";
+	}
+</script>
 
 <!-- script -->
 <script src="/includes/js/jquery-3.3.1.min.js"></script>
