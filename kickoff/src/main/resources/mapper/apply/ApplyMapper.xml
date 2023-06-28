@@ -36,7 +36,7 @@
     		)
     		VALUES (
     			#{userId},
-    			#{helperSeqno}
+    			#{helperSeqno},
     			#{helperUserId}
     		)
     	]]>
@@ -62,7 +62,13 @@
     </select>
     
     
-    
+    <select id = "countAccept" resultType = "Integer">
+    	<![CDATA[
+    		SELECT COUNT(HELPER_APPLY_STATUS)
+    		FROM HELPER_APPLY
+    		WHERE HELPER_APPLY_STATUS = '수락'	
+    	]]>
+    </select>
     
     
     

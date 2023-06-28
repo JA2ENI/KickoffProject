@@ -25,6 +25,11 @@ public class HelperController {
     @Autowired
     private ApplyService applyService;
     
+    @GetMapping("/helperList")
+    public String helperList() {
+    	return "/helper/helperList";
+    }
+    
     @PostMapping("/helperList")
     @ResponseBody
     public String HelperList(@RequestParam(value = "helperTime") String helperTime, Model model) {
