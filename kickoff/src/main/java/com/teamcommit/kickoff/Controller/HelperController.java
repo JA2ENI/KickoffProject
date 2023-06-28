@@ -1,8 +1,10 @@
 package com.teamcommit.kickoff.Controller;
 
+import com.teamcommit.kickoff.Do.HelperApplyDO;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.MessageDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Service.apply.ApplyService;
 import com.teamcommit.kickoff.Service.helper.HelperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,21 +22,8 @@ public class HelperController {
 
     @Autowired
     private HelperService helperService;
-
-    @GetMapping("/helperList")
-    public String helperList(@ModelAttribute("helperDO") HelperDO helperDO, Model model) {
-        String view = "/helper/helperList";
-
-        try {
-            //helperService.updateStatus();
-            List<HelperDO> list = helperService.selectHelper(helperDO);
-            model.addAttribute("table", list);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return view;
-    }
+    @Autowired
+    private ApplyService applyService;
     
     @PostMapping("/helperList")
     @ResponseBody
@@ -51,7 +40,7 @@ public class HelperController {
     			 obj.put("helperGender", helperDO.getHelperGender());
     			 obj.put("helperPlaceName", helperDO.getHelperPlaceName());
     			 obj.put("helperTime", helperDO.getHelperTime());
-    			 obj.put("helperUserId", helperDO.getUserId());
+    			 obj.put("helperUserId", helperDO.getHelperUserId());
     			 obj.put("helperStatus", helperDO.getHelperStatus());
     		     array.put(obj);	//작성한 JSON 객체를 배열에 추가
     		     
@@ -105,12 +94,12 @@ public class HelperController {
 
     @GetMapping("/helperReservation")
     public String helperInsert(@RequestParam(value = "helperPlaceName") String helperPlaceName, @RequestParam(value = "helperAddress") String helperAddress,
-                               @RequestParam(value = "helperTime") String helperTime, @RequestParam(value = "userId") String userId, Model model) {
+                               @RequestParam(value = "helperTime") String helperTime, @RequestParam(value = "helperUserId") String helperUserId, Model model) {
         String view = "forward:/helperInsert";
         model.addAttribute("placeName", helperPlaceName);
         model.addAttribute("address", helperAddress);
         model.addAttribute("date", helperTime);
-        model.addAttribute("helperId", userId);
+        model.addAttribute("helperId", helperUserId);
         return view;
     }
 
@@ -148,7 +137,7 @@ public class HelperController {
     }
 
     @GetMapping("/helperMessage")
-    public ModelAndView helperMessage(Model model, HttpSession session) {
+    public ModelAndView helperMessage(@ModelAttribute("helperApplyDO") HelperApplyDO helperApplyDO, Model model, HttpSession session) {
         ModelAndView mv = new ModelAndView("/message/helperMessageInsert");
 
         if(session.getAttribute("userId") == null) {
@@ -159,14 +148,19 @@ public class HelperController {
             try{
                 HelperDO message = helperService.selectHelperDetail((Integer)session.getAttribute("helperSeqNo"));
                 String userId = (String)session.getAttribute("userId");
-
-                if(message.getUserId().equals(userId)) {
-                    model.addAttribute("userScript", "alert('본인 게시글에는 신청을 할 수 없습니다!');");
+                helperApplyDO.setHelperSeqno(message.getHelperSeqno());
+                helperApplyDO.setUserId(userId);
+                helperApplyDO.setHelperUserId(message.getHelperUserId());
+                HelperApplyDO test = applyService.helperSelect(helperApplyDO);
+                
+                if(message.getHelperUserId().equals(userId) || test != null) {
+                    model.addAttribute("userScript", "alert('본인 게시글이거나 이미 신청한 게시글입니다.');");
                     mv.setViewName("forward:/helperDetail?helperSeqno=" + (Integer)session.getAttribute("helperSeqNo"));
                 }
                 else {
                     session.setAttribute("message", message);
                     session.setAttribute("messageUserId", userId);
+                    applyService.helperApplyInsert(helperApplyDO);
                 }
             }
             catch (Exception e) {
@@ -182,8 +176,9 @@ public class HelperController {
         String view = "/message/helperMessageInsert";
 
         HelperDO receive = (HelperDO) session.getAttribute("message");
-        messageDO.setMessageReceiveId(receive.getUserId());
+        messageDO.setMessageReceiveId(receive.getHelperUserId());
         messageDO.setMessageSendId((String) session.getAttribute("messageUserId"));
+        
 
             try {
                 helperService.insertMessage(messageDO);

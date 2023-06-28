@@ -49,7 +49,7 @@
 						</li>
 						<li>
 							<span class="col1">수신 아이디 : </span>
-							<span class="col2"><input type="text" name="messageReceiveId" id = "messageReceiveId" disabled value ="${message.userId}" required /></span>
+							<span class="col2"><input type="text" name="messageReceiveId" id = "messageReceiveId" disabled value ="${message.helperUserId}" required /></span>
 						</li>
 						<li>
 							<span class="col1">제목 : </span>
