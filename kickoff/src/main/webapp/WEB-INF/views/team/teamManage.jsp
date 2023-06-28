@@ -28,7 +28,7 @@
 			<div class="root-container">
 				<article class="article-container one">
 					<div class="item-wrap">
-						<div class="title">TEAM</div>
+						<div class="title">TEAM INFO</div>
 						<div class="content-container">
 							<div class="title-wrap">
 								<div class="subject team">팀</div>
@@ -49,25 +49,25 @@
 				<article id="boxDetail" class="article-container two">
 					<div class="item-wrap">
 						<div class="wrap">
-							<div class="title board">TEAM BOARD</div>
+							<div class="title board">TEAM MEMBER</div>
 							<a href="/teamCreateForm" class="btn-teamInsert">팀 생성</a>
 						</div>
 						<div class="content-container">
 							<div class="title-wrap">
 								<div class="subject type">구분</div>
-								<div class="subject id">아이디</div>
 								<div class="subject name">이름</div>
+								<div class="subject position">포지션</div>
 								<div class="subject gender">성별</div>
 								<div class="subject manage">관리</div>
 							</div>
-							<c:forEach var="board" items="${teamBoard}">
+							<c:forEach var="member" items="${memberList}">
 							<button type="button" class="detail" onclick="javascript:alert('게시글 상세보기');">
 								<div class="content-wrap">
-									<div class="content team2"><c:out value="${board.teamName}" /></div>
-									<div class="content date">~<c:out value="${board.teamEndDate}" /></div>
-									<div class="content total"><c:out value="${board.teamNumber}" /></div>
-									<div class="content gender"><c:out value="${board.teamGender}" /></div>
-									<div class="content status"><c:out value="${board.teamStatus}" /></div>
+									<div class="content type"><c:out value="${member.teamInfoDO.teamType}" /></div>
+									<div class="content name"><c:out value="${member.userName}" /></div>
+									<div class="content position"><c:out value="${member.userMainPosition}" /></div>
+									<div class="content gender"><c:out value="${member.userGender}" /></div>
+									<div class="content manage"></div>
 								</div>
 							</button>
 							</c:forEach>

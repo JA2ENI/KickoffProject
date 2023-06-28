@@ -6,6 +6,7 @@ import com.teamcommit.kickoff.Do.TeamInfoDO;
 import com.teamcommit.kickoff.Do.UserDO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TeamService {
 
@@ -19,7 +20,9 @@ public interface TeamService {
 
     TeamDO getTeamContents(int teamSeqNo) throws Exception;
     
-//    List<UserDO> teamMemberList(UserDO userDO) throws Exception;
+    TeamInfoDO teamInfo(String userId) throws Exception;
+    
+    List<Map<String, String>> teamMemberList(int teamId) throws Exception;
 
     List<TeamDO> rankList(TeamDO teamDO) throws Exception;
 

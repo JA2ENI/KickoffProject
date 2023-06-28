@@ -210,7 +210,7 @@ p {
 .subject.gender,
 .subject.status,
 .subject.type,
-.subject.id,
+.subject.position,
 .subject.name,
 .subject.manage {
 	width: 12%;
@@ -221,7 +221,7 @@ p {
 .content.status,
 .content.status2,
 .content.type,
-.content.id,
+.content.position,
 .content.name,
 .content.manage {
 	width: 12%;

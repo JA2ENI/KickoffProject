@@ -81,19 +81,33 @@
             TEAM_SEQNO = #{teamSeqNo}
         ]]>
     </select>
-    
-      <!-- Team Member List 
-    <select id="teamMemberList" parameterType="com.teamcommit.kickoff.Do.UserDO" resultType="com.teamcommit.kickoff.Do.UserDO">
+	
+	 <!-- Team Member List -->
+    <select id="teamMemberList" parameterType="Integer" resultType="HashMap">
         <![CDATA[
         SELECT
-        	USER_CLASSIFICATION, USER_ID, USER_NAME, USER_GENDER
+        	T.TEAM_TYPE, U.USER_NAME, U.USER_MAIN_POSITION, U.USER_GENDER
 		FROM
-			USERS
-		WHERE
-			USER_ID IN (SELECT MEMBER_ID
-					FROM TEAM_INFO WHERE TEAM_NAME = #{teamName});
+			USERS U
+				JOIN TEAM_INFO T
+		ON
+			(T.MEMBER_ID = U.USER_ID)
+   				OR (T.LEADER_ID = U.USER_ID)
+   		WHERE
+   			T.TEAM_ID = #{teamId}
         ]]>
-    </select>-->
+    </select>
+    
+    <select id="teamInfo" parameterType="String" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
+        <![CDATA[
+        SELECT
+        	*
+		FROM
+			TEAM_INFO
+		WHERE
+			MEMBER_ID = #{userId} OR LEADER_ID = #{userId}
+        ]]>
+    </select>
 
     <!-- TeamRank List -->
     <select id="rankList" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">

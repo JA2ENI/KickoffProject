@@ -7,6 +7,7 @@ import com.teamcommit.kickoff.Do.UserDO;
 
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
+import java.util.Map;
 
 
 @Mapper
@@ -22,7 +23,9 @@ public interface TeamMapper {
 
     public void insertTeam(TeamDO teamDO);
     
-//    public List<UserDO> teamMemberList(UserDO userDO);
+    public TeamInfoDO teamInfo(String userId);
+    
+    public List<Map<String, String>> teamMemberList(int teamId);
 
     public List<TeamDO> rankList(TeamDO teamDO);
     
