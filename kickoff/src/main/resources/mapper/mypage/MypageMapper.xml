@@ -108,18 +108,6 @@
         ]]>
     </update>
     
-    <!-- My Team List -->
-    <select id="myTeamList" parameterType="String" resultType="com.teamcommit.kickoff.Do.TeamDO">
-        <![CDATA[
-            SELECT *
-            FROM
-                TEAM_INFO
-            WHERE
-            	LEADER_ID = #{userId}
-            ORDER BY RESERVATION_DATE ASC	
-        ]]>
-    </select>
-    
     <!-- User Info Delete -->
     <update id="userDelete" parameterType="String">
         <![CDATA[

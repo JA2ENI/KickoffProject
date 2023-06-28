@@ -234,20 +234,6 @@ public class MypageController {
         return view;
     }
     
-    @RequestMapping(value = "/myTeam")
-    public ModelAndView myTeamList(HttpSession session) throws Exception {
-    	ModelAndView mv = new ModelAndView("/mypage/myTeam");
-    	/*
-    	String userId = (String)session.getAttribute("userId");
-    	
-    	List<TeamDO> list = mypageService.myTeamList(userId);
-
-    	mv.addObject("myTeamList", list);
-    	*/
-        return mv;
-    }
-    
-
     @RequestMapping(value = "/myMessage")
     public String myMessageList() throws Exception {
         String view = "/mypage/myMessage";
@@ -255,13 +241,6 @@ public class MypageController {
         return view;
     }
 
-    @RequestMapping(value = "/myHelper")
-    public String myHelperList() throws Exception {
-        String view = "/mypage/myHelper";
-
-        return view;
-    }
-    
     @RequestMapping(value = "/userDelete")
     public String userDelete(HttpSession session) throws Exception {
         String view = "/main";

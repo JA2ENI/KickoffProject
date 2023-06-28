@@ -26,8 +26,6 @@ public interface MypageService {
 	
 	void updateUserInfo(UserDO userDO) throws Exception;
 	
-	List<TeamDO> myTeamList(String userId) throws Exception;
-	
 	void userDelete(String userId) throws Exception;
 
 	List<GameDO> myGameRecordList(String userId) throws Exception;

@@ -60,100 +60,99 @@
 					<div class="reservation-title">예약 신청</div>
 						<c:choose>
 							<c:when test="${fn:length(reservationList) > 0}">
-								<c:forEach var="row" items="${reservationList}">
-									<c:forEach var="date" items="${date}">
-										<div class="box-wrap">
-											<div class="box-frame">
-												<div class="box-content">
-													<!-- 모집 상태에 따라 -->
-													<div class="status ing">예약 중</div>
-													<!-- <div class="status end">예약 완료</div> -->
-													<!-- <div class="status cancel">예약 취소</div> -->
-													<div class="one-wrap">
-														<div class="date day">${date.year}년 ${date.month}월 ${date.day}일</div>
-														<div class="date"></div>
-														<div class="date">~</div>
-														<!-- <div class="date day">2023년 6월 14일</div>
-														<div class="date">수요일</div>
-														<div class="date">20:00~22:00</div> -->
-													</div>
-													<div class="two-wrap">
-														<!-- 상세보기 -->
-														<a href="javascript:alert('제목 상세보기 test');" class="placeName">${row.reservationPlaceName}</a>
-														<!-- 신청자 수/모집인원수 -->
-														<div class="numReservation">${row.reservationCourtName}</div>
-													</div>
-													<div class="checkbox-wrap">
-														<input type="checkbox" id="drop" class="drop" onclick="drop()" /><label for="drop"></label>
-													</div>
-													<div class="three-wrap">
-														<div class="arrow">▶</div>
-														<div class="three-content">${row.reservationPlaceGround}</div>
-														<div>&sdot;</div>
-														<div class="three-content">${row.reservationHeadcount}</div>
-														<div>&sdot;</div>
-														<div class="three-content">${row.reservationPlaceSize}</div>
+								<c:forEach var="row" items="${reservationList}" varStatus="num">
+									<div class="box-wrap">
+										<div class="box-frame">
+											<div class="box-content">
+												<!-- 모집 상태에 따라 -->
+												<div class="status ing">예약 중</div>
+												<!-- <div class="status end">예약 완료</div> -->
+												<!-- <div class="status cancel">예약 취소</div> -->
+												<div class="one-wrap">
+													<%-- <div class="date day">${date.year}년 ${date.month}월 ${date.day}일</div> --%>
+													<div class="date day">${row.rDate}</div>
+													<div class="date">${row.rDayOfWeek}</div>
+													<div class="date">${row.rStartTime}~${row.rEndTime}</div>
+													<!-- <div class="date day">2023년 6월 14일</div>
+													<div class="date">수요일</div>
+													<div class="date">20:00~22:00</div> -->
+												</div>
+												<div class="two-wrap">
+													<!-- 상세보기 -->
+													<a href="javascript:alert('제목 상세보기 test');" class="placeName">${row.rPlaceName}</a>
+													<!-- 신청자 수/모집인원수 -->
+													<div class="numReservation">${row.rCourtName}</div>
+												</div>
+												<div class="checkbox-wrap">
+													<input type="checkbox" id="drop" class="drop" onclick="drop()" /><label for="drop"></label>
+												</div>
+												<div class="three-wrap">
+													<div class="arrow">▶</div>
+													<div class="three-content">${row.rPlaceGround}</div>
+													<div>&sdot;</div>
+													<div class="three-content">${row.rHeadcount}</div>
+													<div>&sdot;</div>
+													<div class="three-content">${row.rPlaceSize}</div>
+												</div>
+											</div>
+											<!-- 신청자 리스트 -->
+											<div id="detail" class="detail-container">
+												<div class="detail-wrap" id="sideon">
+													<div class="detail-content">
+														<div class="dContent">ja2eni</div>
+														<div class="dContent">&#149;</div>
+														<div class="dContent">남성</div>
+														<div class="dContent">&#149;</div>
+														<div class="dContent">안재FC</div>
 													</div>
 												</div>
-												<!-- 신청자 리스트 -->
-												<div id="detail" class="detail-container">
-													<div class="detail-wrap" id="sideon">
-														<div class="detail-content">
-															<div class="dContent">ja2eni</div>
-															<div class="dContent">&#149;</div>
-															<div class="dContent">남성</div>
-															<div class="dContent">&#149;</div>
-															<div class="dContent">안재FC</div>
+											</div>
+											<!-- 수락&거절(side bar) -->
+											<div class="side-container">
+												<div class="side-wrap">
+													<div class="side-head">
+														<div class="side-title">신청자</div>
+														<div class="btn-side">
+															<i class="i">X</i>
 														</div>
 													</div>
-												</div>
-												<!-- 수락&거절(side bar) -->
-												<div class="side-container">
-													<div class="side-wrap">
-														<div class="side-head">
-															<div class="side-title">신청자</div>
-															<div class="btn-side">
-																<i class="i">X</i>
-															</div>
+													<div class="side-body">
+														<div class="content one">
+															<div class="sTitle">ID</div>
+															<div class="sContent">ja2eni</div>
 														</div>
-														<div class="side-body">
-															<div class="content one">
-																<div class="sTitle">ID</div>
-																<div class="sContent">ja2eni</div>
-															</div>
-															<div class="content">
-																<div class="sTitle">GENDER</div>
-																<div class="sContent">남성</div>
-															</div>
-															<div class="content">
-																<div class="sTitle">POSITION</div>
-																<div class="uContant">PIVO/GOLEIRO</div>
-															</div>
-															<div class="content">
-																<div class="sTitle">TEAM</div>
-																<div class="sContent">우최팀</div>
-															</div>
-															<!-- 매칭 경기 횟수 -->									
-															<div class="content">
-																<div class="sTitle">GAME</div>
-																<div class="sContent">7</div>
-															</div>
-															<!-- 용병 경기 횟수 -->
-															<div class="content seven">
-																<div class="sTitle">HELPER</div>
-																<div class="sContent">10</div>
-															</div>
-															<!-- alert 띄우기(?) -->
-															<div class="content btn-side-wrap">
-																<button type="button" id="accept" class="sBtn accept">수락</button>
-																<button type="button" id="accept" class="sBtn refusal">거절</button>
-															</div>
+														<div class="content">
+															<div class="sTitle">GENDER</div>
+															<div class="sContent">남성</div>
+														</div>
+														<div class="content">
+															<div class="sTitle">POSITION</div>
+															<div class="uContant">PIVO/GOLEIRO</div>
+														</div>
+														<div class="content">
+															<div class="sTitle">TEAM</div>
+															<div class="sContent">우최팀</div>
+														</div>
+														<!-- 매칭 경기 횟수 -->									
+														<div class="content">
+															<div class="sTitle">GAME</div>
+															<div class="sContent">7</div>
+														</div>
+														<!-- 용병 경기 횟수 -->
+														<div class="content seven">
+															<div class="sTitle">HELPER</div>
+															<div class="sContent">10</div>
+														</div>
+														<!-- alert 띄우기(?) -->
+														<div class="content btn-side-wrap">
+															<button type="button" id="accept" class="sBtn accept">수락</button>
+															<button type="button" id="accept" class="sBtn refusal">거절</button>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-									</c:forEach>
+									</div>
 								</c:forEach>
 							</c:when>
 						</c:choose>

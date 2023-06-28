@@ -63,7 +63,7 @@
 							<c:forEach var="member" items="${memberList}">
 							<button type="button" class="detail" onclick="javascript:alert('게시글 상세보기');">
 								<div class="content-wrap">
-									<div class="content type"><c:out value="${member.teamInfoDO.teamType}" /></div>
+									<div class="content type"><c:out value="${member.TEAM_TYPE}" /></div>
 									<div class="content name"><c:out value="${member.userName}" /></div>
 									<div class="content position"><c:out value="${member.userMainPosition}" /></div>
 									<div class="content gender"><c:out value="${member.userGender}" /></div>

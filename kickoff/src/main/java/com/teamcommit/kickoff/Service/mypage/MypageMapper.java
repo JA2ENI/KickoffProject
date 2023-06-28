@@ -29,8 +29,6 @@ public interface MypageMapper {
 	 
 	 public void updateUserInfo(UserDO userDO);
 	 
-	 public List<TeamDO> myTeamList(String userId);
-	 
 	 public void userDelete(String userId);
 	 
 	 public List<GameDO> myGameRecordList(String String);
