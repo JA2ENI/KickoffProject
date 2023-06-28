@@ -16,7 +16,7 @@ public class TeamInfoDO {
 	private String memberId;
 	//팀 이름
 	private String teamName;
-	//팀 인원수
+	//팀 현재 인원수
 	private int teamNumber;
 	//팀 성별
 	private String teamGender;
@@ -40,6 +40,10 @@ public class TeamInfoDO {
 	private String teamTime;
 	//팀 고유 색상
 	private String teamColor;
+	//팀 총 인원수
+	private String teamMaxNumber;
+	//팀 구분
+	private String teamType;
 	
 	
 	public int getTeamInfoSeq() {
@@ -144,6 +148,17 @@ public class TeamInfoDO {
 	public void setTeamColor(String teamColor) {
 		this.teamColor = teamColor;
 	}
-	
+	public String getTeamMaxNumber() {
+		return teamMaxNumber;
+	}
+	public void setTeamMaxNumber(String teamMaxNumber) {
+		this.teamMaxNumber = teamMaxNumber;
+	}
+	public String getTeamType() {
+		return teamType;
+	}
+	public void setTeamType(String teamType) {
+		this.teamType = teamType;
+	}
 	
 }

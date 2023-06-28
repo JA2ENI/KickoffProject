@@ -1,5 +1,6 @@
 package com.teamcommit.kickoff.Controller;
 
+import com.teamcommit.kickoff.Do.EmployerDO;
 import com.teamcommit.kickoff.Do.TeamApplyDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.TeamInfoDO;
@@ -20,7 +21,9 @@ import javax.servlet.http.HttpSession;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class TeamController {
@@ -35,7 +38,7 @@ public class TeamController {
 
     // 팀 목록 & 게시글 목록
     @RequestMapping(value = "/team")
-    public String TeamList(@ModelAttribute("teamInfoDO") TeamInfoDO teamInfoDO, TeamDO teamDO, Model model) throws Exception {
+    public String TeamList(@ModelAttribute("teamInfoDO") TeamInfoDO teamInfoDO, @ModelAttribute("teamDO") TeamDO teamDO, Model model) throws Exception {
         String view = "/team/team";
         
         List<TeamInfoDO> teamList = teamService.teamInfoList(teamInfoDO);
@@ -190,15 +193,22 @@ public class TeamController {
     }
     
     // 팀원 리스트
-//    @RequestMapping(value = "/teamManage")
-//    public String TeamMemberList(@ModelAttribute("teamInfoDO") UserDO userDO, Model model) throws Exception {
-//        String view = "/team/teamManage";
-//        
-//        List<UserDO> memberList = teamService.teamMemberList(userDO);
-//        model.addAttribute("memberList", memberList);
-//        
-//
-//        return view;
-//    }
+    @RequestMapping( "/teamMembersList")
+    public String teamMembersList(HttpServletRequest request, Model model) throws Exception {
+    	String view = "/team/teamManage";
+    	
+//    	//로그인한 이용자 ID로 로그인 정보 가져오기
+        String userId = (String) request.getSession().getAttribute("userId");
+        
+        TeamInfoDO teamInfoDO = teamService.teamInfo(userId);
+        
+        int teamId = teamInfoDO.getTeamId();
+        
+    	List<Map<String, String>> memberList = teamService.teamMemberList(teamId);
+        model.addAttribute("memberList", memberList);
+        
+        System.out.println("Member List.size: " + memberList.size());
 
+        return view;
+    }
 }

@@ -33,98 +33,128 @@ public class UserDO {
 	private String userStatus;
 	// 사용자 구분
 	private String userClassification;
-	
+	//사용자 정지 날짜
 	private Date userStopDate;
+
 	
 	public String getUserId() {
 		return userId;
 	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 	public String getUserPw() {
 		return userPw;
 	}
+
 	public void setUserPw(String userPw) {
 		this.userPw = userPw;
 	}
+
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	public String getUserAddress() {
 		return userAddress;
 	}
+
 	public void setUserAddress(String userAddress) {
 		this.userAddress = userAddress;
 	}
+
 	public String getUserPhoneNumber() {
 		return userPhoneNumber;
 	}
+
 	public void setUserPhoneNumber(String userPhoneNumber) {
 		this.userPhoneNumber = userPhoneNumber;
 	}
+
 	public String getUserEmail() {
 		return userEmail;
 	}
+
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
+
 	public String getUserBirthdate() {
 		return userBirthdate;
 	}
+
 	public void setUserBirthdate(String userBirthdate) {
 		this.userBirthdate = userBirthdate;
 	}
+
 	public String getUserGender() {
 		return userGender;
 	}
+
 	public void setUserGender(String userGender) {
 		this.userGender = userGender;
 	}
+
 	public String getUserMainPosition() {
 		return userMainPosition;
 	}
+
 	public void setUserMainPosition(String userMainPosition) {
 		this.userMainPosition = userMainPosition;
 	}
+
 	public String getUserSubPosition() {
 		return userSubPosition;
 	}
+
 	public void setUserSubPosition(String userSubPosition) {
 		this.userSubPosition = userSubPosition;
 	}
+
 	public int getUserStopCount() {
 		return userStopCount;
 	}
+
 	public void setUserStopCount(int userStopCount) {
 		this.userStopCount = userStopCount;
 	}
+
 	public int getUserCancelCount() {
 		return userCancelCount;
 	}
+
 	public void setUserCancelCount(int userCancelCount) {
 		this.userCancelCount = userCancelCount;
 	}
+
 	public String getUserStatus() {
 		return userStatus;
 	}
+
 	public void setUserStatus(String userStatus) {
 		this.userStatus = userStatus;
 	}
+
 	public String getUserClassification() {
 		return userClassification;
 	}
+
 	public void setUserClassification(String userClassification) {
 		this.userClassification = userClassification;
 	}
-	
+
 	public Date getUserStopDate() {
 		return userStopDate;
 	}
+
 	public void setUserStopDate(Date userStopDate) {
 		this.userStopDate = userStopDate;
 	}
+	
 }

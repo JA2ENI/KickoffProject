@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
     @Service("TeamService")
     public class TeamServiceImpl implements TeamService{
@@ -41,10 +42,16 @@ import java.util.List;
             teamMapper.insertTeam(teamDO);
         }
         
-//        @Override
-//        public List<UserDO> teamMemberList(UserDO userDO) throws Exception {
-//            return teamMapper.teamMemberList(userDO);
-//        }
+        @Override
+        public TeamInfoDO teamInfo(String userId) throws Exception {
+            return teamMapper.teamInfo(userId);
+        }
+        
+        
+        @Override
+        public List<Map<String, String>> teamMemberList(int teamId) throws Exception {
+            return teamMapper.teamMemberList(teamId);
+        }
 
         @Override
         public List<TeamDO> rankList(TeamDO teamDO) throws Exception
