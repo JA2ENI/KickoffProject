@@ -92,7 +92,7 @@
                                         <td><c:out value="${list.helperGender}" /></td>
                                         <td><c:out value="${list.helperPlaceName}" /></td>
                                         <td><c:out value="${list.helperTime}" /></td>
-                                        <td><c:out value="${list.userId}" /></td>
+                                        <td><c:out value="${list.helperUserId}" /></td>
                                         <td><button type = "button" class = "btn_detail" onclick="location.href='/helperDetail?helperSeqno=${list.helperSeqno}';">${list.helperStatus}</button></td>
                                     </tr>
                                 </c:forEach>
@@ -180,7 +180,7 @@
         var button = buttons[i];
         // 해당 버튼 안의 텍스트에 맞게 조건을 넣어서 색상 또는 비활성화 상태를 지정해주시면 됩니다.
         // ex) 버튼의 텍스트가 진행 중인 경우 : 버튼 색상을 #FFC090로 변경, 버튼의 텍스트가 마감인 경우: 색상을 lightgray로 변경하고 비활성화 상태로 만들기.
-        if (button.innerText === "진행 중") {
+        if (button.innerText === "모집 중") {
             button.style.backgroundColor = "#FFC090";
         } else if (button.innerText === "마감") {
             button.style.backgroundColor = "lightgray";

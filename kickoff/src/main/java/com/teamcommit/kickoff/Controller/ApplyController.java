@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Service.apply.ApplyService;
@@ -168,8 +169,16 @@ public class ApplyController {
 	
 	//용병 모집자 페이지 
 	@RequestMapping(value="/applyHelperRecruiter")
-	public String applyHelperRecruiter(HttpSession session) throws Exception {
+	public String applyHelperRecruiter(HttpSession session, Model model) throws Exception {
 		String view = "/apply/applyHelperRecruiter";
+		
+		try {
+			List<HelperDO> applySelect = applyService.helperUserSelect((String)session.getAttribute("userId"));
+			model.addAttribute("helperSelect", applySelect);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return view;
 	}
