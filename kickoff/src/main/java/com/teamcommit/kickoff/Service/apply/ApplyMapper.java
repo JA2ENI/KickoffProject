@@ -21,4 +21,6 @@ public interface ApplyMapper {
 	public HelperApplyDO helperSelect(HelperApplyDO helperApplyDO);
 	
 	public List<HelperDO> helperUserSelect(String helperUserId);
+	
+	public int countAccept();
 }

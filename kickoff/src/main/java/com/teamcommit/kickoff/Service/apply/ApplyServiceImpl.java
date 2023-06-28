@@ -40,4 +40,9 @@ public class ApplyServiceImpl implements ApplyService {
 	public List<HelperDO> helperUserSelect(String helperUserId) throws Exception {
 		return applyMapper.helperUserSelect(helperUserId);
 	}
+	
+	@Override
+	public int countAccept() throws Exception {
+		return applyMapper.countAccept();
+	}
 }

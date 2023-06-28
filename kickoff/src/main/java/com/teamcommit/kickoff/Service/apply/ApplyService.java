@@ -18,4 +18,6 @@ public interface ApplyService {
 	HelperApplyDO helperSelect(HelperApplyDO helperApplyDO) throws Exception;
 
 	List<HelperDO> helperUserSelect(String helperUserId) throws Exception;
+	
+	int countAccept() throws Exception;
 }
