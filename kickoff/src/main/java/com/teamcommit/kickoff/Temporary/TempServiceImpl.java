@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 
-@Service("tampService")
+@Service("tempService")
 public class TempServiceImpl implements TempService {
 	
 	@Autowired

@@ -177,29 +177,21 @@ public class TeamController {
         return view;
     }
     
-    // 팀 관리 페이지 이동
-    @RequestMapping(value = "/teamManage")
-    public String teamManage(HttpSession session, Model model, HttpServletRequest request) throws Exception {
-        String view = "";
-
-        if(session.getAttribute("userId") == null) {
-            model.addAttribute("script", "alert('로그인 후 이용하실 수 있습니다.');");
-            view = "login/loginAll";
-        }
-        else if (session.getAttribute("userId") != null) {
-        	view = "team/teamManage";
-        }
-        return view;
-    }
-    
     // 팀원 리스트
-    @RequestMapping( "/teamMembersList")
-    public String teamMembersList(HttpServletRequest request, Model model) throws Exception {
-    	String view = "/team/teamManage";
+    @RequestMapping( "/teamManage")
+    public String teamMembersList(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+    	String view = "";
+    	//로그인한 이용자 ID로 로그인 정보 가져오기
+    	String userId = (String)session.getAttribute("userId");
+    	System.out.println("id : " + userId);
+    	 
+		if (userId == null) {
+			model.addAttribute("script", "alert('로그인 후 이용하실 수 있습니다.');");
+			view = "login/loginAll";
+		} else if (userId != null) {
+			view = "team/teamManage";
+		}
     	
-//    	//로그인한 이용자 ID로 로그인 정보 가져오기
-        String userId = (String) request.getSession().getAttribute("userId");
-        
         TeamInfoDO teamInfoDO = teamService.teamInfo(userId);
         
         int teamId = teamInfoDO.getTeamId();
@@ -208,6 +200,10 @@ public class TeamController {
         model.addAttribute("memberList", memberList);
         
         System.out.println("Member List.size: " + memberList.size());
+        
+        for(int i=0; i<memberList.size(); i++) {
+        	System.out.println("memberList.get(i) : " + memberList.get(i));
+        }
 
         return view;
     }

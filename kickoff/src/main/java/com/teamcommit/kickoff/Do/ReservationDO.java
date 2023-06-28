@@ -32,8 +32,6 @@ public class ReservationDO {
 	private String reservationComment;
 	//예약 가격
 	private Long reservationPrice;
-	//경기 형태
-	private String reservationGameStyle;
 	//코트 이름
 	private String reservationCourtName;
 	//코트 형태
@@ -47,6 +45,7 @@ public class ReservationDO {
 
 	private String imgPath;
 
+	//경기 형태
 	private String reservationHeadcount;
 
 	private String reservationPlaceSize;
@@ -252,14 +251,6 @@ public class ReservationDO {
 
 	public void setReservationPrice(Long reservationPrice) {
 		this.reservationPrice = reservationPrice;
-	}
-
-	public String getReservationGameStyle() {
-		return reservationGameStyle;
-	}
-
-	public void setReservationGameStyle(String reservationGameStyle) {
-		this.reservationGameStyle = reservationGameStyle;
 	}
 
 	public String getReservationCourtName() {

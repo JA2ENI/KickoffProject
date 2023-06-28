@@ -107,9 +107,7 @@
 						<li><a href="/myReservation">예약 내역</a></li>
 						<li><a href="/myBoardList">내 게시글</a></li>
 						<li><a href="/myInfoCheck">회원 정보 수정</a></li>
-						<li><a href="/myTeam">팀</a></li>
 						<li><a href="/myMessage">메시지</a></li>
-						<li><a href="/myHelper">용병</a></li>
 						<li><a href="/myGameRecordList">매칭</a></li>
 					</ul>
 				</nav>

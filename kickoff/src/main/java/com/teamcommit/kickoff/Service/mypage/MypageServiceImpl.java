@@ -57,11 +57,6 @@ public class MypageServiceImpl implements MypageService {
     	mypageMapper.updateUserInfo(userDO);
     }
     
-    @Override
-    public List<TeamDO> myTeamList(String userId) throws Exception {
-    	return mypageMapper.myTeamList(userId);
-    }
-    
     public void userDelete(String userId) throws Exception {
     	mypageMapper.userDelete(userId);
     }
