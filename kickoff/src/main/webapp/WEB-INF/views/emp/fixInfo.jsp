@@ -73,13 +73,16 @@
 										<div class="checkout__input__request">
 											<p>사업자 번호 인증<span>*</span></p>
 											<div class="number_content">
+												<div class="textbox">
+												<input id="b_no" name="b_no" type="text">
+												</div>
 												<input type="button" id="checkEmpNum" class="checkEmpNum empNum" value="사업자 번호 인증"/>
 												<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 											    <script>
 											      $(document).ready(function () {
 											        $("checkEmpNum").click(function () {
 											          var data = {
-											            b_no: ["8164700297"], // 실제 존재하는 사업자 번호
+											            b_no: $('#b_no').val();, // 실제 존재하는 사업자 번호
 											          };											       
 											
 											          let serviceKey ="g5kss8B127iH%2BqCnOL%2B3SpgFPUssF8IPJLv%2BP4LY%2BTFMRcCL6P6l4y6su6WUJgrHxJI0PtU9dGeda5hHq70Kag%3D%3D";
@@ -96,7 +99,17 @@
 											              console.log("결과:: ", result);
 											            },
 											            error: function (error) {
-											              console.log("에러: ", error);
+											            	$('.error').text("")
+															if(result.res == "OK"){
+															    $('.error').html("허가증을 업로드하고 인증하기를 클릭하세요")
+															}
+															else if (result.res == "dont") {
+																swal("","이미 등록된 판매허가번호입니다. 다시 확인해주세요.","error");
+															} else {
+																console.log(result.res);
+																console.log("업데이트 실패!!");
+																$('.error').text("관리번호를 다시 확인해주세요")
+															}
 											            },
 											          });
 											        });
