@@ -20,6 +20,8 @@ public interface TeamService {
 
     TeamDO getTeamContents(int teamSeqNo) throws Exception;
     
+    List<TeamInfoDO> teamInfoDetail(String userId) throws Exception;
+    
     TeamInfoDO teamInfo(String userId) throws Exception;
     
     List<Map<String, String>> teamMemberList(int teamId) throws Exception;

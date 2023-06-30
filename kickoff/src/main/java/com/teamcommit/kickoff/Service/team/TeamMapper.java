@@ -23,6 +23,8 @@ public interface TeamMapper {
 
     public void insertTeam(TeamDO teamDO);
     
+    public List<TeamInfoDO> teamInfoDetail(String userId);
+    
     public TeamInfoDO teamInfo(String userId);
     
     public List<Map<String, String>> teamMemberList(int teamId);

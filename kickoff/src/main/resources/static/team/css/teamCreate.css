@@ -28,7 +28,7 @@ body {
 
 section {
     top: 0;
-    height: 135vh;
+    height: 164vh;
     padding-top: 5rem;
     text-align: center;
 }
@@ -254,43 +254,43 @@ textarea.etc {
 }
 
 .select-color input[type=radio] + .red {
-	border: solid 2px #E53935;	
-	background: #E53935;
+	border: solid 2px #eb5652;	
+	background: #eb5652;
 }
 
 .select-color input[type=radio] + .orange {
-	border: solid 2px #F4511E;
-	background: #F4511E;
+	border: solid 2px #f78f45;
+	background: #f78f45;
 }
 
 .select-color input[type=radio] + .yellow {
-	border: solid 2px #FFB300;
-	background: #FFB300;
+	border: solid 2px #ffb300;
+	background: #ffb300;
 }
 
 .select-color input[type=radio] + .green {
-	border: solid 2px #43A047;
-	background: #43A047;
+	border: solid 2px #69bd4a;
+	background: #69bd4a;
 }
 
 .select-color input[type=radio] + .blue {
-	border: solid 2px #1E88E5;
-	background: #1E88E5;
+	border: solid 2px #6099f0;
+	background: #6099f0;
 }
 
 .select-color input[type=radio] + .skyblue {
-	border: solid 2px #03A9F4;
-	background: #03A9F4;
+	border: solid 2px #b0daff;
+	background: #b0daff;
 }
 
 .select-color input[type=radio] + .navy {
-	border: solid 2px #0D47A1;
-	background: #0D47A1;
+	border: solid 2px #456fb0;
+	background: #456fb0;
 }
 
 .select-color input[type=radio] + .purple {
-	border: solid 2px #5E35B1;
-	background: #5E35B1;
+	border: solid 2px #ac8ced;
+	background: #ac8ced;
 }
 
 .img-wrap {

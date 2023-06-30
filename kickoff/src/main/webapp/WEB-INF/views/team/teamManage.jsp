@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/includes/css/styleApply.css">
 <link rel="stylesheet" href="/main/css/vendor/icomoon/style.css">
 
-<link href="/team/css/teamList.css" rel="stylesheet" />
+<link href="/team/css/teamManage.css" rel="stylesheet" />
 
 <title>Kick off: 풋살팀</title>
 </head>
@@ -29,23 +29,53 @@
 				<article class="article-container one">
 					<div class="item-wrap">
 						<div class="title">TEAM INFO</div>
-						<div class="content-container">
+						<div class="content-container1">
+						
+						<c:forEach var="list" items="${teamDetail}">
 							<div class="title-wrap">
-								<div class="subject team">팀</div>
-								<div class="subject area">지역</div>
+								<div class="subject team"><c:out value="${list.teamName}" /></div>
 							</div>
-							<!-- <button type="button" class="detail" onclick="javascript:alert('s');"> -->
-							<c:forEach var="list" items="${teamList}">
-							<button type="button" class="detail" onclick="btnTeam()">
-								<div class="content-wrap">
-									<div class="content team"><c:out value="${list.teamName}" /></div>
-									<div class="content area"><c:out value="${list.teamLocal}" /></div>
+							<div class="detail">
+								<div class="content-wrap1">
+									<div class="content title"><img class="img-info" src="/team/img/icons8-rank-100.png"></div>
+									<div class="content chart">
+									<c:out value="${list.teamRank != 0 ? list.teamRank : 'unRank'}" /></div>
+									<div class="content title"><img class="img-info" src="/team/img/icons8-level-96.png"></div>
+									<div class="content chart"><c:out value="${list.teamLevel}" /></div>
 								</div>
-							</button>
-							</c:forEach>
-						</div>
+								<div class="content-wrap2">
+									<div class="content title"><img class="img-info" src="/team/img/icons8-team-100.png"></div>
+									<div class="content chart"><c:out value="${list.teamNumber}" /> 명</div>
+									<div class="content title"><img class="img-info" src="/team/img/icons8-gender-100.png"></div>
+									<div class="content chart"><c:out value="${list.teamGender}" /></div>
+								</div>
+								<div class="content-wrap3">
+								<div class="content title"><img class="img-info" src="/team/img/icons8-location-100.png"></div>
+									<div class="content chart"><c:out value="${list.teamLocal}" /></div>
+									<div class="content title"><img class="img-info" src="/team/img/free-icon-age-5670755.png"></div>
+									<div class="content chart"><c:out value="${list.teamAge}" /></div>
+								</div>
+								<div class="content-wrap4">
+									<div class="content title"><img class="img-info" src="/team/img/icons8-blockchain-grid-100.png"></div>
+									<div class="content chart"><c:out value="${list.teamFormation}" /></div>
+									<div class="content title"><img class="img-info" src="/team/img/icons8-color-100.png"></div>
+									<div class="content chart"><c:out value="${list.teamColor}" /></div>
+								</div>
+								<div class="content-wrap5">
+									<div class="content title"><img class="img-info" src="/team/img/icons8-day-100.png"></div>
+									<div class="content chart"><c:out value="${list.teamDay}" /></div>
+									<div class="content title"><img class="img-info" src="/team/img/icons8-time-100.png"></div>
+									<div class="content chart"><c:out value="${list.teamTime}" /></div>
+								</div>
+								<div class="content-wrap6">
+									<div class="content memo1"><img class="img-info" src="/team/img/icons8-memo-100.png"></div>
+									<div class="content memo2"><c:out value="${list.teamIntro}" /></div>
+								</div>
+							</div>
+						</c:forEach>
 					</div>
-				</article>
+				</div>
+			</article>
 				<article id="boxDetail" class="article-container two">
 					<div class="item-wrap">
 						<div class="wrap">
@@ -54,22 +84,26 @@
 						</div>
 						<div class="content-container">
 							<div class="title-wrap">
+								<div class="subject img"></div>
 								<div class="subject type">구분</div>
 								<div class="subject name">이름</div>
 								<div class="subject position">포지션</div>
 								<div class="subject gender">성별</div>
 								<div class="subject manage">관리</div>
 							</div>
+							
 							<c:forEach var="member" items="${memberList}">
-							<button type="button" class="detail" onclick="javascript:alert('게시글 상세보기');">
+							<div class="detail">
 								<div class="content-wrap">
+									<div class="content img"><img class="img-person" src="/team/img/icons8-person-100.png"></div>
 									<div class="content type"><c:out value="${member.TEAM_TYPE}" /></div>
-									<div class="content name"><c:out value="${member.userName}" /></div>
-									<div class="content position"><c:out value="${member.userMainPosition}" /></div>
-									<div class="content gender"><c:out value="${member.userGender}" /></div>
-									<div class="content manage"></div>
+									<div class="content name"><c:out value="${member.USER_NAME}" /></div>
+									<div class="content position"><c:out value="${member.USER_MAIN_POSITION}" /> /
+											<c:out value="${member.USER_SUB_POSITION != null ? member.USER_SUB_POSITION : '-'}" /></div>
+									<div class="content gender"><c:out value="${member.USER_GENDER}" /></div>
+									<div class="content manage"><button type="button" class="btn-memberDelete">방출하기</button></div>
 								</div>
-							</button>
+							</div>
 							</c:forEach>
 						</div>
 					</div>
