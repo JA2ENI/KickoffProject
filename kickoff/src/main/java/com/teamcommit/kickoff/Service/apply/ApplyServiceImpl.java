@@ -9,6 +9,7 @@ import com.teamcommit.kickoff.Do.HelperApplyDO;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.UserDO;
 
 @Service("applyService")
 public class ApplyServiceImpl implements ApplyService {
@@ -44,5 +45,10 @@ public class ApplyServiceImpl implements ApplyService {
 	@Override
 	public int countAccept() throws Exception {
 		return applyMapper.countAccept();
+	}
+	
+	@Override
+	public List<UserDO> helperApplyUser(int helperSeqno) throws Exception {
+		return applyMapper.helperApplyUser(helperSeqno);
 	}
 }

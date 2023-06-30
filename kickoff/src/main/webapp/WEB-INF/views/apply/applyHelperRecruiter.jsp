@@ -64,67 +64,53 @@
 				<div class="helper-wrap">
 					<div class="hTitle">용병 신청</div>
 						<div class="box-wrap">
+						<c:forEach var = "list" items = "${helperSelect}" varStatus = "vs">
 							<div class="box-frame">
 								<div class="box-content">
 									<!-- 모집 상태에 따라 -->
-									<div class="status ing">모집 중</div>
+										<div class="status ing">${list.helperStatus}</div>
 									<!-- <div class="status end">모집 완료</div> -->
 									<!-- <div class="status cancel">모집 취소</div> -->
 									<div class="one-wrap">
-										<div class="date day">6월 14일</div>
-										<div class="date">수요일</div>
-										<div class="date">20:00</div>
+										<div class="date day">${list.helperTime}</div>
+										<!-- <div class="date">수요일</div>
+										<div class="date">20:00</div> -->
 									</div>
 									<div class="two-wrap">
 										<!-- 상세보기 -->
-										<a href="javascript:alert('제목 상세보기 test');" class="placeName">서울 송파 천마 풋살파크 2구장</a>
+										<a href="javascript:alert('제목 상세보기 test');" class="placeName">${list.helperPlaceName}</a>
 										<!-- 신청자 수/모집인원수 -->
-										<div class="numApply">5/10명</div>
+										<div class="numApply">${applyAccept}/${list.helperWant}명</div>
 									</div>
 									<div class="checkbox-wrap">
 										<input type="checkbox" id="drop" class="drop" onclick="drop()" /><label for="drop"></label>
 									</div>
 									<div class="three-wrap">
 										<div class="arrow">▶</div>
-										<div class="three-content">남성</div>
+										<div class="three-content">${list.helperGender}</div>
 										<div>&sdot;</div>
-										<div class="three-content">5vs5</div>
+										<div class="three-content">${list.helperMatch}</div>
 										<div>&sdot;</div>
-										<div class="three-content">PIVO</div>
+										<div class="three-content">${list.helperPosition}</div>
 									</div>
 								</div>
-								<!-- 신청자 리스트 -->
-								<div id="detail" class="detail-container">
-									<div class="detail-wrap" id="sideon">
-										<div class="detail-content">
-											<div class="dContent">ja2eni</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">남성</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">PIVO/GOLEIRO</div>
+									<%-- <c:forEach var = "apply" items = "applyUser">
+									<!-- 신청자 리스트 -->
+									<div id="detail" class="detail">
+									<div id="detail" class="detail-container">
+										<div class="detail-wrap" id="sideon">
+											<div class="detail-content">
+												<div class="dContent">${apply.userId}</div>
+												<div class="dContent">&#149;</div>
+												<div class="dContent">${apply.userGender}</div>
+												<div class="dContent">&#149;</div>
+												<div class="dContent">${apply.userMainPosition}/${apply.userSubPosition}</div>
+											</div>
 										</div>
 									</div>
-									<!-- test (추후 삭제)-->
-									<div class="detail-wrap">
-										<div class="detail-content">
-											<div class="dContent">test2234</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">남성</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">ALA/PIVO</div>
-										</div>
 									</div>
-									<div class="detail-wrap">
-										<div class="detail-content">
-											<div class="dContent">test223458</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">여성</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">GOLEIRO/ALA</div>
-										</div>
-									</div>
-									<!-- test END -->
-								</div>
+									</c:forEach> --%>
+
 								<!-- 수락&거절(side bar) -->
 								<div class="side-container">
 									<div class="side-wrap">
@@ -170,6 +156,7 @@
 									</div>
 								</div>
 							</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>

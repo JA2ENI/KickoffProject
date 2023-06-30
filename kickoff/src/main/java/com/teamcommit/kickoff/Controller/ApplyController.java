@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.UserDO;
 import com.teamcommit.kickoff.Service.apply.ApplyService;
 import org.json.*;
 
@@ -178,6 +179,12 @@ public class ApplyController {
 		try {
 			List<HelperDO> applySelect = applyService.helperUserSelect((String)session.getAttribute("userId"));
 			int accept = applyService.countAccept();
+			for(int i = 0; i < applySelect.size(); i++) {
+				HelperDO helper = applySelect.get(i);
+				List<UserDO> userSelect = applyService.helperApplyUser(helper.getHelperSeqno());
+				model.addAttribute("applyUser" + i, userSelect);
+				System.out.println(model.getAttribute("applyUser" + i));
+			}
 			model.addAttribute("helperSelect", applySelect);
 			model.addAttribute("applyAccept", accept);
 		}
@@ -188,7 +195,7 @@ public class ApplyController {
 		return view;
 	}
 	
-	//용병 모집자 페이지 
+	//용병 모집자 페이지, 수락 거절 했을 때 결과 json 만들기(예정)
 		@RequestMapping(value="/applyHelperRecruiter", method = RequestMethod.POST)
 		@ResponseBody
 		public String applyHelperRecruiter(HttpSession session, Model model, String helper) throws Exception {
