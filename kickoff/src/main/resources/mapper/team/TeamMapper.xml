@@ -81,20 +81,33 @@
             TEAM_SEQNO = #{teamSeqNo}
         ]]>
     </select>
+    
+    <!-- Team Info Detail -->
+    <select id="teamInfoDetail" parameterType="String" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
+        <![CDATA[
+        SELECT
+            *
+        FROM
+            TEAM_INFO
+        WHERE
+            MEMBER_ID = #{userId} OR LEADER_ID = #{userId}
+        ]]>
+    </select>
 	
-	 <!-- Team Member List -->
+	 <!-- Team Member List -->  
     <select id="teamMemberList" parameterType="Integer" resultType="HashMap">
         <![CDATA[
         SELECT
-        	T.TEAM_TYPE, U.USER_NAME, U.USER_MAIN_POSITION, U.USER_GENDER
+        	T.TEAM_TYPE, U.USER_NAME, U.USER_MAIN_POSITION, U.USER_SUB_POSITION, U.USER_GENDER
 		FROM
 			USERS U
 				JOIN TEAM_INFO T
 		ON
-			(T.MEMBER_ID = U.USER_ID)
-   				OR (T.LEADER_ID = U.USER_ID)
+			(T.MEMBER_ID = U.USER_ID) OR (T.LEADER_ID = U.USER_ID)
    		WHERE
    			T.TEAM_ID = #{teamId}
+   		ORDER BY
+   			T.TEAM_INFO_SEQ ASC
         ]]>
     </select>
     

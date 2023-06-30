@@ -33,14 +33,14 @@ section {
     text-align: center;
 }
 
-img {
+img.img-info {
 	width: 35px;
 	height: 35px; 
 }
 
 img.img-person {
-	width: 25px;
-	height: 25px; 
+	width: 20px;
+	height: 20px; 
 }
 
 article {
@@ -135,6 +135,20 @@ p {
 	outline: none;
 }
 
+.btn-memberDelete {
+	width: 70px;
+	height: 35px;
+	padding: 3px;
+	font-size: 15px;
+	font-weight: bold;
+	color: black;
+	border: solid 2px #dbdbdb;
+	border-radius: 8px;
+	background: #dbdbdb;
+	outline: none;
+}
+
+
 .title {
 	line-height: 50px;
 	color: #000;
@@ -210,6 +224,43 @@ p {
 	background: #fff;
 }
 
+.content-wrap1 {
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-evenly;
+    line-height: 35px;
+    border-radius: 10px;
+	background: #fff;
+	padding-top: 30px;
+	padding-left: 5px;
+}
+
+.content-wrap2,
+.content-wrap3,
+.content-wrap4,
+.content-wrap5 {
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-evenly;
+    line-height: 35px;
+    border-radius: 10px;
+	background: #fff;
+	padding-left: 5px;
+	padding-top:5px;
+}
+
+.content-wrap6 {
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-evenly;
+    line-height: 35px;
+    border-radius: 10px;
+	background: #fff;
+	padding-top: 5px;
+	padding-left:5px;
+	padding-bottom: 20px;
+}
+
 .content {
 	font-size: 17px;
 	text-align: center;
@@ -248,12 +299,15 @@ p {
 }
 
 .subject.total,
-.subject.gender,
 .subject.status,
 .subject.type,
 .subject.name,
-.subject.manage {
+.subject.gender {
 	width: 12%;
+}
+
+.subject.manage {
+	width: 15%;
 }
 
 .subject.position {
@@ -303,6 +357,16 @@ button.detail:hover {
 }
 	
 button.detail:focus {
+	border-color: #ffc090;
+    box-shadow: 0 0 1px 2px rgba(255, 192, 144, 0.5);
+    color: #ffc090;
+}
+
+div.detail:hover {
+	border: solid 2px #ffc090;
+}
+	
+div.detail:focus {
 	border-color: #ffc090;
     box-shadow: 0 0 1px 2px rgba(255, 192, 144, 0.5);
     color: #ffc090;

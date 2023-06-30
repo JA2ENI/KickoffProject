@@ -43,10 +43,14 @@ import java.util.Map;
         }
         
         @Override
+        public List<TeamInfoDO> teamInfoDetail(String userId) throws Exception {
+            return teamMapper.teamInfoDetail(userId);
+        }
+        
+        @Override
         public TeamInfoDO teamInfo(String userId) throws Exception {
             return teamMapper.teamInfo(userId);
         }
-        
         
         @Override
         public List<Map<String, String>> teamMemberList(int teamId) throws Exception {

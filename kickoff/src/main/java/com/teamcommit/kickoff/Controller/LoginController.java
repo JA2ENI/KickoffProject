@@ -65,7 +65,6 @@ public class LoginController {
             	
                 session.setAttribute("userId", result.getUserId());
                 session.removeAttribute("empId");
-                model.addAttribute("msg", "alert('로그인이 완료되었습니다.');");
                 mv.setViewName("/main");
                 
                 return mv;
@@ -88,7 +87,6 @@ public class LoginController {
             	
                 session.setAttribute("empId", result.getEmpId());
                 session.removeAttribute("userId");
-                model.addAttribute("msg", "alert('로그인이 완료되었습니다.');");
                 mv.setViewName("/main");
                 
                 return mv;
