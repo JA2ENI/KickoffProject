@@ -27,4 +27,51 @@
         ]]>
     </select> -->
     
+    <!-- 용병 신청 모집자 -->
+    <insert id="helperApplyInsert" parameterType="com.teamcommit.kickoff.Do.HelperApplyDO">
+    	<![CDATA[
+    		INSERT INTO HELPER_APPLY
+    		(
+    			USER_ID, HELPER_SEQNO, HELPER_USER_ID
+    		)
+    		VALUES (
+    			#{userId},
+    			#{helperSeqno},
+    			#{helperUserId}
+    		)
+    	]]>
+    </insert>
+    
+    <select id="helperSelect" parameterType="com.teamcommit.kickoff.Do.HelperApplyDO" resultType = "com.teamcommit.kickoff.Do.HelperApplyDO">
+    	<![CDATA[
+    		SELECT *
+    		FROM
+    			HELPER_APPLY
+    		WHERE HELPER_SEQNO = #{helperSeqno} AND USER_ID = #{userId}	
+    	]]>
+    </select>
+    
+    <select id = "helperUserSelect" parameterType = "String" resultType = "com.teamcommit.kickoff.Do.HelperDO">
+    	<![CDATA[
+    		SELECT HELPER_STATUS, HELPER_PLACE_NAME, HELPER_GENDER, HELPER_MATCH, HELPER_POSITION, TO_CHAR(TO_DATE(HELPER_TIME),  'YYYY"년 "MM"월 "DD"일 "DAY" "HH:MM') AS HELPER_TIME 
+			FROM HELPER
+			WHERE HELPER_USER_ID = (SELECT HELPER_USER_ID
+									FROM HELPER_APPLY
+									WHERE HELPER_USER_ID = #{userId}) AND HELPER_STATUS = '모집 중'	
+    	]]>
+    </select>
+    
+    
+    <select id = "countAccept" resultType = "Integer">
+    	<![CDATA[
+    		SELECT COUNT(HELPER_APPLY_STATUS)
+    		FROM HELPER_APPLY
+    		WHERE HELPER_APPLY_STATUS = '수락'	
+    	]]>
+    </select>
+    
+    
+    
+    
+    
 </mapper>

@@ -11,10 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
 import com.teamcommit.kickoff.Service.apply.ApplyService;
+import org.json.*;
 
 import edu.emory.mathcs.backport.java.util.Arrays;
 
@@ -167,11 +171,49 @@ public class ApplyController {
 	}
 	
 	//용병 모집자 페이지 
-	@RequestMapping(value="/applyHelperRecruiter")
-	public String applyHelperRecruiter(HttpSession session) throws Exception {
+	@RequestMapping(value="/applyHelperRecruiter", method = RequestMethod.GET)
+	public String applyHelperRecruiter(HttpSession session, Model model) throws Exception {
 		String view = "/apply/applyHelperRecruiter";
+		
+		try {
+			List<HelperDO> applySelect = applyService.helperUserSelect((String)session.getAttribute("userId"));
+			int accept = applyService.countAccept();
+			model.addAttribute("helperSelect", applySelect);
+			model.addAttribute("applyAccept", accept);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return view;
 	}
+	
+	//용병 모집자 페이지 
+		@RequestMapping(value="/applyHelperRecruiter", method = RequestMethod.POST)
+		@ResponseBody
+		public String applyHelperRecruiter(HttpSession session, Model model, String helper) throws Exception {
+			JSONArray array = new JSONArray();
+
+			try {
+				List<HelperDO> applySelect = applyService.helperUserSelect((String)session.getAttribute("userId"));
+				int accept = applyService.countAccept();
+				for(HelperDO helperDO : applySelect) {
+					JSONObject obj = new JSONObject();
+					obj.put("helperStatus", helperDO.getHelperStatus());
+					obj.put("helperTime", helperDO.getHelperTime());
+					obj.put("helperPlaceName", helperDO.getHelperPlaceName());
+					obj.put("applyAccept", accept);
+					obj.put("helperWant", helperDO.getHelperWant());
+					obj.put("helperGender", helperDO.getHelperGender());
+					obj.put("helperPosition", helperDO.getHelperPosition());
+					array.put(obj);
+				}
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return array.toString();
+		}
 	
 }

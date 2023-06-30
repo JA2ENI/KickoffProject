@@ -1,6 +1,5 @@
 package com.teamcommit.kickoff.Controller;
 
-import com.teamcommit.kickoff.Do.EmployerDO;
 import com.teamcommit.kickoff.Do.TeamApplyDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.TeamInfoDO;
@@ -19,9 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -177,20 +173,25 @@ public class TeamController {
         return view;
     }
     
-    // 팀원 리스트
+    
+    // 팀 상세정보 & 팀원 리스트
     @RequestMapping( "/teamManage")
     public String teamMembersList(HttpServletRequest request, Model model, HttpSession session) throws Exception {
     	String view = "";
     	//로그인한 이용자 ID로 로그인 정보 가져오기
     	String userId = (String)session.getAttribute("userId");
-    	System.out.println("id : " + userId);
     	 
 		if (userId == null) {
 			model.addAttribute("script", "alert('로그인 후 이용하실 수 있습니다.');");
 			view = "login/loginAll";
+			
+			return view;
 		} else if (userId != null) {
 			view = "team/teamManage";
 		}
+		
+		List<TeamInfoDO> teamDetail = teamService.teamInfoDetail(userId);
+		model.addAttribute("teamDetail", teamDetail);
     	
         TeamInfoDO teamInfoDO = teamService.teamInfo(userId);
         
@@ -199,12 +200,14 @@ public class TeamController {
     	List<Map<String, String>> memberList = teamService.teamMemberList(teamId);
         model.addAttribute("memberList", memberList);
         
-        System.out.println("Member List.size: " + memberList.size());
-        
-        for(int i=0; i<memberList.size(); i++) {
-        	System.out.println("memberList.get(i) : " + memberList.get(i));
-        }
-
         return view;
     }
+    
+    // 팀원 방출
+//    @RequestMapping("/memberDelete")
+//    public String memberDelete() throws Exception {
+//    	String view = "redirect:/teamManage";
+//    	
+//    	if()
+//    }
 }

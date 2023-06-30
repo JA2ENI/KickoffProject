@@ -43,7 +43,7 @@
         INSERT INTO HELPER
         (
          HELPER_SEQNO,
-         USER_ID,
+         HELPER_USER_ID,
          HELPER_POSITION,
          HELPER_PRICE,
          HELPER_MATCH,
@@ -57,7 +57,7 @@
          )
         VALUES(
                HELPER_SEQ.NEXTVAL,
-               #{userId},
+               #{helperUserId},
                #{helperPosition},
                #{helperPrice},
                #{helperMatch},

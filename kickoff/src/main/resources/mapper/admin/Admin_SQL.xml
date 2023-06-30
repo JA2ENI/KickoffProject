@@ -4,7 +4,7 @@
 <mapper namespace="com.teamcommit.kickoff.Service.admin.AdminMapper">
 
 	<!-- Member List -->
-    <select id="memberList" parameterType="java.util.Map" resultType="java.util.Map">
+    <select id="memberList" parameterType="HashMap" resultType="HashMap">
         <![CDATA[
         SELECT
 	        NAME,
