@@ -17,6 +17,8 @@ public interface TeamService {
     List<TeamDO> teamRecruitList(TeamDO teamDO) throws Exception;
 
     void insertTeam(TeamDO teamDO) throws Exception;
+    
+    void teamCreation(TeamInfoDO teamInfoDO) throws Exception;
 
     TeamDO getTeamContents(int teamSeqNo) throws Exception;
     
@@ -24,7 +26,9 @@ public interface TeamService {
     
     TeamInfoDO teamInfo(String userId) throws Exception;
     
-    List<Map<String, String>> teamMemberList(int teamId) throws Exception;
+    List<Map<String, Object>> teamMemberList(int teamId) throws Exception;
+    
+    void teamMemberDelete(String userId) throws Exception;
 
     List<TeamDO> rankList(TeamDO teamDO) throws Exception;
 

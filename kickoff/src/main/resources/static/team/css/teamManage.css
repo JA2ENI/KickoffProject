@@ -117,21 +117,20 @@ p {
 }
 
 .wrap {
-	display: flex;
-    justify-content: flex-end;
+	width: 125%;
 }
 
 .btn-teamInsert {
 	width: 70px;
-	height: 35px;
+	height: 30px;
 	margin-top: 10px;
-	padding: 3px;
-	font-size: 15px;
+	padding: 10px 30px 10px;
+	font-size: 18px;
 	font-weight: bold;
-	color: #7fb77e;
+	color: #fff;
 	border: solid 2px #7fb77e;
-	border-radius: 5px;
-	background: #fff;
+	border-radius: 20px;
+	background: #7fb77e;
 	outline: none;
 }
 
@@ -165,6 +164,7 @@ p {
 	height: 97.5vh;
 	border: solid 1px #f8fafb;
 	border-radius: 5px;
+	background: #EEEEEE;
 }
 
 .content-container {
@@ -362,6 +362,11 @@ button.detail:focus {
     color: #ffc090;
 }
 
+button.btn-memberDelete:hover {
+	border: solid 2px #ffc090;
+}
+	
+
 div.detail:hover {
 	border: solid 2px #ffc090;
 }
@@ -377,5 +382,9 @@ div.detail:focus {
 	border: solid 2px #ffc090;
 	background: #ffc090;
 }	
-	
-	
+
+.team-creation-message {
+	padding-top: 100px;
+	padding-bottom: 50px;
+	font-size: 25px;
+}

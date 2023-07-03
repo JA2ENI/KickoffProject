@@ -23,13 +23,17 @@ public interface TeamMapper {
 
     public void insertTeam(TeamDO teamDO);
     
+    public void teamCreation(TeamInfoDO teamInfoDO);
+    
     public List<TeamInfoDO> teamInfoDetail(String userId);
     
     public TeamInfoDO teamInfo(String userId);
     
-    public List<Map<String, String>> teamMemberList(int teamId);
+    public List<Map<String, Object>> teamMemberList(int teamId);
 
     public List<TeamDO> rankList(TeamDO teamDO);
+    
+    public void teamMemberDelete(String userId);
     
     public void insertTeamApply(TeamApplyDO teamApplyDO);
 }
