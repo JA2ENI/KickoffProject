@@ -43,6 +43,11 @@ import java.util.Map;
         }
         
         @Override
+        public void teamCreation(TeamInfoDO teamInfoDO) throws Exception {
+            teamMapper.teamCreation(teamInfoDO);
+        }
+        
+        @Override
         public List<TeamInfoDO> teamInfoDetail(String userId) throws Exception {
             return teamMapper.teamInfoDetail(userId);
         }
@@ -53,8 +58,13 @@ import java.util.Map;
         }
         
         @Override
-        public List<Map<String, String>> teamMemberList(int teamId) throws Exception {
+        public List<Map<String, Object>> teamMemberList(int teamId) throws Exception {
             return teamMapper.teamMemberList(teamId);
+        }
+        
+        @Override
+        public void teamMemberDelete(String userId) throws Exception {
+            teamMapper.teamMemberDelete(userId);
         }
 
         @Override

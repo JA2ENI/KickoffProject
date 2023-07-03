@@ -167,17 +167,19 @@ public class TeamController {
     
     // 팀 생성
     @RequestMapping(value = "/teamCreate")
-    public String teamCreate() throws Exception {
-        String view = "";
+    public String teamCreate(@ModelAttribute("teamInfoDO") TeamInfoDO teamInfoDO) throws Exception {
+        String view = "redirect:/teamManage";
 
+        teamService.teamCreation(teamInfoDO);
+        
         return view;
     }
-    
-    
+
     // 팀 상세정보 & 팀원 리스트
     @RequestMapping( "/teamManage")
     public String teamMembersList(HttpServletRequest request, Model model, HttpSession session) throws Exception {
     	String view = "";
+    	
     	//로그인한 이용자 ID로 로그인 정보 가져오기
     	String userId = (String)session.getAttribute("userId");
     	 
@@ -195,19 +197,26 @@ public class TeamController {
     	
         TeamInfoDO teamInfoDO = teamService.teamInfo(userId);
         
+        if (teamInfoDO == null) {
+        	model.addAttribute("teamCreationMessage");
+        	return "team/teamCreationMessage";
+        }
+        
         int teamId = teamInfoDO.getTeamId();
         
-    	List<Map<String, String>> memberList = teamService.teamMemberList(teamId);
+    	List<Map<String, Object>> memberList = teamService.teamMemberList(teamId);
         model.addAttribute("memberList", memberList);
         
         return view;
     }
     
     // 팀원 방출
-//    @RequestMapping("/memberDelete")
-//    public String memberDelete() throws Exception {
-//    	String view = "redirect:/teamManage";
-//    	
-//    	if()
-//    }
+    @RequestMapping("/memberDelete")
+    public String memberDelete(@RequestParam("userId") String userId) throws Exception {
+    	String view = "redirect:/teamManage";
+    	
+    	teamService.teamMemberDelete(userId);
+    	
+    	return view;
+    }
 }
