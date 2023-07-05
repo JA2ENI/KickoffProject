@@ -9,6 +9,9 @@ import com.teamcommit.kickoff.Do.UserDO;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 public interface EmpService {
 
     EmployerDO info_fix(EmployerDO employerDO);

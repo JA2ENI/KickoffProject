@@ -60,14 +60,14 @@
 								<!-- 이미지 class 추가 -->
 								<div class="checkout__form">
 									<div class="futsal">
-										<form role="form" id="frmSubmit" name="frmSubmit" action="empFutsalForm" onsubmit="return _onSubmit();" method="POST">
+										<form role="form" id="frmSubmit" name="frmSubmit" action="empFutsalForm" onsubmit="return _onSubmit();" method="POST" enctype="multipart/form-data">
 											<div class="col-lg-8 col-md-6">
 												<div class="checkout__input">
 													<p>풋살장 이미지<span></span></p>
 													<div class="filebox bs3-primary preview-image">
-														<input class="upload-name" value="파일선택" disabled="disabled" style="width: 500px;"> 
-														<input type="file" id="input_file" class="upload-hidden">
-														<label for="input_file">업로드</label>
+														<!-- <input class="upload-name" disabled="disabled" style="width: 500px;">--> 
+														<input type="file" name="uploadFile" id="input_file">
+														<label for="input_file">올리기</label>
 													</div>
 													<div class="checkout__input">
 														<p>풋살장<span>*</span></p>
