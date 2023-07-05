@@ -14,7 +14,8 @@
 
 <link href="/team/css/teamList.css" rel="stylesheet" />
 
-<title>Kick off: 풋살팀</title>
+
+<title>Kick off: 풋살팀 모집</title>
 </head>
 <body>
 	<%@include file="/includes/header.jsp"%>
@@ -34,7 +35,6 @@
 								<div class="subject team">팀</div>
 								<div class="subject area">지역</div>
 							</div>
-							<!-- <button type="button" class="detail" onclick="javascript:alert('s');"> -->
 							<c:forEach var="list" items="${teamList}">
 							<button type="button" class="detail" onclick="btnTeam()">
 								<div class="content-wrap">
@@ -61,7 +61,7 @@
 								<div class="subject status">모집상태</div>
 							</div>
 							<c:forEach var="board" items="${teamBoard}">
-							<button type="button" class="detail" onclick="javascript:alert('게시글 상세보기');">
+							<button type="button" class="detail" onclick="location.href='/teamDetail?teamSeqNo=${board.teamSeqNo}';">
 								<div class="content-wrap">
 									<div class="content team2"><c:out value="${board.teamName}" /></div>
 									<div class="content date">~<c:out value="${board.teamEndDate}" /></div>
@@ -87,7 +87,7 @@
 								<div class="subject status">모집상태</div>
 							</div>
 							<c:forEach var="recruit" items="${teamRecruit}">
-							<button type="button" class="detail" onclick="javascript:alert('게시글 상세보기');">
+							<button type="button" class="detail" onclick="location.href='/teamDetail?teamSeqNo=${recruit.teamSeqNo}';">
 								<div class="content-wrap">
 									<div class="content team2"><c:out value="${recruit.teamName}" /></div>
 									<div class="content date">~<c:out value="${recruit.teamEndDate}" /></div>

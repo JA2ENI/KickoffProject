@@ -64,3 +64,9 @@ for (var i = 0; i < manageDivs.length; i++) {
         manageDiv.style.visibility = "hidden";
     }
 }
+
+function deleteMember(userId) {
+    if (confirm("정말로 이 회원을 방출하시겠습니까?")) {
+        window.location.href = "/memberDelete?userId=" + userId;
+    }
+}

@@ -6,6 +6,7 @@ import com.teamcommit.kickoff.Do.HelperApplyDO;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.UserDO;
 
 public interface ApplyService {
 	
@@ -20,4 +21,6 @@ public interface ApplyService {
 	List<HelperDO> helperUserSelect(String helperUserId) throws Exception;
 	
 	int countAccept() throws Exception;
+	
+	public List<UserDO> helperApplyUser(int helperSeqno) throws Exception;
 }

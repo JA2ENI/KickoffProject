@@ -14,7 +14,7 @@
 
 <link href="/team/css/teamManage.css" rel="stylesheet" />
 
-<title>Kick off: 풋살팀</title>
+<title>Kick off: 풋살팀 관리</title>
 </head>
 <body>
 	<%@include file="/includes/header.jsp"%>
@@ -28,9 +28,12 @@
 			<div class="root-container">
 				<article class="article-container one">
 					<div class="item-wrap">
-						<div class="title">TEAM INFO</div>
-						<div class="content-container1">
+						<!-- <div class="wrap"> -->
+							<div class="title">TEAM INFO</div>
+							<!-- <a href="/teamUpdate" class="team-update">팀 정보 수정</a>
+						</div>  -->
 						
+						<div class="content-container1">
 						<c:forEach var="list" items="${teamDetail}">
 							<div class="title-wrap">
 								<div class="subject team"><c:out value="${list.teamName}" /></div>
@@ -39,7 +42,7 @@
 								<div class="content-wrap1">
 									<div class="content title"><img class="img-info" src="/team/img/icons8-rank-100.png"></div>
 									<div class="content chart">
-									<c:out value="${list.teamRank != 0 ? list.teamRank : 'unRank'}" /></div>
+										<c:out value="${list.teamRank != 0 ? list.teamRank : 'unRank'}" /></div>
 									<div class="content title"><img class="img-info" src="/team/img/icons8-level-96.png"></div>
 									<div class="content chart"><c:out value="${list.teamLevel}" /></div>
 								</div>
@@ -78,10 +81,8 @@
 			</article>
 				<article id="boxDetail" class="article-container two">
 					<div class="item-wrap">
-						<div class="wrap">
-							<div class="title board">TEAM MEMBER</div>
-							<a href="/teamCreateForm" class="btn-teamInsert">팀 생성</a>
-						</div>
+						<div class="title board">TEAM MEMBER</div>
+						
 						<div class="content-container">
 							<div class="title-wrap">
 								<div class="subject img"></div>
@@ -92,6 +93,10 @@
 								<div class="subject manage">관리</div>
 							</div>
 							
+							<c:if test="${not empty teamCreationMessage}">
+							    <%@ include file="teamCreationMessage.jsp" %>
+							</c:if>
+							
 							<c:forEach var="member" items="${memberList}">
 							<div class="detail">
 								<div class="content-wrap">
@@ -101,7 +106,11 @@
 									<div class="content position"><c:out value="${member.USER_MAIN_POSITION}" /> /
 											<c:out value="${member.USER_SUB_POSITION != null ? member.USER_SUB_POSITION : '-'}" /></div>
 									<div class="content gender"><c:out value="${member.USER_GENDER}" /></div>
-									<div class="content manage"><button type="button" class="btn-memberDelete">방출하기</button></div>
+									<div class="content manage">
+									
+										 <button type="button" class="btn-memberDelete" onclick="deleteMember('${member.USER_ID}')">방출하기</button>
+								
+									</div>
 								</div>
 							</div>
 							</c:forEach>
@@ -112,6 +121,7 @@
 		</div>
 	</section>
 </body>
+
 
 <!-- footer -->
 <%@include file="/includes/footer.jsp"%>

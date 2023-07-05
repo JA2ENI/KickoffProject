@@ -33,6 +33,8 @@ public class TeamDO {
 	private String teamDay;
 	//팀 주 이용 시간
 	private String teamTime;
+	//팀 리더 아이디
+	private String leaderId;
 	
 	
 	public String getTeamName() {
@@ -112,6 +114,12 @@ public class TeamDO {
 	}
 	public void setTeamTime(String teamTime) {
 		this.teamTime = teamTime;
+	}
+	public String getLeaderId() {
+		return leaderId;
+	}
+	public void setLeaderId(String leaderId) {
+		this.leaderId = leaderId;
 	}
 
 }

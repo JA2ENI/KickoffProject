@@ -8,6 +8,7 @@ import com.teamcommit.kickoff.Do.HelperApplyDO;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.UserDO;
 
 @Mapper
 public interface ApplyMapper {
@@ -23,4 +24,6 @@ public interface ApplyMapper {
 	public List<HelperDO> helperUserSelect(String helperUserId);
 	
 	public int countAccept();
+	
+	public List<UserDO> helperApplyUser(int helperSeqno);
 }
