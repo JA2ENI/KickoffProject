@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -67,7 +69,7 @@
 													<div class="filebox bs3-primary preview-image">
 														<!-- <input class="upload-name" disabled="disabled" style="width: 500px;">--> 
 														<input type="file" name="uploadFile" id="input_file">
-														<label for="input_file">올리기</label>
+														<label for="input_file">업로드</label>
 													</div>
 													<div class="checkout__input">
 														<p>풋살장<span>*</span></p>

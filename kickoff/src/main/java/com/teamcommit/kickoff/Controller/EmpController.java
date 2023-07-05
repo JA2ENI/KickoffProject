@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -326,9 +328,49 @@ public class EmpController {
     
     /* 풋살장 수정*/
     @RequestMapping(value = "/empFutsalF")
-    public ModelAndView empFutsalUpdate(@ModelAttribute("placeDO")PlaceDO placeDO) throws Exception {
+    public ModelAndView empFutsalUpdate(@ModelAttribute("placeDO")PlaceDO placeDO, @RequestParam MultipartFile uploadFile) throws Exception {
 
         ModelAndView mv = new ModelAndView("redirect:/empFutsalFix");
+        
+        // 업로드된 파일 처리
+        if (!uploadFile.isEmpty()) {
+            // 이미지를 업로드할 디렉토리 경로
+            String uploadDirectory = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images";
+
+            // 업로드된 파일의 원본 이름
+            String originalFilename = uploadFile.getOriginalFilename();
+
+            // 확장자 추출
+            String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+
+            // 저장될 파일 이름 (UUID 사용)
+            String fileName = UUID.randomUUID().toString() + extension;
+
+            // 파일을 저장할 경로 생성
+            String filePath = uploadDirectory + "\\" + fileName;
+            Path targetPath = Path.of(filePath);
+
+            String oldFilePath = uploadDirectory + "\\" + placeDO.getImgName();
+            Path oldPath = Path.of(oldFilePath);
+
+            if (Files.exists(oldPath)) {
+                try {
+                    Files.deleteIfExists(oldPath);
+                } catch (IOException e) {
+                    // 파일 삭제 실패 시 예외 처리
+                    e.printStackTrace();
+                }
+            }
+
+            // 파일 저장
+            try (InputStream inputStream = uploadFile.getInputStream()) {
+                Files.copy(inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING);
+            }
+            
+            // 이미지 파일 경로를 placeDO에 설정
+            placeDO.setImgName(fileName);
+            placeDO.setImgPath("/images/" + fileName);
+        }
 
         empService.updateEmpFutsalF(placeDO);
 

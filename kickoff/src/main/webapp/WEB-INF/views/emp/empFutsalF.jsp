@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -54,19 +56,18 @@
 								    	<!-- 이미지 class 추가 -->
 								    	<div class="checkout__form">
 								    		<div class="futsal">								    		
-								        	<form id="frm" name="frm" action="/empFutsalF" method="POST">
+								        	<form id="frm" name="frm" action="/empFutsalF" method="POST" enctype="multipart/form-data">
 												<input type="hidden" id="placeId" name="placeId" value="${empFutsalFix.placeId}" />
 								                	<div class="col-lg-8 col-md-6">
 								                		<div class="checkout__input">
 										    			<p>풋살장 이미지<span>*</span></p>
 								                		<div class="filebox bs3-primary preview-image">
-						              						<input class="upload-name" value="파일선택" disabled="disabled"style="width: 500px;">
-						              						<input type="file" id="input_file" class="upload-hidden"> 
+						              						<input type="file" name="uploadFile" id="input_file"> 
 						              						<label for="input_file">업로드</label> 
 			       										</div>
 														<div class="checkout__input">
 							                               <p>풋살장<span>*</span></p>
-							                               <textarea class="etc" name="placeName" value="${empFutsalFix.placeName}"></textarea>
+							                               <input name="placeName" value="${empFutsalFix.placeName}" readonly></input>
                            								</div>
                           							<div class="checkout__input">
                                 						<p>바닥 형태<span>*</span></p>
