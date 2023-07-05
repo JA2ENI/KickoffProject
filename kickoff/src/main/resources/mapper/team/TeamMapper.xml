@@ -76,15 +76,26 @@
               )
         ]]>
     </insert>
+    
+    <!-- TeamInfo -->
+    <select id="selectTeamInfo" parameterType="com.teamcommit.kickoff.Do.TeamInfoDO" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
+    	<![CDATA[
+        SELECT
+            *
+        FROM
+            TEAM_INFO
+        WHERE
+            LEADER_ID = #{userId}
+        ]]>
+    </select>
 
     <!-- Team Insert -->
     <insert id = "insertTeam" parameterType="com.teamcommit.kickoff.Do.TeamDO">
         <![CDATA[
-        INSERT INTO TEAM
+        INSERT INTO
+        	TEAM
         (
             TEAM_SEQNO,
-            TEAM_ID,
-            LEADER_ID,
             TEAM_NAME,
             TEAM_NUMBER,
             TEAM_GENDER,
@@ -92,26 +103,51 @@
             TEAM_START_DATE,
             TEAM_END_DATE,
             TEAM_STATUS,
-            TEAM_OTHER
+            TEAM_OTHER,
+            TEAM_LEVEL,
+            TEAM_AGE,
+            TEAM_DAY,
+            TEAM_TIME,
+            LEADER_ID
         )
         VALUES(
                   TEAM_SEQ.NEXTVAL,
-                  TEAM_ID.NEXTVAL,
-                  #{leaderId},
                   #{teamName},
                   #{teamNumber},
                   #{teamGender},
                   #{teamLocal},
                   #{teamStartDate},
                   #{teamEndDate},
-                  #{teamStatus},
-                  #{teamOther}
+                  '모집 중',
+                  #{teamOther},
+                  #{teamLevel},
+                  #{teamAge},
+                  #{teamDay},
+                  #{teamTime},
+                  #{leaderId}
               )
         ]]>
     </insert>
-
-    <!-- Team Detail -->
-    <select id="getTeamContents" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">
+    
+    <!-- Team Update -->
+    <insert id = "updateTeam" parameterType="com.teamcommit.kickoff.Do.TeamDO">
+        <![CDATA[
+        UPDATE
+        	TEAM
+        SET
+            TEAM_NUMBER = #{teamNumber},
+            TEAM_GENDER = #{teamGender},
+            TEAM_END_DATE = #{teamEndDate},
+            TEAM_STATUS = #{teamStatus},
+            TEAM_OTHER = #{teamOther},
+            TEAM_AGE = #{teamAge}         
+        WHERE
+            TEAM_SEQNO = #{teamSeqNo}
+        ]]>
+    </insert>
+    
+    <!-- Team Recruit Detail -->
+    <select id="teamRecruitDetail" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">
         <![CDATA[
         SELECT
             *
@@ -121,7 +157,7 @@
             TEAM_SEQNO = #{teamSeqNo}
         ]]>
     </select>
-    
+
     <!-- Team Info Detail -->
     <select id="teamInfoDetail" parameterType="String" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
         <![CDATA[
@@ -188,31 +224,15 @@
 	</delete>
 
     <!-- TeamRank List -->
-    <select id="rankList" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">
+    <select id="rankList" parameterType="com.teamcommit.kickoff.Do.TeamInfoDO" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
         <![CDATA[
         SELECT
             *
         FROM
-            TEAM
+            TEAM_INFO
         ORDER BY TEAM_RANK ASC
         ]]>
     </select>
-
-    <!--    &lt;!&ndash; Board Update &ndash;&gt;-->
-    <!--    <update id="updaateBoard" parameterType="com.teamcommit.kickoff.Do.BoardDO">-->
-    <!--        <![CDATA[-->
-    <!--        UPDATE-->
-    <!--            COMMUNITY_BOARD-->
-    <!--        SET-->
-    <!--            WRITE_TITLE = #{writeTitle},-->
-    <!--            WRITE_CONTENT = #{writeContent},-->
-    <!--            FILE_NAME = #{fileName},-->
-    <!--            FILE_PATH = #{filePath},-->
-    <!--            WRITE_EDIT_DATE = now()-->
-    <!--        WHERE-->
-    <!--            BOARD_SQENO = #{boardSeqno}-->
-    <!--        ]]>-->
-    <!--    </update>-->
     
     <!-- TeamApply Insert -->
     <insert id = "insertTeamApply" parameterType="com.teamcommit.kickoff.Do.TeamApplyDO">

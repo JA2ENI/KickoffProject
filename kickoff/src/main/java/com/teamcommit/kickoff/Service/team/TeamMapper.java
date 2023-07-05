@@ -19,9 +19,13 @@ public interface TeamMapper {
     
     public List<TeamDO> teamRecruitList(TeamDO teamDO);
 
-    public TeamDO getTeamContents(int teamSeqNo);
+    public TeamDO teamRecruitDetail(int teamSeqNo);
 
     public void insertTeam(TeamDO teamDO);
+    
+    public void updateTeam(TeamDO teamDO);
+    
+    public TeamInfoDO selectTeamInfo(String userId);
     
     public void teamCreation(TeamInfoDO teamInfoDO);
     

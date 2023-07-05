@@ -14,7 +14,7 @@
 
 <link href="/team/css/teamManage.css" rel="stylesheet" />
 
-<title>Kick off: 풋살팀</title>
+<title>Kick off: 풋살팀 관리</title>
 </head>
 <body>
 	<%@include file="/includes/header.jsp"%>
@@ -28,9 +28,12 @@
 			<div class="root-container">
 				<article class="article-container one">
 					<div class="item-wrap">
-						<div class="title">TEAM INFO</div>
-						<div class="content-container1">
+						<!-- <div class="wrap"> -->
+							<div class="title">TEAM INFO</div>
+							<!-- <a href="/teamUpdate" class="team-update">팀 정보 수정</a>
+						</div>  -->
 						
+						<div class="content-container1">
 						<c:forEach var="list" items="${teamDetail}">
 							<div class="title-wrap">
 								<div class="subject team"><c:out value="${list.teamName}" /></div>
@@ -78,10 +81,8 @@
 			</article>
 				<article id="boxDetail" class="article-container two">
 					<div class="item-wrap">
-						<div class="wrap">
-							<div class="title board">TEAM MEMBER</div>
-							
-						</div>
+						<div class="title board">TEAM MEMBER</div>
+						
 						<div class="content-container">
 							<div class="title-wrap">
 								<div class="subject img"></div>

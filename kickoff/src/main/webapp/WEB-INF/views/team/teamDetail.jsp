@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Kick Off: 자유게시판 글 상세보기</title>
+<title>Kick Off: 풋살팀 모집글 상세보기</title>
 <!-- include할 문서에 스타일, js -->
 <link rel="stylesheet"
 	href="/includes/css/style.css">
@@ -28,25 +28,26 @@
 <script src="/includes/js/main.js"></script>
 <!-- 여기까지 복붙하기 -->
 
-<link rel="stylesheet"
-	href="/team/css/boardDetail.css" />
+	<link href="/team/css/teamDetail.css" rel="stylesheet" />
 
 </head>
 <body>
 	<%@include file="/includes/header.jsp"%>
 	<!-- Header -->
-	<div class="bg-dark py-5">
-		<div class="container px-4 px-lg-5 my-5">
-			<div class="text-center text-white">
-				<h1 class="display-4 fw-bolder">풋살팀</h1>
-				<p class="lead fw-normal text-white-50 mb-0"></p>
-			</div>
-		</div>
-	</div>
+	
+	<section>
 	<form role="form" action="/teamDetail" method="post">
 		<div class="container">
-			<div class="table-responsive">
-				<table class="board_detail">
+			<div class="root-container">
+				
+				<article id="boxDetail" class="article-container two">
+					<div class="item-wrap">
+						<div class="wrap">
+							<div class="title board">${teamContents.teamName}</div>
+							<a class="team-status">${teamContents.teamStatus}</a>
+						</div>
+						<div class="content-container">
+							<table class="board_detail">
 					<colgroup>
 						<col width="20%" />
 						<col width="35%" />
@@ -57,11 +58,11 @@
 						<tr>
 							<th scope="row">풋살팀 이름</th>
 							<td>${teamContents.teamName}</td>
-							<th scope="row">모집 상태</th>
-							<td style="color: red; font-weight: bold;">${teamContents.teamStatus}</td>
+							<th scope="row">모집 연령대</th>
+							<td>${teamContents.teamAge}</td>
 						</tr>
 						<tr>
-							<th scope="row">풋살팀 성별</th>
+							<th scope="row">모집 성별</th>
 							<td>${teamContents.teamGender}</td>
 							<th scope="row">모집 인원</th>
 							<td>${teamContents.teamNumber}</td>
@@ -69,8 +70,14 @@
 						<tr>
 							<th scope="row">풋살팀 소속 지역</th>
 							<td>${teamContents.teamLocal}</td>
-							<th scope="row">풋살팀 등급</th>
-							<td>${teamContents.teamGrade}</td>
+							<th scope="row">풋살팀 레벨</th>
+							<td>${teamContents.teamLevel}</td>
+						</tr>
+						<tr>
+							<th scope="row">주 이용 요일</th>
+							<td>${teamContents.teamDay}</td>
+							<th scope="row">주 이용 시간</th>
+							<td>${teamContents.teamTime}</td>
 						</tr>
 						<tr>
 							<th scope="row">모집 시작일</th>
@@ -85,16 +92,31 @@
 						</tr>
 					</tbody>
 				</table>
+						</div>
+					</div>
+				</article>
 			</div>
-	
-	
-
-			<div class="btn_boarddetail">
-				<button type="reset" class="btn_reset" onclick="location.href='/team';">목록</button>
-				<button type="button" class="btn_apply" onclick="location.href='/teamApply';">팀 지원</button>
-			</div>
+				<div class="btn">
+					<button type="reset" class="btn_reset" onclick="location.href='/team';">목록</button>
+					<c:if test="${userId eq teamContents.leaderId}">
+						<button type="button" class="btn_update" onclick="location.href='/teamUpdate?teamSeqNo=${teamContents.teamSeqNo}';">수정</button>
+					</c:if>
+					<button type="button" class="btn_apply" onclick="location.href='/teamApply';">지원하기</button>
+			   </div>
 		</div>
 	</form>
+	</section>
+	<script>
+	/* status color */
+	var statusDivs = document.getElementsByClassName("team-status");
+	for (var i = 0; i < statusDivs.length; i++) {
+	    var statusDiv = statusDivs[i];
+	    
+	    if (statusDiv.innerText === "모집 완료") {
+	        statusDiv.style.color = "#9c9c9c";
+	    }
+	}
+	</script>
 </body>
 </html>
 

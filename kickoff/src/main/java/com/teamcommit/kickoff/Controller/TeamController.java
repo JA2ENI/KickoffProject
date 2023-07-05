@@ -1,5 +1,6 @@
 package com.teamcommit.kickoff.Controller;
 
+import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.TeamApplyDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.TeamInfoDO;
@@ -49,53 +50,78 @@ public class TeamController {
         return view;
     }
 
-    // 팀 게시글 상세보기
-    @RequestMapping( "/teamDetail")
-    public String teamDetail(@ModelAttribute("teamDO") TeamDO teamDO, @RequestParam("teamSeqNo") int teamSeqNo, HttpServletRequest request, Model model) throws Exception {
-        String view = "/team/teamDetail";
-
-        TeamDO teamContents = teamService.getTeamContents(teamSeqNo);
-        model.addAttribute("teamContents", teamContents);
-
-        return view;
-    }
-
-    // 팀 모집 글 등록 페이지 이동
-    @GetMapping("/teamInsert")
-    public String teamInsert(HttpSession session, Model model, HttpServletRequest request) {
+    // 팀 모집글 등록 페이지 이동 & 데이터 불러오기
+    @RequestMapping("/teamInsert")
+    public String teamInsert(@ModelAttribute("teamDO") TeamDO teamDO, HttpSession session, Model model, HttpServletRequest request) throws Exception {
         String view = "";
+        
+        String userId = (String)session.getAttribute("userId");
 
         if(session.getAttribute("userId") == null) {
             model.addAttribute("script", "alert('로그인 후 이용하실 수 있습니다.');");
             view = "login/loginAll";
+            
+            return view;
         }
         else if (session.getAttribute("userId") != null) {
             view = "team/teamInsert";
+            
+            TeamInfoDO teamInfoDO = teamService.selectTeamInfo(userId);
+            model.addAttribute("teamInfoDO", teamInfoDO);
         }
+        
+
+        return view;
+    }
+    
+    // 팀 모집글 등록 요청
+    @RequestMapping("/teamInsertAction")
+    public String teamInsertAction(@ModelAttribute("teamDO") TeamDO teamDO, HttpServletRequest request, Model model) throws Exception {
+    	String view = "redirect:/team";
+
+    	teamService.insertTeam(teamDO);
+    	return view;
+    }
+    
+    // 팀 모집 게시글 상세보기
+    @RequestMapping( "/teamDetail")
+    public String teamDetail(@ModelAttribute("teamDO") TeamDO teamDO, @RequestParam("teamSeqNo") int teamSeqNo, HttpSession session, Model model) throws Exception {
+        String view = "/team/teamDetail";
+        
+        String userId = (String)session.getAttribute("userId");
+        model.addAttribute("userId", userId);
+
+        TeamDO teamContents = teamService.teamRecruitDetail(teamSeqNo);
+        model.addAttribute("teamContents", teamContents);
+
+        return view;
+    }
+    
+    // 팀 모집글 수정 페이지 이동
+    @RequestMapping( "/teamUpdate")
+    public String teamUpdate(@ModelAttribute("teamDO") TeamDO teamDO, @RequestParam("teamSeqNo") int teamSeqNo, Model model) throws Exception {
+        String view = "/team/teamUpdate";
+
+        TeamDO teamContents = teamService.teamRecruitDetail(teamSeqNo);
+        model.addAttribute("teamContents", teamContents);
+
+        return view;
+    }
+    
+    // 팀 모집글 수정 요청
+    @RequestMapping( "/teamUpdateAction")
+    public String teamUpdateAction(@ModelAttribute("teamDO") TeamDO teamDO) throws Exception {
+        String view = "redirect:/teamDetail?teamSeqNo=" + teamDO.getTeamSeqNo();
+       
+        teamService.updateTeam(teamDO);
+
         return view;
     }
 
-    // 팀 등록 요청
-    @RequestMapping("/teamInsertAction")
-    public ModelAndView teamInsertAction(@ModelAttribute("teamDO") TeamDO teamDO, Model model, HttpSession session) throws Exception {
-        ModelAndView mv = new ModelAndView();
-
-        try {
-            teamService.insertTeam(teamDO);
-            mv = new ModelAndView("redirect:/team");
-
-            model.addAttribute("script", "alert('팀 등록을 완료하였습니다.');");
-
-        } catch (Exception e) {
-            model.addAttribute("script", "alert('잘못된 요청입니다. 다시 시도해 주세요.');");
-        }
-
-        return mv;
-    }
 
     // 팀 랭킹
     @RequestMapping(value = "/teamRank", method = RequestMethod.GET)
-    public String TeamRank(@ModelAttribute("teamDO") TeamDO teamDO, HttpServletRequest request, Model model) throws Exception {
+    public String TeamRank(@ModelAttribute("teamDO") TeamDO teamDO, Model model) throws Exception {
 
         String view = "/team/teamRank";
 

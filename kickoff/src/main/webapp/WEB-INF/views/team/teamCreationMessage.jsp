@@ -14,7 +14,7 @@
 
 <link href="/team/css/teamManage.css" rel="stylesheet" />
 
-<title>Kick off: 풋살팀</title>
+<title>Kick off: 풋살팀 관리</title>
 </head>
 <body>
 	<%@include file="/includes/header.jsp"%>
