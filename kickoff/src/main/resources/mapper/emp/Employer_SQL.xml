@@ -113,6 +113,7 @@
         INSERT INTO PLACE (
         	PLACE_ID,
             IMG_NAME,
+            IMG_PATH,
             PLACE_NAME,
             PLACE_ADDRESS,
             PLACE_PHONE_NUMBER,
@@ -130,6 +131,7 @@
         VALUES (
         	PLACE_ID.NEXTVAL,
             #{imgName},
+            #{imgPath},
             #{placeName},
             #{placeAddress},
             #{placePhoneNumber},
@@ -178,6 +180,7 @@
             	PLACE
             SET
                 IMG_NAME = #{imgName},
+                IMG_PATH = #{imgPath},
             	PLACE_NAME = #{placeName},
             	PLACE_ADDRESS = #{placeAddress},
             	PLACE_PHONE_NUMBER = #{placePhoneNumber},

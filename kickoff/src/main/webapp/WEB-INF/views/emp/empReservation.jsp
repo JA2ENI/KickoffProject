@@ -9,6 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="/emp/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="/emp/css/main.css" />
+		<html xmlns:th="http://www.thymeleaf.org">
 		<!--[if lte IE 9]><link rel="stylesheet" href="/emp/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="/emp/css/ie8.css" /><![endif]-->
 		
@@ -46,14 +47,6 @@
 		                                                <option selected="selected">예약 현황</option>
 		                                                <option value="">등록된 것만</option>
 		                                                <option value="">취소된 것만</option>
-		                                            </select>
-		                                            <div class="dropDownSelect2"></div>
-		                                        </div>
-		                                        <div class="rs-select2--light rs-select2--sm">
-		                                            <select class="js-select2" name="time">
-		                                                <option selected="selected">인원 순</option>
-		                                                <option value="">최대 인원</option>
-		                                                <option value="">최소 인원</option>
 		                                            </select>
 		                                            <div class="dropDownSelect2"></div>
 		                                        </div>
@@ -110,7 +103,7 @@
 		                                                <td><c:out value="${list.reservationNumber}"/></td>
 		                                                <td>
 		                                                    <div class="table-data-feature">
-		                                                        <button type= "button" class= "au-btn au-btn-icon au-btn--green au-btn--small" onclick="eng()" id="au-btn au-btn-icon au-btn--green au-btn--small" title="Detail">상세보기</button>
+		                                                        <button th:data-id="${modal.userId}" class= "au-btn au-btn-icon au-btn--green au-btn--small" onclick="eng()">상세보기</button>
 		                                                    </div>
 		                                                </td>		                                                
 		                                            </tr>
@@ -124,7 +117,7 @@
 														<div class="modal_wrap">
 															<button type = "reset" onclick="offClick()" class="reservationClose">x</button>
 															
-															<div>
+															<div id="modalData">
 																<table class = "tablehorizon">
 																<c:forEach var="modal" items="${table}">
 																	<tr class="horizontr">

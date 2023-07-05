@@ -8,22 +8,32 @@ import com.teamcommit.kickoff.Service.board.BoardService;
 import com.teamcommit.kickoff.Service.reservation.ReservationService;
 import com.teamcommit.kickoff.Service.login.LoginService;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class EmpController {
@@ -244,12 +254,35 @@ public class EmpController {
 
 	/* 풋살장 등록 */
 	@RequestMapping(value="/empFutsalForm")
-    public ModelAndView empFutsalForm(@ModelAttribute("placeDO") PlaceDO placeDO, HttpServletRequest request, RedirectAttributes redirect) throws Exception {
+    public ModelAndView empFutsalForm(@ModelAttribute("placeDO") PlaceDO placeDO, HttpServletRequest request, RedirectAttributes redirect, @RequestParam MultipartFile uploadFile) throws Exception {
 
        ModelAndView mv = new ModelAndView();
        
        try {
-		
+    	   // 이미지를 업로드할 디렉토리 경로
+           String uploadDirectory = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images"; 
+           
+           // 업로드된 파일의 원본 이름
+           String originalFilename = uploadFile.getOriginalFilename();
+           
+           // 확장자 추출
+           String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+           
+           // 저장될 파일 이름 (UUID 사용)
+           String fileName = UUID.randomUUID().toString() + extension;
+           
+           // 파일을 저장할 경로 생성
+           String filePath = uploadDirectory + "\\" + fileName;
+           Path targetPath = Path.of(filePath);
+           
+           // 파일 저장
+           Files.copy(uploadFile.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+           
+           // 이미지 파일 경로를 placeDO에 설정
+           String imgRelativePath = "/images/" + fileName;
+           placeDO.setImgName(fileName);
+           placeDO.setImgPath(imgRelativePath);
+    	   
     	   empService.empFutsalInsert(placeDO);
            mv = new ModelAndView("redirect:/empFutsalFix?placeId=" + placeDO.getPlaceId());
            
@@ -295,9 +328,49 @@ public class EmpController {
     
     /* 풋살장 수정*/
     @RequestMapping(value = "/empFutsalF")
-    public ModelAndView empFutsalUpdate(@ModelAttribute("placeDO")PlaceDO placeDO) throws Exception {
+    public ModelAndView empFutsalUpdate(@ModelAttribute("placeDO")PlaceDO placeDO, @RequestParam MultipartFile uploadFile) throws Exception {
 
         ModelAndView mv = new ModelAndView("redirect:/empFutsalFix");
+        
+        // 업로드된 파일 처리
+        if (!uploadFile.isEmpty()) {
+            // 이미지를 업로드할 디렉토리 경로
+            String uploadDirectory = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images";
+
+            // 업로드된 파일의 원본 이름
+            String originalFilename = uploadFile.getOriginalFilename();
+
+            // 확장자 추출
+            String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+
+            // 저장될 파일 이름 (UUID 사용)
+            String fileName = UUID.randomUUID().toString() + extension;
+
+            // 파일을 저장할 경로 생성
+            String filePath = uploadDirectory + "\\" + fileName;
+            Path targetPath = Path.of(filePath);
+
+            String oldFilePath = uploadDirectory + "\\" + placeDO.getImgName();
+            Path oldPath = Path.of(oldFilePath);
+
+            if (Files.exists(oldPath)) {
+                try {
+                    Files.deleteIfExists(oldPath);
+                } catch (IOException e) {
+                    // 파일 삭제 실패 시 예외 처리
+                    e.printStackTrace();
+                }
+            }
+
+            // 파일 저장
+            try (InputStream inputStream = uploadFile.getInputStream()) {
+                Files.copy(inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING);
+            }
+            
+            // 이미지 파일 경로를 placeDO에 설정
+            placeDO.setImgName(fileName);
+            placeDO.setImgPath("/images/" + fileName);
+        }
 
         empService.updateEmpFutsalF(placeDO);
 
