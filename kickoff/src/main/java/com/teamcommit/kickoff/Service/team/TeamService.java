@@ -18,9 +18,13 @@ public interface TeamService {
 
     void insertTeam(TeamDO teamDO) throws Exception;
     
+    void updateTeam(TeamDO teamDO) throws Exception;
+    
+    TeamInfoDO selectTeamInfo(String userId) throws Exception;
+    
     void teamCreation(TeamInfoDO teamInfoDO) throws Exception;
 
-    TeamDO getTeamContents(int teamSeqNo) throws Exception;
+    TeamDO teamRecruitDetail(int teamSeqNo) throws Exception;
     
     List<TeamInfoDO> teamInfoDetail(String userId) throws Exception;
     

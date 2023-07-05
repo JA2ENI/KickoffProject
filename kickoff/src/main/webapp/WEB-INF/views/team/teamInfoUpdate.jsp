@@ -14,7 +14,7 @@
 
 <link href="/team/css/teamCreate.css" rel="stylesheet" />
 
-<title>Kick off: 풋살팀 생성</title>
+<title>Kick off: 풋살팀 정보 수정</title>
 </head>
 <body>
 	<%@include file="/includes/header.jsp"%>

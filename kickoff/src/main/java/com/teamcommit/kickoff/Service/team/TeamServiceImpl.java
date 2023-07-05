@@ -33,13 +33,23 @@ import java.util.Map;
         }
 
         @Override
-        public TeamDO getTeamContents(int teamSeqNo) throws Exception {
-            return teamMapper.getTeamContents(teamSeqNo);
+        public TeamDO teamRecruitDetail(int teamSeqNo) throws Exception {
+            return teamMapper.teamRecruitDetail(teamSeqNo);
         }
 
         @Override
         public void insertTeam(TeamDO teamDO) throws Exception {
             teamMapper.insertTeam(teamDO);
+        }
+        
+        @Override
+        public void updateTeam(TeamDO teamDO) throws Exception {
+            teamMapper.updateTeam(teamDO);
+        }
+        
+        @Override
+        public TeamInfoDO selectTeamInfo(String userId) throws Exception {
+            return teamMapper.selectTeamInfo(userId);
         }
         
         @Override
