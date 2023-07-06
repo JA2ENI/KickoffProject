@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.teamcommit.kickoff.Do.EmployerDO;
 import com.teamcommit.kickoff.Do.UserDO;
+import com.teamcommit.kickoff.Service.login.CertificationService;
 import com.teamcommit.kickoff.Service.login.LoginService;
 
 
@@ -204,6 +204,24 @@ public class LoginController {
         // 비밀번호 찾기 결과 페이지로 이동
         ModelAndView mv = new ModelAndView("/login/findEmpPw");
         return mv;
+    }
+    
+    // coolsms api
+    @GetMapping("/check/sendSMS")
+    public @ResponseBody String sendSMS(String phoneNumber) {
+
+    	// 4자리 난수 생성
+        Random rand  = new Random();
+        String numStr = "";
+        for(int i=0; i<4; i++) {
+            String ran = Integer.toString(rand.nextInt(10));
+            numStr+=ran;
+        }
+        // CertificationService를 사용하여 SMS 전송
+        CertificationService.certifiedPhoneNumber(phoneNumber,numStr);
+        
+        // 생성된 4자리 난수 반환
+        return numStr;
     }
     
 

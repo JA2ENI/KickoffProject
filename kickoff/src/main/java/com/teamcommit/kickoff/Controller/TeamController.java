@@ -1,12 +1,12 @@
 package com.teamcommit.kickoff.Controller;
 
-import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.TeamApplyDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.TeamInfoDO;
 import com.teamcommit.kickoff.Do.UserDO;
 import com.teamcommit.kickoff.Service.team.TeamService;
 import com.teamcommit.kickoff.Service.login.LoginService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -35,8 +35,11 @@ public class TeamController {
 
     // 팀 목록 & 게시글 목록
     @RequestMapping(value = "/team")
-    public String TeamList(@ModelAttribute("teamInfoDO") TeamInfoDO teamInfoDO, @ModelAttribute("teamDO") TeamDO teamDO, Model model) throws Exception {
+    public String team(@ModelAttribute("teamInfoDO") TeamInfoDO teamInfoDO, @ModelAttribute("teamDO") TeamDO teamDO, 
+    					@RequestParam(value = "teamId", required = false) Integer teamId, Model model, HttpSession session) throws Exception {
         String view = "/team/team";
+        
+        String userId = (String)session.getAttribute("userId");
         
         List<TeamInfoDO> teamList = teamService.teamInfoList(teamInfoDO);
         model.addAttribute("teamList", teamList);
@@ -44,10 +47,21 @@ public class TeamController {
         List<TeamDO> teamBoard = teamService.teamBoardList(teamDO);
         model.addAttribute("teamBoard", teamBoard);
         
-        List<TeamDO> teamRecruit = teamService.teamRecruitList(teamDO);
+        List<TeamDO> teamRecruit = teamService.teamRecruitList(teamId);
         model.addAttribute("teamRecruit", teamRecruit);
-
+        
+        TeamInfoDO teamButton = teamService.teamManageButton(userId);
+        model.addAttribute("teamButton", teamButton);
+   
         return view;
+    }
+    
+    // 팀별 모집글 AJAX 처리
+    @GetMapping(value = "/team-ajax")
+    @ResponseBody
+    public List<TeamDO> teamAjax(@RequestParam(value = "teamId", required = false) Integer teamId) throws Exception {
+        
+    	return teamService.teamRecruitList(teamId);
     }
 
     // 팀 모집글 등록 페이지 이동 & 데이터 불러오기
@@ -110,10 +124,20 @@ public class TeamController {
     
     // 팀 모집글 수정 요청
     @RequestMapping( "/teamUpdateAction")
-    public String teamUpdateAction(@ModelAttribute("teamDO") TeamDO teamDO) throws Exception {
+    public String teamUpdateAction(@ModelAttribute("teamDO") TeamDO teamDO, Model model) throws Exception {
         String view = "redirect:/teamDetail?teamSeqNo=" + teamDO.getTeamSeqNo();
        
         teamService.updateTeam(teamDO);
+
+        return view;
+    }
+    
+    // 팀 모집글 삭제 요청
+    @RequestMapping( "/teamDeleteAction")
+    public String teamDeleteAction(@ModelAttribute("teamDO") TeamDO teamDO, @RequestParam("teamSeqNo") int teamSeqNo) throws Exception {
+        String view = "redirect:/team";
+       
+        teamService.deleteTeam(teamSeqNo);
 
         return view;
     }
@@ -232,6 +256,9 @@ public class TeamController {
         
     	List<Map<String, Object>> memberList = teamService.teamMemberList(teamId);
         model.addAttribute("memberList", memberList);
+        
+        TeamInfoDO teamButton = teamService.teamManageButton(userId);
+        model.addAttribute("teamButton", teamButton);
         
         return view;
     }

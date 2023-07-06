@@ -1,4 +1,4 @@
-package com.teamcommit.kickoff.Common;
+package com.teamcommit.kickoff.Service.login;
 
 import java.util.HashMap;
 
@@ -11,14 +11,14 @@ public class CertificationService {
 	
 		public static void certifiedPhoneNumber(String phoneNumber, String cerNum) {
 	
-		    String api_key = "NCSMLTX8CMNORVUF";
-		    String api_secret = "RBKQOIIRJHKI1IBKQZR3HQFPUVBMVNAN";
+		    String api_key = "NCSIKW3WM9AVC86Y";
+		    String api_secret = "AKNPQWY3IUMWOVKWX0CYCLR0MBCKAAZX";
 		    Message coolsms = new Message(api_key, api_secret);
 	
 		    // 4 params(to, from, type, text) are mandatory. must be filled
 		    HashMap<String, String> params = new HashMap<String, String>();
 		    params.put("to", phoneNumber);    // 수신전화번호
-		    params.put("from", "010-3709-3238");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
+		    params.put("from", "010-9205-2700");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
 		    params.put("type", "SMS");
 		    params.put("text", "Kick Off 휴대폰 인증 메시지 : " + "[" + cerNum +"]" + " ");
 		    params.put("app_version", "test app 1.2"); // application name and version

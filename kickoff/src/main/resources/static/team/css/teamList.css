@@ -144,7 +144,7 @@ p {
 }
 
 .title.board {
-	width: 80%;
+	width: 100%;
 }
 
 .content-container1 {
@@ -314,4 +314,6 @@ button.detail:focus {
 	background: #ffc090;
 }	
 	
-	
+.btn-disabled {
+	visibility: hidden;
+}

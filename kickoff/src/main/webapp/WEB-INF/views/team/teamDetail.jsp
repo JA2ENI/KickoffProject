@@ -101,7 +101,12 @@
 					<c:if test="${userId eq teamContents.leaderId}">
 						<button type="button" class="btn_update" onclick="location.href='/teamUpdate?teamSeqNo=${teamContents.teamSeqNo}';">수정</button>
 					</c:if>
-					<button type="button" class="btn_apply" onclick="location.href='/teamApply';">지원하기</button>
+					<c:if test="${userId eq teamContents.leaderId}">
+						<button type="button" class="btn_delete" onclick="location.href='/teamDeleteAction?teamSeqNo=${teamContents.teamSeqNo}';">삭제</button>
+					</c:if>
+					<c:if test="${userId ne teamContents.leaderId}">
+						<button type="button" class="btn_apply" onclick="location.href='/teamApply';">지원하기</button>
+					</c:if>
 			   </div>
 		</div>
 	</form>
