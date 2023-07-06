@@ -14,11 +14,13 @@ public interface TeamService {
     
     List<TeamDO> teamBoardList(TeamDO teamDO) throws Exception;
     
-    List<TeamDO> teamRecruitList(TeamDO teamDO) throws Exception;
+    List<TeamDO> teamRecruitList(Integer teamId) throws Exception;
 
     void insertTeam(TeamDO teamDO) throws Exception;
     
     void updateTeam(TeamDO teamDO) throws Exception;
+    
+    void deleteTeam(int teamSeqNo) throws Exception;
     
     TeamInfoDO selectTeamInfo(String userId) throws Exception;
     
@@ -28,6 +30,8 @@ public interface TeamService {
     
     List<TeamInfoDO> teamInfoDetail(String userId) throws Exception;
     
+    TeamInfoDO teamManageButton(String userId) throws Exception;
+    
     TeamInfoDO teamInfo(String userId) throws Exception;
     
     List<Map<String, Object>> teamMemberList(int teamId) throws Exception;
@@ -35,8 +39,6 @@ public interface TeamService {
     void teamMemberDelete(String userId) throws Exception;
 
     List<TeamDO> rankList(TeamDO teamDO) throws Exception;
-
-//    void updateTeam(TeamDO teamDO) throws Exception;
     
     void insertTeamApply(TeamApplyDO teamApplyDO) throws Exception;
 

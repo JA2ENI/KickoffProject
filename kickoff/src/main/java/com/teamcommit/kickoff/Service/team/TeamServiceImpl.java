@@ -28,8 +28,8 @@ import java.util.Map;
         }
         
         @Override
-        public List<TeamDO> teamRecruitList(TeamDO teamDO) throws Exception {
-            return teamMapper.teamRecruitList(teamDO);
+        public List<TeamDO> teamRecruitList(Integer teamId) throws Exception {
+            return teamMapper.teamRecruitList(teamId);
         }
 
         @Override
@@ -48,6 +48,11 @@ import java.util.Map;
         }
         
         @Override
+        public void deleteTeam(int teamSeqNo) throws Exception {
+            teamMapper.deleteTeam(teamSeqNo);
+        }
+        
+        @Override
         public TeamInfoDO selectTeamInfo(String userId) throws Exception {
             return teamMapper.selectTeamInfo(userId);
         }
@@ -60,6 +65,11 @@ import java.util.Map;
         @Override
         public List<TeamInfoDO> teamInfoDetail(String userId) throws Exception {
             return teamMapper.teamInfoDetail(userId);
+        }
+        
+        @Override
+        public TeamInfoDO teamManageButton(String userId) throws Exception {
+            return teamMapper.teamManageButton(userId);
         }
         
         @Override
@@ -82,11 +92,6 @@ import java.util.Map;
         {
             return teamMapper.rankList(teamDO);
         }
-//
-//        @Override
-//        public void updateTeam(TeamDO teamDO) throws Exception {
-//
-//        }
         
         @Override
         public void insertTeamApply(TeamApplyDO teamApplyDO) throws Exception {

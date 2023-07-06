@@ -7,10 +7,10 @@
     <select id="teamInfoList" parameterType="com.teamcommit.kickoff.Do.TeamInfoDO" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
         <![CDATA[
         SELECT
-            TEAM_NAME, TEAM_LOCAL
+            TEAM_NAME, TEAM_LOCAL, TEAM_ID
         FROM
             TEAM_INFO
-        GROUP BY TEAM_NAME, TEAM_LOCAL
+        GROUP BY TEAM_NAME, TEAM_LOCAL, TEAM_ID
         ]]>
     </select>
     
@@ -32,7 +32,7 @@
         FROM
             TEAM
         WHERE
-        	TEAM_NAME = #{teamName}
+        	TEAM_ID = #{teamId}
         ]]>
     </select>
     
@@ -108,7 +108,8 @@
             TEAM_AGE,
             TEAM_DAY,
             TEAM_TIME,
-            LEADER_ID
+            LEADER_ID,
+            TEAM_ID
         )
         VALUES(
                   TEAM_SEQ.NEXTVAL,
@@ -124,7 +125,8 @@
                   #{teamAge},
                   #{teamDay},
                   #{teamTime},
-                  #{leaderId}
+                  #{leaderId},
+                  #{teamId}
               )
         ]]>
     </insert>
@@ -145,6 +147,29 @@
             TEAM_SEQNO = #{teamSeqNo}
         ]]>
     </insert>
+    
+    <!-- Team Delete -->
+    <delete id="deleteTeam" parameterType="Integer" >
+    <![CDATA[
+        DELETE
+   		FROM
+        	TEAM
+    	WHERE
+        	TEAM_SEQNO = #{teamSeqNo}
+    ]]>
+	</delete>
+	
+	<!-- Team Button -->
+	<select id="teamManageButton" parameterType="String" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
+        <![CDATA[
+        SELECT
+        	*
+		FROM
+			TEAM_INFO
+		WHERE
+			LEADER_ID = #{userId}
+        ]]>
+    </select>
     
     <!-- Team Recruit Detail -->
     <select id="teamRecruitDetail" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">
@@ -197,7 +222,7 @@
 			MEMBER_ID = #{userId} OR LEADER_ID = #{userId}
         ]]>
     </select>
-    
+
     <!-- Member Delete -->
     <delete id="teamMemberDelete" parameterType="String" >
     <![CDATA[

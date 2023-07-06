@@ -69,12 +69,12 @@
 	<script>
 		$('#findUserId').click(function(e) {
 
-					// 이름을 입력하지 않거나 휴대폰 인증을 완료하지 않은 경우 알림 창을 표시하고 아무 동작도 하지 않음
-					if ($('#inputCertifiedNumber').val() === '' || $('#userName').val() === '') {
-						alert('이름 입력이나 휴대폰 인증을 완료해주세요!');
-						e.preventDefault();
-					}
-				});
+			// 이름을 입력하지 않거나 휴대폰 인증을 완료하지 않은 경우 알림 창을 표시하고 아무 동작도 하지 않음
+			if ($('#inputCertifiedNumber').val() === '' || $('#userName').val() === '') {
+				alert('이름 입력이나 휴대폰 인증을 완료해주세요!');
+				e.preventDefault();
+			}
+		});
 	</script>
 	
 	

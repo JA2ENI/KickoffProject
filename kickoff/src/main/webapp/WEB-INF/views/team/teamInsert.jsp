@@ -55,6 +55,7 @@
 							<p>팀 이름</p>
 							<input type="text" class="text-box" name="teamName" value="${teamInfoDO.teamName}" readonly/>
 							<input type="hidden" class="text-box" name="leaderId" value="${userId}"/>
+							<input type="hidden" class="text-box" name="teamId" value="${teamInfoDO.teamId}"/>
 						</div>
 						<div class="text-wrap all">
 							<p>모집 인원</p>

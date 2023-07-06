@@ -107,9 +107,9 @@
 											<c:out value="${member.USER_SUB_POSITION != null ? member.USER_SUB_POSITION : '-'}" /></div>
 									<div class="content gender"><c:out value="${member.USER_GENDER}" /></div>
 									<div class="content manage">
-									
+									<c:if test="${userId eq teamButton.leaderId}">
 										 <button type="button" class="btn-memberDelete" onclick="deleteMember('${member.USER_ID}')">방출하기</button>
-								
+									</c:if>
 									</div>
 								</div>
 							</div>

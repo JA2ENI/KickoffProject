@@ -17,7 +17,7 @@ public interface TeamMapper {
     
     public List<TeamDO> teamBoardList(TeamDO teamDO);
     
-    public List<TeamDO> teamRecruitList(TeamDO teamDO);
+    public List<TeamDO> teamRecruitList(Integer teamId);
 
     public TeamDO teamRecruitDetail(int teamSeqNo);
 
@@ -25,11 +25,15 @@ public interface TeamMapper {
     
     public void updateTeam(TeamDO teamDO);
     
+    public void deleteTeam(int teamSeqNo);
+    
     public TeamInfoDO selectTeamInfo(String userId);
     
     public void teamCreation(TeamInfoDO teamInfoDO);
     
     public List<TeamInfoDO> teamInfoDetail(String userId);
+    
+    public TeamInfoDO teamManageButton(String userId);
     
     public TeamInfoDO teamInfo(String userId);
     

@@ -36,7 +36,7 @@
 								<div class="subject area">지역</div>
 							</div>
 							<c:forEach var="list" items="${teamList}">
-							<button type="button" class="detail" onclick="btnTeam()">
+							<button type="button" class="detail" onclick="btnTeam(${list.teamId});">
 								<div class="content-wrap">
 									<div class="content team"><c:out value="${list.teamName}" /></div>
 									<div class="content area"><c:out value="${list.teamLocal}" /></div>
@@ -49,8 +49,15 @@
 				<article id="boxDetail" class="article-container two">
 					<div class="item-wrap">
 						<div class="wrap">
-							<div class="title board">TEAM BOARD</div>
-							<a href="/teamInsert" class="btn-teamInsert">모집 등록</a>
+						<c:choose>
+						    <c:when test="${userId eq teamButton.leaderId}">
+						    	<div class="title board" style="width:80%">TEAM BOARD</div>
+						        <a href="/teamInsert" class="btn-teamInsert">모집 등록</a>
+						    </c:when>
+						    <c:otherwise>
+						        <div class="title board">TEAM BOARD</div>
+						    </c:otherwise>
+						</c:choose>
 						</div>
 						<div class="content-container">
 							<div class="title-wrap">
@@ -86,23 +93,13 @@
 								<div class="subject gender">모집성별</div>
 								<div class="subject status">모집상태</div>
 							</div>
-							<c:forEach var="recruit" items="${teamRecruit}">
-							<button type="button" class="detail" onclick="location.href='/teamDetail?teamSeqNo=${recruit.teamSeqNo}';">
-								<div class="content-wrap">
-									<div class="content team2"><c:out value="${recruit.teamName}" /></div>
-									<div class="content date">~<c:out value="${recruit.teamEndDate}" /></div>
-									<div class="content total"><c:out value="${recruit.teamNumber}" /></div>
-									<div class="content gender"><c:out value="${recruit.teamGender}" /></div>
-									<div class="content status"><c:out value="${recruit.teamStatus}" /></div>
-								</div>
-							</button>
-							</c:forEach>
 						</div>
 					</div>
 				</article>
 			</div>
 		</div>
 	</section>
+	
 </body>
 
 <!-- footer -->
