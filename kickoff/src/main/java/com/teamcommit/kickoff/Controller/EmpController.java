@@ -279,9 +279,8 @@ public class EmpController {
            Files.copy(uploadFile.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
            
            // 이미지 파일 경로를 placeDO에 설정
-           String imgRelativePath = "/images/" + fileName;
            placeDO.setImgName(fileName);
-           placeDO.setImgPath(imgRelativePath);
+           placeDO.setImgPath("/images/");
     	   
     	   empService.empFutsalInsert(placeDO);
            mv = new ModelAndView("redirect:/empFutsalFix?placeId=" + placeDO.getPlaceId());
@@ -369,7 +368,7 @@ public class EmpController {
             
             // 이미지 파일 경로를 placeDO에 설정
             placeDO.setImgName(fileName);
-            placeDO.setImgPath("/images/" + fileName);
+            placeDO.setImgPath("/images/");
         }
 
         empService.updateEmpFutsalF(placeDO);

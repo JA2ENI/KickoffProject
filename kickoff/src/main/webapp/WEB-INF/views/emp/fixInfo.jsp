@@ -10,8 +10,40 @@
 		<link rel = "stylesheet" href = "/emp/css/fixInfo.css">
 		<link rel="stylesheet" href="/emp/css/main.css" />
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-		<!--[if lte IE 9]><link rel="stylesheet" href="/emp/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="/emp/css/ie8.css" /><![endif]-->
+		
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script>
+    $(document).ready(function() {
+      $('#checkEmpNum').click(function() {
+        var empNum = $('#empNumInput').val();
+        if (empNum) {
+          authenticateEmpNum(empNum);
+        }
+      });
+
+      function authenticateEmpNum(empNum) {
+        $.ajax({
+          url: 'https://www.data.go.kr/data/15081808/openapi.do', // API 엔드포인트 URL
+          type: 'POST',
+          dataType: 'json',
+          data: {
+            'serviceKey': 'g5kss8B127iH%2BqCnOL%2B3SpgFPUssF8IPJLv%2BP4LY%2BTFMRcCL6P6l4y6su6WUJgrHxJI0PtU9dGeda5hHq70Kag%3D%3D', 
+            'empNum': empNum
+          },
+          success: function(response) {
+            if (response.resultCode == '00') {
+              alert('사업자 번호가 인증되었습니다.');
+            } else {
+              alert('사업자 번호 인증에 실패했습니다. 다시 시도해주세요.');
+            }
+          },
+          error: function() {
+            alert('사업자 번호 인증 요청에 실패했습니다.');
+          }
+        });
+      }
+    });
+  </script>
 	</head>
 	<body>
 		<!-- Wrapper -->
@@ -41,13 +73,13 @@
 													<p>아이디<span>*</span></p>
 													<input type="text" class="inputBox id" name="empId" value="${empInfo.empId}" readonly/>
 												</div>
-										<div class="row mail">
-											<div class="col-lg-6">
+											<div class="row mail">
+												<div class="col-lg-6">
 												<div class="checkout__input__request mail">
 													<p>이메일<span>*</span></p>
 													<input type="text" id="empEmail" class="inputBox mail" name="mail" value="${map.empEmail}"/>
 												</div>
-											</div>
+												</div>
 											<p class="atSign">@</p>
 											<div class="col-lg-6">
 												<div class="checkout__input__request email">
@@ -72,50 +104,8 @@
 										</div>
 										<div class="checkout__input__request">
 											<p>사업자 번호 인증<span>*</span></p>
-											<div class="number_content">
-												<div class="textbox">
-												<input id="b_no" name="b_no" type="text">
-												</div>
-												<input type="button" id="checkEmpNum" class="checkEmpNum empNum" value="사업자 번호 인증"/>
-												<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-											    <script>
-											      $(document).ready(function () {
-											        $("checkEmpNum").click(function () {
-											          var data = {
-											            b_no: $('#b_no').val();, // 실제 존재하는 사업자 번호
-											          };											       
-											
-											          let serviceKey ="g5kss8B127iH%2BqCnOL%2B3SpgFPUssF8IPJLv%2BP4LY%2BTFMRcCL6P6l4y6su6WUJgrHxJI0PtU9dGeda5hHq70Kag%3D%3D";
-											          $.ajax({
-											            url:
-											              "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=g5kss8B127iH%2BqCnOL%2B3SpgFPUssF8IPJLv%2BP4LY%2BTFMRcCL6P6l4y6su6WUJgrHxJI0PtU9dGeda5hHq70Kag%3D%3D" +
-											              serviceKey,
-											            type: "POST",
-											            data: JSON.stringify(data),
-											            dataType: "JSON",
-											            contentType: "application/json",
-											            accept: "application/json",
-											            success: function (result) {
-											              console.log("결과:: ", result);
-											            },
-											            error: function (error) {
-											            	$('.error').text("")
-															if(result.res == "OK"){
-															    $('.error').html("허가증을 업로드하고 인증하기를 클릭하세요")
-															}
-															else if (result.res == "dont") {
-																swal("","이미 등록된 판매허가번호입니다. 다시 확인해주세요.","error");
-															} else {
-																console.log(result.res);
-																console.log("업데이트 실패!!");
-																$('.error').text("관리번호를 다시 확인해주세요")
-															}
-											            },
-											          });
-											        });
-											      });
-											    </script>
-											</div>
+											<input type="text" id="empNumInput" class="number_content"/>
+											<input type="button" id="checkEmpNum" class="checkEmpNum" value="사업자 번호 인증"/>
 										</div>
 										<div class="row">
 											<div class="col-lg-6">
@@ -141,17 +131,14 @@
 										<div class="checkout__input__request">
 											<p>업체 번호<span>*</span></p>
 											<div class="phone_content">
-												<div class="sendContainer">
-												<input type="text" placeholder="휴대폰 번호" name="inputPhoneNumber" id="inputPhoneNumber"  value="${empInfo.empPhoneNumber}"/>
-												<button type="button" id="sendPhoneNumber" name="sendPhoneNumber">전송</button>
-												</div>
-												<div class="confirmContainer">
-												<input type="text" placeholder="인증 번호" id="inputCertifiedNumber" name="inputCertifiedNumber" />
-												<button type="button" id="confirmButton" name="confirmButton">인증</button>
-												</div>
-												<!-- <input type="text" id="phone" class="inputBox phone" name="empPhoneNumber" value="${empInfo.empPhoneNumber}" maxlength="13"/>
-												<input type="button" id="checkPhone" class="checkPhone phone" onclick="" value="번호 인증"/>
-												<a href="/reservation" id="cancle" class="cancle">취소</a> -->
+												<input type="text" id="phone" class="inputBox phone" name="userPhoneNumber" value="${userInfo.userPhoneNumber}" maxlength="13"/>
+												<input type="button" id="sendPhone" class="checkPhone phone" onclick="javascript:alert('test : ' + ${number});" value="번호 인증"/>
+											</div>
+										</div>
+										<div class="checkout__input__request">
+											<div id="checkPhoneBox" class="phone_content">
+												<input type="text" id="checkPhone" class="inputBox phone" name="checkPhone"/>
+												<input type="button" id="checkPhoneBtn" class="checkPhone phone" onclick="" value="확인"/>
 											</div>
 										</div>
 										<div class="checkout__input__request address">
@@ -164,11 +151,11 @@
 										<div class="btn-container">
 											<input type="button" id="empDelete" class="empDelete" onclick = "location.href='/empDelete';"value="회원 탈퇴"/>
 										</div>
+										</div>
 									</div>
-								</div>
-							</form>
+								</form>
+							</div>
 						</div>
-					</div>
 					</div>
 					</div>
 				</section>

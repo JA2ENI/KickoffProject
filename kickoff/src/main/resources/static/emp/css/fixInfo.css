@@ -114,6 +114,11 @@
 	width: 84%;
 }
 
+.checkEmpNum{
+	width: 35% !important;
+	display: flex;
+}
+
 .checkPhone.phone {
 	width: 15% !important;
 	height: 100%;
