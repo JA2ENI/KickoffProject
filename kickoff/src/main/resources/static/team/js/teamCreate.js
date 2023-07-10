@@ -35,3 +35,12 @@ $(document).ready(function(){
 	});
 });
 
+
+function createTeam() {
+	alert('팀이 생성되었습니다!');
+}
+
+
+function nameCheck() {
+	alert('중복체크');
+}

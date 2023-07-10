@@ -7,6 +7,7 @@ import com.teamcommit.kickoff.Do.UserDO;
 import com.teamcommit.kickoff.Service.team.TeamService;
 import com.teamcommit.kickoff.Service.login.LoginService;
 
+import org.springframework.asm.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -124,11 +127,10 @@ public class TeamController {
     
     // 팀 모집글 수정 요청
     @RequestMapping( "/teamUpdateAction")
-    public String teamUpdateAction(@ModelAttribute("teamDO") TeamDO teamDO, Model model) throws Exception {
+    public String teamUpdateAction(@ModelAttribute("teamDO") TeamDO teamDO) throws Exception {
         String view = "redirect:/teamDetail?teamSeqNo=" + teamDO.getTeamSeqNo();
        
         teamService.updateTeam(teamDO);
-
         return view;
     }
     
@@ -224,6 +226,7 @@ public class TeamController {
         
         return view;
     }
+     
 
     // 팀 상세정보 & 팀원 리스트
     @RequestMapping( "/teamManage")

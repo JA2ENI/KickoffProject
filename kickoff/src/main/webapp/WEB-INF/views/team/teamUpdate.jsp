@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="/team/css/teamCreate.css" type="text/css">
     <link rel="stylesheet" href="/team/css/style.css" type="text/css">
     <link rel="stylesheet" href="/includes/css/style.css">
+
+    
 </head>
 
 <body>
@@ -133,17 +135,24 @@
                                 </label>
                             </div>
 						<div class="btn-wrap">
-							<button type="submit" class="update">팀 모집글 수정</button>
+							<button type="submit" class="update" onclick="updateComplete('${teamContents.teamSeqNo}')">팀 모집글 수정</button>
 						</div>
 					</div>
 				</article>
 			</div>
 		</form>
 	</section>
+	
+	<script>
+    	function updateComplete(teamSeqNo) {
+    		if(confirm("수정이 완료되었습니다.")) {
+    			location.href = "/teamDetail?teamSeqNo=" + teamSeqNo;
+    		}
+    	}
+	</script>
 
 <!-- Footer -->
 <%@include file="/includes/footer.jsp"%>
-
 
 <!-- Js Plugins -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

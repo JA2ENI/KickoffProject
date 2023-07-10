@@ -24,6 +24,8 @@ public interface TeamService {
     
     TeamInfoDO selectTeamInfo(String userId) throws Exception;
     
+//    int teamNameCheck(TeamInfoDO teamInfoDO) throws Exception;
+    
     void teamCreation(TeamInfoDO teamInfoDO) throws Exception;
 
     TeamDO teamRecruitDetail(int teamSeqNo) throws Exception;

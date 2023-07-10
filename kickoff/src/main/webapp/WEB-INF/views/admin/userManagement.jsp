@@ -37,9 +37,7 @@
 								<select class="js-select2" name="property">
 									<option selected="selected">모두</option>
 									<option value="">개인 회원</option>
-									<option value="">개인 회원-팀장</option>
 									<option value="">업체 회원</option>
-									<option value="">관리자</option>
 								</select>
 								<div class="dropDownSelect2"></div>
 							</div>

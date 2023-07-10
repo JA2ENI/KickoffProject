@@ -41,7 +41,7 @@
     </select>
     
     <!-- User Delete -->
-    <delete id="user_delete" parameterType="java.lang.String" >
+    <delete id="user_delete" parameterType="String" >
     <![CDATA[
         DELETE
         FROM
@@ -52,7 +52,7 @@
 	</delete>
 	
 	<!-- Emp Delete -->
-    <delete id="emp_delete" parameterType="java.lang.String" >
+    <delete id="emp_delete" parameterType="String" >
     <![CDATA[
         DELETE
         FROM
@@ -63,7 +63,7 @@
 	</delete>
 	
 	<!-- User Disable -->
-	<update id="user_disable" parameterType="java.lang.String">
+	<update id="user_disable" parameterType="String">
 	<![CDATA[
         UPDATE USERS
         SET
@@ -88,7 +88,7 @@
 	</update>
 	
 	<!-- EMP Disable -->
-	<update id="emp_disable" parameterType="java.lang.String">
+	<update id="emp_disable" parameterType="String">
 	<![CDATA[
         UPDATE EMPLOYER
         SET
@@ -112,30 +112,51 @@
 	]]>
 	</update>
 	
-	<!-- User Cancel Disable
-	<update id="user_cancel_disable" parameterType="java.lang.String">
+	<!-- User Cancel Disable -->
+	<update id="user_cancel_disable" parameterType="com.teamcommit.kickoff.Do.UserDO">
 	<![CDATA[
         UPDATE USERS
         SET
         	USER_STATUS = '활동',
-        	USER_STOP_COUNT = USER_STOP_COUNT - 1
+        	USER_STOP_COUNT = USER_STOP_COUNT - 1,
+        	USER_STOP_DATE = NULL
         WHERE
         	USER_ID = #{userId}
     ]]>
 	</update>
 	
-	 Emp Cancel Disable
-	<update id="emp_cancel_disable" parameterType="java.lang.String">
+	 <!-- Emp Cancel Disable -->
+	<update id="emp_cancel_disable" parameterType="com.teamcommit.kickoff.Do.EmployerDO">
 	<![CDATA[
         UPDATE EMPLOYER
         SET
         	EMP_STATUS = '활동',
-        	EMP_STOP_COUNT = EMP_STOP_COUNT - 1
+        	EMP_STOP_COUNT = EMP_STOP_COUNT - 1,
+        	EMP_STOP_DATE = NULL
         WHERE
         	EMP_ID = #{empId}
     ]]>
 	</update>
-	-->
-	
+
+	<!-- Report Board List -->
+	<select id="reportBoardList" parameterType="com.teamcommit.kickoff.Do.ReportDO" resultType="com.teamcommit.kickoff.Do.ReportDO">
+        <![CDATA[
+        SELECT
+        	*
+		FROM
+			REPORT
+       ]]>
+    </select>
+    
+    <!-- Report Delete -->
+    <delete id="deleteReportBoard" parameterType="Integer" >
+    <![CDATA[
+        DELETE
+        FROM
+            REPORT
+        WHERE
+            BOARD_SEQNO = #{boardSeqno}
+    ]]>
+	</delete>
 	
 </mapper>

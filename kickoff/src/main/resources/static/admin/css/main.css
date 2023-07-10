@@ -17,6 +17,8 @@
 }
 */
 
+
+
 span.role-user {
 	display: inline-block;
     line-height: 30px;
@@ -79,6 +81,15 @@ span.rest-number {
     border: 1px solid #9a9b9c;
     background: none;
     display: none;
+    border-radius: 20px;
+    padding: 8px 13px;
+    margin-bottom: 0.5em;
+	margin-top: 0.5em;
+}
+
+.btn-remove {
+	border: 1px solid #9a9b9c;
+    background: none;
     border-radius: 20px;
     padding: 8px 13px;
     margin-bottom: 0.5em;

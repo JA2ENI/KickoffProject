@@ -313,7 +313,32 @@ button.detail:focus {
 	border: solid 2px #ffc090;
 	background: #ffc090;
 }	
-	
-.btn-disabled {
-	visibility: hidden;
+
+.btn-box {
+    cursor: pointer;
+}
+
+.x-btn {
+    position: absolute;
+    top: 10.4rem;
+    right: 2rem;
+    padding: 1px;
+}
+
+.i {
+    color: #9E9E9E;
+    font-size: 20px;
+    font-style: normal;
+    font-family: 'NanumSquareExtraBold' !important;
+    border : 2px solid;
+    border-radius: 4px;
+    padding: 3px 5px;
+}
+
+.i:hover {
+	color: #ffc090;
+}
+
+.btn-box.title:hover {
+	color: #9E9E9E;
 }
