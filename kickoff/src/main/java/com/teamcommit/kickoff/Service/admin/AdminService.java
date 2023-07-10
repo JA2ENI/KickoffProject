@@ -27,5 +27,7 @@ public interface AdminService {
     
     List<ReportDO> reportBoardList(ReportDO reportDO) throws Exception;
     
-    void deleteReportBoard(int boardSeqno) throws Exception;
+    void deleteReport(int boardSeqno) throws Exception;
+    
+    void deleteBoard(int boardSeqno) throws Exception;
 }

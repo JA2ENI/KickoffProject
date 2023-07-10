@@ -12,7 +12,7 @@ public class ReportDO {
 	private String reportTitle;
 	//신고된 게시물 작성자 ID
 	private String reportId;
-	//신고된 게시물 등록일자
+	//게시물 신고 날짜
 	private String reportWriteReg;
 	//신고된 게시물 신고 횟수
 	private int reportCount;

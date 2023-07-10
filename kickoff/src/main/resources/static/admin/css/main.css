@@ -61,12 +61,10 @@ span.role-emp {
 span.status-active {
 	font-weight: bold;
 	font-size: 16px;
-	
 }
 
 span.status-stop {
 	display:none;
-	
 }
 
 span.cancel-number {
@@ -87,6 +85,16 @@ span.rest-number {
 	margin-top: 0.5em;
 }
 
+.emp-button {
+    border: 1px solid #9a9b9c;
+    background: none;
+    display: none;
+    border-radius: 20px;
+    padding: 8px 13px;
+    margin-bottom: 0.5em;
+	margin-top: 0.5em;
+}
+
 .btn-remove {
 	border: 1px solid #9a9b9c;
     background: none;
@@ -96,6 +104,22 @@ span.rest-number {
 	margin-top: 0.5em;
 }
 
+#title {
+	width:300px;
+}
+
+#date,
+#manage {
+	width: 60px;
+}
+
+#id {
+	width: 40px;
+}
+
+#count {
+	width:30px;
+}
 
 /* Reset */
 

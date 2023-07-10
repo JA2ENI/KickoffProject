@@ -28,33 +28,39 @@
 		
 function updateStatusElements() {
     const statusElements = document.querySelectorAll('.status');
-    statusElements.forEach((element) => {
+    const classificationElements = document.querySelectorAll('.classification');
+    statusElements.forEach((element, index) => {
         const status = element.getAttribute('data-status');
+        const classification = classificationElements[index].getAttribute('data-classification');
         let statusText;
-        let displayCancelBtn;
-        switch (status) {
-            case '활동':
-                statusText = 'status-active';
-                displayCancelBtn = 'none';
-                break;
-            case '정지':
-                statusText = 'status-stop';
-                displayCancelBtn = 'block';
-                break;
-            default:
-                statusText = '';
-            	displayCancelBtn = 'none';
-                break;
-        }
+        let displayCancelBtn = 'none';
+        let displayEmpBtn = 'none';
+        
+        if(status === '활동') {
+			statusText = 'status-active';
+		} else if(status === '정지') {
+			statusText = 'status-stop';
+			
+			if(classification === 'User') {
+				displayCancelBtn = 'block';
+			} else if(classification === 'Emp') {
+				displayEmpBtn = 'block';
+			}
+		} else {
+			statusText = '';
+		}
+        
         element.className = statusText;
         const cancelButton = element.parentElement.querySelector('.cancel-button');
         cancelButton.style.display = displayCancelBtn;
+        const empButton = element.parentElement.querySelector('.emp-button');
+        empButton.style.display = displayEmpBtn;
     });
 }
-
-
-updateClassificationElements();
 updateStatusElements();
+updateClassificationElements();
+
+
 
 function userAction(action) {
 	var confirmFlag = "";
@@ -71,12 +77,16 @@ function userAction(action) {
 }
 
 
-function cancelDisable(userId, empId) {
-	if (userId !== null) {
+function cancelDisable(userId) {
+	if (userId !== null && userId !== "") {
 		if (confirm("이 회원의 정지 상태를 취소하시겠습니까?")) {
 			location.href = "/cancelDisable?userId=" + userId;
 		}
-	} else if (empId !== null) {
+	}
+}
+
+function cancelDisableEmp(empId) {
+	if (empId !== null && empId !== "") {
 		if (confirm("이 회원의 정지 상태를 취소하시겠습니까?")) {
 			location.href = "/cancelDisable?empId=" + empId;
 		}

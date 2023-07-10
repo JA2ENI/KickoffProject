@@ -30,5 +30,7 @@ public interface AdminMapper {
     
     List<ReportDO> reportBoardList(ReportDO reportDO);
     
-    public void deleteReportBoard(int boardSeqno);
+    public void deleteReport(int boardSeqno);
+    
+    public void deleteBoard(int boardSeqno);
 }
