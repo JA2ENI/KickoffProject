@@ -57,6 +57,11 @@ import java.util.Map;
             return teamMapper.selectTeamInfo(userId);
         }
         
+//        @Override
+//        public int teamNameCheck(TeamInfoDO teamInfoDO) throws Exception {
+//             return teamMapper.teamNameCheck(teamInfoDO);
+//        }
+        
         @Override
         public void teamCreation(TeamInfoDO teamInfoDO) throws Exception {
             teamMapper.teamCreation(teamInfoDO);

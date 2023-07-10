@@ -70,3 +70,15 @@ function userAction(action) {
 	}
 }
 
+
+function cancelDisable(userId, empId) {
+	if (userId !== null) {
+		if (confirm("이 회원의 정지 상태를 취소하시겠습니까?")) {
+			location.href = "/cancelDisable?userId=" + userId;
+		}
+	} else if (empId !== null) {
+		if (confirm("이 회원의 정지 상태를 취소하시겠습니까?")) {
+			location.href = "/cancelDisable?empId=" + empId;
+		}
+	}
+}

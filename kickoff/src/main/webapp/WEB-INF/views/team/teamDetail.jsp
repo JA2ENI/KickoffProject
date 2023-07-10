@@ -29,7 +29,6 @@
 <!-- 여기까지 복붙하기 -->
 
 	<link href="/team/css/teamDetail.css" rel="stylesheet" />
-
 </head>
 <body>
 	<%@include file="/includes/header.jsp"%>
@@ -99,10 +98,10 @@
 				<div class="btn">
 					<button type="reset" class="btn_reset" onclick="location.href='/team';">목록</button>
 					<c:if test="${userId eq teamContents.leaderId}">
-						<button type="button" class="btn_update" onclick="location.href='/teamUpdate?teamSeqNo=${teamContents.teamSeqNo}';">수정</button>
+						<button type="button" class="btn_update" onclick="updateTeam('${teamContents.teamSeqNo}')">수정</button>
 					</c:if>
 					<c:if test="${userId eq teamContents.leaderId}">
-						<button type="button" class="btn_delete" onclick="location.href='/teamDeleteAction?teamSeqNo=${teamContents.teamSeqNo}';">삭제</button>
+						<button type="button" class="btn_delete" onclick="deleteTeam('${teamContents.teamSeqNo}')">삭제</button>
 					</c:if>
 					<c:if test="${userId ne teamContents.leaderId}">
 						<button type="button" class="btn_apply" onclick="location.href='/teamApply';">지원하기</button>
@@ -111,17 +110,7 @@
 		</div>
 	</form>
 	</section>
-	<script>
-	/* status color */
-	var statusDivs = document.getElementsByClassName("team-status");
-	for (var i = 0; i < statusDivs.length; i++) {
-	    var statusDiv = statusDivs[i];
-	    
-	    if (statusDiv.innerText === "모집 완료") {
-	        statusDiv.style.color = "#9c9c9c";
-	    }
-	}
-	</script>
+	<script src="/team/js/teamDetail.js"></script>
 </body>
 </html>
 

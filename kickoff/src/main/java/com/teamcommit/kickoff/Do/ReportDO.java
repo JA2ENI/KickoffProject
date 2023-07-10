@@ -8,6 +8,14 @@ public class ReportDO {
 	private int boardSeqno;
 	//신고 사유
 	private String reportComment;
+	//신고된 게시물 제목
+	private String reportTitle;
+	//신고된 게시물 작성자 ID
+	private String reportId;
+	//신고된 게시물 등록일자
+	private String reportWriteReg;
+	//신고된 게시물 신고 횟수
+	private int reportCount;
 	
 	public int getReportNo() {
 		return reportNo;
@@ -26,6 +34,30 @@ public class ReportDO {
 	}
 	public void setReportComment(String reportComment) {
 		this.reportComment = reportComment;
+	}
+	public String getReportTitle() {
+		return reportTitle;
+	}
+	public void setReportTitle(String reportTitle) {
+		this.reportTitle = reportTitle;
+	}
+	public String getReportId() {
+		return reportId;
+	}
+	public void setReportId(String reportId) {
+		this.reportId = reportId;
+	}
+	public String getReportWriteReg() {
+		return reportWriteReg;
+	}
+	public void setReportWriteReg(String reportWriteReg) {
+		this.reportWriteReg = reportWriteReg;
+	}
+	public int getReportCount() {
+		return reportCount;
+	}
+	public void setReportCount(int reportCount) {
+		this.reportCount = reportCount;
 	}
 	
 }

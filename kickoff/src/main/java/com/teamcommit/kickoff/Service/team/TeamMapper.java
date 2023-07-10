@@ -28,6 +28,8 @@ public interface TeamMapper {
     public void deleteTeam(int teamSeqNo);
     
     public TeamInfoDO selectTeamInfo(String userId);
+        
+//    public int teamNameCheck(TeamInfoDO teamInfoDO);
     
     public void teamCreation(TeamInfoDO teamInfoDO);
     

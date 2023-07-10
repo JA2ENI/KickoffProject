@@ -29,9 +29,8 @@
 					<div class="item-wrap">
 						<div class="inner-btn">
 							<p>팀 이름</p>
-							<input type="text" class="text-box" name="teamName"/>
-							<button type="button" class="btn-check" onclick="javascript:alert('test 중복확인!');">중복확인</button>
-							<!-- <input type="hidden" id="teamId" name="teamId" value="${teamId}"> -->
+							<input type="text" class="text-box" name="teamName" />
+							<button type="button" class="btn-check" onclick="nameCheck()">중복확인</button>
 						</div>
 						<div class="text-wrap all">
 							<p>팀 주장 <span>(최초 등록자가 주장으로 임명됩니다)</span></p>
@@ -142,7 +141,7 @@
 							<input type="radio" id="purple" class="color" name="teamColor" value="purple"/><label for="purple" class="purple"></label>
 						</div>
 						<div class="btn-wrap">
-							<a href = "/teamManage"><button type="submit" class="create">팀 생성하기</button></a>
+							<button type="submit" class="create" onclick="createTeam()">팀 생성하기</button>
 						</div>
 					</div>
 				</article>
