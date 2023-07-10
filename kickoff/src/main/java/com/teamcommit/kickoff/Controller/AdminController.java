@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.EmployerDO;
 import com.teamcommit.kickoff.Do.ReportDO;
 import com.teamcommit.kickoff.Do.TeamDO;
@@ -104,8 +105,6 @@ public class AdminController {
     		adminService.emp_cancel_disable(empId);
     	}
     	
-    	System.out.println(userId);
-    	
     	return view;
     }
     
@@ -122,10 +121,11 @@ public class AdminController {
 
     // 신고된 게시물 삭제
     @RequestMapping("/deleteReport")
-    public String deleteReport(@ModelAttribute("reportDO") ReportDO reportDO, @RequestParam("boardSeqno") int boardSeqno) throws Exception {
+    public String deleteReport(@RequestParam("boardSeqno") int boardSeqno) throws Exception {
     	String view = "redirect:/boardManagement";
     	
-    	adminService.deleteReportBoard(boardSeqno);
+    	adminService.deleteReport(boardSeqno);
+    	adminService.deleteBoard(boardSeqno);
     	
     	return view;
     }

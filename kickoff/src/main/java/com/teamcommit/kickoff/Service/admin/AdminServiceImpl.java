@@ -65,7 +65,12 @@ public class AdminServiceImpl implements AdminService {
     }
     
     @Override
-    public void deleteReportBoard(int boardSeqno) throws Exception {
-    	adminMapper.deleteReportBoard(boardSeqno);
+    public void deleteReport(int boardSeqno) throws Exception {
+    	adminMapper.deleteReport(boardSeqno);
+    }
+    
+    @Override
+    public void deleteBoard(int boardSeqno) throws Exception {
+    	adminMapper.deleteBoard(boardSeqno);
     }
 }

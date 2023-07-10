@@ -149,11 +149,22 @@
     </select>
     
     <!-- Report Delete -->
-    <delete id="deleteReportBoard" parameterType="Integer" >
+    <delete id="deleteReport" parameterType="Integer" >
     <![CDATA[
         DELETE
         FROM
             REPORT
+        WHERE
+            BOARD_SEQNO = #{boardSeqno}
+    ]]>
+	</delete>
+    
+    <!-- Report Board Delete -->
+    <delete id="deleteBoard" parameterType="Integer" >
+    <![CDATA[
+        DELETE
+        FROM
+            BOARD
         WHERE
             BOARD_SEQNO = #{boardSeqno}
     ]]>

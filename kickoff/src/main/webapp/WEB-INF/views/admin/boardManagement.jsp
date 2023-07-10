@@ -40,12 +40,12 @@
 				                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 				                                    <thead>
 				                                        <tr>
-				                                            <th>제목</th>
-				                                            <th>작성자</th>
-				                                            <th>날짜</th>
-				                                            <th>신고 횟수</th>
-				                                            <th>신고 사유</th>
-				                                            <th>관리</th>
+				                                            <th id="title">제목</th>
+				                                            <th id="id">작성자</th>
+				                                            <th id="date">날짜</th>
+				                                            <th id="count">신고 횟수</th>
+				                                            <th id="comment">신고 사유</th>
+				                                            <th id="manage">관리</th>
 				                                        </tr>
 				                                    </thead>
 				                                    <tbody>
@@ -97,7 +97,7 @@
 			</div>
 			
 			<script>
-			/* team delete */
+			/* report delete */
 			function deleteReport(boardSeqno) {
 			    if (confirm("신고글을 삭제하시겠습니까?")) {
 			        location.href = "/deleteReport?boardSeqno=" + boardSeqno;

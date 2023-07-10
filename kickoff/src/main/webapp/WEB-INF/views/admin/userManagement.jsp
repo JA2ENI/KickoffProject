@@ -106,6 +106,7 @@
 													<c:out value="${map.STATUS}" />
 												</span>
 												<button type="button" class="cancel-button" onclick="cancelDisable('${map.ID}')">정지 취소</button>
+												<button type="button" class="emp-button" onclick="cancelDisableEmp('${map.ID}')">정지 취소</button>
 											</td>
 
 										</tr>
