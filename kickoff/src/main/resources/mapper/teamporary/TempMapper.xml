@@ -6,6 +6,7 @@
 	<!-- reservation applicant -->
 	
 	<!-- reservation recruiter -->
+	<!-- Emp 풋살장 -->
 	<select id="placeInfo" parameterType="String" resultType="com.teamcommit.kickoff.Do.PlaceDO">
         <![CDATA[
             SELECT *
@@ -16,9 +17,22 @@
         ]]>
     </select>
     
-    <select id="reservationList" parameterType="String" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+    <!-- Emp 예약게시글 리스트 -->
+    <select id="reservationList" parameterType="String" resultType="map">
         <![CDATA[
-            SELECT *
+            SELECT
+            	TO_CHAR(TO_DATE(RESERVATION_DATE), 'yyyy"년 "mm"월 " dd"일"') AS RESERVATION_DATE,
+		    	TO_CHAR(TO_DATE(RESERVATION_DATE), 'day') AS DAY_OF_WEEK,
+		    	RESERVATION_START_TIME,
+		    	RESERVATION_END_TIME,
+		    	RESERVATION_COURT_NAME,
+		    	RESERVATION_PLACE_NAME,
+		    	RESERVATION_PLACE_GROUND,
+		    	RESERVATION_PLACE_SIZE,
+		    	RESERVATION_STATUS,
+		    	RESERVATION_HEADCOUNT,
+		    	RESERVATION_NO,
+		    	EMP_ID
             FROM
                 RESERVATION
             WHERE
@@ -26,4 +40,133 @@
         ]]>
     </select>
     
+    <!-- 신청자 리스트 -->
+    <select id="applyInfoList" parameterType="String" resultType="map">
+        <![CDATA[
+            SELECT
+            	USER_ID,
+            	RESERVATION_ORIGIN_NO,
+            	RESERVATION_USER_NAME,
+            	RESERVATION_USER_PHONE,
+            	RESERVATION_STATUS
+            FROM
+                RESERVATION
+            WHERE
+            	RESERVATION_ORIGIN_NO = #{rNum}
+        ]]>
+    </select>
+    
+    <!-- 유저 정보 -->
+    <select id="userInfo" parameterType="map" resultType="HashMap">
+        <![CDATA[
+       		SELECT 
+				u.USER_ID,
+				u.USER_NAME,
+				u.USER_GENDER,
+				u.USER_MAIN_POSITION,
+				u.USER_SUB_POSITION,
+				ti.TEAM_NAME,
+				ti.TEAM_LOCAL		
+			FROM 
+				USERS u FULL JOIN TEAM_INFO ti
+			ON
+				(u.USER_ID = ti.MEMBER_ID) OR (u.USER_ID = ti.LEADER_ID)
+			WHERE 
+				u.USER_ID = #{aUserId}
+        ]]>
+    </select>
+    
+    <!-- 유저 예약 총 건수(해당 emp풋살장) -->
+    <select id="reservationCount" parameterType="map" resultType="String">
+        <![CDATA[
+       		SELECT 
+				COUNT(COUNT(*)) AS RESERVATION_COUNT
+			FROM 
+				(
+				SELECT
+					RESERVATION_NO AS RESERVATION_COUNT
+				FROM
+					RESERVATION
+				WHERE 
+					EMP_ID = #{empId}
+			
+					UNION ALL 
+				
+				SELECT 
+					RESERVATION_ORIGIN_NO AS RESERVATION_COUNT 
+				FROM
+					RESERVATION
+				WHERE 
+					USER_ID = #{aUserId}
+				)
+			GROUP BY RESERVATION_COUNT
+			HAVING COUNT(*) > 1
+        ]]>
+    </select>
+    
+    <!-- 수락 -->
+    <update id="acceptApplyReservation" parameterType="map">
+        <![CDATA[
+            UPDATE
+                RESERVATION
+            SET
+                RESERVATION_STATUS = CASE 
+							 			WHEN USER_ID = #{aUserId} THEN '예약 완료'
+							 			WHEN EMP_ID = #{empId} THEN '예약 완료'
+							 			ELSE '예약 취소'
+							 		 END
+            WHERE
+                RESERVATION_ORIGIN_NO = #{rNum} OR RESERVATION_NO = #{rNum}
+        ]]>
+    </update>
+    
+    <!-- 거절 -->
+    <update id="refuseApplyReservation" parameterType="map">
+        <![CDATA[
+            UPDATE
+                RESERVATION
+            SET
+                RESERVATION_STATUS = '예약 취소'
+            WHERE
+                RESERVATION_ORIGIN_NO = #{rNum} AND USER_ID = #{aUserId}
+        ]]>
+    </update>
+    
+    <!-- Status -->
+    <select id="updateApplyStatus" parameterType="map" resultType="map">
+    	<![CDATA[
+    		SELECT
+    			RESERVATION_STATUS
+    		FROM
+    			RESERVATION
+    		WHERE
+    			RESERVATION_ORIGIN_NO = #{rNum} AND USER_ID = #{aUserId}
+    	]]>
+    </select>
+    
+    
+    
+    <select id="rNumList" parameterType="String" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+    	<![CDATA[
+    		SELECT
+    			RESERVATION_NO
+    		FROM
+    			RESERVATION
+    		WHERE
+    			EMP_ID = #{empId}
+    	]]>
+    </select>
+    
+    <select id="aNumList" parameterType="Integer" resultType="map">
+    	<![CDATA[
+    		SELECT
+    			RESERVATION_STATUS
+    		FROM
+    			RESERVATION
+    		WHERE
+    			RESERVATION_ORIGIN_NO = #{rNum}
+    	]]>
+    </select>
+    
+   	<!-- END --> 
 </mapper>

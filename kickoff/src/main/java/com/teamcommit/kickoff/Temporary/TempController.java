@@ -1,23 +1,23 @@
 package com.teamcommit.kickoff.Temporary;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
-
 
 @Controller
 public class TempController {
@@ -35,88 +35,65 @@ public class TempController {
 	
 	//예약 모집자 페이지 
 	@RequestMapping(value="/applyReservationRecruiter")
-	public String applyReservationRecruiter(HttpSession session, Model model) throws Exception {
-		String view = "/apply/applyReservationRecruiter";
+	public ModelAndView applyReservationRecruiter(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/apply/applyReservationRecruiter");
 		String empId = (String)session.getAttribute("empId");
 		
-		if(empId != null) {
-			PlaceDO placeInfo = tempService.placeInfo(empId);
-			List<ReservationDO> reservation = tempService.reservationList(empId);
-			//List<ReservationDO> reservation = tempService.reservationList(empId);
+		PlaceDO placeInfo = tempService.placeInfo(empId);
+		List<Map<String, String>> rList = tempService.reservationList(empId);
+		List<Map<String, String>> aList = new ArrayList<>();
+		
+		for(Map<String, String> map : rList) {
+			List<Map<String, String>> applyList = tempService.applyInfoList(String.valueOf(map.get("RESERVATION_NO")));
 			
-			List<HashMap<String, String>> listMap = new ArrayList<HashMap<String, String>>();
-			
-			for(int i=0; i<reservation.size(); i++) {
-				HashMap<String, String> map = new HashMap<>();
-				String getDate = reservation.get(i).getReservationDate();
-				String year = getDate.substring(0, 4); 
-				String month = getDate.substring(5, 7); 
-				String day = getDate.substring(8, 10); 
-				String date = year + "년 " + month + "월 " + day + "일";
-				
-				int year2 = (Integer.parseInt(year));
-				int month2 = (Integer.parseInt(month));
-				int day2 = (Integer.parseInt(day));
-				
-				LocalDate localDate = LocalDate.of(year2, month2, day2);
-				
-				DayOfWeek getDayOfWeek = localDate.getDayOfWeek();
-				
-				String dayOfWeek = getDayOfWeek.getDisplayName(TextStyle.FULL, Locale.KOREAN);
-				
-				
-				map.put("rDate", date);
-				map.put("rDayOfWeek", dayOfWeek);
-				map.put("rStartTime", reservation.get(i).getReservationStartTime());
-				map.put("rEndTime", reservation.get(i).getReservationEndTime());
-				map.put("rPlaceName", reservation.get(i).getReservationPlaceName());
-				map.put("rCourtName", reservation.get(i).getReservationCourtName());
-				map.put("rPlaceGround", reservation.get(i).getReservationPlaceGround());
-				map.put("rHeadcount", reservation.get(i).getReservationHeadcount());
-				map.put("rPlaceSize", reservation.get(i).getReservationPlaceSize());
-				
-				
-			/*	
-				System.out.println("map : " + map);
-				System.out.println("rDate : " + map.get("rDate"));
-			*/
-				listMap.add(map);
-				
-				System.out.println("=====================================================");
-				System.out.println("listMap : " + listMap);
-				System.out.println("listMap.get(" + i + ") : " + listMap.get(i));
-				System.out.println("get(" + i + ").get(\"rDate\") : " + listMap.get(i).get("rDate"));
-				System.out.println("get(" + i + ").get(\"rDayOfWeek\") : " + listMap.get(i).get("rDayOfWeek"));
-				System.out.println("get(" + i + ").get(\"rStartTime\") : " + listMap.get(i).get("rStartTime"));
-				System.out.println("get(" + i + ").get(\"rEndTime\") : " + listMap.get(i).get("rEndTime"));
-				System.out.println("get(" + i + ").get(\"rPlaceName\") : " + listMap.get(i).get("rPlaceName"));
-				System.out.println("get(" + i + ").get(\"rCourtName\") : " + listMap.get(i).get("rCourtName"));
-				
+			for(Map<String, String> map2 : applyList) {
+				aList.add(map2);
 			}
 			
-			System.out.println("listMap.size() : " + listMap.size());
-			System.out.println("=========================  END  ============================");
-			
-			
-			/*
-			  for(int i=0; i<reservation.size(); i++) { 
-				  String getDate = reservation.get(i).getReservationDate();
-				  System.out.println(reservation.get(i).getReservationDate());
-			  
-				  String year = getDate.substring(0, 4); 
-				  String month = getDate.substring(5, 7); 
-				  String day = getDate.substring(8, 10); 
-				  String reservationDate = year + "년 " + month + "월 " + day + "일";
-			  
-				  System.out.println("reservationDate : " + reservationDate);
-			  }
-			 */
-			
-			model.addAttribute("placeInfo", placeInfo);
-			model.addAttribute("reservationList", listMap);
 		}
 		
-		return view;
+		mv.addObject("placeInfo", placeInfo);
+		mv.addObject("reservationList", rList);
+		mv.addObject("applyList", aList);
+		
+		return mv;
+	}
+
+	/* Side Bar */
+	@ResponseBody
+	@RequestMapping(value="/aUserInfo", method=RequestMethod.POST)
+	public Map<String, String> aUserInfo(@RequestBody Map<String, String> map) throws Exception {
+		Map<String, String> userInfo = new HashMap<>();
+		userInfo = tempService.userInfo(map);
+		userInfo.put("rNum", map.get("rNum"));
+
+		return userInfo;
+	}
+	
+	/* 수락 & 거절 */
+	@ResponseBody
+	@RequestMapping(value="/applyStatus", method=RequestMethod.POST)
+	public Map<String, String> applyStatus(@RequestBody Map<String, String> map) throws Exception {
+		Map<String, String> userInfo = new HashMap<>();
+		userInfo = tempService.updateApplyStatus(map);
+		userInfo.put("CHECK", map.get("check"));
+		
+		return userInfo;
+	}
+	
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/applyMarkList", method=RequestMethod.POST)
+	public List<Map<String, Object>> applyMarkList(@RequestBody Map<String, String> map) throws Exception {
+		List<Map<String, Object>> userInfo = new ArrayList<>();
+		userInfo = tempService.applyMarkList(map.get("empId"));
+		
+		for(int i=0; i<userInfo.size(); i++) {
+			System.out.println("userInfo : " + userInfo.get(i));
+		}
+		
+		return userInfo;
 	}
 	
 }

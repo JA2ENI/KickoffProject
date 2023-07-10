@@ -192,6 +192,20 @@ a {
 	position: static;
 }
 
+.detail-container {
+	position: relative;
+}
+
+.apply-wrap {
+	position: absolute;
+	top: 7px;
+}
+
+.applyStatus {
+	position: static;
+	height: 5rem;
+}
+
 .btn-wrap {
 	position: absolute;
 	top: 4.4em;
@@ -231,11 +245,15 @@ a {
 	margin: 0px 5px;
 }
 
+.detail {
+	display: none;
+	border-radius: 10px;
+	background: #fff;
+}
 
 .detail-container {
-	display: none;
-	margin: 13px;
-    padding: 13px;
+	margin: 1px;
+    padding: 1px;
 	border-radius: 10px;
 	background: #fff;
 }
@@ -253,6 +271,7 @@ a {
 }
 
 .detail-content {
+	
 	display: flex;
     padding: 0px 40px;
 	background: #fff;
@@ -352,7 +371,7 @@ a {
 	font-family: 'NanumSquareExtraBold' !important;
 }
 
-.btn-side {
+.bSide {
 	padding: 1px;
 	cursor: pointer;
 }
@@ -404,6 +423,27 @@ a {
 	font-family: 'NanumSquareBold' !important;
 }
 
+.sStatus {
+	position: absolute;
+	width: -webkit-fill-available;
+    height: 89%;
+    line-height: 85vh;
+	border-radius: 10px 10px 0px 0px;
+	font-size: 3.5rem; 
+	font-weight: bold;
+	text-align: center;
+	background: rgba(238, 238, 238, 0.8);
+	font-family: 'GangwonEduPowerExtraBoldA' !important;
+}
+
+.accept1 {
+	color: #00A168;
+}
+
+.refuse1 {
+	color: #FF4D37;
+}
+
 .btn-side-wrap {
 	display: flex;
 	align-items: center;
@@ -435,4 +475,20 @@ a {
 
 
 
+.btn-box {
+	cursor: pointer;
+}
 
+.x-btn {
+	position: absolute;
+	top: 10.7rem;
+	right: 10.5rem;
+	padding: 1px;
+}
+
+.i {
+	color: #9E9E9E;
+	font-size: 20px;
+	font-style: normal;
+	font-family: 'NanumSquareExtraBold' !important;
+}
