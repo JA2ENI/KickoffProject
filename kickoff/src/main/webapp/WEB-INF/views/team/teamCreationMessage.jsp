@@ -51,7 +51,8 @@
 								<div class="subject manage">관리</div>
 							</div>
 							
-							<div class="team-creation-message">팀 생성을 하여 멋진 팀을 만들어 보세요!</div>
+							<p id="msg">아직 팀이 없으시군요😥</p>
+							<p id="msg2">먼저 팀을 만들어 멋진 팀을 생성해보세요!</p>
 							<a href="/teamCreateForm" class="btn-teamInsert">팀 생성</a>
 							
 						</div>

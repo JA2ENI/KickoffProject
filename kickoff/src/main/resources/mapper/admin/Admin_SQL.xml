@@ -69,7 +69,7 @@
         SET
         	USER_STATUS = '정지',
         	USER_STOP_COUNT = USER_STOP_COUNT + 1,
-        	USER_STOP_DATE = SYSDATE
+        	USER_STOP_DATE = TRUNC(SYSDATE)
         WHERE
         	USER_ID = #{userId}
     ]]>
@@ -94,7 +94,7 @@
         SET
         	EMP_STATUS = '정지',
         	EMP_STOP_COUNT = EMP_STOP_COUNT + 1,
-        	EMP_STOP_DATE = SYSDATE
+        	EMP_STOP_DATE = TRUNC(SYSDATE)
         WHERE
         	EMP_ID = #{empId}
     ]]>

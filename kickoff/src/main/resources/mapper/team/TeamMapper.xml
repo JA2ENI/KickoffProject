@@ -2,17 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.teamcommit.kickoff.Service.team.TeamMapper">
-
-    <!-- Team List -->
-    <select id="teamInfoList" parameterType="com.teamcommit.kickoff.Do.TeamInfoDO" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
-        <![CDATA[
-        SELECT
-            TEAM_NAME, TEAM_LOCAL, TEAM_ID
-        FROM
-            TEAM_INFO
-        GROUP BY TEAM_NAME, TEAM_LOCAL, TEAM_ID
-        ]]>
-    </select>
     
     <!-- Team Board List -->
     <select id="teamBoardList" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">
@@ -36,8 +25,39 @@
         ]]>
     </select>
     
-    <!-- Team Name Check
-    <select id="teamNameCheck" parameterType="com.teamcommit.kickoff.Do.TeamInfoDO" resultType="Integer">
+    <!-- Team List Count -->
+    <select id="countTeam" resultType="Integer">
+		<![CDATA[
+        SELECT COUNT(*)
+		FROM (
+		    SELECT COUNT(*)
+		    FROM TEAM_INFO
+		    GROUP BY TEAM_NAME
+		    HAVING COUNT(CASE WHEN MEMBER_ID IS NULL THEN 0 END) = 1
+		)
+        ]]>
+	</select>
+    
+    <!-- Team List Paging -->
+    <select id="selectTeamPaging" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
+    <![CDATA[
+		SELECT * 
+			FROM (
+				SELECT ROWNUM RN, A.* 
+					FROM (
+							SELECT TEAM_NAME, TEAM_LOCAL, TEAM_ID
+							FROM TEAM_INFO
+							GROUP BY TEAM_NAME, TEAM_LOCAL, TEAM_ID
+							HAVING COUNT(CASE WHEN MEMBER_ID IS NULL THEN 0 END) = 1
+							) A
+					)
+		WHERE RN BETWEEN #{start} AND #{end}
+	]]>
+	</select>
+    
+    
+    <!-- Team Name Check -->
+    <select id="teamNameCheck" resultType="Integer">
 	<![CDATA[
         SELECT
             COUNT(*)
@@ -46,7 +66,7 @@
         WHERE
             TEAM_NAME = #{teamName}
         ]]>
-	</select> -->
+	</select>
     
     <!-- Team Create -->
     <insert id = "teamCreation" parameterType="com.teamcommit.kickoff.Do.TeamInfoDO">
@@ -170,18 +190,6 @@
         	TEAM_SEQNO = #{teamSeqNo}
     ]]>
 	</delete>
-	
-	<!-- Team Button -->
-	<select id="teamManageButton" parameterType="String" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
-        <![CDATA[
-        SELECT
-        	*
-		FROM
-			TEAM_INFO
-		WHERE
-			LEADER_ID = #{userId}
-        ]]>
-    </select>
     
     <!-- Team Recruit Detail -->
     <select id="teamRecruitDetail" parameterType="com.teamcommit.kickoff.Do.TeamDO" resultType="com.teamcommit.kickoff.Do.TeamDO">

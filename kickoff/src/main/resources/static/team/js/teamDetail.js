@@ -21,3 +21,16 @@ function updateTeam(teamSeqNo) {
         location.href = "/teamUpdate?teamSeqNo=" + teamSeqNo;
     }
 }
+
+/* team apply disabled */
+var divStatus = document.getElementsByClassName("team-status");
+var buttons = document.getElementsByClassName("btn_apply");
+
+for (var i = 0; i < divStatus.length; i++) {
+    var divStatusElement = divStatus[i];
+
+    if (divStatusElement.innerText === "모집 완료") {
+        buttons[i].disabled = true;
+        alert("마감된 모집글입니다.");
+    }
+}
