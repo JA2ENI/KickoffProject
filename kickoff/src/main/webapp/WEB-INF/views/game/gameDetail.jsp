@@ -13,22 +13,36 @@
 <link rel="stylesheet"
 	href="/includes/css/style.css">
 	<link rel = "stylesheet" href = "/main/css/vendor/icomoon/style.css">
-
 	<script src="/includes/js/jquery-3.3.1.min.js"></script>
-	
 	<script src="/includes/js/jquery.lettering.js"></script>
 	<script src="/includes/js/jquery.sticky.js"></script>
-	
-	
 	<script src="/includes/js/ScrollMagic.min.js"></script>
-	<script
-		src="/includes/js/scrollmagic.animation.gsap.min.js"></script>
-
+	<script	src="/includes/js/scrollmagic.animation.gsap.min.js"></script>
 
 	<script src="/includes/js/main.js"></script>
 
-	<link rel="stylesheet"
-		href="/game/css/boardDetail.css" />
+	<link rel="stylesheet" href="/game/css/boardDetail.css" />
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			var msg = "${msg}";
+
+			if(msg != ""){
+				alert(msg);
+			}
+
+		});
+
+		function applyConfirm(){
+
+			if(!confirm("신청이 완료되었습니다!")){
+				return false;
+			}else{
+				location.href="/apply?gameSeqno=${gameScoreDetail.gameSeqno}";
+			}
+		}
+	</script>
 
 </head>
 <body>
@@ -49,7 +63,7 @@
 			<img src="/game/images/vs.png" style="width:30%; margin-top:40px;">
 			
 		</div>
-		<h2>${gameScoreDetail.placeName}</h2>
+		<h2 onclick="location.href='/reservation/reservationDetail?placeId=${reservationDetail.placeId}';">${gameScoreDetail.placeName}</h2>
 			<div class="table-responsive">
 				<table class="board_detail">
 					<colgroup>
@@ -86,7 +100,7 @@
 			<c:if test="${(userId eq gameScoreDetail.writerId)}">
 				<button type="reset" class="btn_reset" onclick="location.href='/gameFix?gameSeqno=${gameScoreDetail.gameSeqno}';">매칭 수정</button>
 			</c:if>
-				<button class="btn_delete" onclick="location.href='/gameApply';">매칭 신청</button>
+				<button class="btn_delete" onclick="applyConfirm(); return false;">매칭 신청</button>
 			</div>
 		</div>
 	</form>

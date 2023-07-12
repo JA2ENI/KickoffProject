@@ -35,4 +35,8 @@ public interface GameMapper {
 
 	public TeamInfoDO updateTeamInfoName(String userId);
 
+	public void getGameApply(String team2Name);
+	
+	public void insertGameApply(String applyTeam);
+
 }

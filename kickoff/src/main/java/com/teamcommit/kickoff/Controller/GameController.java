@@ -1,5 +1,7 @@
 package com.teamcommit.kickoff.Controller;
 
+import com.teamcommit.kickoff.Do.BoardDO;
+import com.teamcommit.kickoff.Do.GameApplyDO;
 import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.TeamInfoDO;
 import com.teamcommit.kickoff.Do.TeamDO;
@@ -10,10 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.teamcommit.kickoff.Service.game.GameService;
 import com.teamcommit.kickoff.Service.login.LoginService;
+import com.teamcommit.kickoff.Service.reservation.ReservationService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,6 +29,9 @@ public class GameController {
 
     @Autowired
     private GameService gameService;
+    
+    @Autowired
+    private ReservationService reservationService;
     
     @Autowired
     private LoginService loginService;
@@ -43,7 +50,9 @@ public class GameController {
     }
 
     @RequestMapping( "/gameDetail")
-    public String gameDetail(@ModelAttribute("gameDO") GameDO gameDO, @RequestParam("gameSeqno") int gameSeqno, HttpServletRequest request, Model model) throws Exception {
+    public String gameDetail(@ModelAttribute("gameDO") GameDO gameDO, @RequestParam("gameSeqno") int gameSeqno, 
+    						@ModelAttribute("reservationDO") ReservationDO reservationDO, @RequestParam("placeId") int placeId,
+    						HttpServletRequest request, Model model) throws Exception {
         String view = "/game/gameDetail";
         
         String userId = (String) request.getSession().getAttribute("userId");
@@ -51,9 +60,32 @@ public class GameController {
         GameDO gameScoreDetail = gameService.getGameScoreDetail(gameSeqno);
         model.addAttribute("gameScoreDetail", gameScoreDetail);
         
+        ReservationDO reservationDetail = reservationService.selectReservationDetail(placeId);
+        model.addAttribute("reservationDetail", reservationDetail);
+        
         model.addAttribute("userId", userId);
         
         return view;
+    }
+    
+    //매칭 신청
+    @RequestMapping("/apply")
+    public ModelAndView apply(@ModelAttribute("gameDO") GameDO gameDO,
+    		@ModelAttribute("gameApplyDO") GameApplyDO gameApplyDO, @RequestParam("applyTeam") String applyTeam,
+    		@RequestParam("team2Name") String team2Name, RedirectAttributes redirect, Model model) throws Exception {
+        
+        ModelAndView mv = new ModelAndView("redirect:/game");
+
+        try {
+            gameService.getGameApply(team2Name);
+            gameService.insertGameApply(applyTeam);
+            redirect.addFlashAttribute("msg", "신청이 완료되었습니다!");
+        } catch (Exception e) {
+            redirect.addFlashAttribute("msg", "오류가 발생되었습니다. 다시 시도해주세요.");
+        }
+        
+
+        return mv;
     }
 
 

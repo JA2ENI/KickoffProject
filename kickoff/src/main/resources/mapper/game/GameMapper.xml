@@ -23,7 +23,47 @@
             GAME_SEQNO = #{gameSeqno}
         ]]>
     </select>
+    
+    <update id="getGameApply" parameterType="com.teamcommit.kickoff.Do.GameDO" >
+    <![CDATA[
+        UPDATE
+        	GAME
+        SET
+        	TEAM2_NAME = #{team2Name}
+        WHERE
+    			GAME_SEQNO = #{gameSeqno}
+        ]]>
+	</update>
 
+	<insert id="insertGameApply" parameterType="com.teamcommit.kickoff.Do.GameApplyDO">
+	<![CDATA[
+        INSERT INTO GAME_APPLY
+        (
+            GAME_SEQNO,
+            APPLY_TEAM,
+            USER_ID,
+            GAME_APPLY_STATUS
+        )
+        VALUES(
+                  GAME_SEQ.NEXTVAL,                 
+                  #{applyTeam},
+                  #{userId},
+                  #{gameApplyStatus}
+              )
+        ]]>
+	</insert>
+	
+	<!-- Reservation Place Detail -->
+    <select id="selectReservationDetail" parameterType="com.teamcommit.kickoff.Do.ReservationDO" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                RESERVATION
+            WHERE
+                PLACE_ID = #{placeId}
+        ]]>
+    </select>
+	
     <insert id = "insertGame" parameterType="com.teamcommit.kickoff.Do.GameDO">
         <![CDATA[
         INSERT INTO GAME

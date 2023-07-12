@@ -36,4 +36,8 @@ public interface GameService {
 
 	TeamInfoDO updateTeamInfoName(String userId) throws Exception;
 
+	void getGameApply(String team2Name) throws Exception;
+
+	void insertGameApply(String applyTeam) throws Exception;
+
 }

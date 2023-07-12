@@ -31,6 +31,16 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public void getGameApply(String team2Name) throws Exception {
+    	gameMapper.getGameApply(team2Name);
+    }
+    
+    @Override
+    public void insertGameApply(String applyTeam) throws Exception {
+    	gameMapper.getGameApply(applyTeam);
+    }
+    
+    @Override
     public Map<String, Object> selectMemInfo(Map<String, Object> map) throws Exception {
         return gameMapper.selectMemInfo(map);
     }

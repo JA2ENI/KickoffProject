@@ -67,8 +67,8 @@
 												<div class="checkout__input">
 													<p>풋살장 이미지<span></span></p>
 													<div class="filebox bs3-primary preview-image">
-														<!-- <input class="upload-name" disabled="disabled" style="width: 500px;">--> 
-														<input type="file" name="uploadFile" id="input_file">
+														<input class="upload-name" disabled="disabled" style="width: 500px;">
+														<input type="file" name="uploadFile" id="input_file" onchange="showFileName()"/>
 														<label for="input_file">업로드</label>
 													</div>
 													<div class="checkout__input">
@@ -216,6 +216,14 @@
 		    	top: (window.screen.height / 2) - (height / 2)
 		    });
 		}
+	</script>
+	
+	<script>
+  	function showFileName() {
+	    var input = document.getElementById('input_file');
+	    var output = document.getElementsByClassName('upload-name')[0];
+    output.value = input.files[0].name;
+  	}
 	</script>
 
 		<!-- Scripts -->
