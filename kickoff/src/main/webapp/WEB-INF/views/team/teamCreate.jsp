@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Russo+One&display=swap" rel="stylesheet">
 <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
 
@@ -19,7 +18,7 @@
 <body>
 	<%@include file="/includes/header.jsp"%>
 <section>
-	<form method="POST" action="/teamCreate">
+	<form method="POST" action="/teamCreate" id="teamCreateForm">
 		<div class="teamMark">
 			<img class="img-teamMark" src="/team/img/teamMark.png">
 		</div>
@@ -29,8 +28,8 @@
 					<div class="item-wrap">
 						<div class="inner-btn">
 							<p>팀 이름</p>
-							<input type="text" class="text-box" name="teamName" />
-							<button type="button" class="btn-check" onclick="nameCheck()">중복확인</button>
+							<input type="text" class="text-box" name="teamName" id="teamName" />
+							<button type="button" class="nameCheck" id="nameCheck" onclick="teamNameCheck()" value="N">중복확인</button>
 						</div>
 						<div class="text-wrap all">
 							<p>팀 주장 <span>(최초 등록자가 주장으로 임명됩니다)</span></p>
@@ -141,7 +140,7 @@
 							<input type="radio" id="purple" class="color" name="teamColor" value="purple"/><label for="purple" class="purple"></label>
 						</div>
 						<div class="btn-wrap">
-							<button type="submit" class="create" onclick="createTeam()">팀 생성하기</button>
+							<button type="submit" class="create" id="create" onclick="createTeam()">팀 생성하기</button>
 						</div>
 					</div>
 				</article>

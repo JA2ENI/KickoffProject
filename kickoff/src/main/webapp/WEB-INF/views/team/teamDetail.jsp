@@ -103,7 +103,7 @@
 					<c:if test="${userId eq teamContents.leaderId}">
 						<button type="button" class="btn_delete" onclick="deleteTeam('${teamContents.teamSeqNo}')">삭제</button>
 					</c:if>
-					<c:if test="${userId ne teamContents.leaderId}">
+					<c:if test="${userId ne teamInfoDO.leaderId && userId ne teamInfoDO.memberId}">
 						<button type="button" class="btn_apply" onclick="location.href='/teamApply';">지원하기</button>
 					</c:if>
 			   </div>
