@@ -103,26 +103,6 @@
 											<div class="dContent">PIVO/GOLEIRO</div>
 										</div>
 									</div>
-									<!-- test (추후 삭제)-->
-									<div class="detail-wrap">
-										<div class="detail-content">
-											<div class="dContent">test2234</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">남성</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">ALA/PIVO</div>
-										</div>
-									</div>
-									<div class="detail-wrap">
-										<div class="detail-content">
-											<div class="dContent">test223458</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">여성</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">GOLEIRO/ALA</div>
-										</div>
-									</div>
-									<!-- test END -->
 								</div>
 								<!-- 수락&거절(side bar) -->
 								<div class="side-container">
@@ -184,7 +164,7 @@
 	$(function(){
 		/* #sideon + 숫자(반복) */
 		$("#sideon").on("click", function(){
-			$(".side-container").toggleClass("menuon");
+			$(".side-container").addClass("menuon");
 		});
 		
 		$(".btn-side").on("click", function(){
