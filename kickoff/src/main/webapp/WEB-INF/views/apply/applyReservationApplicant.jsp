@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -27,32 +29,46 @@
 			<div class="myInfo-container">
 				<div class="myInfo-wrap">
 					<div class="uInfo">
-						<div class="userName">안재은</div>
-						<div class="userId">ja2eni</div>
+						<div class="userName">${userInfo.USER_NAME}</div>
+						<div class="userId">${userInfo.USER_ID}</div>
 					</div>
 					<div class="uTeam-container">
 						<div class="uTeam-wrap">
 							<div class="uTitle">TEAM</div>
-							<div class="uContant">독수리슛FC</div>
+							<c:if test="${not empty userInfo.TEAM_NAME}">
+								<div class="uContant">${userInfo.TEAM_NAME}</div>
+							</c:if>
+							<c:if test="${empty userInfo.TEAM_NAME}">
+								<div class="uContant">-</div>
+							</c:if>
 						</div>
 						<div class="uTeam-wrap">
 							<div class="uTitle">TEAM LEVEL</div>
-							<div class="uContant">플래티넘</div>
+							<c:if test="${not empty userInfo.TEAM_LEVEL}">
+								<div class="uContant">${userInfo.TEAM_LEVEL}</div>
+							</c:if>
+							<c:if test="${empty userInfo.TEAM_LEVEL}">
+								<div class="uContant">-</div>
+							</c:if>
 						</div>
 						<div class="uTeam-wrap">
 							<div class="uTitle">POSITION</div>
-							<!-- MIAN/SUB -->
-							<div class="uContant">PIVO/GOLEIRO</div>
+							<c:if test="${not empty userInfo.USER_SUB_POSITION}">
+								<div class="uContant">${userInfo.USER_MAIN_POSITION}/${userInfo.USER_SUB_POSITION}</div>
+							</c:if>
+							<c:if test="${empty userInfo.USER_SUB_POSITION}">
+								<div class="uContant">${userInfo.USER_MAIN_POSITION}/-</div>
+							</c:if>
 						</div>
-						<!-- 매칭 경기 횟수 -->
+						<!-- 모든 풋살장의 예약완료 중 해당 USER가 예약완료한 총 횟수 -->
 						<div class="uTeam-wrap">
-							<div class="uTitle">GAME</div>
-							<div class="uContant">5</div>
+							<div class="uTitle">RESERVATION COMPLETION</div>
+							<div class="uContant">${userInfo.rCount}</div>
 						</div>
-						<!-- 용병 경기 횟수 -->
+						<!-- 로그인한 USER의 매칭완료 총 횟수 -->
 						<div class="uTeam-wrap">
-							<div class="uTitle">HELPER</div>
-							<div class="uContant">10</div>
+							<div class="uTitle">GAME COMPLETION</div>
+							<div class="uContant">${userInfo.gameCount}</div>
 						</div>
 					</div>
 				</div>
@@ -62,82 +78,65 @@
 			<div class="reservation-container">
 				<div class="reservation-wrap">
 					<div class="reservation-title">예약 신청</div>
-						<div class="box-wrap">
-							<div class="box-frame">
-								<div class="box-content">
-									<!-- 모집 상태에 따라 -->
-									<div class="status ing">예약 중</div>
-									<!-- <div class="status end">예약 완료</div> -->
-									<!-- <div class="status cancel">예약 취소</div> -->
-									<div class="one-wrap">
-										<div class="date day">2023년 6월 14일</div>
-										<div class="date">수요일</div>
-										<div class="date">20:00~22:00</div>
-									</div>
-									<div class="two-wrap">
-										<!-- 상세보기 -->
-										<a href="javascript:alert('제목 상세보기 test');" class="placeName">안재풋살장</a>
-										<div class="numReservation">A코트</div>
-									</div>
-									<!-- 신청 취소 -->
-									<div class="btn-wrap">
-										<button type="button" class="btn-detail" onclick="javascript:alert('test')">신청취소</button>
-									</div>
-									<!-- 신청 수락&거절 상태 -->
-									<div class="ticket-wrap">
-										<img class="ticket" src="/apply/images/reservationThanks.png" />
-										<!-- <img class="ticket" src="/apply/images/reservationSorry.png" /> -->
-									</div>
-									<div class="three-wrap">
-										<div class="arrow">▶</div>
-										<div class="three-content">인조잔디</div>
-										<div>&sdot;</div>
-										<div class="three-content">5vs5</div>
-										<div>&sdot;</div>
-										<div class="three-content">13x28</div>
-									</div>
-								</div>
-							</div>
-							<!-- test 추후 삭제 -->
-							<div class="box-frame">
-								<div class="box-content">
-									<!-- 모집 상태에 따라 -->
-									<!-- <div class="status ing">예약 중</div> -->
-									<div class="status end">예약 완료</div>
-									<!-- <div class="status cancel">예약 취소</div> -->
-									<div class="one-wrap">
-										<div class="date day">2023년 6월 14일</div>
-										<div class="date">수요일</div>
-										<div class="date">20:00~22:00</div>
-									</div>
-									<div class="two-wrap">
-										<!-- 상세보기 -->
-										<a href="javascript:alert('제목 상세보기 test');" class="placeName">안재풋살장</a>
-										<div class="numReservation">A코트</div>
-									</div>
-									<!-- 신청 취소 -->
-									<div class="btn-wrap">
-										<button type="button" class="btn-detail" onclick="javascript:alert('test')">신청취소</button>
-									</div>
-									<!-- 신청 수락&거절 상태 -->
-									<div class="ticket-wrap">
-										<!-- <img class="ticket" src="/apply/images/reservationThanks.png" /> -->
-										<img class="ticket" src="/apply/images/reservationSorry.png" />
-									</div>
-									<div class="three-wrap">
-										<div class="arrow">▶</div>
-										<div class="three-content">인조잔디</div>
-										<div>&sdot;</div>
-										<div class="three-content">5vs5</div>
-										<div>&sdot;</div>
-										<div class="three-content">13x28</div>
+					<c:choose>
+						<c:when test="${fn:length(myApplyList) > 0}">
+							<c:forEach var="row" items="${myApplyList}" varStatus="num">
+								<div class="box-wrap">
+									<div class="box-frame">
+										<div class="box-content">
+											<c:choose>
+												<c:when test="${row.reservationStatus == '예약 중'}">
+													<div class="status2 ing">예약 중</div>
+												</c:when>
+												<c:when test="${row.reservationStatus == '예약 완료'}">
+													<div class="status2 end">예약 완료</div>
+												</c:when>
+												<c:otherwise>
+													<div class="status2 cancel">예약 취소</div>
+												</c:otherwise>
+											</c:choose>
+											<div class="one-wrap">
+												<div class="date day">${row.reservationDate}</div>
+												<div class="date">${row.dayOfWeek}</div>
+												<div class="date">${row.reservationStartTime}~${row.reservationEndTime}</div>
+											</div>
+											<div class="two-wrap">
+												<a href="/reservationDetail?reservationNo=${row.reservationNo}" class="placeName">${row.reservationPlaceName}</a>
+												<div class="numReservation">${row.reservationCourtName}</div>
+											</div>
+											<!-- 신청 취소 -->
+											<div class="btn-wrap">
+												<button type="button" class="btn-detail" onclick="javascript:alert('test')">신청취소</button>
+											</div>
+											<c:if test="${row.userStatus == '예약 완료'}">
+												<div class="ticket-wrap">
+													<img class="ticket" src="/apply/images/reservationThanks.png" />
+												</div>
+											</c:if>
+											<c:if test="${row.userStatus == '예약 취소'}">
+												<div class="ticket-wrap">
+													<img class="ticket" src="/apply/images/reservationSorry.png" />
+												</div>
+											</c:if>
+											<div class="three-wrap">
+												<div class="arrow">▶</div>
+												<div class="three-content">${row.reservationPlaceGround}</div>
+												<div>&sdot;</div>
+												<div class="three-content">${row.reservationHeadcount}</div>
+												<div>&sdot;</div>
+												<div class="three-content">${row.reservationPlaceSize}</div>
+											</div>
+										</div>
 									</div>
 								</div>
-							</div>
-							<!-- test END -->
-						</div>
-					</div>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<!-- 추후, 리스트가 없을 경우 '예약 리스트' 이동 버튼 만들기 -->
+						</c:otherwise>
+					</c:choose>
 				</div>
+			</div>
 		</article>
 	</section>
 </body>

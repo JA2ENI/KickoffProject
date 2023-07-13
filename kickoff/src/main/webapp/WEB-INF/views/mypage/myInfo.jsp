@@ -96,15 +96,12 @@
 											<div class="phone_content">
 												<input type="text" id="phone" class="inputBox phone" name="userPhoneNumber" value="${userInfo.userPhoneNumber}" maxlength="13"/>
 												<input type="button" id="sendPhone" class="checkPhone phone" onclick="javascript:alert('test : ' + ${number});" value="번호 인증"/>
-												<!-- <a href="/reservation" id="cancle" class="cancle">취소</a> -->
 											</div>
 										</div>
 										<div class="checkout__input__request">
 											<div id="checkPhoneBox" class="phone_content">
 												<input type="text" id="checkPhone" class="inputBox phone" name="checkPhone"/>
 												<input type="button" id="checkPhoneBtn" class="checkPhone phone" onclick="" value="확인"/>
-												<%-- <input type="hidden" id="smsConfirmNum" name="smsConfirmNum" value="${smsConfirmNum}"/> --%>
-												<!-- <a href="/reservation" id="cancle" class="cancle">취소</a> -->
 											</div>
 										</div>
 										<div class="checkout__input__request address">

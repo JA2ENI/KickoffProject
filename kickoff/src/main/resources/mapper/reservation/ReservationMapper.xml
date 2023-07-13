@@ -164,7 +164,7 @@
                        #{reservationEndTime},
                        #{reservationGameStyle},
                        #{reservationPrice},
-                       '예약대기',
+                       '예약 중',
                        SYSDATE,
                        #{reservationPlaceAddress}
             )
