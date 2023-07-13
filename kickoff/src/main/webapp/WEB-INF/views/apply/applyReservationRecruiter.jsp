@@ -121,7 +121,7 @@
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
-							<!-- 추후, 리스트가 없을 경우 'EMP 풋살장 예약 등록 페이지' or '예약 리스트' 이동 버튼 만들기 -->
+							<div id="nonList">등록된 풋살장 예약이 없습니다.</div>
 						</c:otherwise>
 					</c:choose>
 				</div>
