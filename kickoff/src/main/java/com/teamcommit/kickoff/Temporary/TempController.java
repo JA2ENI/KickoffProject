@@ -35,10 +35,6 @@ public class TempController {
 		mv.addObject("userInfo", selectUserInfo);
 		mv.addObject("myApplyList", myApplyList);
 		
-		for(ReservationDO rdo : myApplyList) {
-			System.out.println(rdo.getUserStatus());
-		}
-		
 		return mv;
 	}
 	
@@ -76,7 +72,7 @@ public class TempController {
 		return userInfo;
 	}
 	
-	/* 수락 & 거절 */
+	/* 수락&거절, 신청취소 */
 	@ResponseBody
 	@RequestMapping(value="/updateApplyStatus", method=RequestMethod.POST)
 	public Map<String, String> updateApplyStatus(@RequestBody Map<String, String> map) throws Exception {

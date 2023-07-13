@@ -57,6 +57,10 @@ public class TempServiceImpl implements TempService {
 	
 	@Override
 	public void updateApplyStatus(Map<String, String> map) throws Exception {
+		if(map.get("check").equals("cancel")) {
+			tempMapper.updateRefuse(map);
+		} 
+		
 		if(map.get("check").equals("accept")) {
 			tempMapper.updateAccept(map);
 		} else {

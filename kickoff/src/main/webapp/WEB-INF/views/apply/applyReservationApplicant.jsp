@@ -106,7 +106,10 @@
 											</div>
 											<!-- 신청 취소 -->
 											<div class="btn-wrap">
-												<button type="button" class="btn-detail" onclick="javascript:alert('test')">신청취소</button>
+												<button type="button" class="btn-detail" onclick="applyCancel(${num.index})">신청취소</button>
+												<input type="hidden" id="userId${num.index}" value="${userInfo.USER_ID}"/>
+												<input type="hidden" id="rNum${num.index}" value="${row.reservationNo}"/>
+												<input type="hidden" id="status${num.index}" value="${row.userStatus}"/>
 											</div>
 											<c:if test="${row.userStatus == '예약 완료'}">
 												<div class="ticket-wrap">
@@ -118,6 +121,7 @@
 													<img class="ticket" src="/apply/images/reservationSorry.png" />
 												</div>
 											</c:if>
+											<div class="cover-hide cover${num.index}"></div>
 											<div class="three-wrap">
 												<div class="arrow">▶</div>
 												<div class="three-content">${row.reservationPlaceGround}</div>
@@ -132,7 +136,7 @@
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
-							<!-- 추후, 리스트가 없을 경우 '예약 리스트' 이동 버튼 만들기 -->
+							<div id="nonList">예약 신청한 풋살장 없습니다.</div>
 						</c:otherwise>
 					</c:choose>
 				</div>

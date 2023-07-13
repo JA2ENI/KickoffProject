@@ -1,5 +1,44 @@
 /* applyReservation.js */
 
+$('document').ready(function () {
+	$('.status').hide();
+	$('.apply-wrap').hide();
+	$('.cover-hide').hide();
+	applyMark();
+});
+
+/* apply cancel */
+function applyCancel(num) {
+	var status = $('#status'+num).val();
+	if(status == "예약 취소") {
+		alert('이미 취소된 예약 풋살장입니다.');
+		HttpRequest.abort();
+	}	
+	
+	var validation = confirm('풋살장 예약을 취소하시겠습니까?');
+	if(validation){
+	    var userId = $('#userId'+num).val();
+	    var rNum = $('#rNum'+num).val();
+	    var obj = { "aUserId" : userId,
+	    		  	"rNum" : rNum,
+	    		  	"check" : 'cancel' };
+	    		  	
+	    $.ajax({
+	        url: "/updateApplyStatus",
+	        type: "post",
+	        contentType: "application/json; charset=UTF-8",
+	        dataType: "json",
+	        data: JSON.stringify(obj),
+	        success: function(data) {
+	        	$('.cover-hide').show();
+	        	$(".cover"+num).addClass("cover-cancel");
+	        	$(".cover"+num).addClass("cover-text");
+	        	$(".cover"+num).html("예약 취소");
+	        }
+	    });
+	}
+}
+
 /* checkbox */
 function drop(num) {
  	var dropCheck = $('#dropCheck'+num).val();
@@ -100,12 +139,6 @@ function select(check) {
 }
 
 /* status mark */
-$('document').ready(function () {
-	$('.status').hide();
-	$('.apply-wrap').hide();
-	applyMark();
-});
-
 function applyMark() {
 	var empId = $('#empId').val();
 	var obj = { "empId" : empId };
@@ -156,10 +189,6 @@ function applyMark() {
         }
     });
 };
-
-
-
-
 
 
 

@@ -472,4 +472,29 @@ a {
 	background: #ff9933;
 }
 
+.cover-cancel {
+	position: absolute;
+	width: -webkit-fill-available;
+	top: 0px;
+	left: 200px;
+    height: 100%;
+    line-height: 20vh;
+	border-radius: 10px;
+	font-size: 3.5rem; 
+	font-weight: bold;
+	text-align: center;
+	font-family: 'GangwonEduPowerExtraBoldA' !important;
+}
 
+.cover-text {
+	color: #FF4D37;
+	background: rgba(238, 238, 238, 0.8);
+}
+
+#nonList {
+	margin-top: 3rem;
+	text-align: center;
+	font-size: 2.5rem; 
+	font-weight: bold;
+	font-family: 'GangwonEduPowerExtraBoldA' !important;
+}

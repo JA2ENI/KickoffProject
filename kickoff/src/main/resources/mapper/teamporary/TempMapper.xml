@@ -69,7 +69,7 @@
 																  FROM 
 																	  GAME_APPLY
 																  WHERE 
-																	  user_id = #{userId}
+																	  USER_ID = #{userId}
 																)
 																
 					  UNION ALL 
@@ -109,15 +109,27 @@
 				a.RESERVATION_NO = b.RESERVATION_ORIGIN_NO
 			WHERE 
 				b.USER_ID = #{userId} AND a.RESERVATION_NO IN (
-															   SELECT 
-															     RESERVATION_ORIGIN_NO
-															   FROM
-															     RESERVATION
-															   WHERE 
-															     USER_ID = #{userId}
-								  							 )
+															    SELECT 
+															        RESERVATION_ORIGIN_NO
+															    FROM
+															        RESERVATION
+															    WHERE 
+															        USER_ID = #{userId}
+								  							  )
 		 ]]>
     </select>
+    
+    <!-- 신청 취소 -->
+    <update id="updateApplyCancel" parameterType="map">
+        <![CDATA[
+            UPDATE
+                RESERVATION
+            SET
+                RESERVATION_STATUS = '예약 취소'
+            WHERE
+                RESERVATION_ORIGIN_NO = #{rNum} AND USER_ID = #{userId}
+        ]]>
+    </update>
     <!-- Reservation Applicant END --> 
     
 	<!-- Reservation Recruiter -->
@@ -136,6 +148,8 @@
     <select id="empReservationList" parameterType="String" resultType="map">
         <![CDATA[
             SELECT
+		    	EMP_ID,
+		    	RESERVATION_NO,
             	TO_CHAR(TO_DATE(RESERVATION_DATE), 'yyyy"년 "mm"월 " dd"일"') AS RESERVATION_DATE,
 		    	TO_CHAR(TO_DATE(RESERVATION_DATE), 'day') AS DAY_OF_WEEK,
 		    	RESERVATION_START_TIME,
@@ -145,9 +159,7 @@
 		    	RESERVATION_PLACE_GROUND,
 		    	RESERVATION_PLACE_SIZE,
 		    	RESERVATION_STATUS,
-		    	RESERVATION_HEADCOUNT,
-		    	RESERVATION_NO,
-		    	EMP_ID
+		    	RESERVATION_HEADCOUNT
             FROM
                 RESERVATION
             WHERE
