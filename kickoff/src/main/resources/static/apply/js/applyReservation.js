@@ -79,40 +79,35 @@ function select(check) {
     		  	"empId" : empId,
     		  	"rNum" : sNum,
     		  	"check" : check };
-
+    		  	
     $.ajax({
-        url: "/applyStatus",
+        url: "/updateApplyStatus",
         type: "post",
         contentType: "application/json; charset=UTF-8",
         dataType: "json",
         data: JSON.stringify(obj),
         success: function(data) {
-        	if(data.CHECK == "accept") {
+        	if(check == "accept") {
         		$(".accept1").show();
-        		//$(".mark").hide();
-				$(".side-body .accept1").html(data.RESERVATION_STATUS);
-				applyMark();
+				$(".side-body .accept1").html("예약 완료");
         	} else {
         		$(".refuse1").show();
-				$(".side-body .refuse1").html(data.RESERVATION_STATUS);
+				$(".side-body .refuse1").html("예약 취소");
         	}
+        	applyMark();
         }
     });
 }
 
 /* status mark */
-
 $('document').ready(function () {
-	$('.mark').hide();
-	$('.mark2').hide();
+	$('.status').hide();
+	$('.apply-wrap').hide();
 	applyMark();
 });
 
 function applyMark() {
 	var empId = $('#empId').val();
-	
-	alert('applyMark_empId = ' + empId);
-	
 	var obj = { "empId" : empId };
 	
     $.ajax({
@@ -122,18 +117,42 @@ function applyMark() {
         dataType: "json",
         data: JSON.stringify(obj),
         success: function(data) {
-		//	if(data == 1) {
-		//		alert('확인');
-		//	} else {
-		//		alert('실패');
-		//	}
-		///	alert('확인');
-		//	alert(DATA + ' ' + data[0].RESERVATION_ORIGIN_NO);
-		//	$('#ttest').html('222ajax 확인');
-		//	$('#ttest2').html('333ajax 확인');
-		//	$('#sideBar #ttest3').html('444ajax 확인');
-			alert("하이");
-			$(".mark").show();
+			for(var i=0; i<data.length; i++) {
+				if(data[i].RESERVATION_NO != null) {
+					$(".statusAjax"+i).show();
+					if(data[i].RESERVATION_STATUS == "예약 완료") {
+						$(".statusAjax"+i).addClass("end");
+						$(".statusAjax"+i).removeClass("cancel");
+						$(".statusAjax"+i).removeClass("ing");
+						$(".statusAjax"+i).html('예약 완료');
+					} else if (data[i].RESERVATION_STATUS == "예약 취소"){
+						$(".statusAjax"+i).addClass("cancel");
+						$(".statusAjax"+i).removeClass("end");
+						$(".statusAjax"+i).removeClass("ing");
+						$(".statusAjax"+i).html('예약 취소');
+					} else if (data[i].RESERVATION_STATUS == "예약 중") {
+						$(".statusAjax"+i).addClass("ing");
+						$(".statusAjax"+i).removeClass("end");
+						$(".statusAjax"+i).removeClass("cancel");
+						$(".statusAjax"+i).html('예약 중');
+					}
+					var n = 0;
+					n += i;
+				} 
+			}
+			var num = n+1;
+			for(var i=0; i<data.length; i++) {
+				if(data[num].RESERVATION_NO == null) {
+					if(data[num].RESERVATION_STATUS == "예약 완료") {
+						$(".acceptMark"+i).show();
+						$(".refuseMark"+i).hide();
+					} else if (data[num].RESERVATION_STATUS == "예약 취소"){
+						$(".acceptMark"+i).hide();
+						$(".refuseMark"+i).show();
+					}
+				} 
+				num += 1;
+			}
         }
     });
 };

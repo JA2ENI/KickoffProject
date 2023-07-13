@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,63 +19,79 @@ public class TempServiceImpl implements TempService {
 	private TempMapper tempMapper;
 	
 	@Override
+	public Map<String, String> selectUserInfo(String userId) throws Exception {
+		Map<String, String> selectUserInfo = tempMapper.selectUserInfo(userId);
+		selectUserInfo.put("rCount", tempMapper.rCompleteCountAll(userId));
+		selectUserInfo.put("gameCount", tempMapper.gCompleteCountAll(userId));
+		
+		return selectUserInfo;
+	}
+	
+	@Override
+	public List<ReservationDO> myApplyList(String userId) throws Exception {
+		return tempMapper.myApplyList(userId);
+	}
+	
+	@Override
 	public PlaceDO placeInfo(String empId) throws Exception {
 		return tempMapper.placeInfo(empId);
 	}
 	
 	@Override
-	public List<Map<String, String>> reservationList(String empId) throws Exception {
-		return tempMapper.reservationList(empId);
+	public List<Map<String, String>> empReservationList(String empId) throws Exception {
+		return tempMapper.empReservationList(empId);
 	}
 	
 	@Override
-	public List<Map<String, String>> applyInfoList(String rNum) throws Exception {
-		return tempMapper.applyInfoList(rNum);
+	public List<Map<String, String>> userReservationList(String rNum) throws Exception {
+		return tempMapper.userReservationList(rNum);
 	}
 
 	@Override
 	public Map<String, String> userInfo(Map<String, String> map) throws Exception {
-		Map<String, String> resultMap = new HashMap<String, String>();
-		resultMap = tempMapper.userInfo(map);
-		String rCount = tempMapper.reservationCount(map);
-		resultMap.put("rCount", rCount);
+		Map<String, String> userInfo = tempMapper.userInfo(map);
+		userInfo.put("rCount", tempMapper.rCompleteCount(map));
 		
-		return resultMap;
+		return userInfo;
 	}
 	
 	@Override
-	public Map<String, String> updateApplyStatus(Map<String, String> map) throws Exception {
+	public void updateApplyStatus(Map<String, String> map) throws Exception {
 		if(map.get("check").equals("accept")) {
-			tempMapper.acceptApplyReservation(map);
+			tempMapper.updateAccept(map);
 		} else {
-			tempMapper.refuseApplyReservation(map);
+			tempMapper.updateRefuse(map);
+			List<Map<String, Object>> list = tempMapper.userStatusList(String.valueOf(map.get("rNum")));
+			int count = 0;
+			for(Map<String, Object> map2 : list) {
+				String status = String.valueOf(map2.get("RESERVATION_STATUS"));
+				if(status.equals("예약 취소")) {
+					count += 1;
+				}
+				if(count == list.size()) {
+					tempMapper.updateEmpStatus(map.get("rNum"));
+				}
+			}
 		}
-		
-		return tempMapper.updateApplyStatus(map);
 	}
 	
 	@Override
 	public List<Map<String, Object>> applyMarkList(String empId) throws Exception {
-		List<ReservationDO> rList = tempMapper.rNumList(empId);
-		List<Map<String, Object>> aList = new ArrayList<>();
+		List<Map<String, Object>> empStatusList = tempMapper.empStatusList(empId);
+		List<Map<String, Object>> applyMarkList = new ArrayList<>();
 		
-		for(ReservationDO rDO : rList) {
-			int rNum = rDO.getReservationNo();
-			Map<String, Object> applyList = new HashMap<>();
-			applyList.put("status", tempMapper.aNumList(rNum));
-			aList.add(applyList);
+		for(Map<String, Object> map : empStatusList) {
+			applyMarkList.add(map);
 		}
 		
-		for(int i=0; i<rList.size(); i++) {
-			System.out.println("rList : " + rList.get(i));
+		for(Map<String, Object> map : empStatusList) {
+			List<Map<String, Object>> list = tempMapper.userStatusList(String.valueOf(map.get("RESERVATION_NO")));
+			for(Map<String, Object> map2 : list) { 
+				applyMarkList.add(map2);
+			} 
 		}
 		
-		for(int i=0; i<aList.size(); i++) {
-			System.out.println("aList : " + aList.get(i));
-		}
-		
-		
-		return aList;
+		return applyMarkList;
 	}
 	
 }

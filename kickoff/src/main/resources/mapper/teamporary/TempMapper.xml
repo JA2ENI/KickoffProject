@@ -3,10 +3,125 @@
 
 <mapper namespace="com.teamcommit.kickoff.Temporary.TempMapper">
 	
-	<!-- reservation applicant -->
-	
-	<!-- reservation recruiter -->
-	<!-- Emp 풋살장 -->
+	<!-- Reservation Applicant -->
+    <!-- 유저 정보 -->
+    <select id="selectUserInfo" parameterType="map" resultType="HashMap">
+        <![CDATA[
+       		SELECT 
+				u.USER_ID,
+				u.USER_NAME,
+				u.USER_MAIN_POSITION,
+				u.USER_SUB_POSITION,
+				ti.TEAM_NAME,
+				ti.TEAM_LEVEL
+			FROM 
+				USERS u FULL JOIN TEAM_INFO ti
+			ON
+				u.USER_ID = ti.LEADER_ID OR u.USER_ID = ti.MEMBER_ID
+			WHERE 
+				u.USER_ID = #{userId}
+        ]]>
+    </select>
+    
+   	<!-- 모든 풋살장의 예약완료 중 해당 USER가 예약완료한 총 횟수 -->
+    <select id="rCompleteCountAll" parameterType="String" resultType="String">
+        <![CDATA[
+       		SELECT 
+				COUNT(COUNT(*)) AS RESERVATION_COUNT
+			FROM 
+				(
+				  SELECT
+					  RESERVATION_NO AS RESERVATION_COUNT
+				  FROM
+					  RESERVATION
+				  WHERE 
+					  RESERVATION_TYPE = 'EMP' AND RESERVATION_STATUS = '예약 완료'
+			
+					  UNION ALL 
+				
+				  SELECT 
+					  RESERVATION_ORIGIN_NO AS RESERVATION_COUNT 
+				  FROM
+					  RESERVATION
+				  WHERE 
+					  USER_ID = #{userId} AND RESERVATION_STATUS = '예약 완료'
+				)
+			GROUP BY RESERVATION_COUNT
+			HAVING COUNT(*) > 1
+        ]]>
+    </select>
+    
+   	<!-- 로그인한 USER의 매칭완료 총 횟수 -->
+    <select id="gCompleteCountAll" parameterType="String" resultType="String">
+        <![CDATA[
+       		SELECT 
+				COUNT(COUNT(*)) AS GAME_COUNT
+			FROM 
+				(
+				  SELECT
+					  GAME_SEQNO AS GAME_COUNT
+				  FROM
+					  GAME
+				  WHERE 
+					  GAME_STATUS = '매칭 완료' AND GAME_SEQNO IN (
+					  											  SELECT
+					  											  	  GAME_SEQNO
+																  FROM 
+																	  GAME_APPLY
+																  WHERE 
+																	  user_id = #{userId}
+																)
+																
+					  UNION ALL 
+				
+				  SELECT 
+					  GAME_SEQNO AS GAME_COUNT 
+				  FROM
+					  GAME_APPLY
+				  WHERE 
+					  USER_ID = #{userId} AND GAME_APPLY_STATUS = '수락'
+				)
+			GROUP BY GAME_COUNT
+			HAVING COUNT(*) > 1
+        ]]>
+    </select>
+    
+    
+    <!-- USER 예약 신청 리스트 -->
+    <select id="myApplyList" parameterType="String" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+		<![CDATA[
+			SELECT 
+				a.RESERVATION_NO,
+				TO_CHAR(TO_DATE(a.RESERVATION_DATE), 'yyyy"년 "mm"월 " dd"일"') AS RESERVATION_DATE,
+				TO_CHAR(TO_DATE(a.RESERVATION_DATE), 'day') AS DAY_OF_WEEK,
+				a.RESERVATION_START_TIME,
+				a.RESERVATION_END_TIME,
+				a.RESERVATION_PLACE_NAME,
+				a.RESERVATION_COURT_NAME,
+				a.RESERVATION_PLACE_GROUND,
+				a.RESERVATION_HEADCOUNT,
+				a.RESERVATION_PLACE_SIZE,
+				a.RESERVATION_STATUS,
+				b.RESERVATION_STATUS AS USER_STATUS
+			FROM
+				RESERVATION a JOIN RESERVATION b
+			ON
+				a.RESERVATION_NO = b.RESERVATION_ORIGIN_NO
+			WHERE 
+				b.USER_ID = #{userId} AND a.RESERVATION_NO IN (
+															   SELECT 
+															     RESERVATION_ORIGIN_NO
+															   FROM
+															     RESERVATION
+															   WHERE 
+															     USER_ID = #{userId}
+								  							 )
+		 ]]>
+    </select>
+    <!-- Reservation Applicant END --> 
+    
+	<!-- Reservation Recruiter -->
+	<!-- EMP 풋살장 -->
 	<select id="placeInfo" parameterType="String" resultType="com.teamcommit.kickoff.Do.PlaceDO">
         <![CDATA[
             SELECT *
@@ -17,8 +132,8 @@
         ]]>
     </select>
     
-    <!-- Emp 예약게시글 리스트 -->
-    <select id="reservationList" parameterType="String" resultType="map">
+    <!-- EMP 예약게시글 리스트 -->
+    <select id="empReservationList" parameterType="String" resultType="map">
         <![CDATA[
             SELECT
             	TO_CHAR(TO_DATE(RESERVATION_DATE), 'yyyy"년 "mm"월 " dd"일"') AS RESERVATION_DATE,
@@ -41,7 +156,7 @@
     </select>
     
     <!-- 신청자 리스트 -->
-    <select id="applyInfoList" parameterType="String" resultType="map">
+    <select id="userReservationList" parameterType="String" resultType="map">
         <![CDATA[
             SELECT
             	USER_ID,
@@ -66,38 +181,38 @@
 				u.USER_MAIN_POSITION,
 				u.USER_SUB_POSITION,
 				ti.TEAM_NAME,
-				ti.TEAM_LOCAL		
+				ti.TEAM_LOCAL
 			FROM 
 				USERS u FULL JOIN TEAM_INFO ti
 			ON
-				(u.USER_ID = ti.MEMBER_ID) OR (u.USER_ID = ti.LEADER_ID)
+				u.USER_ID = ti.LEADER_ID OR u.USER_ID = ti.MEMBER_ID
 			WHERE 
 				u.USER_ID = #{aUserId}
         ]]>
     </select>
     
-    <!-- 유저 예약 총 건수(해당 emp풋살장) -->
-    <select id="reservationCount" parameterType="map" resultType="String">
+   	<!-- 로그인한 EMP유저 풋살장에 해당 USER가 예약완료한 총 건수 -->
+    <select id="rCompleteCount" parameterType="map" resultType="String">
         <![CDATA[
        		SELECT 
 				COUNT(COUNT(*)) AS RESERVATION_COUNT
 			FROM 
 				(
-				SELECT
-					RESERVATION_NO AS RESERVATION_COUNT
-				FROM
-					RESERVATION
-				WHERE 
-					EMP_ID = #{empId}
+				  SELECT
+					  RESERVATION_NO AS RESERVATION_COUNT
+				  FROM
+					  RESERVATION
+				  WHERE 
+					  EMP_ID = #{empId} AND RESERVATION_STATUS = '예약 완료'
 			
-					UNION ALL 
+					  UNION ALL 
 				
-				SELECT 
-					RESERVATION_ORIGIN_NO AS RESERVATION_COUNT 
-				FROM
-					RESERVATION
-				WHERE 
-					USER_ID = #{aUserId}
+				  SELECT 
+					  RESERVATION_ORIGIN_NO AS RESERVATION_COUNT 
+				  FROM
+					  RESERVATION
+				  WHERE 
+					  USER_ID = #{aUserId} AND RESERVATION_STATUS = '예약 완료'
 				)
 			GROUP BY RESERVATION_COUNT
 			HAVING COUNT(*) > 1
@@ -105,7 +220,7 @@
     </select>
     
     <!-- 수락 -->
-    <update id="acceptApplyReservation" parameterType="map">
+    <update id="updateAccept" parameterType="map">
         <![CDATA[
             UPDATE
                 RESERVATION
@@ -121,7 +236,7 @@
     </update>
     
     <!-- 거절 -->
-    <update id="refuseApplyReservation" parameterType="map">
+    <update id="updateRefuse" parameterType="map">
         <![CDATA[
             UPDATE
                 RESERVATION
@@ -132,34 +247,36 @@
         ]]>
     </update>
     
-    <!-- Status -->
-    <select id="updateApplyStatus" parameterType="map" resultType="map">
+    <!-- EMP예약글 '예약 중'으로 수정(기간 만료 전, 모든 신청자가 예약 취소일 경우) -->
+    <update id="updateEmpStatus" parameterType="String">
+        <![CDATA[
+            UPDATE
+                RESERVATION
+            SET
+                RESERVATION_STATUS = '예약 중'
+            WHERE
+                RESERVATION_NO = #{rNum}
+        ]]>
+    </update>
+    
+    <!-- applyMarkList -->
+    <select id="empStatusList" parameterType="String" resultType="hashMap">
     	<![CDATA[
     		SELECT
+    			RESERVATION_NO,
     			RESERVATION_STATUS
     		FROM
     			RESERVATION
     		WHERE
-    			RESERVATION_ORIGIN_NO = #{rNum} AND USER_ID = #{aUserId}
-    	]]>
-    </select>
-    
-    
-    
-    <select id="rNumList" parameterType="String" resultType="com.teamcommit.kickoff.Do.ReservationDO">
-    	<![CDATA[
-    		SELECT
-    			RESERVATION_NO
-    		FROM
-    			RESERVATION
-    		WHERE
     			EMP_ID = #{empId}
-    	]]>
-    </select>
-    
-    <select id="aNumList" parameterType="Integer" resultType="map">
+   		]]>
+   	</select>
+   	
+   	<!-- applyMarkList -->
+    <select id="userStatusList" parameterType="String" resultType="hashMap">
     	<![CDATA[
     		SELECT
+    			RESERVATION_ORIGIN_NO,
     			RESERVATION_STATUS
     		FROM
     			RESERVATION
@@ -167,6 +284,5 @@
     			RESERVATION_ORIGIN_NO = #{rNum}
     	]]>
     </select>
-    
-   	<!-- END --> 
+   	<!-- Reservation Recruiter END --> 
 </mapper>

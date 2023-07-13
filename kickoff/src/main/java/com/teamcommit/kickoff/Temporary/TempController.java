@@ -1,7 +1,6 @@
 package com.teamcommit.kickoff.Temporary;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,10 +25,21 @@ public class TempController {
 	
 	//에약 신청자 페이지 
 	@RequestMapping(value="/applyReservationApplicant")
-	public String applyReservationApplicant(HttpSession session) throws Exception {
-		String view = "/apply/applyReservationApplicant";
+	public ModelAndView applyReservationApplicant(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/apply/applyReservationApplicant");
+		String userId = (String)session.getAttribute("userId");
 		
-		return view;
+		Map<String, String> selectUserInfo = tempService.selectUserInfo(userId);
+		List<ReservationDO> myApplyList = tempService.myApplyList(userId);
+		
+		mv.addObject("userInfo", selectUserInfo);
+		mv.addObject("myApplyList", myApplyList);
+		
+		for(ReservationDO rdo : myApplyList) {
+			System.out.println(rdo.getUserStatus());
+		}
+		
+		return mv;
 	}
 	
 	//예약 모집자 페이지 
@@ -40,21 +49,19 @@ public class TempController {
 		String empId = (String)session.getAttribute("empId");
 		
 		PlaceDO placeInfo = tempService.placeInfo(empId);
-		List<Map<String, String>> rList = tempService.reservationList(empId);
+		List<Map<String, String>> rList = tempService.empReservationList(empId);
 		List<Map<String, String>> aList = new ArrayList<>();
 		
 		for(Map<String, String> map : rList) {
-			List<Map<String, String>> applyList = tempService.applyInfoList(String.valueOf(map.get("RESERVATION_NO")));
-			
+			List<Map<String, String>> applyList = tempService.userReservationList(String.valueOf(map.get("RESERVATION_NO")));
 			for(Map<String, String> map2 : applyList) {
 				aList.add(map2);
 			}
-			
 		}
 		
 		mv.addObject("placeInfo", placeInfo);
-		mv.addObject("reservationList", rList);
-		mv.addObject("applyList", aList);
+		mv.addObject("empRList", rList);
+		mv.addObject("userRList", aList);
 		
 		return mv;
 	}
@@ -63,8 +70,7 @@ public class TempController {
 	@ResponseBody
 	@RequestMapping(value="/aUserInfo", method=RequestMethod.POST)
 	public Map<String, String> aUserInfo(@RequestBody Map<String, String> map) throws Exception {
-		Map<String, String> userInfo = new HashMap<>();
-		userInfo = tempService.userInfo(map);
+		Map<String, String> userInfo = tempService.userInfo(map);
 		userInfo.put("rNum", map.get("rNum"));
 
 		return userInfo;
@@ -72,28 +78,21 @@ public class TempController {
 	
 	/* 수락 & 거절 */
 	@ResponseBody
-	@RequestMapping(value="/applyStatus", method=RequestMethod.POST)
-	public Map<String, String> applyStatus(@RequestBody Map<String, String> map) throws Exception {
-		Map<String, String> userInfo = new HashMap<>();
-		userInfo = tempService.updateApplyStatus(map);
-		userInfo.put("CHECK", map.get("check"));
+	@RequestMapping(value="/updateApplyStatus", method=RequestMethod.POST)
+	public Map<String, String> updateApplyStatus(@RequestBody Map<String, String> map) throws Exception {
+		tempService.updateApplyStatus(map);
 		
-		return userInfo;
+		return map;
 	}
 	
 	
-	
+	/* Status Mark */
 	@ResponseBody
 	@RequestMapping(value="/applyMarkList", method=RequestMethod.POST)
 	public List<Map<String, Object>> applyMarkList(@RequestBody Map<String, String> map) throws Exception {
-		List<Map<String, Object>> userInfo = new ArrayList<>();
-		userInfo = tempService.applyMarkList(map.get("empId"));
+		List<Map<String, Object>> applyMarkList = tempService.applyMarkList(map.get("empId"));
 		
-		for(int i=0; i<userInfo.size(); i++) {
-			System.out.println("userInfo : " + userInfo.get(i));
-		}
-		
-		return userInfo;
+		return applyMarkList;
 	}
 	
 }

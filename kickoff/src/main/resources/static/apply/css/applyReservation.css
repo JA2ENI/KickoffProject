@@ -109,7 +109,8 @@ a {
 	background: #f8fafb;
 }
 
-.status {
+.status,
+.status2 {
 	margin: 1px 2px;
 	padding: 2px 3px 2px 3px;
 	height: 80%;
@@ -122,17 +123,17 @@ a {
 	font-family: 'Russo One', sans-serif !important;
 }
 
-.status.ing {
+.ing {
  	border-color: #1970FF;
 	background-color: #1970FF;
 }
 
-.status.end {
+.end {
  	border-color: #00A168;
 	background-color: #00A168;
 }
 
-.status.cancel {
+.cancel {
  	border-color: #FF4D37;
 	background-color: #FF4D37; 
 }
@@ -208,7 +209,7 @@ a {
 
 .btn-wrap {
 	position: absolute;
-	top: 4.4em;
+	top: 4.2em;
 	left: 32.7em;
 }
 
@@ -472,23 +473,3 @@ a {
 }
 
 
-
-
-
-.btn-box {
-	cursor: pointer;
-}
-
-.x-btn {
-	position: absolute;
-	top: 10.7rem;
-	right: 10.5rem;
-	padding: 1px;
-}
-
-.i {
-	color: #9E9E9E;
-	font-size: 20px;
-	font-style: normal;
-	font-family: 'NanumSquareExtraBold' !important;
-}

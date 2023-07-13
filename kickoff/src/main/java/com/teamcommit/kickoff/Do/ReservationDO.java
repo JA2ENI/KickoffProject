@@ -62,6 +62,8 @@ public class ReservationDO {
 
 	private String dayOfWeek;
 	
+	private String userStatus;
+	
 	public ReservationDO() {
 		
 	}
@@ -302,4 +304,13 @@ public class ReservationDO {
 	public void setDayOfWeek(String dayOfWeek) {
 		this.dayOfWeek = dayOfWeek;
 	}
+
+	public String getUserStatus() {
+		return userStatus;
+	}
+
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
+	
 }
