@@ -118,3 +118,5 @@ function deleteMember(userId) {
         location.href = "/memberDelete?userId=" + userId;
     }
 }
+
+/* */

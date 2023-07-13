@@ -30,6 +30,10 @@ public class TeamApplyDO {
 	private int userHelperCount;
 	//지원자 나이
 	private int userAge;
+	//지원 상태
+	private String applyStatus;
+	//모집자 아이디
+	private String leaderId;
 	
 	
 	public int getTeamApplyNo() {
@@ -115,6 +119,18 @@ public class TeamApplyDO {
 	}
 	public void setUserAge(int userAge) {
 		this.userAge = userAge;
+	}
+	public String getApplyStatus() {
+		return applyStatus;
+	}
+	public void setApplyStatus(String applyStatus) {
+		this.applyStatus = applyStatus;
+	}
+	public String getLeaderId() {
+		return leaderId;
+	}
+	public void setLeaderId(String leaderId) {
+		this.leaderId = leaderId;
 	}
 	
 }

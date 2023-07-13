@@ -88,6 +88,7 @@
 								<div class="subject gender">모집성별</div>
 								<div class="subject status">모집상태</div>
 							</div>
+							<!-- paging 추가하기 -->
 							<c:forEach var="board" items="${teamBoard}">
 							<button type="button" class="detail" onclick="location.href='/teamDetail?teamSeqNo=${board.teamSeqNo}';">
 								<div class="content-wrap">
