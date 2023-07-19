@@ -1,5 +1,6 @@
 package com.teamcommit.kickoff.Service.apply;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -8,6 +9,8 @@ import com.teamcommit.kickoff.Do.HelperApplyDO;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.TeamDO;
+import com.teamcommit.kickoff.Do.TeamInfoDO;
 import com.teamcommit.kickoff.Do.UserDO;
 
 @Mapper
@@ -25,5 +28,11 @@ public interface ApplyMapper {
 	
 	public int countAccept();
 	
-	public List<UserDO> helperApplyUser(int helperSeqno);
+	public ArrayList<UserDO> helperApplyUser(int helperSeqno);
+	
+	public UserDO recruiterUser(String userId);
+	
+	public TeamInfoDO recruiterUserTeam(String userId);
+	
+	public int countHelper(String userId);
 }

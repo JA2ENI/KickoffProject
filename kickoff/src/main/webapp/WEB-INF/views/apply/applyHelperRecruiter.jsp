@@ -28,32 +28,31 @@
 			<div class="myInfo-container">
 				<div class="myInfo-wrap">
 					<div class="uInfo">
-						<div class="userName">안재은</div>
-						<div class="userId">ja2eni</div>
+						<div class="userName">${recruiterUser.userName}</div>
+						<div class="userId">${recruiterUser.userId}</div>
 					</div>
 					<div class="uTeam-container">
 						<div class="uTeam-wrap">
 							<div class="uTitle">TEAM</div>
-							<div class="uContant">우최팀</div>
+							<div class="uContant">${teamInfo.teamName}</div>
 						</div>
 						<div class="uTeam-wrap">
 							<div class="uTitle">TEAM LEVEL</div>
-							<div class="uContant">루키</div>
+							<div class="uContant">${teamInfo.teamLevel}</div>
+						</div>
+						<div class="uTeam-wrap">
+							<div class="uTitle">TEAM RANK</div>
+							<div class="uContant">${teamInfo.teamRank}</div>
 						</div>
 						<div class="uTeam-wrap">
 							<div class="uTitle">POSITION</div>
-							<!-- MIAN/SUB -->
-							<div class="uContant">PIVO/GOLEIRO</div>
+							<!-- MAIN/SUB -->
+							<div class="uContant">${recruiterUser.userMainPosition}/${recruiterUser.userSubPosition}</div>
 						</div>
-						<!-- 매칭 경기 횟수 -->
+						<!-- 모집 진행 중인 용병 -->
 						<div class="uTeam-wrap">
-							<div class="uTitle">GAME</div>
-							<div class="uContant">5</div>
-						</div>
-						<!-- 용병 경기 횟수 -->
-						<div class="uTeam-wrap">
-							<div class="uTitle">HELPER</div>
-							<div class="uContant">0</div>
+							<div class="uTitle">BOARD</div>
+							<div class="uContant">${helperCount}</div>
 						</div>
 					</div>
 				</div>
@@ -83,7 +82,19 @@
 										<div class="numApply">${applyAccept}/${list.helperWant}명</div>
 									</div>
 									<div class="checkbox-wrap">
-										<input type="checkbox" id="drop" class="drop" onclick="drop()" /><label for="drop"></label>
+										<input type="checkbox" id="drop${vs.index}" class="drop" onclick="drop${vs.index}()" /><label for="drop${vs.index}"></label>
+										<script type="text/javascript">
+										function drop${vs.index}() {
+											var drop${vs.index} = document.getElementById('drop${vs.index}');
+											var detail${vs.index} = document.getElementById('detail${vs.index}');
+
+											if (drop${vs.index}.checked == true) {
+												detail${vs.index}.style.display = "block";
+											} else {
+												detail${vs.index}.style.display = "none";
+											}
+										}
+										</script>
 									</div>
 									<div class="three-wrap">
 										<div class="arrow">▶</div>
@@ -94,9 +105,11 @@
 										<div class="three-content">${list.helperPosition}</div>
 									</div>
 								</div>
-									<%-- <c:forEach var = "apply" items = "applyUser">
-									<!-- 신청자 리스트 -->
-									<div id="detail" class="detail">
+
+								<div id="detail${vs.index}" class="detail">
+								
+								<c:forEach var = "apply" items = "${applyUser[vs.index]}">
+								<!-- 신청자 리스트 -->
 									<div id="detail" class="detail-container">
 										<div class="detail-wrap" id="sideon">
 											<div class="detail-content">
@@ -108,9 +121,10 @@
 											</div>
 										</div>
 									</div>
-									</div>
-									</c:forEach> --%>
-
+								</c:forEach>
+								
+								</div>
+									
 								<!-- 수락&거절(side bar) -->
 								<div class="side-container">
 									<div class="side-wrap">
@@ -189,6 +203,6 @@
 <script src="/includes/js/scrollmagic.animation.gsap.min.js"></script>
 <script src="/includes/js/main.js"></script>
 <script src="/apply/js/applyList.js"></script>
-<script src="/apply/js/applyHelper.js"></script>
+<!-- <script src="/apply/js/applyHelper.js"></script> -->
 
 </html>

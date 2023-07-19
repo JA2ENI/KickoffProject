@@ -1,6 +1,7 @@
 /* apply helper */
 
 /* checkbox */
+
 function drop() {
 	var drop = document.getElementById('drop');
 	var detail = document.getElementById('detail');
