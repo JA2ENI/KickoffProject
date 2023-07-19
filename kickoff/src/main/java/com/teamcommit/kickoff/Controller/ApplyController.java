@@ -156,13 +156,13 @@ public class ApplyController {
 		return view;
 	}
 	
-	//팀 모집자 페이지 
-	@RequestMapping(value="/applyTeamRecruiter")
-	public String applyTeamRecruiter(HttpSession session) throws Exception {
-		String view = "/apply/applyTeamRecruiter";
-		
-		return view;
-	}
+//	//팀 모집자 페이지 
+//	@RequestMapping(value="/applyTeamRecruiter")
+//	public String applyTeamRecruiter(HttpSession session) throws Exception {
+//		String view = "/apply/applyTeamRecruiter";
+//		
+//		return view;
+//	}
 	
 	//용병 신청자 페이지 
 	@RequestMapping(value="/applyHelperApplicant")

@@ -143,7 +143,8 @@ p {
 	font-family: 'NanumSquareExtraBold' !important;
 }
 
-.title.board {
+.title.board,
+.title.teamName {
 	width: 100%;
 }
 
@@ -313,7 +314,54 @@ button.detail:focus {
 	border: solid 2px #ffc090;
 	background: #ffc090;
 }	
-	
-.btn-disabled {
-	visibility: hidden;
+
+.btn-box {
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.x-btn {
+    position: absolute;
+    top: 10.4rem;
+    padding: 1px;
+}
+
+.i {
+    color: #9E9E9E;
+    font-size: 20px;
+    font-style: normal;
+    font-family: 'NanumSquareExtraBold' !important;
+    border : 2px solid;
+    border-radius: 4px;
+    padding: 3px 5px;
+}
+
+.i:hover {
+	color: #ffc090;
+}
+
+.btn-box.title:hover {
+	color: #9E9E9E;
+}
+
+a {
+	color: #7d7c7c;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+b {
+	color: #4d4d4d;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 0 7px 2px 7px;
+	margin: 5px;
+	text-decoration:none;
+	background-color: #b1d7b4;
+	border-radius: 2px;
+}
+
+a:hover {
+	color: #ffc090;
 }

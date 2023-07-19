@@ -18,8 +18,23 @@ public class TeamApplyDO {
 	private String userGender;
 	//지원자 휴대전화
 	private String userPhoneNumber;
-	//지원자 포지션
-	private String userPosition;
+	//지원자 메인 포지션
+	private String userMainPosition;
+	//지원자 서브 포지션
+	private String userSubPosition;
+	//모집 게시글 번호
+	private int boardSeqno;
+	//지원자 지역
+	private String userLocal;
+	//지원자 용병 횟수
+	private int userHelperCount;
+	//지원자 나이
+	private int userAge;
+	//지원 상태
+	private String applyStatus;
+	//모집자 아이디
+	private String leaderId;
+	
 	
 	public int getTeamApplyNo() {
 		return teamApplyNo;
@@ -51,7 +66,6 @@ public class TeamApplyDO {
 	public void setTeamYN(String teamYN) {
 		this.teamYN = teamYN;
 	}
-	
 	public String getUserName() {
 		return userName;
 	}
@@ -70,11 +84,53 @@ public class TeamApplyDO {
 	public void setUserPhoneNumber(String userPhoneNumber) {
 		this.userPhoneNumber = userPhoneNumber;
 	}
-	public String getUserPosition() {
-		return userPosition;
+	public String getUserMainPosition() {
+		return userMainPosition;
 	}
-	public void setUserPosition(String userPosition) {
-		this.userPosition = userPosition;
+	public void setUserMainPosition(String userMainPosition) {
+		this.userMainPosition = userMainPosition;
+	}
+	public String getUserSubPosition() {
+		return userSubPosition;
+	}
+	public void setUserSubPosition(String userSubPosition) {
+		this.userSubPosition = userSubPosition;
+	}
+	public int getBoardSeqno() {
+		return boardSeqno;
+	}
+	public void setBoardSeqno(int boardSeqno) {
+		this.boardSeqno = boardSeqno;
+	}
+	public String getUserLocal() {
+		return userLocal;
+	}
+	public void setUserLocal(String userLocal) {
+		this.userLocal = userLocal;
+	}
+	public int getUserHelperCount() {
+		return userHelperCount;
+	}
+	public void setUserHelperCount(int userHelperCount) {
+		this.userHelperCount = userHelperCount;
+	}
+	public int getUserAge() {
+		return userAge;
+	}
+	public void setUserAge(int userAge) {
+		this.userAge = userAge;
+	}
+	public String getApplyStatus() {
+		return applyStatus;
+	}
+	public void setApplyStatus(String applyStatus) {
+		this.applyStatus = applyStatus;
+	}
+	public String getLeaderId() {
+		return leaderId;
+	}
+	public void setLeaderId(String leaderId) {
+		this.leaderId = leaderId;
 	}
 	
 }

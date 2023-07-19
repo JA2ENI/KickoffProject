@@ -60,6 +60,10 @@ public class ReservationDO {
 	
 	private int reservationOriginNo;
 
+	private String dayOfWeek;
+	
+	private String userStatus;
+	
 	public ReservationDO() {
 		
 	}
@@ -293,4 +297,20 @@ public class ReservationDO {
 		this.reservationPlaceAddress = reservationPlaceAddress;
 	}
 
+	public String getDayOfWeek() {
+		return dayOfWeek;
+	}
+
+	public void setDayOfWeek(String dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
+	}
+
+	public String getUserStatus() {
+		return userStatus;
+	}
+
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
+	
 }

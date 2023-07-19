@@ -63,6 +63,7 @@
 				<div class="team-wrap">
 					<div class="team-title">팀 신청</div>
 						<div class="box-wrap">
+						
 							<div class="box-frame">
 								<div class="box-content">
 									<!-- 모집 상태에 따라 -->
@@ -93,36 +94,21 @@
 									</div>
 								</div>
 								<!-- 신청자 리스트 -->
-								<div id="detail" class="detail-container">
-									<div class="detail-wrap" id="sideon">
-										<div class="detail-content">
-											<div class="dContent">ja2eni</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">남성</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">PIVO/GOLEIRO</div>
+								<div id="detail" class="detail">
+								<c:forEach var="list" items="${applyList}">
+									<div id="detail" class="detail-container">
+										<div class="detail-wrap" id="sideon">
+											<div class="detail-content">
+												<div class="dContent"><c:out value="${list.userId}" /></div>
+												<div class="dContent">&#149;</div>
+												<div class="dContent"><c:out value="${list.userGender}" /></div>
+												<div class="dContent">&#149;</div>
+												<div class="dContent"><c:out value="${list.userMainPosition}" /> /
+												<c:out value="${list.userSubPosition != null ? list.userSubPosition : '-'}" /></div>
+											</div>
 										</div>
 									</div>
-									<!-- test (추후 삭제)-->
-									<div class="detail-wrap">
-										<div class="detail-content">
-											<div class="dContent">test2234</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">남성</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">ALA/PIVO</div>
-										</div>
-									</div>
-									<div class="detail-wrap">
-										<div class="detail-content">
-											<div class="dContent">test223458</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">여성</div>
-											<div class="dContent">&#149;</div>
-											<div class="dContent">GOLEIRO/ALA</div>
-										</div>
-									</div>
-									<!-- test END -->
+								</c:forEach>
 								</div>
 								<!-- 수락&거절(side bar) -->
 								<div class="side-container">
@@ -169,6 +155,7 @@
 									</div>
 								</div>
 							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -184,7 +171,7 @@
 	$(function(){
 		/* #sideon + 숫자(반복) */
 		$("#sideon").on("click", function(){
-			$(".side-container").toggleClass("menuon");
+			$(".side-container").addClass("menuon");
 		});
 		
 		$(".btn-side").on("click", function(){

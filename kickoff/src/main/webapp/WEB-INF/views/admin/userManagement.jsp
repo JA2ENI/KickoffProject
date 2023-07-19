@@ -37,9 +37,7 @@
 								<select class="js-select2" name="property">
 									<option selected="selected">모두</option>
 									<option value="">개인 회원</option>
-									<option value="">개인 회원-팀장</option>
 									<option value="">업체 회원</option>
-									<option value="">관리자</option>
 								</select>
 								<div class="dropDownSelect2"></div>
 							</div>
@@ -108,6 +106,7 @@
 													<c:out value="${map.STATUS}" />
 												</span>
 												<button type="button" class="cancel-button" onclick="cancelDisable('${map.ID}')">정지 취소</button>
+												<button type="button" class="emp-button" onclick="cancelDisableEmp('${map.ID}')">정지 취소</button>
 											</td>
 
 										</tr>

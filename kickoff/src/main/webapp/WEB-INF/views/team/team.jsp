@@ -35,14 +35,35 @@
 								<div class="subject team">팀</div>
 								<div class="subject area">지역</div>
 							</div>
-							<c:forEach var="list" items="${teamList}">
-							<button type="button" class="detail" onclick="btnTeam(${list.teamId});">
-								<div class="content-wrap">
-									<div class="content team"><c:out value="${list.teamName}" /></div>
-									<div class="content area"><c:out value="${list.teamLocal}" /></div>
-								</div>
-							</button>
+							<c:forEach var="list" items="${viewAll}" varStatus="num">
+							   <button type="button" class="detail" onclick="btnTeam(${list.teamId}, ${num.index});">
+							       <div class="content-wrap">
+							           <div class="content team"><c:out value="${list.teamName}" /></div>
+							           <div class="content area"><c:out value="${list.teamLocal}" /></div>
+							       </div>
+							   </button>
+							   <input type="hidden" id="teamNum${num.index}" value="${list.teamName}"/>
 							</c:forEach>
+							<!-- paging -->
+							<div style="display: block; margin-top:10px; text-align: center;">		
+								<c:if test="${paging.startPage != 1 }">
+									<a href="/team?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+								</c:if>
+								<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+									<c:choose>
+										<c:when test="${p == paging.nowPage }">
+											<b>${p }</b>
+										</c:when>
+										<c:when test="${p != paging.nowPage }">
+											<a href="/team?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+										</c:when>
+									</c:choose>
+								</c:forEach>
+								<c:if test="${paging.endPage != paging.lastPage}">
+									<a href="/team?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+								</c:if>
+							</div>
+							<!-- paging end -->
 						</div>
 					</div>
 				</article>
@@ -50,7 +71,7 @@
 					<div class="item-wrap">
 						<div class="wrap">
 						<c:choose>
-						    <c:when test="${userId eq teamButton.leaderId}">
+						    <c:when test="${not empty userId and userId eq teamInfo.leaderId}">
 						    	<div class="title board" style="width:80%">TEAM BOARD</div>
 						        <a href="/teamInsert" class="btn-teamInsert">모집 등록</a>
 						    </c:when>
@@ -67,6 +88,7 @@
 								<div class="subject gender">모집성별</div>
 								<div class="subject status">모집상태</div>
 							</div>
+							<!-- paging 추가하기 -->
 							<c:forEach var="board" items="${teamBoard}">
 							<button type="button" class="detail" onclick="location.href='/teamDetail?teamSeqNo=${board.teamSeqNo}';">
 								<div class="content-wrap">
@@ -82,20 +104,25 @@
 					</div>
 				</article>
 				<!-- Team 모집글 -->
-				<article id="boxDetail2" class="article-container two">
-					<div class="item-wrap">
-						<div class="title">TEAM BOARD</div>
-						<div class="content-container">
-							<div class="title-wrap">
-								<div class="subject team2">팀</div>
-								<div class="subject date">모집일자</div>
-								<div class="subject total">모집인원</div>
-								<div class="subject gender">모집성별</div>
-								<div class="subject status">모집상태</div>
-							</div>
-						</div>
-					</div>
-				</article>
+				  <article id="boxDetail2" class="article-container two">
+                    <div class="item-wrap">
+                        <div class="btn-box">
+                            <div class="title teamName"></div>
+                            <div class="x-btn">
+                                <i class="i">X</i>
+                            </div>
+                        </div>
+                        <div class="content-container">
+                            <div class="title-wrap">
+                                <div class="subject team2">팀</div>
+                                <div class="subject date">모집일자</div>
+                                <div class="subject total">모집인원</div>
+                                <div class="subject gender">모집성별</div>
+                                <div class="subject status">모집상태</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
 			</div>
 		</div>
 	</section>

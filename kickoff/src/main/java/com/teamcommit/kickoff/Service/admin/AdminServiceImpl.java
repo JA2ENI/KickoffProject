@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.teamcommit.kickoff.Do.ReportDO;
+
 @Service("AdminService")
 public class AdminServiceImpl implements AdminService {
 
@@ -47,13 +49,28 @@ public class AdminServiceImpl implements AdminService {
     	adminMapper.emp_activate(empId);
     }
     
-//    @Override
-//    public void user_cancel_disable(String userId) throws Exception {
-//    	adminMapper.user_cancel_disable(userId);
-//    }
-//    
-//    @Override
-//    public void emp_cancel_disable(String empId) throws Exception {
-//    	adminMapper.emp_cancel_disable(empId);
-//    }
+    @Override
+    public void user_cancel_disable(String userId) throws Exception {
+    	adminMapper.user_cancel_disable(userId);
+    }
+    
+    @Override
+    public void emp_cancel_disable(String empId) throws Exception {
+    	adminMapper.emp_cancel_disable(empId);
+    }
+    
+    @Override
+    public List<ReportDO> reportBoardList(ReportDO reportDO) throws Exception {
+    	return adminMapper.reportBoardList(reportDO);
+    }
+    
+    @Override
+    public void deleteReport(int boardSeqno) throws Exception {
+    	adminMapper.deleteReport(boardSeqno);
+    }
+    
+    @Override
+    public void deleteBoard(int boardSeqno) throws Exception {
+    	adminMapper.deleteBoard(boardSeqno);
+    }
 }

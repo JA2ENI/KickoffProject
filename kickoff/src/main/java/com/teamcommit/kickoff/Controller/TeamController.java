@@ -1,5 +1,6 @@
 package com.teamcommit.kickoff.Controller;
 
+import com.teamcommit.kickoff.Do.PageDO;
 import com.teamcommit.kickoff.Do.TeamApplyDO;
 import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.TeamInfoDO;
@@ -7,6 +8,7 @@ import com.teamcommit.kickoff.Do.UserDO;
 import com.teamcommit.kickoff.Service.team.TeamService;
 import com.teamcommit.kickoff.Service.login.LoginService;
 
+import org.springframework.asm.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,8 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -36,22 +40,39 @@ public class TeamController {
     // 팀 목록 & 게시글 목록
     @RequestMapping(value = "/team")
     public String team(@ModelAttribute("teamInfoDO") TeamInfoDO teamInfoDO, @ModelAttribute("teamDO") TeamDO teamDO, 
-    					@RequestParam(value = "teamId", required = false) Integer teamId, Model model, HttpSession session) throws Exception {
+    					@RequestParam(value = "teamId", required = false) Integer teamId,
+    					@RequestParam(value="nowPage", required=false)String nowPage,
+    					@RequestParam(value="cntPerPage", required=false)String cntPerPage,
+    					PageDO pageDO, Model model, HttpSession session) throws Exception {
         String view = "/team/team";
         
         String userId = (String)session.getAttribute("userId");
+
+        //teamList Paging
+        int total = teamService.countTeam();
+    	if (nowPage == null && cntPerPage == null) {
+    		nowPage = "1";
+    		cntPerPage = "8";
+    	} else if (nowPage == null) {
+    		nowPage = "1";
+    	} else if (cntPerPage == null) { 
+    		cntPerPage = "8";
+    	}
+    	pageDO = new PageDO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+    	model.addAttribute("paging", pageDO);
+    	model.addAttribute("viewAll", teamService.selectTeamPaging(pageDO));
         
-        List<TeamInfoDO> teamList = teamService.teamInfoList(teamInfoDO);
-        model.addAttribute("teamList", teamList);
-        
+        //teamBoard List
         List<TeamDO> teamBoard = teamService.teamBoardList(teamDO);
         model.addAttribute("teamBoard", teamBoard);
         
+        //teamRecruit List
         List<TeamDO> teamRecruit = teamService.teamRecruitList(teamId);
         model.addAttribute("teamRecruit", teamRecruit);
         
-        TeamInfoDO teamButton = teamService.teamManageButton(userId);
-        model.addAttribute("teamButton", teamButton);
+        //teamButtonManage
+        TeamInfoDO teamInfo = teamService.teamInfo(userId);
+        model.addAttribute("teamInfo", teamInfo);
    
         return view;
     }
@@ -103,10 +124,12 @@ public class TeamController {
         String view = "/team/teamDetail";
         
         String userId = (String)session.getAttribute("userId");
-        model.addAttribute("userId", userId);
 
         TeamDO teamContents = teamService.teamRecruitDetail(teamSeqNo);
         model.addAttribute("teamContents", teamContents);
+        
+        TeamInfoDO teamInfoDO = teamService.teamInfo(userId);
+        model.addAttribute("teamInfoDO", teamInfoDO);
 
         return view;
     }
@@ -124,11 +147,10 @@ public class TeamController {
     
     // 팀 모집글 수정 요청
     @RequestMapping( "/teamUpdateAction")
-    public String teamUpdateAction(@ModelAttribute("teamDO") TeamDO teamDO, Model model) throws Exception {
+    public String teamUpdateAction(@ModelAttribute("teamDO") TeamDO teamDO) throws Exception {
         String view = "redirect:/teamDetail?teamSeqNo=" + teamDO.getTeamSeqNo();
        
         teamService.updateTeam(teamDO);
-
         return view;
     }
     
@@ -215,12 +237,27 @@ public class TeamController {
         return view;
     }
     
+    // 아이디 중복 체크
+    @ResponseBody
+    @RequestMapping(value="/teamNameCheck")
+    public int teamNameCheck(TeamInfoDO teamInfoDO) throws Exception {
+    	int result = teamService.teamNameCheck(teamInfoDO);
+    	
+    	return result;
+    }
+    
     // 팀 생성
     @RequestMapping(value = "/teamCreate")
     public String teamCreate(@ModelAttribute("teamInfoDO") TeamInfoDO teamInfoDO) throws Exception {
         String view = "redirect:/teamManage";
-
-        teamService.teamCreation(teamInfoDO);
+        
+        int result = teamService.teamNameCheck(teamInfoDO);
+        
+        if(result >= 1) {
+			return "team/teamCreate";
+		}else if(result == 0) {
+			teamService.teamCreation(teamInfoDO);
+		}
         
         return view;
     }
@@ -246,6 +283,7 @@ public class TeamController {
 		model.addAttribute("teamDetail", teamDetail);
     	
         TeamInfoDO teamInfoDO = teamService.teamInfo(userId);
+        model.addAttribute("teamInfoDO", teamInfoDO);
         
         if (teamInfoDO == null) {
         	model.addAttribute("teamCreationMessage");
@@ -256,9 +294,7 @@ public class TeamController {
         
     	List<Map<String, Object>> memberList = teamService.teamMemberList(teamId);
         model.addAttribute("memberList", memberList);
-        
-        TeamInfoDO teamButton = teamService.teamManageButton(userId);
-        model.addAttribute("teamButton", teamButton);
+
         
         return view;
     }

@@ -24,7 +24,6 @@
 	</div>
 	<%@include file="/includes/applyNavi.jsp"%>
 	<section>
-		<!-- Session User Info -->
 		<article class="myInfo">
 			<div class="myInfo-container">
 				<div class="myInfo-wrap">
@@ -56,128 +55,129 @@
 		</article>
 		<article class="reservation">
 			<div class="reservation-container">
-				<div class="reservation-wrap">
+				<div id="wrapReload" class="reservation-wrap">
 					<div class="reservation-title">예약 신청</div>
-						<c:choose>
-							<c:when test="${fn:length(reservationList) > 0}">
-								<c:forEach var="row" items="${reservationList}" varStatus="num">
-									<div class="box-wrap">
-										<div class="box-frame">
-											<div class="box-content">
-												<!-- 모집 상태에 따라 -->
-												<div class="status ing">예약 중</div>
-												<!-- <div class="status end">예약 완료</div> -->
-												<!-- <div class="status cancel">예약 취소</div> -->
-												<div class="one-wrap">
-													<%-- <div class="date day">${date.year}년 ${date.month}월 ${date.day}일</div> --%>
-													<div class="date day">${row.rDate}</div>
-													<div class="date">${row.rDayOfWeek}</div>
-													<div class="date">${row.rStartTime}~${row.rEndTime}</div>
-													<!-- <div class="date day">2023년 6월 14일</div>
-													<div class="date">수요일</div>
-													<div class="date">20:00~22:00</div> -->
-												</div>
-												<div class="two-wrap">
-													<!-- 상세보기 -->
-													<a href="javascript:alert('제목 상세보기 test');" class="placeName">${row.rPlaceName}</a>
-													<!-- 신청자 수/모집인원수 -->
-													<div class="numReservation">${row.rCourtName}</div>
-												</div>
-												<div class="checkbox-wrap">
-													<input type="checkbox" id="drop" class="drop" onclick="drop()" /><label for="drop"></label>
-												</div>
-												<div class="three-wrap">
-													<div class="arrow">▶</div>
-													<div class="three-content">${row.rPlaceGround}</div>
-													<div>&sdot;</div>
-													<div class="three-content">${row.rHeadcount}</div>
-													<div>&sdot;</div>
-													<div class="three-content">${row.rPlaceSize}</div>
-												</div>
+					<c:choose>
+						<c:when test="${fn:length(empRList) > 0}">
+							<c:forEach var="emp" items="${empRList}" varStatus="num">
+								<div class="box-wrap">
+									<div class="box-frame">
+										<div class="box-content">
+											<div class="status statusAjax${num.index}"></div>
+											<div class="one-wrap">
+												<div class="date day">${emp.RESERVATION_DATE}</div>
+												<div class="date">${emp.DAY_OF_WEEK}</div>
+												<div class="date">${emp.RESERVATION_START_TIME}~${emp.RESERVATION_END_TIME}</div>
 											</div>
-											<!-- 신청자 리스트 -->
-											<div id="detail" class="detail-container">
-												<div class="detail-wrap" id="sideon">
-													<div class="detail-content">
-														<div class="dContent">ja2eni</div>
-														<div class="dContent">&#149;</div>
-														<div class="dContent">남성</div>
-														<div class="dContent">&#149;</div>
-														<div class="dContent">안재FC</div>
-													</div>
-												</div>
+											<div class="two-wrap">
+												<a href="/reservationDetail?reservationNo=${emp.RESERVATION_NO}" class="placeName">${emp.RESERVATION_PLACE_NAME}</a>
+												<div class="numReservation">${emp.RESERVATION_COURT_NAME}</div>
 											</div>
-											<!-- 수락&거절(side bar) -->
-											<div class="side-container">
-												<div class="side-wrap">
-													<div class="side-head">
-														<div class="side-title">신청자</div>
-														<div class="btn-side">
-															<i class="i">X</i>
-														</div>
-													</div>
-													<div class="side-body">
-														<div class="content one">
-															<div class="sTitle">ID</div>
-															<div class="sContent">ja2eni</div>
-														</div>
-														<div class="content">
-															<div class="sTitle">GENDER</div>
-															<div class="sContent">남성</div>
-														</div>
-														<div class="content">
-															<div class="sTitle">POSITION</div>
-															<div class="uContant">PIVO/GOLEIRO</div>
-														</div>
-														<div class="content">
-															<div class="sTitle">TEAM</div>
-															<div class="sContent">우최팀</div>
-														</div>
-														<!-- 매칭 경기 횟수 -->									
-														<div class="content">
-															<div class="sTitle">GAME</div>
-															<div class="sContent">7</div>
-														</div>
-														<!-- 용병 경기 횟수 -->
-														<div class="content seven">
-															<div class="sTitle">HELPER</div>
-															<div class="sContent">10</div>
-														</div>
-														<!-- alert 띄우기(?) -->
-														<div class="content btn-side-wrap">
-															<button type="button" id="accept" class="sBtn accept">수락</button>
-															<button type="button" id="accept" class="sBtn refusal">거절</button>
-														</div>
-													</div>
-												</div>
+											<div id="checkbox${num.index}" class="checkbox-wrap">
+												<input type="checkbox" id="drop${num.index}" class="drop" onclick="drop(${num.index})"/><label for="drop${num.index}" ></label>
+											</div>
+											<div class="three-wrap">
+												<div class="arrow">▶</div>
+												<div class="three-content">${emp.RESERVATION_PLACE_GROUND}</div>
+												<div>&sdot;</div>
+												<div class="three-content">${emp.RESERVATION_HEADCOUNT}</div>
+												<div>&sdot;</div>
+												<div class="three-content">${emp.RESERVATION_PLACE_SIZE}</div>
 											</div>
 										</div>
+										<div id="detail${num.index}" class="detail">
+											<c:choose>
+												<c:when test="${fn:length(userRList) > 0}">
+													<c:forEach var="apply" items="${userRList}" varStatus="num2">
+														<c:if test="${emp.RESERVATION_NO == apply.RESERVATION_ORIGIN_NO}">
+															<div class="detail-container" onclick="ajaxSidebar(${num2.index})">
+																<div class="apply-wrap acceptMark${num2.index}">
+																	<img id="imgAccept" class="applyStatus" src="/apply/images/accept.png" />
+																</div>
+																<div class="apply-wrap refuseMark${num2.index}">
+																	<img id="imgRefuse"class="applyStatus" src="/apply/images/refuse.png" />
+																</div>
+																<div class="detail-wrap" id="sideon" onclick="sideon()">
+																	<div class="detail-content">
+																		<div class="dContent">${apply.USER_ID}</div>
+																		<div class="dContent">&#149;</div>
+																		<div class="dContent">${apply.RESERVATION_USER_NAME}</div>
+																		<div class="dContent">&#149;</div>
+																		<div class="dContent">${apply.RESERVATION_USER_PHONE}</div>
+																		<input type="hidden" id="empId" value="${emp.EMP_ID}"/>
+																		<input type="hidden" id="aUserId${num2.index}" class="aUserId${num2.index}" value="${apply.USER_ID}"/>
+																		<input type="hidden" id="rNum${num2.index}" value="${emp.RESERVATION_NO}"/>
+																		<input type="hidden" id="dropCheck${num.index}" value="${emp.RESERVATION_NO == apply.RESERVATION_ORIGIN_NO}"/>
+																	</div>
+																</div>
+															</div>
+														</c:if>
+													</c:forEach>
+												</c:when>
+											</c:choose>
+										</div>
 									</div>
-								</c:forEach>
-							</c:when>
-						</c:choose>
+								</div>	
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<div id="nonList">등록된 풋살장 예약이 없습니다.</div>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+			<!-- 수락&거절(side bar) -->
+			<div id="sideBar" class="side-container">
+				<div class="side-wrap">
+					<div class="side-head">
+						<div class="side-title">신청자</div>
+						<div class="btn-side bSide" onclick="btnSide()">
+							<i class="i">X</i>
+						</div>
+					</div>
+					<div class="side-body">
+						<div class="content one">
+							<div class="sTitle">ID</div>
+							<div id="userId" class="sContent"></div>
+						</div>
+						<div class="content">
+							<div class="sTitle">GENDER</div>
+							<div id="gender" class="sContent"></div>
+						</div>
+						<div class="content">
+							<div class="sTitle">POSITION</div>
+							<div id="position" class="sContent"></div>
+						</div>
+						<div class="content">
+							<div class="sTitle">TEAM</div>
+							<div id="teamName" class="sContent"></div>
+						</div>
+						<div class="content">
+							<div class="sTitle">TEAM AREA</div>
+							<div id="teamLocal" class="sContent"></div>
+						</div>
+						<div class="content seven">
+							<!-- 로그인한 EMP유저 풋살장에 해당 USER가 예약완료한 총 건수 -->
+							<div class="sTitle">RESERVATION</div>
+							<div id="rCount" class="sContent"></div>
+						</div>
+						<div id="sStatus" class="sStatus accept1"></div>
+						<div id="sStatus" class="sStatus refuse1"></div>
+						<div class="content btn-side-wrap">
+							<button type="button" id="accept" class="sBtn accept" onclick="select('accept')">수락</button>
+							<button type="button" id="refuse" class="sBtn refuse" onclick="select('refuse')">거절</button>
+							<input type="hidden" id="sUserId" name="sUserId" value="" />
+							<input type="hidden" id="sNum" name="sNum" value=""/>
+						</div>
 					</div>
 				</div>
+			</div>
 		</article>
 	</section>
 </body>
 
 <!-- footer -->
 <%@include file="/includes/footer.jsp"%>
-
-<script>
-	/* side-bar */
-	$(function(){
-		/* #sideon + 숫자(반복) */
-		$("#sideon").on("click", function(){
-			$(".side-container").toggleClass("menuon");
-		});
-		
-		$(".btn-side").on("click", function(){
-			$(".side-container").toggleClass("menuon");
-		});
-	});
-</script>
 
 <!-- script -->
 <script src="/includes/js/jquery-3.3.1.min.js"></script>
