@@ -122,16 +122,6 @@ a {
 	font-family: 'Russo One', sans-serif !important;
 }
 
-.status.ing {
- 	border-color: #1970FF;
-	background-color: #1970FF;
-}
-
-.status.end {
- 	border-color: #00A168;
-	background-color: #00A168;
-}
-
 .status.cancel {
  	border-color: #FF4D37;
 	background-color: #FF4D37; 
@@ -238,14 +228,12 @@ a {
 }
 
 .detail-container {
-	margin: 13px;
-    padding: 13px;
+    padding: 11px;
 	border-radius: 10px;
 	background: #fff;
 }
 
 .detail-wrap {
-    margin: 10px;
 	padding: 10px 0px;
 	border-radius: 10px;
 	background: #DBDDDE;
@@ -258,7 +246,7 @@ a {
 
 .detail-content {
 	display: flex;
-    padding: 0px 40px;
+    padding: 0px 20px;
 	background: #fff;
 }
 
@@ -269,6 +257,17 @@ a {
 	text-align: center;
 	font-size: 15px;
 	background: #fff;
+	width: 100%;
+}
+
+.dContent2 {
+	flex: 1;
+	padding: 10px 0px;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 15px;
+	background: #fff;
+	width: 10%;
 }
 
 /* checkbox */
