@@ -3,16 +3,71 @@
 
 <mapper namespace="com.teamcommit.kickoff.yeonu.TeamRecruiterMapper">
 
-	<!-- Member List -->
-    <select id="teamApplyList" parameterType="String" resultType="com.teamcommit.kickoff.Do.TeamApplyDO">
+	<!-- Team Info -->
+	<select id="teamInfo" parameterType="String" resultType="com.teamcommit.kickoff.Do.TeamInfoDO">
+        <![CDATA[
+            SELECT *
+            FROM
+                TEAM_INFO
+            WHERE
+            	LEADER_ID = #{userId}
+        ]]>
+    </select>
+    
+    <!-- Recruit Team Info -->
+	<select id="recruitInfoList" parameterType="String" resultType="map">
+        <![CDATA[
+            SELECT
+            	TO_CHAR(TO_DATE(TEAM_START_DATE), 'mm"월" dd"일"') AS TEAM_START_DATE,
+		    	TO_CHAR(TO_DATE(TEAM_END_DATE), 'mm"월" dd"일"') AS TEAM_END_DATE,
+		    	TEAM_NAME,
+		    	TEAM_NUMBER,
+		    	TEAM_LOCAL,
+		    	TEAM_GENDER,
+		    	TEAM_AGE,
+		    	TEAM_STATUS,
+		    	TEAM_SEQNO
+            FROM
+                TEAM
+            WHERE
+            	LEADER_ID = #{userId}
+        ]]>
+    </select>
+
+	<!-- Apply List -->
+    <select id="teamApplyList" parameterType="String" resultType="map">
         <![CDATA[
         SELECT
 	        *
 	    FROM
 	    	TEAM_APPLY
 	    WHERE
-	    	LEADER_ID = #{userId}
+	    	TEAM_SEQNO = #{rNum}
        ]]>
+    </select>
+    
+    <!-- Apply List 
+    <select id="applyCount" parameterType="Integer" resultType="com.teamcommit.kickoff.Do.TeamApplyDO">
+        <![CDATA[
+        SELECT
+	        COUNT(TEAM_SEQNO) AS APPLY_COUNT
+	    FROM
+	    	TEAM_APPLY
+	    WHERE
+	    	TEAM_SEQNO = #{teamSeqNo}
+       ]]>
+    </select>-->
+    
+    <!-- Apply Info -->
+    <select id="applyInfo" parameterType="String" resultType="com.teamcommit.kickoff.Do.UserDO">
+        <![CDATA[
+        SELECT
+            *
+        FROM
+            USERS
+        WHERE
+        	USER_ID = #{userId}
+        ]]>
     </select>
 	
 </mapper>

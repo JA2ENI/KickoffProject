@@ -23,17 +23,15 @@ public class TeamApplyDO {
 	//지원자 서브 포지션
 	private String userSubPosition;
 	//모집 게시글 번호
-	private int boardSeqno;
+	private int teamSeqNo;
 	//지원자 지역
 	private String userLocal;
-	//지원자 용병 횟수
-	private int userHelperCount;
-	//지원자 나이
-	private int userAge;
 	//지원 상태
 	private String applyStatus;
 	//모집자 아이디
 	private String leaderId;
+	//지원자 수
+	private int applyCount;
 	
 	
 	public int getTeamApplyNo() {
@@ -96,29 +94,17 @@ public class TeamApplyDO {
 	public void setUserSubPosition(String userSubPosition) {
 		this.userSubPosition = userSubPosition;
 	}
-	public int getBoardSeqno() {
-		return boardSeqno;
+	public int getTeamSeqNo() {
+		return teamSeqNo;
 	}
-	public void setBoardSeqno(int boardSeqno) {
-		this.boardSeqno = boardSeqno;
+	public void setTeamSeqNo(int teamSeqNo) {
+		this.teamSeqNo = teamSeqNo;
 	}
 	public String getUserLocal() {
 		return userLocal;
 	}
 	public void setUserLocal(String userLocal) {
 		this.userLocal = userLocal;
-	}
-	public int getUserHelperCount() {
-		return userHelperCount;
-	}
-	public void setUserHelperCount(int userHelperCount) {
-		this.userHelperCount = userHelperCount;
-	}
-	public int getUserAge() {
-		return userAge;
-	}
-	public void setUserAge(int userAge) {
-		this.userAge = userAge;
 	}
 	public String getApplyStatus() {
 		return applyStatus;
@@ -131,6 +117,12 @@ public class TeamApplyDO {
 	}
 	public void setLeaderId(String leaderId) {
 		this.leaderId = leaderId;
+	}
+	public int getApplyCount() {
+		return applyCount;
+	}
+	public void setApplyCount(int applyCount) {
+		this.applyCount = applyCount;
 	}
 	
 }
