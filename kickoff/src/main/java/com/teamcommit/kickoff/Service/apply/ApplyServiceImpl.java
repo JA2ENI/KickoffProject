@@ -1,6 +1,8 @@
 package com.teamcommit.kickoff.Service.apply;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,8 @@ import com.teamcommit.kickoff.Do.HelperApplyDO;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.TeamDO;
+import com.teamcommit.kickoff.Do.TeamInfoDO;
 import com.teamcommit.kickoff.Do.UserDO;
 
 @Service("applyService")
@@ -48,7 +52,25 @@ public class ApplyServiceImpl implements ApplyService {
 	}
 	
 	@Override
-	public List<UserDO> helperApplyUser(int helperSeqno) throws Exception {
+	public ArrayList<UserDO> helperApplyUser(int helperSeqno) throws Exception {
 		return applyMapper.helperApplyUser(helperSeqno);
 	}
+	
+	@Override
+	public Map<String, String> recruiterMap(String userId) throws Exception {
+		Map<String, String> userInfo = applyMapper.recruiterUser(userId);
+		userInfo.put("helperInfo", applyMapper.countHelper(userId));
+		return userInfo;
+	}
+	
+	/*
+	 * @Override public UserDO recruiterUser(String userId) throws Exception {
+	 * return applyMapper.recruiterUser(userId); }
+	 * 
+	 * @Override public TeamInfoDO recruiterUserTeam(String userId) throws Exception
+	 * { return applyMapper.recruiterUserTeam(userId); }
+	 * 
+	 * @Override public int countHelper(String userId) throws Exception { return
+	 * applyMapper.countHelper(userId); }
+	 */
 }

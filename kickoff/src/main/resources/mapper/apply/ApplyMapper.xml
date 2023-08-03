@@ -53,7 +53,7 @@
     
     <select id = "helperUserSelect" parameterType = "String" resultType = "com.teamcommit.kickoff.Do.HelperDO">
     	<![CDATA[
-    		SELECT HELPER_STATUS, HELPER_PLACE_NAME, HELPER_GENDER, HELPER_MATCH, HELPER_POSITION, TO_CHAR(TO_DATE(HELPER_TIME),  'YYYY"년 "MM"월 "DD"일 "DAY" "HH:MM') AS HELPER_TIME 
+    		SELECT HELPER_SEQNO, HELPER_WANT, HELPER_STATUS, HELPER_PLACE_NAME, HELPER_GENDER, HELPER_MATCH, HELPER_POSITION, TO_CHAR(TO_DATE(HELPER_TIME),  'YYYY"년 "MM"월 "DD"일 "DAY" "HH:MM') AS HELPER_TIME 
 			FROM HELPER
 			WHERE HELPER_USER_ID in (SELECT HELPER_USER_ID
 									FROM HELPER_APPLY
@@ -80,6 +80,20 @@
     	]]>
     </select>
     	
+    <select id = "recruiterUser" parameterType = "String" resultType = "HashMap">
+    	<![CDATA[
+    		SELECT u.USER_NAME, u.USER_ID, u.USER_MAIN_POSITION, NVL(u.USER_SUB_POSITION, '-') as USER_SUB_POSITION, t.TEAM_NAME, NVL(t.TEAM_LEVEL, '-') as TEAM_LEVEL, NVL(TO_CHAR(t.TEAM_RANK), 'UNRANK') as TEAM_RANK
+    		FROM USERS u JOIN TEAM_INFO t
+    					ON u.USER_ID = t.LEADER_ID OR u.USER_ID = t.MEMBER_ID
+    		WHERE u.USER_ID = #{userId}
+    	]]>
+    </select>
     
-    
+    <select id = "countHelper" parameterType = "String" resultType = "String">
+    	<![CDATA[
+    		SELECT COUNT(HELPER_STATUS)
+    		FROM HELPER
+    		WHERE HELPER_USER_ID = #{userId} AND HELPER_STATUS = '모집 중'
+    	]]>
+    </select>
 </mapper>

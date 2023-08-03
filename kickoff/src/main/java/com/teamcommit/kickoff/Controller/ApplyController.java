@@ -3,6 +3,7 @@ package com.teamcommit.kickoff.Controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
+import com.teamcommit.kickoff.Do.TeamInfoDO;
 import com.teamcommit.kickoff.Do.UserDO;
 import com.teamcommit.kickoff.Service.apply.ApplyService;
 import org.json.*;
@@ -177,21 +179,22 @@ public class ApplyController {
 		String view = "/apply/applyHelperRecruiter";
 		
 		try {
-			List<HelperDO> applySelect = applyService.helperUserSelect((String)session.getAttribute("userId"));
-			int accept = applyService.countAccept();
+			List<HelperDO> applySelect = applyService.helperUserSelect((String)session.getAttribute("userId")); // 모집 목록
+			int accept = applyService.countAccept(); // 수락 인원 체크
+			Map<String, String> recruiter = applyService.recruiterMap((String)session.getAttribute("userId"));
+			List<ArrayList<UserDO>> userSelect = new ArrayList<ArrayList<UserDO>>();
 			for(int i = 0; i < applySelect.size(); i++) {
 				HelperDO helper = applySelect.get(i);
-				List<UserDO> userSelect = applyService.helperApplyUser(helper.getHelperSeqno());
-				model.addAttribute("applyUser" + i, userSelect);
-				System.out.println(model.getAttribute("applyUser" + i));
+				userSelect.add(i, applyService.helperApplyUser(helper.getHelperSeqno())); // 신청자 목록
 			}
 			model.addAttribute("helperSelect", applySelect);
 			model.addAttribute("applyAccept", accept);
+			model.addAttribute("applyUser", userSelect);
+			model.addAttribute("recruiterUser", recruiter);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return view;
 	}
 	
