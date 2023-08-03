@@ -80,23 +80,16 @@
     	]]>
     </select>
     	
-    <select id = "recruiterUser" parameterType = "String" resultType = "com.teamcommit.kickoff.Do.UserDO">
+    <select id = "recruiterUser" parameterType = "String" resultType = "HashMap">
     	<![CDATA[
-    		SELECT USER_NAME, USER_ID, USER_MAIN_POSITION, NVL(USER_SUB_POSITION, '-') as USER_SUB_POSITION
-    		FROM USERS
-    		WHERE USER_ID = #{userId}
+    		SELECT u.USER_NAME, u.USER_ID, u.USER_MAIN_POSITION, NVL(u.USER_SUB_POSITION, '-') as USER_SUB_POSITION, t.TEAM_NAME, NVL(t.TEAM_LEVEL, '-') as TEAM_LEVEL, NVL(TO_CHAR(t.TEAM_RANK), 'UNRANK') as TEAM_RANK
+    		FROM USERS u JOIN TEAM_INFO t
+    					ON u.USER_ID = t.LEADER_ID OR u.USER_ID = t.MEMBER_ID
+    		WHERE u.USER_ID = #{userId}
     	]]>
     </select>
     
-    <select id = "recruiterUserTeam" parameterType = "String" resultType = "com.teamcommit.kickoff.Do.TeamInfoDO">
-    	<![CDATA[
-    		SELECT TEAM_NAME, NVL(TEAM_LEVEL, '-') as TEAM_LEVEL, NVL(TEAM_RANK, '-') as TEAM_RANK
-    		FROM TEAM_INFO
-    		WHERE LEADER_ID = #{userId} OR MEMBER_ID = #{userId}
-    	]]>
-    </select>
-    
-    <select id = "countHelper" parameterType = "String" resultType = "Integer">
+    <select id = "countHelper" parameterType = "String" resultType = "String">
     	<![CDATA[
     		SELECT COUNT(HELPER_STATUS)
     		FROM HELPER

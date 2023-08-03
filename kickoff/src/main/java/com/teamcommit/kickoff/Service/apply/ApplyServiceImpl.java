@@ -2,6 +2,7 @@ package com.teamcommit.kickoff.Service.apply;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,17 +57,20 @@ public class ApplyServiceImpl implements ApplyService {
 	}
 	
 	@Override
-	public UserDO recruiterUser(String userId) throws Exception {
-		return applyMapper.recruiterUser(userId);
+	public Map<String, String> recruiterMap(String userId) throws Exception {
+		Map<String, String> userInfo = applyMapper.recruiterUser(userId);
+		userInfo.put("helperInfo", applyMapper.countHelper(userId));
+		return userInfo;
 	}
 	
-	@Override
-	public TeamInfoDO recruiterUserTeam(String userId) throws Exception {
-		return applyMapper.recruiterUserTeam(userId);
-	}
-	
-	@Override
-	public int countHelper(String userId) throws Exception {
-		return applyMapper.countHelper(userId);
-	}
+	/*
+	 * @Override public UserDO recruiterUser(String userId) throws Exception {
+	 * return applyMapper.recruiterUser(userId); }
+	 * 
+	 * @Override public TeamInfoDO recruiterUserTeam(String userId) throws Exception
+	 * { return applyMapper.recruiterUserTeam(userId); }
+	 * 
+	 * @Override public int countHelper(String userId) throws Exception { return
+	 * applyMapper.countHelper(userId); }
+	 */
 }

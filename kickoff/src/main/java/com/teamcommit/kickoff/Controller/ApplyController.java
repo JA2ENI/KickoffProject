@@ -3,6 +3,7 @@ package com.teamcommit.kickoff.Controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -180,21 +181,16 @@ public class ApplyController {
 		try {
 			List<HelperDO> applySelect = applyService.helperUserSelect((String)session.getAttribute("userId")); // 모집 목록
 			int accept = applyService.countAccept(); // 수락 인원 체크
-			UserDO recruiter = applyService.recruiterUser((String)session.getAttribute("userId"));
-			TeamInfoDO recruiterTeam = applyService.recruiterUserTeam((String)session.getAttribute("userId"));
-			int recruiterHelper = applyService.countHelper((String)session.getAttribute("userId"));
+			Map<String, String> recruiter = applyService.recruiterMap((String)session.getAttribute("userId"));
 			List<ArrayList<UserDO>> userSelect = new ArrayList<ArrayList<UserDO>>();
 			for(int i = 0; i < applySelect.size(); i++) {
 				HelperDO helper = applySelect.get(i);
 				userSelect.add(i, applyService.helperApplyUser(helper.getHelperSeqno())); // 신청자 목록
-				
 			}
-			model.addAttribute("teamInfo", recruiterTeam);
 			model.addAttribute("helperSelect", applySelect);
 			model.addAttribute("applyAccept", accept);
 			model.addAttribute("applyUser", userSelect);
 			model.addAttribute("recruiterUser", recruiter);
-			model.addAttribute("helperCount", recruiterHelper);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

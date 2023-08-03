@@ -28,31 +28,31 @@
 			<div class="myInfo-container">
 				<div class="myInfo-wrap">
 					<div class="uInfo">
-						<div class="userName">${recruiterUser.userName}</div>
-						<div class="userId">${recruiterUser.userId}</div>
+						<div class="userName">${recruiterUser.USER_NAME}</div>
+						<div class="userId">${recruiterUser.USER_ID}</div>
 					</div>
 					<div class="uTeam-container">
 						<div class="uTeam-wrap">
 							<div class="uTitle">TEAM</div>
-							<div class="uContant">${teamInfo.teamName}</div>
+							<div class="uContant">${recruiterUser.TEAM_NAME}</div>
 						</div>
 						<div class="uTeam-wrap">
 							<div class="uTitle">TEAM LEVEL</div>
-							<div class="uContant">${teamInfo.teamLevel}</div>
+							<div class="uContant">${recruiterUser.TEAM_LEVEL}</div>
 						</div>
 						<div class="uTeam-wrap">
 							<div class="uTitle">TEAM RANK</div>
-							<div class="uContant">${teamInfo.teamRank}</div>
+							<div class="uContant">${recruiterUser.TEAM_RANK}</div>
 						</div>
 						<div class="uTeam-wrap">
 							<div class="uTitle">POSITION</div>
 							<!-- MAIN/SUB -->
-							<div class="uContant">${recruiterUser.userMainPosition}/${recruiterUser.userSubPosition}</div>
+							<div class="uContant">${recruiterUser.USER_MAIN_POSITION}/${recruiterUser.USER_SUB_POSITION}</div>
 						</div>
 						<!-- 모집 진행 중인 용병 -->
 						<div class="uTeam-wrap">
 							<div class="uTitle">BOARD</div>
-							<div class="uContant">${helperCount}</div>
+							<div class="uContant">${recruiterUser.helperInfo}</div>
 						</div>
 					</div>
 				</div>
@@ -111,7 +111,7 @@
 								<c:forEach var = "apply" items = "${applyUser[vs.index]}">
 								<!-- 신청자 리스트 -->
 									<div id="detail" class="detail-container">
-										<div class="detail-wrap" id="sideon">
+										<div class="detail-wrap" id="sideon" onclick = "sideon()">
 											<div class="detail-content">
 												<div class="dContent">${apply.userId}</div>
 												<div class="dContent">&#149;</div>
@@ -130,7 +130,7 @@
 									<div class="side-wrap">
 										<div class="side-head">
 											<div class="side-title">신청자</div>
-											<div class="btn-side">
+											<div class="btn-side" onclick = "btnside()">
 												<i class="i">X</i>
 											</div>
 										</div>
@@ -183,16 +183,14 @@
 
 <script>
 	/* side-bar */
-	$(function(){
-		/* #sideon + 숫자(반복) */
-		$("#sideon").on("click", function(){
-			$(".side-container").toggleClass("menuon");
-		});
-		
-		$(".btn-side").on("click", function(){
-			$(".side-container").toggleClass("menuon");
-		});
-	});
+	function sideon() {
+		$(".side-container").addClass("menuon");
+	}
+	
+	function btnside() {
+		$(".side-container").toggleClass("menuon");
+	}
+	
 </script>
 
 <!-- script -->
