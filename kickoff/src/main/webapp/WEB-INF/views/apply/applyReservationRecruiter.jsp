@@ -83,6 +83,7 @@
 												<div class="three-content">${emp.RESERVATION_HEADCOUNT}</div>
 												<div>&sdot;</div>
 												<div class="three-content">${emp.RESERVATION_PLACE_SIZE}</div>
+												<input type="hidden" id="rStatus${emp.RESERVATION_NO}" name="rStatus${emp.RESERVATION_NO}" value="${emp.RESERVATION_STATUS}"/>
 											</div>
 										</div>
 										<div id="detail${num.index}" class="detail">
@@ -166,14 +167,39 @@
 						<div class="content btn-side-wrap">
 							<button type="button" id="accept" class="sBtn accept" onclick="select('accept')">수락</button>
 							<button type="button" id="refuse" class="sBtn refuse" onclick="select('refuse')">거절</button>
-							<input type="hidden" id="sUserId" name="sUserId" value="" />
 							<input type="hidden" id="sNum" name="sNum" value=""/>
+							<input type="hidden" id="sUserId" name="sUserId" value="" />
+							<input type="hidden" id="empStatus" name="empStatus" value="" />
 						</div>
 					</div>
 				</div>
 			</div>
 		</article>
+		<!-- Paging -->
+		<div class="paging-wrap container">
+			<div class="paging-container">
+				<c:if test="${pagination.curPage ne 1}">
+		    		<a href="/applyReservationRecruiter?curPage=${pagination.prevPage}" class="pageText">&lt;Prev</a>
+		    	</c:if> 
+				<c:forEach var="pageNum" begin="${pagination.startPage}" end="${pagination.endPage}">
+		        	<c:choose>
+		           		<c:when test="${pageNum eq pagination.curPage}">
+		               		<a href="/applyReservationRecruiter?curPage=${pageNum}" class="pageText">${pageNum}</a> 
+		           		</c:when>
+		           		<c:otherwise>
+		               		<a href="/applyReservationRecruiter?curPage=${pageNum}" class="pageText">${pageNum}</a> 
+		           		</c:otherwise>
+		   			</c:choose>
+		   		</c:forEach>
+		   		<c:if test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
+		   			<a href="/applyReservationRecruiter?curPage=${pagination.nextPage}" class="pageText">Next&gt;</a>
+		   		</c:if> 
+		   		<input type="hidden" id="curPage" value="${pagination.curPage}"/>
+		   	</div>
+		</div>
+		<!-- Paging END -->
 	</section>
+	<input type="hidden" id="msg" name="msg" value="${msg}"/>
 </body>
 
 <!-- footer -->

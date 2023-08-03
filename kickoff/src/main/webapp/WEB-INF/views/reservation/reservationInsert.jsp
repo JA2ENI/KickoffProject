@@ -180,9 +180,10 @@
                                 <input type="hidden" name="placeId" value="${placeInfo.placeId}" />
                                 <input type="hidden" name="reservationPlaceSize" value="${placeInfo.placeSize}" />
                                 <input type="hidden" name="reservationPlaceGround" value="${placeInfo.placeGround}" />
+                                <input type="hidden" name="reservationPlaceLight" value="${placeInfo.placeLight}" />
                                 <input type="hidden" name="reservationPlaceParking" value="${placeInfo.placeParking}" />
 
-								<input type="button" id="insert" class="site-btn-insert" onclick="validCheck()" value="등록"/>
+								<input type="button" id="insert" class="site-btn-insert" onclick="insertCheck()" value="등록"/>
                                 <a href="/reservation" id="cancle" class="site-btn-cancle">취소</a>
 							</div>
 						</div>

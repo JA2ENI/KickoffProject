@@ -10,16 +10,44 @@ import com.teamcommit.kickoff.Do.HelperApplyDO;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
-import com.teamcommit.kickoff.Do.TeamDO;
-import com.teamcommit.kickoff.Do.TeamInfoDO;
 import com.teamcommit.kickoff.Do.UserDO;
 
 @Mapper
 public interface ApplyMapper {
+	
+public Map<String, String> selectUserInfo(String userId);
+	
+	/* 예약 신청자&모집자 페이지 : 안재은 */
+	public String rCompleteCountAll(String userId);
+	
+	public String gCompleteCountAll(String userId);
+	
+	public List<ReservationDO> myApplyList(ReservationDO rDO);
+	
+	public int myApplyListCount(String userId);
 
 	public PlaceDO placeInfo(String empId);
 	
-	public List<ReservationDO> reservationList(String empId);
+	public List<Map<String, String>> empReservationList(ReservationDO rDO); 
+
+	public int empReservationListCount(String empId);
+	
+	public List<Map<String, String>> userReservationList(String rNum); 
+	
+	public Map<String, String> userInfo(Map<String, String> map);
+	
+	public String rCompleteCount(Map<String, String> map);
+	
+	public void updateAccept(Map<String, String> map);
+	
+	public void updateRefuse(Map<String, String> map);
+
+	public void updateEmpStatus(String rNum);
+	
+	public List<Map<String, Object>> empStatusList(Map<String, String> map);
+	
+	public List<Map<String, Object>> userStatusList(String rNum); 
+	/* 예약 신청자&모집자 페이지 END */
 	
 	public void helperApplyInsert(HelperApplyDO helperApplyDO);
 	

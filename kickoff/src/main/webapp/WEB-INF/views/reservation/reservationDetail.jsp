@@ -1,19 +1,18 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Kick off: 풋살장 예약 상세</title>
-	
-    <!-- Google Font -->
     <link href="https://fonts.google.com/noto/specimen/Noto+Sans+KR?subset=korean&noto.script=Kore" rel="stylesheet">
-    
     <link rel = "stylesheet" href = "/main/css/vendor/icomoon/style.css">
     <link href="/includes/css/style.css" rel="stylesheet" >
     <link href="/reservation/css/detail.css" rel="stylesheet" >
+    
+	<title>Kick off: 풋살장 예약 상세</title>
 </head>
 
 <body>
@@ -23,7 +22,6 @@
 			<div class="header-container">
 				<%@include file="/includes/header.jsp"%>
 			</div>
-			<!-- title -->
 			<div class="title-container">
 				<div class="title-box px-lg-5">
 					<div class="text-center">
@@ -33,23 +31,21 @@
 				</div>
 			</div>
 			<form role="form" id="frm" name="frm" method="post">
-				<!-- 풋살장 이미지 -->
 				<div class="root-container">
 					<div class="picture">
-						<img class="mainImage" src="${reservationDetail.imgPath}${reservationDetail.imgName}">
+						<img class="mainImage" src="${rDetail.IMG_PATH}${rDetail.IMG_NAME}">
 					</div>
 				</div>
-				<!-- reservation container -->
 				<div class="container reservation-container">
 					<div class="container p-0 px-md-3">
 						<div class="ground-title-content">
 							<div class="address-wrap">
-								<h3 class="placeName">${reservationDetail.reservationPlaceName}</h3>
-								<p class="address">${reservationDetail.reservationPlaceAddress}</p>
+								<h3 class="placeName">${rDetail.RESERVATION_PLACE_NAME}</h3>
+								<p class="address">${rDetail.RESERVATION_PLACE_ADDRESS}</p>
 							</div>
 							<div class="time-price-wrap">
-								<p>${reservationDetail.reservationDate} ${reservationDetail.reservationStartTime}:00~${reservationDetail.reservationEndTime}:00</p>
-								<h3 class="price">대관비 ${reservationDetail.reservationPrice}원</h3>
+								<p>${rDetail.RESERVATION_DATE} ${rDetail.RESERVATION_START_TIME}~${rDetail.RESERVATION_END_TIME}</p>
+								<h3 class="price">대관비 <fmt:formatNumber value="${rDetail.RESERVATION_PRICE}" pattern="#,###,###"/>원</h3>
 							</div>
 						</div>
 					</div>
@@ -59,30 +55,29 @@
 						</h5>
 						<div class="facility-content">
 							<div class="facility-wrap">
-								<!-- 아마 아이콘도 추후 경로 변경해야 함 -->
 								<div class="img-wrap">
 									<img src="/reservation/images/court.png">
 								</div>
-								<b class="text-dark">코트이름</b><small>${reservationDetail.reservationCourtName}</small>
+								<b class="text-dark">코트이름</b><small>${rDetail.RESERVATION_COURT_NAME}</small>
 							</div>
 							<div class="facility-wrap">
 								<div class="img-wrap">
 									<img src="/reservation/images/size.png">
 								</div>
-								<b class="text-dark">구장규격</b><small>${reservationDetail.reservationPlaceSize}</small>
+								<b class="text-dark">구장규격</b><small>${rDetail.RESERVATION_PLACE_SIZE}</small>
 							</div>
 							<div class="facility-wrap">
 								<div class="img-wrap">
 									<img src="/reservation/images/vs.png">
 								</div>
-								<b class="text-dark">추천경기</b><small>${reservationDetail.reservationHeadcount}</small>
+								<b class="text-dark">추천경기</b><small>${rDetail.RESERVATION_HEADCOUNT}</small>
 							</div>
 							<div class="facility-wrap">
 								<div class="img-wrap">
 									<img src="/reservation/images/loading.png">
 								</div>
 								<c:choose>
-									<c:when test="${reservationDetail.reservationStatus == '예약 중'}">
+									<c:when test="${rDetail.RESERVATION_STATUS == '예약 중'}">
 										<b class="text-dark">예약상태</b><small>예약 중</small>
 									</c:when>
 									<c:otherwise>
@@ -95,10 +90,10 @@
 									<img src="/reservation/images/form.png">
 								</div>
 								<c:choose>
-									<c:when test="${reservationDetail.reservationPlaceGround == '천연잔디'}">
+									<c:when test="${rDetail.RESERVATION_PLACE_GROUND == '천연잔디'}">
 										<b class="text-dark">바닥형태</b><small>천연잔디</small>
 									</c:when>
-									<c:when test="${reservationDetail.reservationPlaceGround == '인조잔디'}">
+									<c:when test="${rDetail.RESERVATION_PLACE_GROUND == '인조잔디'}">
 										<b class="text-dark">바닥형태</b><small>인조잔디</small>
 									</c:when>
 									<c:otherwise>
@@ -111,7 +106,7 @@
 									<img src="/reservation/images/parking.png">
 								</div>
 								<c:choose>
-									<c:when test="${reservationDetail.reservationPlaceParking == 'Y'}">
+									<c:when test="${rDetail.RESERVATION_PLACE_PARKING == 'Y'}">
 										<b class="text-dark">주차장</b><small>YES</small>
 									</c:when>
 									<c:otherwise>
@@ -121,7 +116,7 @@
 							</div>
 							<div class="facility-wrap">
 								<c:choose>
-									<c:when test="${reservationDetail.reservationCourtForm == 'outdoor'}">
+									<c:when test="${rDetail.RESERVATION_COURT_FORM == 'outdoor'}">
 										<div class="img-wrap">
 											<img src="/reservation/images/sunlight.png">
 										</div>
@@ -137,7 +132,7 @@
 							</div>
 							<div class="facility-wrap">
 								<c:choose>
-									<c:when test="${reservationDetail.reservationPlaceParking == 'YES'}">
+									<c:when test="${rDetail.RESERVATION_PLACE_LIGHT == 'Y'}">
 										<div class="img-wrap">
 											<img src="/reservation/images/lighting.png">
 										</div>
@@ -160,23 +155,30 @@
 						<div class="map-container">
 							<div id="map"></div>
 							<div class="title-wrap be-default mb-3">
-								<p>${reservationDetail.reservationPlaceAddress}</p>
+								<p>${rDetail.RESERVATION_PLACE_ADDRESS}</p>
 							</div>
 						</div>
 					</div>
-					<input type="hidden" name="reservationNo" value="${reservationDetail.reservationNo}"/>
+					<input type="hidden" name="reservationNo" value="${rDetail.RESERVATION_NO}"/>
 					<!-- button -->
-					<c:if test="${empId != null && empId == reservationDetail.empId}">
-						<div class="btn-container">
-							<a href="/reservationUpdateForm?reservationNo=${reservationDetail.reservationNo}" id="update" class="btn">수정</a>
-							<a href="/reservation" id="list" class="btn">목록</a>
-						</div>
-					</c:if>
-					<c:if test="${userId != null && empId == null}">
-						<div class="btn-container2">
-							<a href="/reservationRequestForm?reservationNo=${reservationDetail.reservationNo}" id="booking" class="booking">예약</a>
-						</div>
-					</c:if>
+					<c:choose>
+						<c:when test="${empId != null && empId == rDetail.EMP_ID}">
+							<div class="btn-container">
+								<a href="/reservationUpdateForm?reservationNo=${rDetail.RESERVATION_NO}" id="update" class="btn">수정</a>
+								<a href="/reservation" id="list" class="btn">목록</a>
+							</div>
+						</c:when>
+						<c:when test="${userId != null && empId == null}">
+							<div class="btn-container2">
+								<a href="/reservationRequestForm?reservationNo=${rDetail.RESERVATION_NO}" id="booking" class="booking">예약</a>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="btn-container2">
+								<a href="/reservation" id="list" class="booking">목록</a>
+							</div>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</form>
 		</div>
@@ -206,7 +208,7 @@
 		var geocoder = new kakao.maps.services.Geocoder();
 
 		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('${reservationDetail.reservationPlaceAddress}', function(result, status) {
+		geocoder.addressSearch('${rDetail.RESERVATION_PLACE_ADDRESS}', function(result, status) {
 
 		// 정상적으로 검색이 완료됐으면
 		if (status === kakao.maps.services.Status.OK) {

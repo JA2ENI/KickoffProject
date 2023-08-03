@@ -33,13 +33,12 @@ section {
 	float: left;
 	margin: 0 auto;
 	padding-top: 1rem;
-	padding-bottom: 1rem;
     background-color: #F8FAFB;
 }
 
 article {
 	width: calc(65% - 10px);
-	height: 100vh;
+	height: auto;
 }
 
 /* aside {
@@ -126,3 +125,37 @@ button {
     color: #343a40;
     font-size: 15px;
 }
+
+/* Paging */
+.paging-wrap {
+	padding: 0.5rem 0rem 0.5rem 14rem;
+}
+
+.paging-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 4.5vh;
+	width: calc(130% - 50px);
+	margin: 0 auto;
+	border: solid #000 1px;
+	border-color: #f8fafb;
+	background: #f8fafb;
+}
+
+.pageText {
+	margin: 6px;
+	padding: 6px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #757575;
+	text-decoration: none;
+}
+
+.pageText:hover {
+	border-radius: 5px;
+    color: #fff;
+    background: #424242;
+}
+
+

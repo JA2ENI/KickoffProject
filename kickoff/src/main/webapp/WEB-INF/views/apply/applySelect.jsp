@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/main/css/vendor/icomoon/style.css">
 <link href="/apply/css/applySelect.css" rel="stylesheet" />
 
-<title>Kick off: 신청자&모집자</title>
+<title>Kick off: 신청자&amp;모집자</title>
 </head>
 <body>
 	<div class="header-container">
@@ -41,10 +41,17 @@
 <script>
 	const msg = $('input[name=msg]').val();
 	
-	if(msg != "") {
-		${msg}
+	if(msg == "msg") {
+		alert('유효하지 않는 요청입니다.');
 		location.href="/applyList";
+	} else if(msg == "login") {
+		alert('로그인 후 이용해주세요.');
+		location.href="/loginAll";
+	} else if(msg == "emp") {
+		alert('업체회원만 이용할 수 있습니다.');
+		location.href='/applyList';
 	}
+	
 </script>
 
 <!-- script -->

@@ -1,24 +1,24 @@
 package com.teamcommit.kickoff.Service.mypage;
 
 import java.util.List;
+import java.util.Map;
 
 import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
-import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.UserDO;
 
 public interface MypageService {
 
-	List<ReservationDO> myReservationList(String userId) throws Exception;
+	List<Map<String, String>> myReservationList(ReservationDO rDO) throws Exception;
+	
+	int reservationListCount(String userId) throws Exception;
 	
 	List<ReservationDO> empReservationList(String userId) throws Exception;
 	
 	void updateCancel(int reservationNo) throws Exception;
 	
 	List<BoardDO> myBoardList(String userId) throws Exception;
-
-	UserDO userInfoCheck(UserDO user) throws Exception;
 
 	UserDO userInfo(String userId) throws Exception;
 	

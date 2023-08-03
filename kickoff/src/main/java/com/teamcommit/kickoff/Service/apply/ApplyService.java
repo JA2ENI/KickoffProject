@@ -8,15 +8,31 @@ import com.teamcommit.kickoff.Do.HelperApplyDO;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
-import com.teamcommit.kickoff.Do.TeamDO;
-import com.teamcommit.kickoff.Do.TeamInfoDO;
 import com.teamcommit.kickoff.Do.UserDO;
 
 public interface ApplyService {
 	
+	/* 예약 신청자&모집자 페이지 : 안재은 */
+	Map<String, String> selectUserInfo(String userId) throws Exception;
+	
+	List<ReservationDO> myApplyList(ReservationDO rDO) throws Exception;
+	
+	int myApplyListCount(String userId) throws Exception;
+
 	PlaceDO placeInfo(String empId) throws Exception;
 	
-	List<ReservationDO> reservationList(String empId) throws Exception;
+	List<Map<String, String>> empReservationList(ReservationDO rDO) throws Exception; 
+
+	int empReservationListCount(String empId) throws Exception;
+	
+	List<Map<String, String>> userReservationList(String rNum) throws Exception; 
+	
+	Map<String, String> userInfo(Map<String, String> map);
+	
+	void updateApplyStatus(Map<String, String> map);
+	
+	List<Map<String, Object>> applyMarkList(Map<String, String> map); 
+	/* 예약 신청자&모집자 페이지 END */
 	
 	void helperApplyInsert(HelperApplyDO helperApplyDO) throws Exception;
 	

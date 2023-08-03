@@ -1,11 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
 <%
-
 	String number = (String)session.getAttribute("smsConfirmNum");
-
 %>
 
 <!DOCTYPE html>
@@ -34,7 +31,7 @@
 				<section class="checkout spad">
 					<div class="container">
 						<div class="checkout__form">
-							<form role="form" id="frm" name="frm" action="/myInfoResult" method="POST">
+							<form role="frm" id="frm" name="frm" action="" method="POST">
 								<div class="row-request-container">
 									<div class="col-lg-8-1 col-md-6">
 										<div class="checkout__input__request">
@@ -45,62 +42,64 @@
 											<div class="col-lg-6">
 												<div class="checkout__input__request mail">
 													<p>이메일<span>*</span></p>
-													<input type="text" id="userEmail" class="inputBox mail" name="mail" value="${map.mail}"/>
+													<input type="text" id="userEmail" class="inputBox mail" name="mail" value="${userInfo.mail}"/>
 												</div>
 											</div>
 											<p class="atSign">@</p>
 											<div class="col-lg-6">
 												<div class="checkout__input__request email">
-													<select id="emailAddress" class="inputBox email">
+													<select id="emailAddress" name="emailAddress" class="inputBox email" onChange="getEmailAddress(this)">
 					                                	<option value="">이메일 선택</option>
-					                                	<option value="naver.com" <c:if test="${map.email eq 'naver'}">selected</c:if>>naver.com</option>
-					                                	<option value="kakao.com" <c:if test="${map.email eq 'kakao'}">selected</c:if>>kakao.com</option>
-					                                	<option value="gmail.com" <c:if test="${map.email eq 'gmail'}">selected</c:if>>gmail.com</option>
-					                                	<option value="daum.net"  <c:if test="${map.email eq 'daum'}" >selected</c:if>>daum.net </option>
-					                                	<option value="nate.com"  <c:if test="${map.email eq 'nate'}" >selected</c:if>>nate.com </option>
-					                                	<option value="direct">직접입력</option>
+					                                	<option value="naver.com" <c:if test="${userInfo.email eq 'naver.com'}">selected</c:if>>naver.com</option>
+					                                	<option value="kakao.com" <c:if test="${userInfo.email eq 'kakao.com'}">selected</c:if>>kakao.com</option>
+					                                	<option value="gmail.com" <c:if test="${userInfo.email eq 'gmail.com'}">selected</c:if>>gmail.com</option>
+					                                	<option value="daum.net"  <c:if test="${userInfo.email eq 'daum.net'}" >selected</c:if>>daum.net </option>
+					                                	<option value="nate.com"  <c:if test="${userInfo.email eq 'nate.com'}" >selected</c:if>>nate.com </option>
+					                                	<option id="" value="direct">직접입력</option>
 					                                </select>
 												</div>
 												<div class="checkout__input__request inputEmail">
-				                                	<input type="text" id="selboxDirect" class="inputBox email" />
+				                                	<input type="text" id="selboxDirect" name="selboxDirect" class="inputBox email" onChange="getSelboxDirect()"/>
 				                                </div>
-				                                <input type="hidden" id="email" name="email" value=""/>
+				                                <input type="hidden" id="email" name="email" value="${userInfo.email}"/>
 											</div>
 										</div>
 										<div class="checkout__input__request">
-											<p>이 름<span>*</span></p>
+											<p>이름<span>*</span></p>
 											<input type="text" class="inputBox name" name="userName" value="${userInfo.userName}" readonly/>
 										</div>
 										<div class="row">
 											<div class="col-lg-6">
 												<div class="checkout__input__request">
 													<p>연도<span>*</span></p><!-- placeholder="년(4자)" -->
-													<input type="text" id="year" class="inputBox" name="year" value="${map.year}" maxlength="4" />
+													<input type="number" id="year" class="inputBox" name="year" value="${userInfo.year}"/>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="checkout__input__request">
 													<p>월<span>*</span></p><!-- placeholder="12" -->
-													<input type="text" id="month" class="inputBox" name="month" value="${map.month}" maxlength="2"/>
+													<input type="number" id="month" class="inputBox" name="month" value="${userInfo.month}"/>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="checkout__input__request">
 													<p>일<span>*</span></p><!-- placeholder="25" -->
-													<input type="text" id="day" class="inputBox" name="day" value="${map.day}" maxlength="2"/>
+													<input type="number" id="day" class="inputBox" name="day" value="${userInfo.day}"/>
 												</div>
 											</div>
 										</div>
 										<div class="checkout__input__request">
 											<p>휴대폰 번호<span>*</span></p>
 											<div class="phone_content">
-												<input type="text" id="phone" class="inputBox phone" name="userPhoneNumber" value="${userInfo.userPhoneNumber}" maxlength="13"/>
+												<input type="text" id="phone" class="inputBox phone" value="${userInfo.userPhoneNumber}" maxlength="13"/>
+												<input type="hidden" id="phoneNumber" name="userPhoneNumber" value="${userInfo.userPhoneNumber}"/>
 												<input type="button" id="sendPhone" class="checkPhone phone" onclick="javascript:alert('test : ' + ${number});" value="번호 인증"/>
 											</div>
 										</div>
 										<div class="checkout__input__request">
 											<div id="checkPhoneBox" class="phone_content">
 												<input type="text" id="checkPhone" class="inputBox phone" name="checkPhone"/>
+												<input type="hidden" id="certificationNum" name="certificationNum" value="certificationNum"/>
 												<input type="button" id="checkPhoneBtn" class="checkPhone phone" onclick="" value="확인"/>
 											</div>
 										</div>
@@ -109,7 +108,7 @@
 											<input type="text" id="userAddress" class="inputBox" name="userAddress" value="${userInfo.userAddress}" onclick="kakaopost()">
 										</div>
 										<div class="btn-container">
- 											<input type="submit" id="update" class="update" onclick="validCheck()" value="수정"/>
+ 											<input type="button" id="update" class="update" onclick="updateInfoCheck()" value="수정"/>
 										</div>
 										<div class="">
 											<a href="javascript:void(0);" id="delete" class="delete" onclick="userDelete()">회원 탈퇴</a>
