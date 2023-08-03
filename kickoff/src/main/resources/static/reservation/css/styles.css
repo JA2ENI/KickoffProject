@@ -115,12 +115,109 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.placeName {
+	font-size: 23px;	
+  	font-weight: bolder !important;
+  	font-family: 'GangwonEduPowerExtraBoldA' !important;	
+}
+
+.info {
+	font-size: 18px;
+}
+/* count & btn */
+.wrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.text-center {
+ 	text-align: center !important;
+}
+
+.text-center.insert {
+	text-align: right !important;
+}
+
+.count-text {
+	font-size: 18px;
+	font-weight: bold;	
+	font-family: 'NanumSquareExtraBold' !important;
+}
+
+.count {
+	font-size: 19px;
+	color: #BF360C;
+}
+
 /* 현재 예약 가능한 풋살장이 없습니다. */
 .listNone {
 	font-size: 1.5rem;
 	font-weight: bold;
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+
+/* reservation status */
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.status {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: -webkit-fill-available;
+    height: 100%;
+	border-radius: 5px;
+	font-size: 3.5rem; 
+	font-weight: bold;
+	background: rgba(238, 238, 238, 0.8);
+	font-family: 'GangwonEduPowerExtraBoldA' !important;
+}
+
+.completed {
+	color: #00A168;
+}
+
+.canceled {
+	color: #FF4D37;
+}
+
+/* Paging */
+.paging-wrap {
+	padding: 0rem 3rem;
+}
+
+.paging-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0rem 15rem;
+	border: solid #000 1px;
+	border-radius: 40px;
+	border-color: #FAFAFA;
+	background: #FAFAFA;
+}
+
+.pageText {
+	margin: 10px;
+	padding: 10px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #757575;
+	text-decoration: none;
+}
+
+.pageText:hover {
+	border-radius: 5px;
+    color: #fff;
+    background: #424242;
 }
 
 /* header */
@@ -4274,6 +4371,7 @@ textarea.form-control-lg {
 }
 
 .card-body {
+  position: relative;	
   flex: 1 1 auto;
   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
   color: var(--bs-card-color);
@@ -8060,16 +8158,6 @@ textarea.form-control-lg {
 
 .text-end {
   text-align: right !important;
-}
-
-.text-center {
-  text-align: center !important;
-}
-
-.text-center.insert {
-	text-align: right !important;
-	margin-right: 0.5rem;
-	margin-bottom: 1rem;
 }
 
 .text-decoration-none {

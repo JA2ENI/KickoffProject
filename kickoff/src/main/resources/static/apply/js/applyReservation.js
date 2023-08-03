@@ -1,6 +1,7 @@
 /* applyReservation.js */
 
 $('document').ready(function () {
+	validationDate();
 	$('.status').hide();
 	$('.apply-wrap').hide();
 	$('.cover-hide').hide();
@@ -54,7 +55,7 @@ function drop(num) {
 		
 	} else {
 		$('#checkbox'+num).hide();
-		alert('해당 풋살장 예약글에 신청자가 없습니다.');
+		alert('해당 풋살장 예약 모집글에 신청자가 없습니다.');
 	}
 }
 
@@ -75,6 +76,7 @@ function ajaxSidebar(num) {
     var aUserId = $('#aUserId'+num).val();
     var empId = $('#empId').val();
     var rNum = $('#rNum'+num).val();
+    var rStatus = $('#rStatus'+rNum).val();
     var obj = { "aUserId" : aUserId,
     		  	"empId" : empId,
     		  	"rNum" : rNum };
@@ -102,8 +104,9 @@ function ajaxSidebar(num) {
 				$("#sideBar #teamLocal").html("-");
 			}
 			$("#sideBar #rCount").html(data.rCount);
-			$('input[name=sUserId]').attr('value', data.USER_ID);
 			$('input[name=sNum]').attr('value', data.rNum);
+			$('input[name=sUserId]').attr('value', data.USER_ID);
+			$('input[name=empStatus]').attr('value', rStatus);
         }
     });
 }
@@ -114,34 +117,53 @@ function select(check) {
     var aUserId = $('#sUserId').val();
     var empId = $('#empId').val();
     var sNum = $('#sNum').val();
+    var empStatus = $('#empStatus').val();
     var obj = { "aUserId" : aUserId,
     		  	"empId" : empId,
     		  	"rNum" : sNum,
     		  	"check" : check };
-    		  	
-    $.ajax({
-        url: "/updateApplyStatus",
-        type: "post",
-        contentType: "application/json; charset=UTF-8",
-        dataType: "json",
-        data: JSON.stringify(obj),
-        success: function(data) {
-        	if(check == "accept") {
-        		$(".accept1").show();
-				$(".side-body .accept1").html("예약 완료");
-        	} else {
-        		$(".refuse1").show();
-				$(".side-body .refuse1").html("예약 취소");
-        	}
-        	applyMark();
-        }
-    });
+    		  
+	if(empStatus == "예약 완료") {
+		alert('예약 완료된 모집글입니다.')
+		HttpRequest.abort();
+	} else if(empStatus == "예약 취소") {
+		alert('예약 취소된 모집글입니다.')
+		HttpRequest.abort();
+	}
+		  
+   	if(check == "accept") {
+    	var validation = confirm('수락 시, 예약 확정됩니다.\n수락하시겠습니까?');
+    } else {
+		var validation = true;
+	}
+    
+    if(validation) {	  	
+	    $.ajax({
+	        url: "/updateApplyStatus",
+	        type: "post",
+	        contentType: "application/json; charset=UTF-8",
+	        dataType: "json",
+	        data: JSON.stringify(obj),
+	        success: function(data) {
+	        	if(check == "accept") {
+	        		$(".accept1").show();
+					$(".side-body .accept1").html("예약 완료");
+	        	} else {
+	        		$(".refuse1").show();
+					$(".side-body .refuse1").html("예약 취소");
+	        	}
+	        	applyMark(sNum);
+	        }
+	    });
+	}
 }
 
 /* status mark */
-function applyMark() {
+function applyMark(rNum) {
 	var empId = $('#empId').val();
-	var obj = { "empId" : empId };
+	var curPage = $('#curPage').val();
+	var obj = { "empId" : empId,
+				"curPage" : curPage };
 	
     $.ajax({
         url: "/applyMarkList",
@@ -150,7 +172,11 @@ function applyMark() {
         dataType: "json",
         data: JSON.stringify(obj),
         success: function(data) {
-			for(var i=0; i<data.length; i++) {
+			for(var i=0; i<5; i++) {
+				if(data[i].RESERVATION_NO == rNum) {
+					$('input[name=rStatus'+data[i].RESERVATION_NO+']').attr('value', data[i].RESERVATION_STATUS);
+					$('input[name=empStatus]').attr('value', data[i].RESERVATION_STATUS);
+				}
 				if(data[i].RESERVATION_NO != null) {
 					$(".statusAjax"+i).show();
 					if(data[i].RESERVATION_STATUS == "예약 완료") {
@@ -190,6 +216,20 @@ function applyMark() {
     });
 };
 
-
+/* reservationValidationDate */
+function validationDate() {
+	var empId = $('#empId').val();
+	var obj = { "empId" : empId };
+    		  	
+    $.ajax({
+        url: "/reservationValidationDate",
+        type: "post",
+        contentType: "application/json; charset=UTF-8",
+        dataType: "json",
+        data: JSON.stringify(obj),
+        success: function() {
+        }
+    });
+}
 
 

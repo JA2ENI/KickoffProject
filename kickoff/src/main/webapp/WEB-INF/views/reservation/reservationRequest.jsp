@@ -53,57 +53,57 @@
 	<section class="checkout spad">
 		<div class="container">
 			<div class="checkout__form">
-				<form role="form" id="frm" name="frm" action="/reservationRequest" method="POST">
+				<form role="frm" id="frm" name="frm" action="" method="POST">
 					<div class="row-request-container">
 						<div class="col-lg-8-1 col-md-6">
 							<div class="checkout__input__request">
 								<p>풋살장<span>*</span></p>
-								<input name="reservationPlaceName" value="${reservationDetail.reservationPlaceName}" readonly>
+								<input name="reservationPlaceName" value="${rRequest.RESERVATION_PLACE_NAME}" readonly>
 							</div>
 							<div class="checkout__input__request">
 								<p>코트<span>*</span></p>
-								<input name="reservationCourtName" value="${reservationDetail.reservationCourtName}" readonly>
+								<input name="reservationCourtName" value="${rRequest.RESERVATION_COURT_NAME}" readonly>
 							</div>
 							<div class="checkout__input__request">
 								<p>신청자<span>*</span></p>
-								<input type="text" name="reservationUserName" value="${userInfo.userName}" readonly>
+								<input type="text" name="reservationUserName" value="${rRequest.USER_NAME}" readonly>
 							</div>
 							<div class="checkout__input__request">
 								<p>번호<span>*</span></p>
-								<input type="text" name="reservationUserPhone" value="${userInfo.userPhoneNumber}" readonly>
+								<input type="text" name="reservationUserPhone" value="${rRequest.USER_PHONE_NUMBER}" readonly>
 							</div>
 							<div class="checkout__input__request">
 								<p>예약날짜<span>*</span></p>
-								<input type="text" name="reservationDate" value="${reservationDetail.reservationDate}" readonly>
+								<input type="text" name="reservationDate" value="${rRequest.RESERVATION_DATE}" readonly>
 							</div>
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="checkout__input__request">
 										<p>시작 시간<span>*</span></p>
-										<input type="text" name="reservationStartTime" value="${reservationDetail.reservationStartTime}" readonly>
+										<input type="text" name="reservationStartTime" value="${rRequest.RESERVATION_START_TIME}" readonly>
 									</div>
 								</div>
 								<div class="col-lg-6">
 									<div class="checkout__input__request">
 										<p>종료 시간<span>*</span></p>
-										<input type="text" name="reservationEndTime" value="${reservationDetail.reservationEndTime}" readonly>
+										<input type="text" name="reservationEndTime" value="${rRequest.RESERVATION_END_TIME}" readonly>
 									</div>
 								</div>
 							</div>
 							<div class="checkout__input__request">
 								<p>경기<span>*</span></p>
-								<input type="text" name="reservationGameStyle" value="${reservationDetail.reservationHeadcount}" readonly>
+								<input type="text" name="reservationHeadcount" value="${rRequest.RESERVATION_HEADCOUNT}" readonly>
 							</div>
 							<div class="checkout__input__request">
 								<p>대관비<span>*</span></p>
-								<input type="text" name="reservationPrice" value="${reservationDetail.reservationPrice}" readonly>
+								<input type="text" name="reservationPrice" value="${rRequest.RESERVATION_PRICE}" readonly>
 							</div>
-							<input type="hidden" name="userId" value="${userId}" />
-							<input type="hidden" name="placeId" value="${reservationDetail.placeId}" />
-							<input type="hidden" name="reservationPlaceAddress" value="${reservationDetail.reservationPlaceAddress}" />
-							<input type="hidden" name="reservationOriginNo" value="${reservationDetail.reservationNo}" />
+							<input type="hidden" name="userId" value="${rRequest.USER_ID}" />
+							<input type="hidden" name="placeId" value="${rRequest.PLACE_ID}" />
+							<input type="hidden" name="reservationPlaceAddress" value="${rRequest.RESERVATION_PLACE_ADDRESS}" />
+							<input type="hidden" name="reservationOriginNo" value="${rRequest.RESERVATION_NO}" />
 							<div class="btn-container">
-								<input type="submit" id="insert" class="request" onclick="requestCheck()" value="신청"/>
+								<input type="button" id="insert" class="request" onclick="requestCheck()" value="신청"/>
 								<a href="/reservation" id="cancle" class="cancle">취소</a>
 							</div>
 						</div>
@@ -122,14 +122,6 @@
 			format: "yyyy-mm-dd",
             uiLibrary: 'bootstrap4'
         });
-
-		function updateConfirm() {
-			if(!confirm("신청하시겠습니까?")){
-				return false;
-			} else {
-				location.href="/reservationRequest";
-			}
-		}
 	</script>
 	
     <!-- Js Plugins -->

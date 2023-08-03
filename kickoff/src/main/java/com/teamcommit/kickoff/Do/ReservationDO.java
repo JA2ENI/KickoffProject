@@ -53,6 +53,8 @@ public class ReservationDO {
 	private String reservationPlaceGround;
 
 	private String reservationPlaceParking;
+	
+	private String reservationPlaceLight;
 
 	private String reservationUserName;
 
@@ -63,6 +65,10 @@ public class ReservationDO {
 	private String dayOfWeek;
 	
 	private String userStatus;
+	
+	private int startIndex; 
+	
+	private int endIndex;
 	
 	public ReservationDO() {
 		
@@ -123,6 +129,14 @@ public class ReservationDO {
 
 	public void setReservationPlaceParking(String reservationPlaceParking) {
 		this.reservationPlaceParking = reservationPlaceParking;
+	}
+	
+	public String getReservationPlaceLight() {
+		return reservationPlaceLight;
+	}
+
+	public void setReservationPlaceLight(String reservationPlaceLight) {
+		this.reservationPlaceLight = reservationPlaceLight;
 	}
 
 	public String getReservationHeadcount() {
@@ -311,6 +325,22 @@ public class ReservationDO {
 
 	public void setUserStatus(String userStatus) {
 		this.userStatus = userStatus;
+	}
+
+	public int getStartIndex() {
+		return startIndex;
+	}
+
+	public void setStartIndex(int startIndex) {
+		this.startIndex = startIndex;
+	}
+
+	public int getEndIndex() {
+		return endIndex;
+	}
+
+	public void setEndIndex(int endIndex) {
+		this.endIndex = endIndex;
 	}
 	
 }

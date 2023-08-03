@@ -10,6 +10,12 @@
 	<link rel="stylesheet" href="/myPage/css/myInfo.css">
 	<link rel="stylesheet" href="/myPage/css/main.css" />
 	
+	<c:if test="${loginAll != null }">
+		<script type="text/javascript">
+			alert("로그인해주세요.");
+			location.replace('loginAll');
+		</script>
+	</c:if>
 	<c:if test="${success != null}">
 		<script type="text/javascript">
 			alert("새 비밀번호로 로그인해주세요.");

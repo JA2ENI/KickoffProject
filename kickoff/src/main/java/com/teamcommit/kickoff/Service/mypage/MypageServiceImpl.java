@@ -1,6 +1,7 @@
 package com.teamcommit.kickoff.Service.mypage;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
-import com.teamcommit.kickoff.Do.TeamDO;
 import com.teamcommit.kickoff.Do.UserDO;
 
 @Service("mypageService")
@@ -18,8 +18,12 @@ public class MypageServiceImpl implements MypageService {
     private MypageMapper mypageMapper;
     
     @Override
-    public List<ReservationDO> myReservationList(String userId) throws Exception {
-        return mypageMapper.myReservationList(userId);
+    public List<Map<String, String>> myReservationList(ReservationDO rDO) throws Exception {
+        return mypageMapper.myReservationList(rDO);
+    }
+    
+    public int reservationListCount(String userId) throws Exception {
+    	return mypageMapper.reservationListCount(userId);
     }
     
     @Override
@@ -35,11 +39,6 @@ public class MypageServiceImpl implements MypageService {
     @Override
     public List<BoardDO> myBoardList(String userId) throws Exception {
     	return mypageMapper.myBoardList(userId);
-    }
-    
-    @Override
-    public UserDO userInfoCheck(UserDO user) throws Exception {
-    	return mypageMapper.userInfoCheck(user);
     }
     
     @Override

@@ -1,6 +1,5 @@
 package com.teamcommit.kickoff.Service.game;
 
-import com.teamcommit.kickoff.Dao.GameDAO;
 import com.teamcommit.kickoff.Do.GameDO;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;

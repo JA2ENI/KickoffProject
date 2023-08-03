@@ -49,68 +49,66 @@
             </div>
         </div>
     </div>
-
-    <!-- Section -->
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <form role="frm" id="frm" name="frm" action="/reservationUpdate" method="POST">
+                <form role="frm" id="frm" name="frm" action="" method="POST">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
 							<div class="checkout__input">
                                <p>풋살장<span>*</span></p>
-                               <input type="text" name="reservationPlaceName" value="${reservationDetail.reservationPlaceName}" readonly>
+                               <input type="text" name="reservationPlaceName" value="${rUpdate.RESERVATION_PLACE_NAME}" readonly>
                            	</div>
                           	<div class="checkout__input">
                                 <p>코트<span>*</span></p>
                                 <select id="courtName" name="reservationCourtName" onChange="selectCourt(this)">
                                 	<option value="">코트 선택하기</option>
-                                    <option value="A코트" <c:if test="${reservationDetail.reservationCourtName == 'A코트'}">selected</c:if>>A코트</option>
-                                	<option value="B코트" <c:if test="${reservationDetail.reservationCourtName == 'B코트'}">selected</c:if>>B코트</option>
-                                	<option value="C코트" <c:if test="${reservationDetail.reservationCourtName == 'C코트'}">selected</c:if>>C코트</option>
-                                	<option value="D코트" <c:if test="${reservationDetail.reservationCourtName == 'D코트'}">selected</c:if>>D코트</option>
-                                	<option value="E코트" <c:if test="${reservationDetail.reservationCourtName == 'E코트'}">selected</c:if>>E코트</option>
+                                    <option value="A코트" <c:if test="${rUpdate.RESERVATION_COURT_NAME == 'A코트'}">selected</c:if>>A코트</option>
+                                	<option value="B코트" <c:if test="${rUpdate.RESERVATION_COURT_NAME == 'B코트'}">selected</c:if>>B코트</option>
+                                	<option value="C코트" <c:if test="${rUpdate.RESERVATION_COURT_NAME == 'C코트'}">selected</c:if>>C코트</option>
+                                	<option value="D코트" <c:if test="${rUpdate.RESERVATION_COURT_NAME == 'D코트'}">selected</c:if>>D코트</option>
+                                	<option value="E코트" <c:if test="${rUpdate.RESERVATION_COURT_NAME == 'E코트'}">selected</c:if>>E코트</option>
                                 </select>
                             </div>
                            	<div class="checkout__input">
                                 <p>위치<span>*</span></p>
-                                <input type="text" name="reservationPlaceAddress" value="${reservationDetail.reservationPlaceAddress}" readonly>
+                                <input type="text" name="reservationPlaceAddress" value="${rUpdate.RESERVATION_PLACE_ADDRESS}" readonly>
                             </div>
                             <div class="checkout__input">
                                 <p>형태<span>*</span></p>
                                 <label>
-                                	<input type="radio" name="reservationCourtForm" value="indoor" onclick='getPlaceForm(event)' <c:if test="${reservationDetail.reservationCourtForm eq 'indoor'}">checked="checked"</c:if>/>&nbsp실내
+                                	<input type="radio" name="reservationCourtForm" value="indoor" onclick='getPlaceForm(event)' <c:if test="${rUpdate.RESERVATION_COURT_FORM eq 'indoor'}">checked="checked"</c:if>/>&nbsp실내
                                 </label>
                                 <label>
-                                	<input type="radio" name="reservationCourtForm" value="outdoor" onclick='getPlaceForm(event)' <c:if test="${reservationDetail.reservationCourtForm eq 'outdoor'}">checked="checked"</c:if>/>&nbsp실외
+                                	<input type="radio" name="reservationCourtForm" value="outdoor" onclick='getPlaceForm(event)' <c:if test="${rUpdate.RESERVATION_COURT_FORM eq 'outdoor'}">checked="checked"</c:if>/>&nbsp실외
                                 </label>
                             </div>
                             <div class="checkout__input">
                                 <p>추천 경기<span>*</span></p>
                                 <select id="inputHeadcount" name="reservationHeadcount" onChange="selectHeadcount(this)">
                                     <option value="">추천경기 선택하기</option>
-                                    <option value="4 vs 4" <c:if test="${reservationDetail.reservationHeadcount == '4 vs 4'}">selected</c:if>>4 vs 4</option>
-                                    <option value="5 vs 5" <c:if test="${reservationDetail.reservationHeadcount == '5 vs 5'}">selected</c:if>>5 vs 5</option>
-                                    <option value="6 vs 6" <c:if test="${reservationDetail.reservationHeadcount == '6 vs 6'}">selected</c:if>>6 vs 6</option>
+                                    <option value="4 vs 4" <c:if test="${rUpdate.RESERVATION_HEADCOUNT == '4 vs 4'}">selected</c:if>>4 vs 4</option>
+                                    <option value="5 vs 5" <c:if test="${rUpdate.RESERVATION_HEADCOUNT == '5 vs 5'}">selected</c:if>>5 vs 5</option>
+                                    <option value="6 vs 6" <c:if test="${rUpdate.RESERVATION_HEADCOUNT == '6 vs 6'}">selected</c:if>>6 vs 6</option>
                                 </select>
                             </div>
                    			<div class="checkout__input">
                         		<p>예약 날짜<span>*</span></p>
-                       			<input id="setDate" name="reservationDate" value="${reservationDetail.reservationDate}" onChange="getDate()" />
+                       			<input id="setDate" name="reservationDate" value="${rUpdate.RESERVATION_DATE}" onChange="getDate()" />
                    			</div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>시작 시간<span>*</span></p>
-                                        <select id="openTime" name="reservationStartTime" value="${reservationDetail.reservationStartTime}" onChange="getStartTime(this)">
+                                        <select id="openTime" name="reservationStartTime" onChange="getStartTime(this)">
                                         	<option value="">시작 시간 선택</option>
                                         	<c:forEach var="i" begin="1" end="24">
 	                                        	<c:choose>
 	                                        		<c:when test="${i lt 10}">
-	                                        			<option value="0${i}">0${i}:00</option>
+	                                        			<option value="0${i}:00">0${i}:00</option>
 	                                        		</c:when>
 	                                        		<c:otherwise>
-	                                        			<option value="${i}">${i}:00</option>
+	                                        			<option value="${i}:00">${i}:00</option>
 	                                        		</c:otherwise>
 	                                        	</c:choose>
                                         	</c:forEach>
@@ -125,10 +123,10 @@
                                         	<c:forEach var="i" begin="1" end="24">
 	                                        	<c:choose>
 	                                        		<c:when test="${i lt 10}">
-	                                        			<option value="0${i}">0${i}:00</option>
+	                                        			<option value="0${i}:00">0${i}:00</option>
 	                                        		</c:when>
 	                                        		<c:otherwise>
-	                                        			<option value="${i}">${i}:00</option>
+	                                        			<option value="${i}:00">${i}:00</option>
 	                                        		</c:otherwise>
 	                                        	</c:choose>
                                         	</c:forEach>
@@ -139,23 +137,21 @@
                             <div class="checkout__input">
                                 <p>예약 상태<span>*</span></p>
                                 <label>
-                                    <input type="radio" name="reservationStatus" value="예약 중" onclick='getStatus(event)' <c:if test="${reservationDetail.reservationStatus eq '예약 중'}">checked="checked"</c:if>/>&nbsp예약 중
+                                    <input type="radio" name="reservationStatus" value="예약 중" onclick='getStatus(event)' <c:if test="${rUpdate.RESERVATION_STATUS eq '예약 중'}">checked="checked"</c:if>/>&nbsp예약 중
                                 </label>
                                 <label>
-                                    <input type="radio" name="reservationStatus" value="예약 완료" onclick='getStatus(event)'<c:if test="${reservationDetail.reservationStatus eq '예약 완료'}">checked="checked"</c:if>/>&nbsp예약 완료
+                                    <input type="radio" name="reservationStatus" value="예약 완료" onclick='getStatus(event)'<c:if test="${rUpdate.RESERVATION_STATUS eq '예약 완료'}">checked="checked"</c:if>/>&nbsp예약 완료
                                 </label>
                             </div>
                             <div class="checkout__input">
                                 <p>대관비<span>*</span></p>
-                                <input type="number" class="inputPrice" id="inputPrice" name="reservationPrice" value="${reservationDetail.reservationPrice}" onChange="getPrice()" placeholder="ex) 50000">
+                                <input type="number" class="inputPrice" id="inputPrice" name="reservationPrice" value="${rUpdate.RESERVATION_PRICE}" onChange="getPrice()" placeholder="ex) 50000">
                             </div>
                             <div class="checkout__input">
 								<p>기타사항</p>
-                               	<textarea class="etc" name="reservationComment">${reservationDetail.reservationComment}</textarea>
+                               	<textarea class="etc" name="reservationComment">${rUpdate.RESERVATION_COMMENT}</textarea>
                             </div>
                         </div>
-                        
-                        <!-- Check List -->
 						<div class="col-lg-4 col-md-6">
 							<div class="checkout__order">
 								<h4>Check List</h4>
@@ -163,22 +159,20 @@
 									Title<span>Content</span>
 								</div>
 								<ul>
-									<li>풋살장<span>${reservationDetail.reservationPlaceName}</span></li>
-									<li>코트<span id="court"></span></li>
-									<li>위치<span>${reservationDetail.reservationPlaceAddress}</span></li>
-									<li>형태<span id="placeForm"></span></li>
-                                    <li>추천 경기<span id="headcount"></span></li>
-									<li>예약 날짜<span id="date"></span></li>
-									<li>시작 시간<span id="startTime"></span></li>
-									<li>종료 시간<span id="endTime"></span></li>
-									<li>예약 상태<span id="status"></span></li>
-									<li>대관비<span id="price"></span></li>
+									<li>풋살장<span>${rUpdate.RESERVATION_PLACE_NAME}</span></li>
+									<li>코트<span id="court">${rUpdate.RESERVATION_COURT_NAME}</span></li>
+									<li>위치<span>${rUpdate.RESERVATION_PLACE_ADDRESS}</span></li>
+									<li>형태<span id="placeForm">${rUpdate.RESERVATION_COURT_FORM}</span></li>
+                                    <li>추천 경기<span id="headcount">${rUpdate.RESERVATION_HEADCOUNT}</span></li>
+									<li>예약 날짜<span id="date">${rUpdate.RESERVATION_DATE}</span></li>
+									<li>시작 시간<span id="startTime">${rUpdate.RESERVATION_START_TIME}</span></li>
+									<li>종료 시간<span id="endTime">${rUpdate.RESERVATION_END_TIME}</span></li>
+									<li>예약 상태<span id="status">${rUpdate.RESERVATION_STATUS}</span></li>
+									<li>대관비<span id="price">${rUpdate.RESERVATION_PRICE}</span></li>
 								</ul>
-                                <input type="hidden" name="reservationNo" value="${reservationDetail.reservationNo}" />
-                                <input type="hidden" name="reservationRegDate" value="${reservationDetail.reservationRegDate}" />
-                                <%-- Button --%>
-                                <input type="submit" id="insert" class="site-btn-insert" value="등록"/>
-								<a href="/reservationDetail?reservationNo=${reservationDetail.reservationNo}" id="cancle" class="site-btn-cancle">취소</a>
+                                <input type="hidden" name="reservationNo" value="${rUpdate.RESERVATION_NO}" />
+                                <input type="button" id="insert" class="site-btn-insert" onclick="updateCheck()" value="등록"/>
+								<a href="/reservationDetail?reservationNo=${rUpdate.RESERVATION_NO}" id="cancle" class="site-btn-cancle">취소</a>
 							</div>
 						</div>
 					</div>
@@ -208,6 +202,7 @@
     <script src="/reservation/js/owl.carousel.min.js"></script>
     <script src="/reservation/js/main.js"></script>
 	<script src="/reservation/js/common.js"></script>
+    <script src="/reservation/js/validation.js"></script>
 	
     <script src="/includes/js/jquery.lettering.js"></script>
     <script src="/includes/js/jquery.sticky.js"></script>

@@ -1,6 +1,5 @@
 package com.teamcommit.kickoff.Service.emp;
 
-import com.teamcommit.kickoff.Dao.PlaceDAO;
 import com.teamcommit.kickoff.Do.BoardDO;
 import com.teamcommit.kickoff.Do.EmployerDO;
 import com.teamcommit.kickoff.Do.PlaceDO;

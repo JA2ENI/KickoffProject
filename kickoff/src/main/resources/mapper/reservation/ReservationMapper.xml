@@ -4,14 +4,65 @@
 <mapper namespace="com.teamcommit.kickoff.Service.reservation.ReservationMapper">
 
     <!-- Reservation List -->
-    <select id="selectReservationList" parameterType="com.teamcommit.kickoff.Do.ReservationDO" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+    <select id="selectReservationList" parameterType="com.teamcommit.kickoff.Do.ReservationDO" resultType="HashMap">
         <![CDATA[
-            SELECT *
-            FROM
-                RESERVATION
+        	SELECT *
+        	FROM (
+				   SELECT
+				       ROWNUM RNUM, A.* 
+				   FROM (
+				   		  SELECT
+		            	      RESERVATION_NO,
+		            	  	  RESERVATION_PLACE_NAME,
+		            	  	  TO_CHAR(TO_DATE(RESERVATION_DATE), 'YYYY"년 "MM"월 "DD"일"') AS RESERVATION_DATE,
+		            	  	  TO_CHAR(RESERVATION_PRICE, 'FM9,999,999') AS RESERVATION_PRICE,
+		            	  	  RESERVATION_STATUS,
+		            	  	  IMG_NAME,
+		            	  	  IMG_PATH
+		            	  FROM
+		                      RESERVATION
+		                  WHERE
+		            	      RESERVATION_TYPE = 'EMP'
+		            	) A
+		        )
+			WHERE 
+				RNUM BETWEEN #{startIndex} AND #{endIndex}
         ]]>
     </select>
-
+    
+    <!-- Reservation List Count -->
+    <select id="reservationListCount" resultType="Integer">
+    	<![CDATA[
+    		SELECT 
+    			COUNT(*)
+    		FROM
+    			RESERVATION
+    		WHERE
+    			RESERVATION_TYPE = 'EMP'
+    	]]>
+    </select>
+    
+    <!-- place info -->
+    <select id="selectPlaceInfo" parameterType="String" resultType="com.teamcommit.kickoff.Do.PlaceDO">
+        <![CDATA[
+            SELECT
+            	EMP_ID,
+            	PLACE_ID,
+            	PLACE_NAME,
+            	PLACE_ADDRESS,
+            	PLACE_SIZE,
+            	PLACE_LIGHT,
+            	PLACE_GROUND,
+            	PLACE_PARKING,
+            	IMG_NAME,
+            	IMG_PATH
+            FROM
+                PLACE
+            WHERE
+                EMP_ID = #{empId}
+        ]]>
+    </select>
+    
     <!-- Reservation Insert -->
     <insert id="insertReservation" parameterType="com.teamcommit.kickoff.Do.ReservationDO">
         <![CDATA[
@@ -34,6 +85,7 @@
                 RESERVATION_REG_DATE,
                 RESERVATION_CANCEL,
                 RESERVATION_PLACE_SIZE,
+                RESERVATION_PLACE_LIGHT,
                 RESERVATION_PLACE_GROUND,
                 RESERVATION_PLACE_PARKING,
                 IMG_NAME,
@@ -41,7 +93,7 @@
             )
             VALUES (
                 'EMP',
-                RESERVATION_SEQ.NEXTVAL,
+                RESERVATION_NO.NEXTVAL,
                 #{empId},
                 #{placeId},
                 #{reservationPlaceName},
@@ -58,6 +110,7 @@
                 SYSDATE,
                 'N',
                 #{reservationPlaceSize},
+                #{reservationPlaceLight},
                 #{reservationPlaceGround},
                 #{reservationPlaceParking},
                 #{imgName},
@@ -67,25 +120,23 @@
     </insert>
 
     <!-- Reservation Detail -->
-    <select id="selectReservationDetail" parameterType="com.teamcommit.kickoff.Do.ReservationDO" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+    <select id="selectReservationDetail" parameterType="Integer" resultType="HashMap">
         <![CDATA[
             SELECT *
             FROM
                 RESERVATION
             WHERE
-                RESERVATION_NO = #{reservationNo}
+                RESERVATION_NO = #{rNum}
         ]]>
     </select>
-
+    
     <!-- Reservation Update -->
     <update id="updateReservation" parameterType="com.teamcommit.kickoff.Do.ReservationDO">
         <![CDATA[
             UPDATE
                 RESERVATION
             SET
-                RESERVATION_PLACE_NAME = #{reservationPlaceName},
                 RESERVATION_COURT_NAME = #{reservationCourtName},
-                RESERVATION_PLACE_ADDRESS = #{reservationPlaceAddress},
                 RESERVATION_COURT_FORM = #{reservationCourtForm},
                 RESERVATION_HEADCOUNT = #{reservationHeadcount},
                 RESERVATION_DATE = #{reservationDate},
@@ -94,34 +145,23 @@
                 RESERVATION_STATUS = #{reservationStatus},
                 RESERVATION_PRICE = #{reservationPrice},
                 RESERVATION_COMMENT = #{reservationComment},
-                RESERVATION_REG_DATE =  #{reservationRegDate},
                 RESERVATION_EDIT_DATE = SYSDATE
             WHERE
                 RESERVATION_NO = #{reservationNo}
         ]]>
     </update>
 
-    <!-- place info -->
-    <select id="selectPlaceInfo" parameterType="com.teamcommit.kickoff.Do.PlaceDO" resultType="com.teamcommit.kickoff.Do.PlaceDO">
-        <![CDATA[
-            SELECT *
-            FROM
-                PLACE
-            WHERE
-                EMP_ID = #{empId}
-        ]]>
-    </select>
-
     <!-- user info -->
-    <select id="insertUserInfo" parameterType="com.teamcommit.kickoff.Do.UserDO" resultType="com.teamcommit.kickoff.Do.UserDO">
+    <select id="selectUserInfo" parameterType="String" resultType="HashMap">
         <![CDATA[
-        SELECT
-            USER_NAME,
-            USER_PHONE_NUMBER
-        FROM
-            USERS
-        WHERE
-            USER_ID = #{userId}
+	        SELECT
+	        	USER_ID,
+	            USER_NAME,
+	            USER_PHONE_NUMBER
+	        FROM
+	            USERS
+	        WHERE
+	            USER_ID = #{userId}
         ]]>
     </select>
 
@@ -142,33 +182,53 @@
                 RESERVATION_DATE,
                 RESERVATION_START_TIME,
                 RESERVATION_END_TIME,
-                RESERVATION_GAME_STYLE,
+                RESERVATION_HEADCOUNT,
                 RESERVATION_PRICE,
                 RESERVATION_STATUS,
                 RESERVATION_REG_DATE,
                 RESERVATION_PLACE_ADDRESS
             )
             VALUES (
-                       #{userId},
-                       #{placeId},
-                       'USER',
-                       RESERVATION_SEQ.NEXTVAL,
-                       #{reservationOriginNo},
-                       #{reservationPlaceName},
-                       #{reservationCourtName},
-                       'N',
-                       #{reservationUserName},
-                       #{reservationUserPhone},
-                       #{reservationDate},
-                       #{reservationStartTime},
-                       #{reservationEndTime},
-                       #{reservationGameStyle},
-                       #{reservationPrice},
-                       '예약 중',
-                       SYSDATE,
-                       #{reservationPlaceAddress}
+                      #{userId},
+                      #{placeId},
+                      'USER',
+                      RESERVATION_NO.NEXTVAL,
+                      #{reservationOriginNo},
+                      #{reservationPlaceName},
+                      #{reservationCourtName},
+                      'N',
+                      #{reservationUserName},
+                      #{reservationUserPhone},
+                      #{reservationDate},
+                      #{reservationStartTime},
+                      #{reservationEndTime},
+                      #{reservationHeadcount},
+                      #{reservationPrice},
+                      '예약 중',
+                      SYSDATE,
+                      #{reservationPlaceAddress}
             )
         ]]>
     </insert>
 
+	 <!-- reservationValidationDate --> 
+	 <!-- 예약 시간 3시간 전까지 '예약 완료'가 아닌 경우 -> 모집글 & 해당 글 신청자 모두 예약 취소 상태로 변경 -->
+    <select id="reservationValidationDate" resultType="HashMap">
+        <![CDATA[
+            UPDATE 
+				RESERVATION
+			SET 
+				RESERVATION_STATUS = '예약 취소'
+			WHERE
+				RESERVATION_NO IN (
+									SELECT 
+										RESERVATION_NO
+									FROM
+										RESERVATION
+									WHERE 
+										RESERVATION_STATUS != '예약 완료' 
+										AND TO_CHAR(TO_DATE(RESERVATION_DATE || ' ' || RESERVATION_START_TIME, 'YYYY-MM-DD HH24:MI') + (-3/24), 'YYYY-MM-DD HH24:MI') <= TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI')
+								  )
+        ]]>
+    </select>
 </mapper>

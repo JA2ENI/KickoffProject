@@ -30,9 +30,10 @@ a {
 
 .myInfo-wrap,
 .reservation-wrap {
-	height: 100vh;
+	height: auto;
 	margin: 5px;
 	padding: 10px;
+	overflow: hidden;
 }
 
 .uInfo {
@@ -193,10 +194,6 @@ a {
 	position: static;
 }
 
-.detail-container {
-	position: relative;
-}
-
 .apply-wrap {
 	position: absolute;
 	top: 7px;
@@ -253,6 +250,7 @@ a {
 }
 
 .detail-container {
+	position: relative;
 	margin: 1px;
     padding: 1px;
 	border-radius: 10px;
@@ -476,7 +474,7 @@ a {
 	position: absolute;
 	width: -webkit-fill-available;
 	top: 0px;
-	left: 200px;
+	left: 0px;
     height: 100%;
     line-height: 20vh;
 	border-radius: 10px;
@@ -498,3 +496,9 @@ a {
 	font-weight: bold;
 	font-family: 'GangwonEduPowerExtraBoldA' !important;
 }
+
+.when {
+	display: block !important;
+}
+
+

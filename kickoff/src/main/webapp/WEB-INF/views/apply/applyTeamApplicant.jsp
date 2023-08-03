@@ -141,6 +141,16 @@
 					</div>
 				</div>
 		</article>
+		<!-- Paging -->
+		<div class="paging-wrap container">
+			<div class="paging-container">
+	    		<a href="#this" class="pageText">&lt;Prev</a>
+           		<a href="#this" class="pageText">${pageNum}</a> 
+           		<a href="#this" class="pageText">${pageNum}</a> 
+	   			<a href="#this" class="pageText">Next&gt;</a>
+		   	</div>
+		</div>
+		<!-- Paging END -->
 	</section>
 </body>
 

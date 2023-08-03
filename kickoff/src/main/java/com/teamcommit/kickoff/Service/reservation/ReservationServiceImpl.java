@@ -2,11 +2,11 @@ package com.teamcommit.kickoff.Service.reservation;
 
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
-import com.teamcommit.kickoff.Do.UserDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service("reservationService")
 public class ReservationServiceImpl implements ReservationService {
@@ -15,23 +15,28 @@ public class ReservationServiceImpl implements ReservationService {
     private ReservationMapper reservationMapper;
 
     @Override
-    public List<ReservationDO> selectReservationList(ReservationDO reservationDO) throws Exception {
-        return reservationMapper.selectReservationList(reservationDO);
+    public List<Map<String, String>> selectReservationList(ReservationDO rDO) throws Exception {
+        return reservationMapper.selectReservationList(rDO);
+    }
+    
+    @Override
+    public int reservationListCount() throws Exception {
+    	return reservationMapper.reservationListCount();
+    }
+    
+    @Override
+    public void insertReservation(ReservationDO rDO) throws Exception {
+        reservationMapper.insertReservation(rDO);
     }
 
     @Override
-    public void insertReservation(ReservationDO reservationDO) throws Exception {
-        reservationMapper.insertReservation(reservationDO);
+    public Map<String, String> selectReservationDetail(int rNum) throws Exception {
+        return reservationMapper.selectReservationDetail(rNum);
     }
 
     @Override
-    public ReservationDO selectReservationDetail(int reservationNo) throws Exception {
-        return reservationMapper.selectReservationDetail(reservationNo);
-    }
-
-    @Override
-    public void updateReservation(ReservationDO reservationDO) {
-        reservationMapper.updateReservation(reservationDO);
+    public void updateReservation(ReservationDO rDO) {
+        reservationMapper.updateReservation(rDO);
     }
 
     @Override
@@ -40,13 +45,25 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public UserDO insertUserInfo(String userId) {
-        return reservationMapper.insertUserInfo(userId);
+    public Map<String, String> selectReservationRequest(Map<String, String> map) {
+    	Map<String, String> reservationRequest = reservationMapper.selectReservationDetail(Integer.parseInt(map.get("rNum")));
+    	Map<String, String> userInfo = reservationMapper.selectUserInfo(map.get("userId"));
+    	
+    	reservationRequest.put("USER_ID", userInfo.get("USER_ID"));
+    	reservationRequest.put("USER_NAME", userInfo.get("USER_NAME"));
+    	reservationRequest.put("USER_PHONE_NUMBER", userInfo.get("USER_PHONE_NUMBER"));
+    	
+        return reservationRequest;
     }
 
     @Override
-    public void insertReservationRequest(ReservationDO reservationDO) throws Exception {
-        reservationMapper.insertReservationRequest(reservationDO);
+    public void insertReservationRequest(ReservationDO rDO) throws Exception {
+        reservationMapper.insertReservationRequest(rDO);
+    }
+    
+    @Override
+    public void reservationValidationDate() throws Exception {
+       reservationMapper.reservationValidationDate();
     }
 
 }

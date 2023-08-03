@@ -23,8 +23,8 @@
 					<div class="container">
 						<div class="checkout__form">
 							<div class="btn-wrap">
-								<button type="button" class="select_pw" onclick="location.href='/myInfoPw'">비밀번호 변경</button>	
-								<button type="button" class="select_info" onclick="location.href='/myInfo'">정보 수정</button>	
+								<button type="button" class="select_pw" onclick="location.href='/myInfoSelect?page=password'">비밀번호 변경</button>	
+								<button type="button" class="select_info" onclick="location.href='/myInfoSelect?page=myInfo'">정보 수정</button>	
 							</div>
 						</div>
 					</div>

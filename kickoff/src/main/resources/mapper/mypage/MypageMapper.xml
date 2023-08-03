@@ -4,38 +4,52 @@
 <mapper namespace="com.teamcommit.kickoff.Service.mypage.MypageMapper">
 
     <!-- My Reservation List -->
-    <select id="myReservationList" parameterType="String" resultType="com.teamcommit.kickoff.Do.ReservationDO">
+    <select id="myReservationList" parameterType="com.teamcommit.kickoff.Do.ReservationDO" resultType="HashMap">
         <![CDATA[
             SELECT *
+        	FROM (
+				   SELECT
+				       ROWNUM RNUM, A.* 
+				   FROM (
+				   		  SELECT
+				   		  	  a.RESERVATION_NO,
+				   		  	  a.RESERVATION_ORIGIN_NO,
+				   		  	  TO_CHAR(TO_DATE(a.RESERVATION_DATE), 'YYYY"년 "MM"월 "DD"일"') AS RESERVATION_DATE,
+				   		  	  a.RESERVATION_STATUS AS USER_STATUS,
+				   		  	  a.RESERVATION_PLACE_NAME,
+				   		  	  a.RESERVATION_PLACE_ADDRESS,
+				   		  	  a.RESERVATION_START_TIME,
+				   		  	  a.RESERVATION_END_TIME,
+				   		  	  TO_CHAR(a.RESERVATION_PRICE, 'FM9,999,999') AS RESERVATION_PRICE,
+				   		  	  b.RESERVATION_STATUS,
+				   		  	  b.IMG_PATH,
+				   		  	  b.IMG_NAME
+		            	  FROM
+		                      RESERVATION a JOIN RESERVATION b
+		                  ON
+		                  	  a.RESERVATION_ORIGIN_NO = b.RESERVATION_NO
+		                  WHERE
+		            	      a.USER_ID = #{userId}
+		            	) A
+		        )
+			WHERE 
+				RNUM BETWEEN #{startIndex} AND #{endIndex}
+            ORDER BY RESERVATION_DATE ASC	
+        ]]>
+    </select>
+    
+    <!-- My Reservation List Count -->
+    <select id="reservationListCount" parameterType="String" resultType="Integer">
+        <![CDATA[
+            SELECT
+            	COUNT(*)
             FROM
                 RESERVATION
             WHERE
             	USER_ID = #{userId}
-            ORDER BY RESERVATION_DATE ASC	
         ]]>
     </select>
 
-	<!-- Emp Reservation List -->
-    <select id="empReservationList" parameterType="String" resultType="com.teamcommit.kickoff.Do.ReservationDO">
-        <![CDATA[
-            SELECT 	
-            		IMG_NAME, 
-            		IMG_PATH
-			FROM 	
-					RESERVATION
-			WHERE 	
-					RESERVATION_NO IN (
-									  SELECT 
-											RESERVATION_ORIGIN_NO
-			                          FROM 
-			                          		RESERVATION
-			                          WHERE 
-			                          		USER_ID = #{userId} AND RESERVATION_TYPE = 'USER' 
-			                          )
-			ORDER BY RESERVATION_DATE ASC                          
-		]]>
-    </select>
-    
     <!-- My Reservation Cancel -->
     <update id="updateCancel" parameterType="Integer">
         <![CDATA[
@@ -59,18 +73,7 @@
         ]]>
     </select>
     
-    <!-- User Info check -->
-    <select id="userInfoCheck" parameterType="com.teamcommit.kickoff.Do.UserDO" resultType="com.teamcommit.kickoff.Do.UserDO">
-        <![CDATA[
-            SELECT *
-            FROM
-                USERS
-            WHERE
-            	USER_ID = #{userId} AND USER_PW = #{userPw}
-        ]]>
-    </select>
-    
-    <!-- User Info -->
+    <!-- User Info & User Check -->
 	<select id="userInfo" parameterType="com.teamcommit.kickoff.Do.UserDO" resultType="com.teamcommit.kickoff.Do.UserDO">
         <![CDATA[
             SELECT *
@@ -100,7 +103,7 @@
                 USERS
             SET
                 USER_EMAIL = #{userEmail},
-                USER_BIRTHDATE = TO_DATE(#{userBirthdate}, 'YYYY-MM-DD'),
+                USER_BIRTHDATE = #{userBirthdate},
                 USER_PHONE_NUMBER = #{userPhoneNumber},
                 USER_ADDRESS = #{userAddress}
             WHERE

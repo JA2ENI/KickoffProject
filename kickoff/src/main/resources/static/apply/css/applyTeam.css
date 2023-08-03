@@ -30,9 +30,10 @@ a {
 
 .myInfo-wrap,
 .team-wrap {
-	height: 100vh;
+	height: auto;
 	margin: 5px;
 	padding: 10px;
+	overflow: hidden;
 }
 
 .uInfo {

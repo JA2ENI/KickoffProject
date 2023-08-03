@@ -1,7 +1,6 @@
 package com.teamcommit.kickoff.Controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,20 +10,21 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.teamcommit.kickoff.Common.Pagination;
 import com.teamcommit.kickoff.Do.HelperDO;
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
-import com.teamcommit.kickoff.Do.TeamInfoDO;
 import com.teamcommit.kickoff.Do.UserDO;
 import com.teamcommit.kickoff.Service.apply.ApplyService;
 import org.json.*;
-
-import edu.emory.mathcs.backport.java.util.Arrays;
-
 
 @Controller
 public class ApplyController {
@@ -33,105 +33,184 @@ public class ApplyController {
 	ApplyService applyService;
 	
 	@RequestMapping(value="/applyList")
-	public String applyList(HttpServletRequest request, HttpSession session) throws Exception {
-		String view = "/apply/applyList";
-		String parameter = request.getParameter("page");
-		session.removeAttribute("msg");
+	public ModelAndView applyList(HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/apply/applyList");
 		
-		if(parameter != null) {
-			if(!parameter.equals("reservation") && !parameter.equals("game") && !parameter.equals("team") && !parameter.equals("helper")) {
-				session.setAttribute("msg", "alert('유효하지 않는 요청입니다.');");
-				view = "redirect:/applySelect";
-				return view;
-			}
-			session.setAttribute("page", parameter);
-			view = "/apply/applySelect";
-			return view;
-		} 
+		try {
+			String parameter = request.getParameter("page");
+			if(parameter != null) {
+				if(session.getAttribute("userId") != null || session.getAttribute("empId") != null) {
+					if(!parameter.equals("reservation") && !parameter.equals("game") && !parameter.equals("team") && !parameter.equals("helper")) {
+						mv.addObject("msg", "msg");
+					}
+					session.setAttribute("page", parameter);
+					mv.setViewName("/apply/applySelect");
+					return mv;
+				} else {
+					mv.addObject("msg", "login");
+					mv.setViewName("/apply/applySelect");
+					return mv;
+				}
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		return view;
+		return mv;
 	}
 	
 	@RequestMapping(value="/applySelect")
 	public String applySelectList(HttpServletRequest request, HttpSession session) throws Exception {
 		String view = "/apply/applySelect"; 
-		String page = (String)session.getAttribute("page");
 		
-		if(page != null) {
-			String num = request.getParameter("num");
-			if(num != null) {
-				if(num.equals("1")) {
-					if(page.equals("reservation")) {
-						view = "redirect:/applyReservationApplicant";
-						return view;
-					} else if(page.equals("game")) {
-						view = "redirect:/applyGameApplicant";
-						return view;
-					} else if(page.equals("team")) {
-						view = "redirect:/applyTeamApplicant";
-						return view;
-					} else 	if(page.equals("helper")) {
-						view = "redirect:/applyHelperApplicant";
-						return view;
-					}
-				} else if(num.equals("2")) {
-					if(page.equals("reservation")) {
-						view = "redirect:/applyReservationRecruiter";
-						return view;
-					} else if(page.equals("game")) {
-						view = "redirect:/applyGameRecruiter";
-						return view;
-					} else if(page.equals("team")) {
-						view = "redirect:/applyTeamRecruiter";
-						return view;
-					} else 	if(page.equals("helper")) {
-						view = "redirect:/applyHelperRecruiter";
-						return view;
-					}
-				} 
+		try {
+			String page = (String)session.getAttribute("page");
+			if(page != null) {
+				String num = request.getParameter("num");
+				if(num != null) {
+					if(num.equals("1")) {
+						if(page.equals("reservation")) {
+							view = "redirect:/applyReservationApplicant";
+							return view;
+						} else if(page.equals("game")) {
+							view = "redirect:/applyGameApplicant";
+							return view;
+						} else if(page.equals("team")) {
+							view = "redirect:/applyTeamApplicant";
+							return view;
+						} else 	if(page.equals("helper")) {
+							view = "redirect:/applyHelperApplicant";
+							return view;
+						}
+					} else if(num.equals("2")) {
+						if(page.equals("reservation")) {
+							view = "redirect:/applyReservationRecruiter";
+							return view;
+						} else if(page.equals("game")) {
+							view = "redirect:/applyGameRecruiter";
+							return view;
+						} else if(page.equals("team")) {
+							view = "redirect:/applyTeamRecruiter";
+							return view;
+						} else 	if(page.equals("helper")) {
+							view = "redirect:/applyHelperRecruiter";
+							return view;
+						}
+					} 
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return view;
 	}
 	
-	/* '예약 신청' 다른 파일에서 작업중 */
-	
-/*	
-	//에약 신청자 페이지 
-	@RequestMapping(value="")
-	public String applyReservationApplicant(HttpSession session) throws Exception {
-		String view = "/apply/applyReservationApplicant";
+	/* 예약 신청자&모집자 페이지 : 안재은 */
+	@RequestMapping(value="/applyReservationApplicant")
+	public ModelAndView applyReservationApplicant(@ModelAttribute("reservationDO")ReservationDO rDO, @RequestParam(defaultValue="1")int curPage, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/apply/applyReservationApplicant");
 		
-		return view;
-	}
-	
-	//예약 모집자 페이지 
-	@RequestMapping(value="")
-	public String applyReservationRecruiter(HttpSession session, Model model) throws Exception {
-		String view = "/apply/applyReservationRecruiter";
-		String empId = (String)session.getAttribute("empId");
-		
-		if(empId != null) {
-			PlaceDO placeInfo = applyService.placeInfo(empId);
-			List<ReservationDO> reservation = applyService.reservationList(empId);
-			
-			for(int i=0; i<reservation.size(); i++) {
-				String getDate = reservation.get(i).getReservationDate();
-				System.out.println(reservation.get(i).getReservationDate());
+		try {
+			if(session.getAttribute("userId") != null || session.getAttribute("empId") != null) {
+				String userId = (String)session.getAttribute("userId");
+				int aListCnt = applyService.myApplyListCount(userId);
+				int pageSize = 5;
+				Pagination pagination = new Pagination(aListCnt, curPage, pageSize);
+				rDO.setStartIndex(pagination.getStartIndex());
+				rDO.setEndIndex(pagination.getEndIndex());
+				rDO.setUserId(userId);
 				
-				String year = getDate.substring(0, 4);
-				String month = getDate.substring(5, 7);
-				String day = getDate.substring(8, 10);
+				Map<String, String> selectUserInfo = applyService.selectUserInfo(userId);
+				List<ReservationDO> myApplyList = applyService.myApplyList(rDO);
+				
+				mv.addObject("userInfo", selectUserInfo);
+				mv.addObject("myApplyList", myApplyList);
+				mv.addObject("pagination", pagination);
+			} else {
+				mv.addObject("msg", "login");
+				mv.setViewName("/apply/applySelect");
+				return mv;
 			}
-			
-			model.addAttribute("placeInfo", placeInfo);
-			model.addAttribute("reservationList", reservation);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		return view;
+		return mv;
 	}
-*/	
+	
+	//예약 모집자 페이지 : 안재은
+	@ResponseBody
+	@RequestMapping(value="/applyReservationRecruiter")
+	public ModelAndView applyReservationRecruiter(@ModelAttribute("reservationDO")ReservationDO rDO, @RequestParam(defaultValue="1")int curPage, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/apply/applyReservationRecruiter");
+		
+		try {
+			if(session.getAttribute("userId") == null && session.getAttribute("empId") != null) {
+				String empId = (String)session.getAttribute("empId");
+				int rListCnt = applyService.empReservationListCount(empId);
+				int pageSize = 5;
+				Pagination pagination = new Pagination(rListCnt, curPage, pageSize);
+				rDO.setStartIndex(pagination.getStartIndex());
+				rDO.setEndIndex(pagination.getEndIndex());
+				rDO.setEmpId(empId);
+				
+				PlaceDO placeInfo = applyService.placeInfo(empId);
+				List<Map<String, String>> rList = applyService.empReservationList(rDO);
+				List<Map<String, String>> aList = new ArrayList<>();
+				
+				for(Map<String, String> map : rList) {
+					List<Map<String, String>> applyList = applyService.userReservationList(String.valueOf(map.get("RESERVATION_NO")));
+					for(Map<String, String> map2 : applyList) {
+						aList.add(map2);
+					}
+				}
+			
+				mv.addObject("placeInfo", placeInfo);
+				mv.addObject("empRList", rList);
+				mv.addObject("userRList", aList);
+				mv.addObject("pagination", pagination);
+			} else {
+				mv.addObject("msg", "emp");
+				mv.setViewName("/apply/applySelect");
+				return mv;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mv;
+	}
+	
+	/* Side Bar */
+	@ResponseBody
+	@RequestMapping(value="/aUserInfo", method=RequestMethod.POST)
+	public Map<String, String> aUserInfo(@RequestBody Map<String, String> map) {
+		Map<String, String> userInfo = applyService.userInfo(map);
+		userInfo.put("rNum", map.get("rNum"));
+		
+		return userInfo;
+	}
+	
+	/* 수락&거절, 신청취소 */
+	@ResponseBody
+	@RequestMapping(value="/updateApplyStatus", method=RequestMethod.POST)
+	public Map<String, String> updateApplyStatus(@RequestBody Map<String, String> map) {
+		applyService.updateApplyStatus(map);
+		
+		return map;
+	}
+	
+	/* Status Mark */
+	@ResponseBody
+	@RequestMapping(value="/applyMarkList", method=RequestMethod.POST)
+	public List<Map<String, Object>> applyMarkList(@RequestBody Map<String, String> map) {
+		List<Map<String, Object>> applyMarkList = applyService.applyMarkList(map);
+		
+		return applyMarkList;
+	}
+	/* 예약 신청자&모집자 페이지 END */
+	
 	
 	//매칭 신청자 페이지 
 	@RequestMapping(value="/applyGameApplicant")

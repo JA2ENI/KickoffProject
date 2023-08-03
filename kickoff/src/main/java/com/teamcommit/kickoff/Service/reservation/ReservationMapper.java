@@ -2,26 +2,33 @@ package com.teamcommit.kickoff.Service.reservation;
 
 import com.teamcommit.kickoff.Do.PlaceDO;
 import com.teamcommit.kickoff.Do.ReservationDO;
-import com.teamcommit.kickoff.Do.UserDO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ReservationMapper {
 	
-    public List<ReservationDO> selectReservationList(ReservationDO reservationDO);
+    public List<Map<String, String>> selectReservationList(ReservationDO rDO);
+    
+    public int reservationListCount();
 
-    public void insertReservation(ReservationDO reservationDO);
+    public void insertReservation(ReservationDO rDO);
 
-    public ReservationDO selectReservationDetail(int reservationNo);
+    public Map<String, String> selectReservationDetail(int rNum);
 
-    public void updateReservation(ReservationDO reservationDO);
+    public void updateReservation(ReservationDO rDO);
 
     public PlaceDO selectPlaceInfo(String empId);
 
-    public UserDO insertUserInfo(String userId);
+    public Map<String, String> selectUserInfo(String userId);
 
-    public void insertReservationRequest(ReservationDO reservationDO);
+    public void insertReservationRequest(ReservationDO rDO);
+    
+    public List<ReservationDO> reservationDateList(String empId);
+    
+    public void reservationValidationDate();
+    
 
 }
